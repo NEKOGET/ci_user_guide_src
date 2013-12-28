@@ -14,9 +14,9 @@ CodeIgniterのユーザガイドは、ドキュメントを管理するために
 =============
 
 SphinxはPythonが必要です。OSXの場合は既にインストールされています。
-You can confirm in a Terminal window by executing the ``python`` command
-without any parameters.  It should load up and tell you which version you have
-installed.  If you're not on 2.7+, go ahead and install 2.7.2 from
+ターミナルで、``python``とコマンドを打ち込む事でインストールされているか確認する事ができます。
+パラメータを指定しない事で、どのバージョンであるかを教えてくれます。
+2.7+でない場合は、次から2.7.2をインストールしてください
 http://python.org/download/releases/2.7.2/
 
 インストール
@@ -32,28 +32,29 @@ http://python.org/download/releases/2.7.2/
 ドキュメントの編集と作成
 ==================================
 
-All of the source files exist under *source/* and is where you will add new
-documentation or modify existing documentation.  Just as with code changes,
-we recommend working from feature branches and making pull requests to
-the *develop* branch of this repo.
+すべてのソース·ファイルは、*source/*の下に存在し、
+新しいドキュメントを追加したり修正します。
+コードの変更と同様に、マニュアルまたは既存のドキュメントを変更します。
+私たちはfeature branchesで作業してに*develop*ブランチにpull requestsを送る事をお勧めします。
 
 HTMLは？
 ====================
 
-Obviously, the HTML documentation is what we care most about, as it is the
-primary documentation that our users encounter.  Since revisions to the built
-files are not of value, they are not under source control.  This also allows
-you to regenerate as necessary if you want to "preview" your work.  Generating
-the HTML is very simple.  From the root directory of your user guide repo
-fork issue the command you used at the end of the installation instructions::
+HTMLのドキュメントは私たちユーザーが遭遇する主要なドキュメントであり、
+私たちの最も関心のあるものであることは明らかです。
+改訂される前にビルドされたファイルはソース管理下に存在する価値がありません。
+それはまた、あなたが"プレビュー"を求める時、必要に応じて、再生成することができます。
+HTMLはとてもシンプルです。  ユーザーガイドのレポジトリのルートディレクトリからフォークコマンドを発行します。
+それはインストール手順の最後に書かれています::
+
 
 	make html
 
-You will see it do a whiz-bang compilation, at which point the fully rendered
-user guide and images will be in *build/html/*.  After the HTML has been built,
-each successive build will only rebuild files that have changed, saving
-considerable time.  If for any reason you want to "reset" your build files,
-simply delete the *build* folder's contents and rebuild.
+それは目を見張るようなコンパイルを行います。
+レンダリングされたユーザガイドとイメージは*build/html/*になります。 HTMLが構築された後、
+連続した各ビルドは変更されたファイルを再構築し、かなりの時間を節約することができます。
+もし何らかの理由で、ビルドファイルを「リセット」したい場合は
+単に*build* フォルダの内容を削除して再構築します。
 
 ***************
 ガイドラインスタイル

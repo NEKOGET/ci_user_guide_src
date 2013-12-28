@@ -8,7 +8,7 @@ CodeIgniter ユーザーガイド
 
 CodeIgniterのユーザガイドは、ドキュメントを管理するためにスフィンクスを使用し、
 様々なフォーマットへの出力します。 ページは人間が読める
-'ReStructured Textフォーマット<http://sphinx.pocoo.org/rest.html>'で書かれています
+`ReStructured Textフォーマット<http://sphinx.pocoo.org/rest.html>`_で書かれています
 
 前提条件
 =============

@@ -1,25 +1,25 @@
 ######################
-CodeIgniter User Guide
+CodeIgniter ユーザーガイド
 ######################
 
 ******************
-Setup Instructions
+セットアップ手順
 ******************
 
-The CodeIgniter user guide uses Sphinx to manage the documentation and
-output it to various formats.  Pages are written in human-readable
-`ReStructured Text <http://sphinx.pocoo.org/rest.html>`_ format.
+CodeIgniterのユーザガイドは、ドキュメントを管理するためにスフィンクスを使用し、
+様々なフォーマットへの出力します。 ページは人間が読める
+'ReStructured Textフォーマット<http://sphinx.pocoo.org/rest.html>'で書かれています
 
-Prerequisites
+前提条件
 =============
 
-Sphinx requires Python, which is already installed if you are running OS X.
+SphinxはPythonが必要です。OSXの場合は既にインストールされています。
 You can confirm in a Terminal window by executing the ``python`` command
 without any parameters.  It should load up and tell you which version you have
 installed.  If you're not on 2.7+, go ahead and install 2.7.2 from
 http://python.org/download/releases/2.7.2/
 
-Installation
+インストール
 ============
 
 1. Install `easy_install <http://peak.telecommunity.com/DevCenter/EasyInstall#installing-easy-install>`_
@@ -29,7 +29,7 @@ Installation
 5. ``cd user_guide_src``
 6. ``make html``
 
-Editing and Creating Documentation
+ドキュメントの編集と作成
 ==================================
 
 All of the source files exist under *source/* and is where you will add new
@@ -37,7 +37,7 @@ documentation or modify existing documentation.  Just as with code changes,
 we recommend working from feature branches and making pull requests to
 the *develop* branch of this repo.
 
-So where's the HTML?
+HTMLは？
 ====================
 
 Obviously, the HTML documentation is what we care most about, as it is the
@@ -56,8 +56,8 @@ considerable time.  If for any reason you want to "reset" your build files,
 simply delete the *build* folder's contents and rebuild.
 
 ***************
-Style Guideline
+ガイドラインスタイル
 ***************
 
-Please refer to source/documentation/index.rst for general guidelines for
-using Sphinx to document CodeIgniter.
+CodeIgniterのを文書化するためにスフィンクスを使用しています。
+一般的なガイドラインについては、 source/documentation/index.rstを参照してください。

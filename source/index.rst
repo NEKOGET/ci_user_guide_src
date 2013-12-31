@@ -1,6 +1,6 @@
-######################
-CodeIgniter User Guide
-######################
+#########################
+CodeIgniter ユーザーガイド
+#########################
 
 - :doc:`License Agreement <license>`
 - :doc:`Change Log <changelog>`
@@ -16,14 +16,14 @@ Welcome
 - :doc:`general/welcome`
 
 **********
-Basic Info
+基本情報
 **********
 
 - :doc:`general/requirements`
 - :doc:`general/credits`
 
 ************
-Installation
+インストール
 ************
 
 - :doc:`installation/downloads`
@@ -32,7 +32,7 @@ Installation
 - :doc:`installation/troubleshooting`
 
 ************
-Introduction
+はじめに
 ************
 
 - :doc:`overview/getting_started`
@@ -42,9 +42,9 @@ Introduction
 - :doc:`overview/mvc`
 - :doc:`overview/goals`
 
-********
-Tutorial
-********
+**************
+チュートリアル
+**************
 
 - :doc:`tutorial/index`
 - :doc:`tutorial/static_pages`
@@ -53,7 +53,7 @@ Tutorial
 - :doc:`tutorial/conclusion`
 
 **************
-General Topics
+一般的なトピック
 **************
 
 .. toctree::
@@ -62,9 +62,9 @@ General Topics
 	
 	general/index
 
-*****************
-Library Reference
-*****************
+********************
+ライブラリ リファレンス
+********************
 
 .. toctree::
 	:glob:
@@ -72,18 +72,18 @@ Library Reference
 	
 	libraries/index
 
-****************
-Driver Reference
-****************
+*********************
+ドライバ リファレンス
+*********************
 
 - :doc:`libraries/caching`
 - :doc:`database/index`
 - :doc:`libraries/javascript`
 - :doc:`libraries/sessions`
 
-****************
-Helper Reference
-****************
+********************
+ヘルパー リファレンス
+********************
 
 .. toctree::
 	:glob:
@@ -92,7 +92,7 @@ Helper Reference
 	helpers/index
 
 ***************************
-Contributing to CodeIgniter
+CodeIgniterへの貢献について
 ***************************
 
 .. toctree::

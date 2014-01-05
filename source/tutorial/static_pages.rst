@@ -3,7 +3,7 @@
 ############
 
 **注意:** このチュートリアルでは、CodeIgniterのをダウンロードし,
-開発環境にフレームワークが`インストール<../installation/index.html>`_ されている
+開発環境にフレームワークが `インストール <../installation/index.html>`_ されている
 と仮定します。
 
 The first thing you're going to do is set up a **controller** to handle

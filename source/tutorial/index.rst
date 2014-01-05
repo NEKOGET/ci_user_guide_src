@@ -30,7 +30,7 @@ This tutorial will primarily focus on:
    いくつかの基本的なデータベース操作を行うことから始めます。
 -  `ニュース項目の作成 <create_news_items.html>`_ から、
    高度なデータベース操作やフォーム検証をご紹介します
--  `おわりに<conclusion.html>`_ さらなる文書やその他のリソースに
+-  `おわりに <conclusion.html>`_ さらなる文書やその他のリソースに
    いくつかの指針を与えるでしょう。
 
 CodeIgniterフレームワークの探求をお楽しみください。

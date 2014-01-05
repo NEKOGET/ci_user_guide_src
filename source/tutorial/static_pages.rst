@@ -1,10 +1,10 @@
 ############
-Static pages
+静的なページ
 ############
 
-**Note:** This tutorial assumes you've downloaded CodeIgniter and
-`installed the framework <../installation/index.html>`_ in your
-development environment.
+**注意:** このチュートリアルでは、CodeIgniterのをダウンロードし,
+開発環境にフレームワークが`インストール<../installation/index.html>`_ されている
+と仮定します。
 
 The first thing you're going to do is set up a **controller** to handle
 static pages. A controller is simply a class that helps delegate work.
@@ -76,7 +76,7 @@ includes the following code:
         </body>
     <html>
 
-Adding logic to the controller
+コントローラにロジックの追加する
 ------------------------------
 
 Earlier you set up a controller with a view() method. The method accepts
@@ -131,8 +131,8 @@ used to pass values to the view. Each value in the $data array is
 assigned to a variable with the name of its key. So the value of
 $data['title'] in the controller is equivalent to $title in the view.
 
-Routing
--------
+ルーティング
+-----------
 
 The controller is now functioning! Point your browser to
 [your-site-url]index.php/pages/view to see your page. When you visit

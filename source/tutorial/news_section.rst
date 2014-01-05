@@ -7,7 +7,7 @@ by writing a class that includes static pages. We cleaned up the URI by
 adding custom routing rules. Now it's time to introduce dynamic content
 and start using a database.
 
-Setting up your model
+モデルのセットアップ
 ---------------------
 
 Instead of writing database operations right in the controller, queries
@@ -78,7 +78,7 @@ news records, or get a news item by its `slug <#>`_. You might have
 noticed that the $slug variable wasn't sanitized before running the
 query; :doc:`Query Builder <../database/query_builder>` does this for you.
 
-Display the news
+ニュースを表示する
 ----------------
 
 Now that the queries are written, the model should be tied to the views
@@ -193,8 +193,8 @@ The only things left to do is create the corresponding view at
 	echo '<h2>'.$news_item['title'].'</h2>';
 	echo $news_item['text'];
 
-Routing
--------
+ルーティング
+----------
 
 Because of the wildcard routing rule created earlier, you need need an
 extra route to view the controller that you just made. Modify your

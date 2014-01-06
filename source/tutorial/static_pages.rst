@@ -6,9 +6,9 @@
 開発環境にフレームワークが `インストール <../installation/index.html>`_ されている
 と仮定します。
 
-The first thing you're going to do is set up a **controller** to handle
-static pages. A controller is simply a class that helps delegate work.
-It is the glue of your web application.
+まず最初に静的なページを処理する  **controller** をセットアップします。
+コントローラはシンプルな指名するお仕事を支援するclassです。
+これがWebアプリケーションのつなぎになります。
 
 For example, when a call is made to:
 ``http://example.com/news/latest/10`` We might imagine that there is a

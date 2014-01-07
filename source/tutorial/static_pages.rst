@@ -20,8 +20,8 @@ match:
 As URL schemes become more complex, this may change. But for now, this
 is all we will need to know.
 
-Create a file at application/controllers/Pages.php with the following
-code.
+次のコードで、application/controllers/Pages.php ファイルを
+作成します。
 
 ::
 

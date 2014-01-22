@@ -160,6 +160,7 @@ Release Date: Not Released
    -  Added support for SQLite3 database driver.
    -  Added Interbase/Firebird database support via the *ibase* driver.
    -  Added ODBC support for ``create_database()``, ``drop_database()`` and ``drop_table()`` in :doc:`Database Forge <database/forge>`.
+   -  Added **save_queries** configuration setting to *application/config/database.php* (defaults to ``TRUE``).
 
    -  :doc:`Query Builder <database/query_builder>` changes include:
 
@@ -221,6 +222,9 @@ Release Date: Not Released
       - Added port handling support for UNIX-based systems (MSSQL driver).
       - Added *OFFSET* support for SQL Server 2005 and above.
       - Added ``db_set_charset()`` support (MSSQL driver).
+      - Added a *scrollable* property to enable configuration of the cursor to use (SQLSRV driver).
+      - Added support and auto-detection for the ``SQLSRV_CURSOR_CLIENT_BUFFERED`` scrollable cursor flag (SQLSRV driver).
+      - Changed default behavior to not use ``SQLSRV_CURSOR_STATIC`` due to performance issues (SQLSRV driver).
 
    -  Improved support of the Oracle (OCI8) driver, including:
 
@@ -239,8 +243,9 @@ Release Date: Not Released
 
       - Added an optional second parameter to ``drop_table()`` that allows adding the **IF EXISTS** condition, which is no longer the default.
       - Added support for passing a custom database object to the loader.
-      - Deprecated ``add_column()``'s third method. *AFTER* clause should now be added to the field definition array instead.
+      - Added support for passing custom table attributes (such as ``ENGINE`` for MySQL) to ``create_table()``.
       - Added support for usage of the *FIRST* clause in ``add_column()`` for MySQL and CUBRID.
+      - Deprecated ``add_column()``'s third method. *AFTER* clause should now be added to the field definition array instead.
       - Overall improved support for all of the drivers.
 
    -  :doc:`Database Utility <database/utilities>` changes include:
@@ -389,6 +394,16 @@ Release Date: Not Released
 
 -  Core
 
+   -  :doc:`Routing <general/routing>` changes include:
+
+      -  Added support for multiple levels of controller directories.
+      -  Added support for per-directory *default_controller* and *404_override* classes.
+      -  Added possibility to route requests using HTTP verbs.
+      -  Added possibility to route requests using callbacks.
+      -  Added a new reserved route (*translate_uri_dashes*) to allow usage of dashes in the controller and method URI segments.
+      -  Deprecated methods ``fetch_directory()``, ``fetch_class()`` and ``fetch_method()`` in favor of their respective public properties.
+      -  Removed method ``_set_overrides()`` and moved its logic to the class constructor.
+
    -  :doc:`URI Library <libraries/uri>` changes include:
 
       -  Added conditional PCRE UTF-8 support to the "invalid URI characters" check and removed the ``preg_quote()`` call from it to allow more flexibility.
@@ -399,6 +414,9 @@ Release Date: Not Released
       -  Changed ``_parse_request_uri()`` to accept absolute URIs for compatibility with HTTP/1.1 as per `RFC2616 <http://www.ietf.org/rfc/rfc2616.txt>`.
       -  Added protected method ``_parse_query_string()`` to URI paths in the the **QUERY_STRING** value, like ``_parse_request_uri()`` does.
       -  Changed ``_fetch_uri_string()`` to try the **PATH_INFO** variable first when auto-detecting.
+      -  Removed methods ``_remove_url_suffix()``, ``_explode_segments()`` and moved their logic into ``_set_uri_string()``.
+      -  Removed method ``_fetch_uri_string()`` and moved its logic into the class constructor.
+      -  Removed method ``_reindex_segments()``.
 
    -  :doc:`Loader Library <libraries/loader>` changes include:
 
@@ -408,7 +426,7 @@ Release Date: Not Released
       -  Added autoloading of drivers with ``$autoload['drivers']``.
       -  ``$config['rewrite_short_tags']`` now has no effect when using PHP 5.4 as ``<?=`` will always be available.
       -  Changed method ``config()`` to return whatever ``CI_Config::load()`` returns instead of always being void.
-      -  Added support for model aliasing on autoload.
+      -  Added support for library and model aliasing on autoload.
       -  Changed method ``is_loaded()`` to ask for the (case sensitive) library name instead of its instance name.
       -  Removed ``$_base_classes`` property and unified all class data in ``$_ci_classes`` instead.
       -  Added method ``clear_vars()`` to allow clearing the cached variables for views.
@@ -443,6 +461,7 @@ Release Date: Not Released
       -  Added a second argument to method ``set_content_type()`` that allows setting the document charset as well.
       -  Added methods ``get_content_type()`` and ``get_header()``.
       -  Added method ``delete_cache()``.
+      -  Changed caching behavior to compress the output before storing it, if ``$config['compress_output']`` is enabled.
 
    -  :doc:`Config Library <libraries/config>` changes include:
 
@@ -457,14 +476,6 @@ Release Date: Not Released
       -  Added ``$config['csrf_regeneration']``, which makes token regeneration optional.
       -  Added ``$config['csrf_exclude_uris']``, which allows you list URIs which will not have the CSRF validation methods run.
       -  Modified method ``sanitize_filename()`` to read a public ``$filename_bad_chars`` property for getting the invalid characters list.
-
-   -  :doc:`URI Routing <general/routing>` changes include:
-
-      -  Added possibility to route requests using HTTP verbs.
-      -  Added possibility to route requests using callbacks.
-      -  Added a new reserved route (*translate_uri_dashes*) to allow usage of dashes in the controller and method URI segments.
-      -  Deprecated methods ``fetch_directory()``, ``fetch_class()`` and ``fetch_method()`` in favor of their respective public properties.
-      -  Removed method ``_set_overrides()`` and moved its logic to the class constructor.
 
    -  :doc:`Language Library <libraries/language>` changes include:
 
@@ -671,6 +682,11 @@ Bug fixes for 3.0
 -  Fixed an edge case (#555) - incorrect browser version was reported for Opera 10+ due to a non-standard user-agent string.
 -  Fixed a bug (#133) - :doc:`Text Helper <helpers/text_helper>` :func:`ascii_to_entities()` stripped the last character if it happens to be in the extended ASCII group.
 -  Fixed a bug (#2822) - ``fwrite()`` was used incorrectly throughout the whole framework, allowing incomplete writes when writing to a network stream and possibly a few other edge cases.
+-  Fixed a bug where :doc:`User Agent Library <libraries/user_agent>` methods ``accept_charset()`` and ``accept_lang()`` didn't properly parse HTTP headers that contain spaces.
+-  Fixed a bug where *default_controller* was called instad of triggering a 404 error if the current route is in a controller directory.
+-  Fixed a bug (#2737) - :doc:`XML-RPC Library <libraries/xmlrpc>` used objects as array keys, which triggered E_NOTICE messages.
+-  Fixed a bug (#2729) - ``CI_Security::_validate_entities()`` used overly-intrusive ``preg_replace()`` patterns that produced false-positives.
+-  Fixed a bug (#2771) - ``CI_Security::xss_clean()`` didn't take into account HTML5 entities.
 
 Version 2.1.4
 =============

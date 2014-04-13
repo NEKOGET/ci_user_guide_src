@@ -65,11 +65,12 @@ Release Date: Not Released
 
    -  :doc:`Date Helper <helpers/date_helper>` changes include:
 
-      - :func:`now()` now works with all timezone strings supported by PHP.
       - Added an optional third parameter to :func:`timespan()` that constrains the number of time units displayed.
       - Added an optional parameter to :func:`timezone_menu()` that allows more attributes to be added to the generated select tag.
-      - Deprecated ``standard_date()``, which now just uses the native ``date()`` with `DateTime constants <http://www.php.net/manual/en/class.datetime.php#datetime.constants.types>`_.
       - Added function :func:`date_range()` that generates a list of dates between a specified period.
+      - Deprecated ``standard_date()``, which now just uses the native ``date()`` with `DateTime constants <http://www.php.net/manual/en/class.datetime.php#datetime.constants.types>`_.
+      - Changed :func:`now()` to work with all timezone strings supported by PHP.
+      - Changed :func:`days_in_month()` to use the native ``cal_days_in_month()`` PHP function, if available.
 
    -  :doc:`URL Helper <helpers/url_helper>` changes include:
 
@@ -85,7 +86,8 @@ Release Date: Not Released
 
       - Added more doctypes.
       - Changed application and environment config files to be loaded in a cascade-like manner.
-      - The doctypes array is now cached and loaded only once.
+      - Changed :func:`doctype()` to cache and only load once the doctypes array.
+      - Deprecated functions ``nbs()`` and ``br()``, which are just aliases for the native ``str_repeat()`` with ``&nbsp;`` and ``<br />`` respectively.
 
    -  :doc:`Inflector Helper <helpers/inflector_helper>` changes include:
 
@@ -154,8 +156,9 @@ Release Date: Not Released
    -  Renamed internal method ``_escape_identifiers()`` to ``escape_identifiers()``.
    -  Updated ``escape_identifiers()`` to accept an array of fields as well as strings.
    -  MySQL and MySQLi drivers now require at least MySQL version 5.1.
+   -  Added a ``$persistent`` parameter to ``db_connect()`` and changed ``db_pconnect()`` to be an alias for ``db_connect(TRUE)``.
    -  ``db_set_charset()`` now only requires one parameter (collation was only needed due to legacy support for MySQL versions prior to 5.1).
-   -  ``db_select()`` will now always (if required by the driver) be called by ``db_connect()`` / ``db_pconnect()`` instead of only when initializing.
+   -  ``db_select()`` will now always (if required by the driver) be called by ``db_connect()`` instead of only when initializing.
    -  Replaced the ``_error_message()`` and ``_error_number()`` methods with ``error()``, which returns an array containing the last database error code and message.
    -  Improved ``version()`` implementation so that drivers that have a native function to get the version number don't have to be defined in the core ``DB_driver`` class.
    -  Added capability for packages to hold *config/database.php* config files.
@@ -288,18 +291,24 @@ Release Date: Not Released
 
    -  :doc:`File Uploading Library <libraries/file_uploading>` changes include:
 
-      -  Added **max_filename_increment** config setting.
-      -  Added an **index** parameter to the ``data()`` method.
-      -  Added the **min_width** and **min_height** options for images.
+      -  Added method chaining support.
+      -  Added support for using array notation in file field names.
+      -  Added **max_filename_increment** and **file_ext_tolower** configuration settings.
+      -  Added **min_width** and **min_height** configuration settings for images.
+      -  Added **mod_mime_fix** configuration setting to disable suffixing multiple file extensions with an underscore.
+      -  Added the possibility pass **allowed_types** as an array.
+      -  Added an ``$index`` parameter to the method ``data()``.
+      -  Added a ``$reset`` parameter to method ``initialize()``.
       -  Removed method ``clean_file_name()`` and its usage in favor of :doc:`Security Library <libraries/security>`'s ``sanitize_filename()``.
-      -  Added **file_ext_tolower** config setting.
-      -  Added **mod_mime_fix** option to disable suffixing multiple file extensions with an underscore.
+      -  Removed method ``mimes_types()``.
 
    -  :doc:`Calendar Library <libraries/calendar>` changes include:
 
       -  Added method chaining support.
       -  Added configuration to generate days of other months instead of blank cells.
-      -  Auto set *next_prev_url* if it is empty and *show_prev_next* is set to TRUE.
+      -  Added auto-configuration for *next_prev_url* if it is empty and *show_prev_next* is set to TRUE.
+      -  Added support for templating via an array in addition to the encoded string.
+      -  Changed method ``get_total_days()`` to be an alias for :doc:`Date Helper <helpers/date_helper>` :func:`days_in_month()`.
 
    -  :doc:`Cart Library <libraries/cart>` changes include:
 
@@ -308,7 +317,7 @@ Release Date: Not Released
       -  Added unicode support for product names.
       -  Added support for disabling product name strictness via the ``$product_name_safe`` property.
       -  Changed ``insert()`` method to auto-increment quantity for an item when inserted twice instead of resetting it.
-      -	 Changed ``update()`` method to support updating all properties attached to an item.
+      -	 Changed ``update()`` method to support updating all properties attached to an item and not to require 'qty'.
 
    -  :doc:`Image Manipulation Library <libraries/image_lib>` changes include:
 
@@ -336,6 +345,7 @@ Release Date: Not Released
       -  :doc:`Language <libraries/language>` line keys must now be prefixed with **form_validation_**.
       -  Added rule **alpha_numeric_spaces**.
       -  Added support for custom error messages per field rule.
+      -  Added support for callable rules when they are passed as an array.
 
    -  :doc:`Caching Library <libraries/caching>` changes include:
 
@@ -426,7 +436,7 @@ Release Date: Not Released
       -  Renamed internal method ``_detect_uri()`` to ``_parse_request_uri()``.
       -  Changed ``_parse_request_uri()`` to accept absolute URIs for compatibility with HTTP/1.1 as per `RFC2616 <http://www.ietf.org/rfc/rfc2616.txt>`.
       -  Added protected method ``_parse_query_string()`` to URI paths in the the **QUERY_STRING** value, like ``_parse_request_uri()`` does.
-      -  Changed ``_fetch_uri_string()`` to try the **PATH_INFO** variable first when auto-detecting.
+      -  Changed URI string detection logic to try the **PATH_INFO** variable first when auto-detecting.
       -  Removed methods ``_remove_url_suffix()``, ``_explode_segments()`` and moved their logic into ``_set_uri_string()``.
       -  Removed method ``_fetch_uri_string()`` and moved its logic into the class constructor.
       -  Removed method ``_reindex_segments()``.
@@ -457,6 +467,7 @@ Release Date: Not Released
       -  Changed method ``_fetch_from_array()`` to parse array notation in field name.
       -  Added an option for ``_clean_input_keys()`` to return FALSE instead of terminating the whole script.
       -  Deprecated the ``is_cli_request()`` method, it is now an alias for the new :func:`is_cli()` common function.
+      -  Added an ``$xss_clean`` parameter to method ``user_agent()`` and removed the ``$user_agent`` property.
 
    -  :doc:`Common functions <general/common_functions>` changes include:
 
@@ -468,6 +479,8 @@ Release Date: Not Released
       -  Added function :func:`is_cli()` to replace the ``CI_Input::is_cli_request()`` method.
       -  Added function :func:`function_usable()` to work around a bug in `Suhosin <http://www.hardened-php.net/suhosin/>`.
       -  Removed the third (`$php_error`) argument from function :func:`log_message()`.
+      -  Changed internal function ``load_class()`` to accept a constructor parameter instead of (previously unused) class name prefix.
+      -  Removed default parameter value of :func:`is_php()`.
 
    -  :doc:`Output Library <libraries/output>` changes include:
 
@@ -498,15 +511,23 @@ Release Date: Not Released
 
    -  :doc:`Hooks Library <general/hooks>` changes include:
 
+      -  Added support for closure hooks (or anything that ``is_callable()`` returns TRUE for).
       -  Renamed method ``_call_hook()`` to ``call_hook()``.
       -  Class instances are now stored in order to maintain their state.
 
    -  UTF-8 Library changes include:
 
       -  ``UTF8_ENABLED`` now requires only one of `Multibyte String <http://php.net/mbstring>`_ or `iconv <http://php.net/iconv>`_ to be available instead of both.
-      -  Changed method ``clean_string()`` to utilize ``mb_convert_encoding()`` if it is available but ``iconv()`` is not.
+      -  Changed method ``clean_string()`` to utilize ``mb_convert_encoding()`` if it is available.
+      -  Renamed method ``_is_ascii()`` to ``is_ascii()`` and made it public.
 
-   -  Added `compatibility layers <general/compatibility_functions>` for PHP's `mbstring <http://php.net/mbstring>`_ (limited support) and `password <http://php.net/password>`_ extensions.
+   -  Added `compatibility layers <general/compatibility_functions>` for:
+
+      - `Multibyte String <http://php.net/mbstring>`_ (limited support).
+      - `Hash <http://php.net/hash>`_ (just ``hash_pbkdf2()``).
+      - `Password Hashing <http://php.net/password>`_.
+      - `Array Functions <http://php.net/book.array>`_ (``array_column()``, ``array_replace()``, ``array_replace_recursive()``).
+
    -  Removed ``CI_CORE`` boolean constant from *CodeIgniter.php* (no longer Reactor and Core versions).
    -  Log Library will now try to create the **log_path** directory if it doesn't exist.
    -  Added support for HTTP-Only cookies with new config option *cookie_httponly* (default FALSE).
@@ -711,6 +732,9 @@ Bug fixes for 3.0
 -  Fixed a bug (#43) :doc:`Image Manipulation Library <libraries/image_lib>` method ``text_watermark()`` didn't properly determine watermark placement.
 -  Fixed a bug where :doc:`HTML Table Library <libraries/table>` ignored its *auto_heading* setting if headings were not already set.
 -  Fixed a bug (#2364) - :doc:`Pagination Library <libraries/pagination>` appended the query string (if used) multiple times when there are successive calls to ``create_links()`` with no ``initialize()`` in between them.
+-  Partially fixed a bug (#261) - UTF-8 class method ``clean_string()`` generating log messages and/or not producing the desired result due to an upstream bug in iconv.
+-  Fixed a bug where ``CI_Xmlrpcs::parseRequest()`` could fail if ``$HTTP_RAW_POST_DATA`` is not populated.
+-  Fixed a bug in :doc:`Zip Library <libraries/zip>` internal method ``_get_mod_time()`` where it was not parsing result returned by ``filemtime()``.
 
 Version 2.1.4
 =============

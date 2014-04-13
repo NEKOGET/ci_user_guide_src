@@ -93,6 +93,35 @@ Function reference
 	For more information, please refer to the `PHP manual for
 	password_verify() <http://php.net/password_verify>`_.
 
+*********************
+Hash (Message Digest)
+*********************
+
+This compatibility layer contains only a single function at
+this time - ``hash_pbkdf2()``, which otherwise requires PHP 5.5.
+
+Dependancies
+============
+
+- None
+
+Function reference
+==================
+
+.. function:: hash_pbkdf2($algo, $password, $salt, $iterations[, $length = 0[, $raw_output = FALSE]])
+
+	:param	string	$algo: Hashing algorithm
+	:param	string	$password: Password
+	:param	string	$salt: Hash salt
+	:param	int	$iterations: Number of iterations to perform during derivation
+	:param	int	$length: Output string length
+	:param	bool	$raw_output: Whether to return raw binary data
+	:returns:	Password-derived key or FALSE on failure
+	:rtype:	string
+
+	For more information, please refer to the `PHP manual for
+	hash_pbkdf2() <http://php.net/hash_pbkdf2>`_.
+
 ****************
 Multibyte String
 ****************
@@ -155,3 +184,53 @@ Function reference
 
 	For more information, please refer to the `PHP manual for
 	mb_substr() <http://php.net/mb_substr>`_.
+
+***************
+Array Functions
+***************
+
+This set of compatibility functions offers support for a few
+standard `Array Functions <http://php.net/book.array>`_ in PHP
+that otherwise require a newer PHP version.
+
+Dependancies
+============
+
+- None
+
+Function reference
+==================
+
+.. function:: array_column(array $array, $column_key[, $index_key = NULL])
+
+	:param	array	$array: Array to fetch results from
+	:param	mixed	$column_key: Key of the column to return values from
+	:param	mixed	$index_key: Key to use for the returned values
+	:returns:	An array of values representing a single column from the input array
+	:rtype:	array
+
+	For more information, please refer to the `PHP manual for
+	array_column() <http://php.net/array_column>`_.
+
+.. function:: array_replace(array $array1[, ...])
+
+	:param	array	$array1: Array in which to replace elements
+	:param	array	...: Array (or multiple ones) from which to extract elements
+	:returns:	Modified array
+	:rtype:	array
+
+	For more information, please refer to the `PHP manual for
+	array_replace() <http://php.net/array_replace>`_.
+
+.. function:: array_replace_recursive(array $array1[, ...])
+
+	:param	array	$array1: Array in which to replace elements
+	:param	array	...: Array (or multiple ones) from which to extract elements
+	:returns:	Modified array
+	:rtype:	array
+
+	For more information, please refer to the `PHP manual for
+	array_replace_recursive() <http://php.net/array_replace_recursive>`_.
+
+	.. important:: Only PHP's native function can detect endless recursion.
+		Unless you are running PHP 5.3+, be careful with references!

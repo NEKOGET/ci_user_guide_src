@@ -59,7 +59,7 @@ Welcome
 .. toctree::
 	:glob:
 	:titlesonly:
-	
+
 	general/index
 
 ********************
@@ -69,7 +69,7 @@ Welcome
 .. toctree::
 	:glob:
 	:titlesonly:
-	
+
 	libraries/index
 
 *********************
@@ -88,7 +88,7 @@ Welcome
 .. toctree::
 	:glob:
 	:titlesonly:
-	
+
 	helpers/index
 
 ***************************
@@ -98,7 +98,7 @@ CodeIgniterへの貢献について
 .. toctree::
 	:glob:
 	:titlesonly:
-	
+
 	contributing/index
 	DCO
 
@@ -106,7 +106,7 @@ CodeIgniterへの貢献について
 	:glob:
 	:titlesonly:
 	:hidden:
-	
+
 	*
 	overview/index
 	general/requirements
@@ -119,3 +119,9 @@ CodeIgniterへの貢献について
 	documentation/index
 	tutorial/index
 	general/credits
+
+***************************
+ユーザーガイド翻訳について
+***************************
+
+- :doc:`translation_japanese`

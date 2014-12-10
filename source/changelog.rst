@@ -57,6 +57,7 @@ Release Date: Not Released
    -  Added support for changing the file extension of log files using ``$config['log_file_extension']``.
    -  Added support for turning newline standardization on/off via ``$config['standardize_newlines']`` and set it to FALSE by default.
    -  Added configuration setting ``$config['composer_autoload']`` to enable loading of a `Composer <https://getcomposer.org/>`_ auto-loader.
+   -  Removed the automatic conversion of 'programmatic characters' to HTML entities from the :doc:`URI Library <libraries/uri>`.
 
 -  Helpers
 
@@ -111,6 +112,7 @@ Release Date: Not Released
 
    -  :doc:`Smiley Helper <helpers/smiley_helper>` changes include:
 
+      - Deprecated the whole helper as too specific for CodeIgniter.
       - Removed previously deprecated function ``js_insert_smiley()``.
       - Changed application and environment config files to be loaded in a cascade-like manner.
       - The smileys array is now cached and loaded only once.
@@ -133,6 +135,8 @@ Release Date: Not Released
       - Added *colors* configuration to allow customization for the *background*, *border*, *text* and *grid* colors.
       - Added *filename* to the returned array elements.
       - Updated to use `imagepng()` in case that `imagejpeg()` isn't available.
+      - Added **font_size** option to allow customization of font size.
+      - Added **img_id** option to set id attribute of captcha image.
 
    -  :doc:`Text Helper <helpers/text_helper>` changes include:
 
@@ -315,6 +319,7 @@ Release Date: Not Released
 
    -  :doc:`Cart Library <libraries/cart>` changes include:
 
+      -  Deprecated the library as too specific for CodeIgniter.
       -  Added method ``remove()`` to remove a cart item, updating with quantity of 0 seemed like a hack but has remained to retain compatibility.
       -  Added method ``get_item()`` to enable retrieving data for a single cart item.
       -  Added unicode support for product names.
@@ -419,7 +424,11 @@ Release Date: Not Released
       - Added method chaining support.
       - Added support for setting table class defaults in a config file.
 
-   -  :doc:`Zip Library <libraries/zip>` method ``read_file()`` can now also alter the original file path/name while adding files to an archive.
+   -  :doc:`Zip Library <libraries/zip>` changes include:
+
+      - Method ``read_file()`` can now also alter the original file path/name while adding files to an archive.
+      - Added support for changing the compression level.
+
    -  :doc:`Trackback Library <libraries/trackback>` method ``receive()`` will now utilize ``iconv()`` if it is available but ``mb_convert_encoding()`` is not.
 
 -  Core
@@ -438,6 +447,7 @@ Release Date: Not Released
 
       -  Added conditional PCRE UTF-8 support to the "invalid URI characters" check and removed the ``preg_quote()`` call from it to allow more flexibility.
       -  Renamed method ``_filter_uri()`` to ``filter_uri()``.
+      -  Changed method ``filter_uri()`` to accept by reference and removed its return value.
       -  Changed private methods to protected so that MY_URI can override them.
       -  Renamed internal method ``_parse_cli_args()`` to ``_parse_argv()``.
       -  Renamed internal method ``_detect_uri()`` to ``_parse_request_uri()``.
@@ -472,6 +482,7 @@ Release Date: Not Released
       -  Changed default value of the ``$xss_clean`` parameter to NULL for all methods that utilize it, the default value is now determined by the ``$config['global_xss_filtering']`` setting.
       -  Added method ``post_get()`` and changed ``get_post()`` to search in GET data first. Both methods' names now properly match their GET/POST data search priorities.
       -  Changed method ``_fetch_from_array()`` to parse array notation in field name.
+      -  Changed method ``_fetch_from_array()`` to allow retrieving multiple fields at once.
       -  Added an option for ``_clean_input_keys()`` to return FALSE instead of terminating the whole script.
       -  Deprecated the ``is_cli_request()`` method, it is now an alias for the new :func:`is_cli()` common function.
       -  Added an ``$xss_clean`` parameter to method ``user_agent()`` and removed the ``$user_agent`` property.
@@ -497,6 +508,7 @@ Release Date: Not Released
       -  Added a second argument to method ``set_content_type()`` that allows setting the document charset as well.
       -  Added methods ``get_content_type()`` and ``get_header()``.
       -  Added method ``delete_cache()``.
+      -  Added configuration option ``$config['cache_query_string']`` to enable taking the query string into account when caching.
       -  Changed caching behavior to compress the output before storing it, if ``$config['compress_output']`` is enabled.
 
    -  :doc:`Config Library <libraries/config>` changes include:
@@ -519,6 +531,7 @@ Release Date: Not Released
    -  :doc:`Language Library <libraries/language>` changes include:
 
       -  Changed method ``load()`` to filter the language name with ``ctype_alpha()``.
+      -  Changed method ``load()`` to also accept an array of language files.
       -  Added an optional second parameter to method ``line()`` to disable error logging for line keys that were not found.
       -  Language files are now loaded in a cascading style with the one in **system/** always loaded and overriden afterwards, if another one is found.
 

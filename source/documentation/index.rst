@@ -5,11 +5,11 @@ Writing CodeIgniter Documentation
 CodeIgniter uses Sphinx to generate its documentation in a variety of formats,
 using reStructuredText to handle the formatting.  If you are familiar with
 Markdown or Textile, you will quickly grasp reStructuredText.  The focus is
-on readability, user friendliness, and an "I've got your hand, baby" feel.
+on readability and user friendliness.
 While they can be quite technical, we always write for humans!
 
-A local table of contents should always be included like the one below.
-It is created automatically by inserting the the following:
+A local table of contents should always be included, like the one below.
+It is created automatically by inserting the following:
 
 ::
 
@@ -42,7 +42,7 @@ Pygments, so that code blocks can be properly highlighted.
 
 .. code-block:: bash
 
-	easy_install sphinx
+	easy_install "sphinx==1.2.3"
 	easy_install sphinxcontrib-phpdomain
 
 Then follow the directions in the README file in the :samp:`cilexer` folder
@@ -110,8 +110,8 @@ Method Documentation
 ********************
 
 When documenting class methods for third party developers, Sphinx provides
-directives to assist and keep things simple.  For example, consider the following
-ReST:
+directives to assist and keep things simple.  
+For example, consider the following ReST:
 
 .. code-block:: rst
 
@@ -124,7 +124,7 @@ ReST:
 			parameter.
 
 			:param int $foo: the foo id to do something in
-			:param mixed $bar: A data array that must contain aa something and something else
+			:param mixed $bar: A data array that must contain a something and something else
 			:param bool $bat: whether or not to do something
 			:returns: FALSE on failure, TRUE if successful
 			:rtype: bool
@@ -153,7 +153,7 @@ ReST:
 
 		.. method:: should_do_something()
 
-			:returns: Whether or something should be done or not
+			:returns: Whether or not something should be done
 			:rtype: bool
 
 
@@ -169,7 +169,7 @@ It creates the following display:
 		parameter.
 
 		:param int $foo: the foo id to do something in
-		:param mixed $bar: A data array that must contain aa something and something else
+		:param mixed $bar: A data array that must contain a something and something else
 		:param bool $bat: whether or not to do something
 		:returns: FALSE on failure, TRUE if successful
 		:rtype: bool
@@ -198,5 +198,5 @@ It creates the following display:
 
 	.. method:: should_do_something()
 
-		:returns: Whether or something should be done or not
+		:returns: Whether or not something should be done
 		:rtype: bool

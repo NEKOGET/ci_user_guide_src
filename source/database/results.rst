@@ -4,10 +4,18 @@ Generating Query Results
 
 There are several ways to generate query results:
 
+.. contents::
+    :local:
+    :depth: 2
+
+*************
+Result Arrays
+*************
+
 result()
 ========
 
-This function returns the query result as an array of **objects**, or
+This method returns the query result as an array of **objects**, or
 **an empty array** on failure. Typically you'll use this in a foreach
 loop, like this::
 
@@ -20,7 +28,7 @@ loop, like this::
 		echo $row->body;
 	}
 
-The above function is an alias of result_object().
+The above method is an alias of result_object().
 
 If you run queries that might **not** produce a result, you are
 encouraged to test the result first::
@@ -53,7 +61,7 @@ instantiate for each result object (note: this class must be loaded)
 result_array()
 ===============
 
-This function returns the query result as a pure array, or an empty
+This method returns the query result as a pure array, or an empty
 array when no result is produced. Typically you'll use this in a foreach
 loop, like this::
 
@@ -66,10 +74,14 @@ loop, like this::
 		echo $row['body'];
 	}
 
+***********
+Result Rows
+***********
+
 row()
 =====
 
-This function returns a single result row. If your query has more than
+This method returns a single result row. If your query has more than
 one row, it returns only the first row. The result is returned as an
 **object**. Here's a usage example::
 
@@ -101,7 +113,7 @@ to instantiate the row with::
 row_array()
 ===========
 
-Identical to the above row() function, except it returns an array.
+Identical to the above row() method, except it returns an array.
 Example::
 
 	$query = $this->db->query("YOUR QUERY");
@@ -136,7 +148,8 @@ parameter:
 	| **$row = $query->next_row('array')**
 	| **$row = $query->previous_row('array')**
 
-.. note:: all the functions above will load the whole result into memory (prefetching) use unbuffered_row() for processing large result sets.
+.. note:: all the methods above will load the whole result into memory 
+    (prefetching) use unbuffered_row() for processing large result sets.
 
 unbuffered_row()
 ================
@@ -163,12 +176,11 @@ the returned value's type::
 	$query->unbuffered_row('object');	// object
 	$query->unbuffered_row('array');	// associative array
 
-***********************
-Result Helper Functions
-***********************
+*********************
+Result Helper Methods
+*********************
 
-$query->num_rows()
-==================
+**$query->num_rows()**
 
 The number of rows returned by the query. Note: In this example, $query
 is the variable that the query result object is assigned to::
@@ -181,20 +193,18 @@ is the variable that the query result object is assigned to::
 	Not all database drivers have a native way of getting the total
 	number of rows for a result set. When this is the case, all of
 	the data is prefetched and count() is manually called on the
-	resulting array in order to achieve the same functionality.
+	resulting array in order to achieve the same methodality.
 	
-$query->num_fields()
-====================
+**$query->num_fields()**
 
 The number of FIELDS (columns) returned by the query. Make sure to call
-the function using your query result object::
+the method using your query result object::
 
 	$query = $this->db->query('SELECT * FROM my_table');
 	
 	echo $query->num_fields();
 
-$query->free_result()
-=====================
+**$query->free_result()**
 
 It frees the memory associated with the result and deletes the result
 resource ID. Normally PHP frees its memory automatically at the end of
@@ -217,8 +227,7 @@ Example::
 	echo $row->name;
 	$query2->free_result(); // The $query2 result object will no longer be available
 
-data_seek()
-===========
+**data_seek()**
 
 This method sets the internal pointer for the next result row to be
 fetched. It is only useful in combination with ``unbuffered_row()``.
@@ -234,3 +243,182 @@ TRUE on success or FALSE on failure.
 
 .. note:: Not all database drivers support this feature and will return FALSE.
 	Most notably - you won't be able to use it with PDO.
+
+***************
+Class Reference
+***************
+
+.. class:: CI_DB_result
+
+	.. method:: custom_result_object($class_name)
+
+		:param	string	$class_name: Class name for the results
+		:returns:	Array of objects of type $class_name
+		:rtype:	array of $class_name
+
+		Return the query results as an array of the specified class.
+
+	.. method:: custom_row_object($n, $type)
+
+		:param	int	$n: Index of the results row to return
+		:param	string	$class_name: Class name for the results
+		:returns:	Object of type $type
+		:rtype:	$type
+
+		Return a specific row from the query results as an object of 
+                the specified class.
+
+	.. method:: data_seek([$n = 0])
+
+		:param	int	$n: Index of the results row to be returned next
+		:returns:	TRUE on success, FALSE otherwise
+		:rtype:	bool
+
+		Moves the internal results row pointer to the desired offset.
+                Usage: see `Result Helper Methods`_.
+
+	.. method:: field_data()
+
+		:returns:	Array of objects containing field meta-data.
+		:rtype:	array
+
+		Generates an array of objects containing field meta-data.
+
+	.. method:: first_row([$type = 'object'])
+
+		:param	string	$type: Type of result requested - array, object, or class name
+		:returns:	First row of result set
+		:rtype:	mixed
+
+		Returns the "first" row, as an array, generic object, or 
+                object of a specific class
+
+	.. method:: free_result()
+
+		:rtype:	void
+
+		Free the result.
+                Usage: see `Result Helper Methods`_.
+
+	.. method:: last_row([$type = 'object'])
+
+		:param	string	$type: Type of result requested - array, object, or class name
+		:returns:	Last row of result set
+		:rtype:	mixed
+
+		Returns the "last" row, as an array, generic object, or 
+                object of a specific class
+
+	.. method:: list_fields()
+
+		:returns:	Array of column names
+		:rtype:	array
+
+		Fetch Field Names
+
+	.. method:: next_row([$type = 'object'])
+
+		:param	string	$type: Type of result requested - array, object, or class name
+		:returns:	"Next" row of result set, NULL if there isn't one
+		:rtype:	mixed
+
+		Returns the "next" row, as an array, generic object, or 
+                object of a specific class
+
+	.. method:: num_fields()
+
+		:returns:	Number of fields in the result set
+		:rtype:	integer
+
+		Number of fields in the result set.
+                Usage: see `Result Helper Methods`_.
+
+	.. method:: num_rows()
+
+		:returns:	Number of rows in the result set
+		:rtype:	integer
+
+		Number of rows in the result set.
+                Usage: see `Result Helper Methods`_.
+
+	.. method:: previous_row([$type = 'object'])
+
+		:param	string	$type: Type of result requested - array, object, or class name
+		:returns:	"Previous" row of result set, NULL if there isn't one
+		:rtype:	mixed
+
+		Returns the "previous" row, as an array, generic object, or 
+                object of a specific class
+
+	.. method:: result([$type = 'object'])
+
+		:param	string	$type: Type of result requested - array, object, or class name
+		:returns:	Query results as the specified type
+		:rtype:	mixed
+
+		Query result. Acts as a wrapper function for the result_array, 
+                result_object and custom_result_object methods.
+                Usage: see `Result Arrays`_.
+
+	.. method:: result_array()
+
+		:returns:	Query results as an associative array
+		:rtype:	array
+
+		Returns the query results as an array of rows, where each
+                row is itself an associative array.
+                Usage: see `Result Arrays`_.
+
+	.. method:: result_object()
+
+		:returns:	Query results as an array of objects
+		:rtype:	array
+
+		Returns the query results as an array of rows, where each
+                row is an object
+
+	.. method:: row([$n = 0[, $type = 'object']])
+
+		:param	integer	$n: Index of the query results row to be returned
+                :param	string	$type: Type of result requested - array, object, or class name
+		:returns:	Requested row of result set
+		:rtype:	mixed
+
+		Wrapper for result_row_array, result_row_object, and 
+                custom_row_object.
+                Usage: see `Result Rows`_.
+
+	.. method:: row_array([$n = 0])
+
+		:param	integer	$n: Index of the query results row to be returned
+                :returns:	Requested row of result set
+		:rtype:	array
+
+		Returns requested result row as an associative array.
+                Usage: see `Result Rows`_.
+
+	.. method:: row_object([$n = 0])
+
+		:param	integer	$n: Index of the query results row to be returned
+                :returns:	Requested row of result set
+		:rtype:	object
+
+		Returns requested result row as an object
+
+	.. method:: set_row($key[, $value = NULL])
+
+		:param	mixed	$key: Column index or array of key/value pairs
+                :param	mixed	$value: Result to assign to a column if the key is an index
+		:rtype:	void
+
+		Assigns an item into a particular column slot
+
+	.. method:: unbuffered_row([$type = 'object'])
+
+		:param	string	$type: Type of result requested - array, object, or class name
+		:returns:	Requested row of result set
+		:rtype:	mixed
+
+		Fetches the next result row and returns it in the requested 
+                form.
+                Usage: see `Result Rows`_.

@@ -72,14 +72,15 @@ Welcome
 
 	libraries/index
 
-*********************
-ドライバ リファレンス
-*********************
+******************
+データベースリファレンス
+******************
 
-- :doc:`libraries/caching`
-- :doc:`database/index`
-- :doc:`libraries/javascript`
-- :doc:`libraries/sessions`
+.. toctree::
+	:glob:
+	:titlesonly:
+	
+	database/index
 
 ********************
 ヘルパー リファレンス
@@ -100,6 +101,7 @@ CodeIgniterへの貢献について
 	:titlesonly:
 
 	contributing/index
+	documentation/index
 	DCO
 
 .. toctree::
@@ -116,7 +118,6 @@ CodeIgniterへの貢献について
 	libraries/index
 	helpers/index
 	database/index
-	documentation/index
 	tutorial/index
 	general/credits
 

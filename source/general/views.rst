@@ -1,5 +1,5 @@
 #####
-Views
+ビュー
 #####
 
 A view is simply a web page, or a page fragment, like a header, footer,
@@ -16,7 +16,7 @@ continuing.
 Using the example controller you created in the
 :doc:`controller <controllers>` page, let's add a view to it.
 
-Creating a View
+ビューの作成
 ===============
 
 Using your text editor, create a file called blogview.php, and put this
@@ -33,7 +33,7 @@ in it::
 	
 Then save the file in your *application/views/* directory.
 
-Loading a View
+ビューの読み込む
 ==============
 
 To load a particular view file you will use the following method::
@@ -62,7 +62,7 @@ new view. The URL was similar to this::
 
 	example.com/index.php/blog/
 
-Loading multiple views
+複数のビューを読み込む
 ======================
 
 CodeIgniter will intelligently handle multiple calls to
@@ -89,7 +89,7 @@ might look something like this::
 In the example above, we are using "dynamically added data", which you
 will see below.
 
-Storing Views within Sub-directories
+サブディレクトリ内へビューを保存する
 ====================================
 
 Your view files can also be stored within sub-directories if you prefer
@@ -98,7 +98,7 @@ directory name loading the view. Example::
 
 	$this->load->view('directory_name/file_name');
 
-Adding Dynamic Data to the View
+ビューに動的データを追加する
 ===============================
 
 Data is passed from the controller to the view by way of an **array** or
@@ -150,7 +150,7 @@ to the array keys in your data::
 Then load the page at the URL you've been using and you should see the
 variables replaced.
 
-Creating Loops
+ループを作成する
 ==============
 
 The data array you pass to your view files is not limited to simple
@@ -200,7 +200,7 @@ Now open your view file and create a loop::
 	alternative syntax. If you are not familiar with it you can read about
 	it :doc:`here <alternative_php>`.
 
-Returning views as data
+データとしてビューを返す
 =======================
 
 There is a third **optional** parameter lets you change the behavior of

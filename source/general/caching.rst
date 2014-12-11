@@ -1,5 +1,5 @@
 ################
-Web Page Caching
+Webページのキャッシュ
 ################
 
 CodeIgniter lets you cache your pages in order to achieve maximum
@@ -12,7 +12,7 @@ page load speeds. By caching your pages, since they are saved in their
 fully rendered state, you can achieve performance that nears that of
 static web pages.
 
-How Does Caching Work?
+キャッシュはどのように動作しますか？
 ======================
 
 Caching can be enabled on a per-page basis, and you can set the length
@@ -26,7 +26,7 @@ browser.
 .. note: The Benchmark tag is not cached so you can still view your page
 	load speed when caching is enabled.
 
-Enabling Caching
+キャッシュを有効にする
 ================
 
 To enable caching, put the following tag in any of your controller
@@ -52,7 +52,7 @@ you. Once the tag is in place, your pages will begin being cached.
 	permissions on your *application/cache/* directory such that
 	it is writable.
 
-Deleting Caches
+キャッシュの削除
 ===============
 
 If you no longer wish to cache a file you can remove the caching tag and

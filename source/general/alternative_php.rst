@@ -10,7 +10,7 @@ alternative syntax for control structures and short tag echo statements.
 If you are not familiar with this syntax, it allows you to eliminate the
 braces from your code, and eliminate "echo" statements.
 
-Automatic Short Tag Support
+自動ショートタグのサポート
 ===========================
 
 .. note:: If you find that the syntax described in this page does not
@@ -24,7 +24,7 @@ encountered in your **view files**, the error message and line number
 will not be accurately shown. Instead, all errors will be shown as
 ``eval()`` errors.
 
-Alternative Echos
+echoのかわりになるもの
 =================
 
 Normally to echo, or print out a variable you would do this::
@@ -35,7 +35,7 @@ With the alternative syntax you can instead do it this way::
 
 	<?=$variable?>
 
-Alternative Control Structures
+代替の制御構造
 ==============================
 
 Controls structures, like if, for, foreach, and while can be written in

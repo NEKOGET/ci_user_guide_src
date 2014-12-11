@@ -1,5 +1,5 @@
 ######################
-Welcome to CodeIgniter
+ようこそ CodeIgniter
 ######################
 
 CodeIgniter is an Application Development Framework - a toolkit - for
@@ -11,10 +11,10 @@ these libraries. CodeIgniter lets you creatively focus on your project
 by minimizing the amount of code needed for a given task.
 
 ***********************
-Who is CodeIgniter For?
+CodeIgniterは誰のためのものですか？
 ***********************
 
-CodeIgniter is right for you if:
+CodeIgniter はこんな人のためにあります:
 
 -  You want a framework with a small footprint.
 -  You need exceptional performance.

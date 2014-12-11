@@ -1,8 +1,8 @@
 ###################
-Server Requirements
+サーバ要件
 ###################
 
-- `PHP <http://www.php.net/>`_ version 5.2.4 or newer.
+- `PHP <http://www.php.net/>`_ バージョン5.2.4以降.
 - A Database is required for most web application programming.
 
  Currently supported databases are:

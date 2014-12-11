@@ -1,5 +1,5 @@
 ######################
-Auto-loading Resources
+リソースの自動読み込み
 ######################
 
 CodeIgniter comes with an "Auto-load" feature that permits libraries,

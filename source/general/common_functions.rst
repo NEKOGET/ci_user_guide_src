@@ -1,5 +1,5 @@
 ################
-Common Functions
+共通機能
 ################
 
 CodeIgniter uses a few functions for its operation that are globally

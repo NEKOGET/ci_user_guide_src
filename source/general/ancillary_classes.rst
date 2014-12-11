@@ -1,5 +1,5 @@
 ##########################
-Creating Ancillary Classes
+補助的なクラス作成
 ##########################
 
 In some cases you may want to develop classes that exist apart from your

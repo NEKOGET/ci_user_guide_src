@@ -51,35 +51,35 @@ Version 3.0 (planned)
    -  パスは相対パスとして定義され、 APPPATH と VIEWPATH は定数として絶対パスで定義されます。
    -  email のバリデーションが更新され、PCRE の代わりに ``filter_var()`` が使われるようになりました。
    -  *development* と *testing* と *production* の中で、*development* のみがPHP上での全てのエラーを表示します。
-   -  IPv6 address に対応するために、 *ip_address* のデータベースを16から45に変更。`Trackback Library <libraries/trackback>` と `Captcha Helper <helpers/captcha_helper>` にドキュメントがあります。
+   -  IPv6 address に対応するために、 *ip_address* のデータベースを16から45に変更。:doc:`Trackback Library <libraries/trackback>` と :doc:`Captcha Helper <helpers/captcha_helper>` にドキュメントがあります。
    -  ドキュメンテーションから、 *cheatsheets* と *quick_reference* の記述を削除。
    -  PHPの危険な関数である ``eval()`` と ``exec()`　は可用性をチェックする機能として取り扱われます。
    -  ログファイルの拡張子を ``$config['log_file_extension']`` を用いて変更できるようになりました。
    -  Added support for turning newline standardization on/off via ``$config['standardize_newlines']`` and set it to FALSE by default.
    -  `Composer <https://getcomposer.org/>` のロードを可能にする設定 ``$config['composer_autoload']`` を追加しました。
-   -  機種依存文字をHTMLエンティティに自動変換する表記を `URI Library <libraries/uri>` のドキュメントから削除しました。
+   -  機種依存文字をHTMLエンティティに自動変換する表記を :doc:`URI Library <libraries/uri>` のドキュメントから削除しました。
 
 -  Helpers
 
-   -  :doc:`Date Helper <helpers/date_helper>` changes include:
+   -  :doc:`Date Helper <helpers/date_helper>` の変更点:
 
-      - Added an optional third parameter to :func:`timespan()` that constrains the number of time units displayed.
-      - Added an optional parameter to :func:`timezone_menu()` that allows more attributes to be added to the generated select tag.
-      - Added function :func:`date_range()` that generates a list of dates between a specified period.
-      - Deprecated ``standard_date()``, which now just uses the native ``date()`` with `DateTime constants <http://www.php.net/manual/en/class.datetime.php#datetime.constants.types>`_.
-      - Changed :func:`now()` to work with all timezone strings supported by PHP.
-      - Changed :func:`days_in_month()` to use the native ``cal_days_in_month()`` PHP function, if available.
+      - 第三引数を :func:`timespan()` に追加。表示する時間の単位を指定することができます。
+      - オプションパラメーターを :func:`timezone_menu()` に追加。複数のタグを追加することができます。
+      - 関数 :func:`date_range()` を追加。指定した期間の間の日付を自動で生成することができます。
+      - ``standard_date()`` は非推奨となりました。これは標準の ``date()`` と `DateTime constants <http://www.php.net/manual/en/class.datetime.php#datetime.constants.types>`_ を現在使っています。
+      - 関数 :func:`now()` で、PHPがサポートしている全てのタイムゾーンで動くように変更
+      - 関数 :func:`days_in_month()` で、PHP標準関数の ``cal_days_in_month()`` を可能な場合使用するように変更。
 
-   -  :doc:`URL Helper <helpers/url_helper>` changes include:
+   -  :doc:`URL Helper <helpers/url_helper>` の変更点:
 
-      - Deprecated *separator* options **dash** and **underscore** for function :func:`url_title()` (they are only aliases for '-' and '_' respectively).
-      - :func:`url_title()` will now trim extra dashes from beginning and end.
-      - :func:`anchor_popup()` will now fill the *href* attribute with the URL and its JS code will return FALSE instead.
-      - Added JS window name support to the :func:`anchor_popup()` function.
-      - Added support for menubar attribute to the :func:`anchor_popup()`.
-      - Added support (auto-detection) for HTTP/1.1 response codes 303, 307 in :func:`redirect()`.
+      - 関数 :func:`url_title()` で、  **dash** と **underscore** を単独で使用することが非推奨に。
+      - 関数 :func:`url_title()` では、最初と最後の文字に使われている extra dashes を削除するようになります。
+      - 関数 :func:`anchor_popup()` は、 *href* の属性にURLがある場合、そのJSコードでFALSEを返すようになります。
+      - 関数 :func:`anchor_popup()` で、JSウインドウの window name をサポートしました。
+      - 関数 :func:`anchor_popup()` で、メニューバーの属性をサポートしました。
+      - 関数 :func:`redirect()` で、HTTP/1.1 response codes 303, 307 に対応しました。
       - Changed :func:`redirect()` to choose the **refresh** method only on IIS servers, instead of all servers on Windows (when **auto** is used).
-      - Changed :func:`anchor()`, :func:`anchor_popup()`, and :func:`redirect()` to support protocol-relative URLs (e.g. *//ellislab.com/codeigniter*).
+      - 関数 :func:`anchor()`, :func:`anchor_popup()`, :func:`redirect()` で、protocol-relative URLs (e.g. *//ellislab.com/codeigniter*) に対応。
 
    -  :doc:`HTML Helper <helpers/html_helper>` changes include:
 

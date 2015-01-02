@@ -1,63 +1,63 @@
 ##########
-Change Log
+変 更 履 歴
 ##########
 
 Version 3.0 (planned)
 =======================
 
-Release Date: Not Released
+リリース日：未リリース
 
--  License
+-  ライセンス
 
-   -  CodeIgniter has been relicensed with the `MIT License <http://opensource.org/licenses/MIT>`_, eliminating its old proprietary licensing.
+   -  CodeIgniterのライセンスは`MIT License <http://opensource.org/licenses/MIT>`になりました。CodeIgniterライセンスはGPLと互換ではありません。
 
--  General Changes
+-  全体的な変更点
 
-   -  PHP 5.1.6 is no longer supported. CodeIgniter now requires PHP 5.2.4.
-   -  Changed filenaming convention (class file names now must be Ucfirst and everything else in lowercase).
-   -  Changed the default database driver to 'mysqli' (the old 'mysql' driver is DEPRECATED).
-   -  ``$_SERVER['CI_ENV']`` can now be set to control the ``ENVIRONMENT`` constant.
-   -  Added an optional backtrace to php-error template.
-   -  Added Android to the list of user agents.
-   -  Added Windows 7, Windows 8, Windows 8.1, Android, Blackberry, iOS and PlayStation 3 to the list of user platforms.
-   -  Added Fennec (Firefox for mobile) to the list of mobile user agents.
+   -  PHP 5.1.6のサポートは廃止し、3.0からはPHP 5.2.4が必要となりました。
+   -  ファイルの命名規則が変更されました。クラス名は大文字と小文字の組み合わせでつける必要があります。
+   -  データベースドライバは、'mysql'から'mysqli'に変更されました。
+   -  ``$_SERVER['CI_ENV']`` によって``ENVIRONMENT``の定数を設定することができます。
+   -  PHPエラー時のテンプレートを独自に追加することができます。
+   -  Androidのユーザエージェントを取得することができます。
+   -  Windows 7, Windows 8, Windows 8.1, Android, Blackberry, iOS と PlayStation 3 to the list of user platforms.
+   -  Fennec (スマホ用Firefox)のユーザエージェントを取得することができます。
    -  Ability to log certain error types, not all under a threshold.
-   -  Added support for pem, p10, p12, p7a, p7c, p7m, p7r, p7s, crt, crl, der, kdb, rsa, cer, sst, csr Certs to mimes.php.
-   -  Added support for pgp, gpg, zsh and cdr files to mimes.php.
-   -  Added support for 3gp, 3g2, mp4, wmv, f4v, vlc Video files to mimes.php.
-   -  Added support for m4a, aac, m4u, xspf, au, ac3, flac, ogg, wma Audio files to mimes.php.
-   -  Added support for kmz and kml (Google Earth) files to mimes.php.
-   -  Added support for ics Calendar files to mimes.php.
-   -  Added support for rar, jar and 7zip archives to mimes.php.
-   -  Updated support for xml ('application/xml') and xsl ('application/xml', 'text/xsl') files in mimes.php.
-   -  Updated support for doc files in mimes.php.
-   -  Updated support for docx files in mimes.php.
-   -  Updated support for php files in mimes.php.
-   -  Updated support for zip files in mimes.php.
-   -  Updated support for csv files in mimes.php.
-   -  Added Romanian, Greek, Vietnamese and Cyrilic characters in *application/config/foreign_characters.php*.
-   -  Changed logger to only chmod when file is first created.
-   -  Removed previously deprecated SHA1 Library.
-   -  Removed previously deprecated use of ``$autoload['core']`` in *application/config/autoload.php*.
-      Only entries in ``$autoload['libraries']`` are auto-loaded now.
-   -  Removed previously deprecated EXT constant.
-   -  Updated all classes to be written in PHP 5 style, with visibility declarations and no ``var`` usage for properties.
-   -  Added an Exception handler.
-   -  Moved error templates to *application/views/errors/* and made the path configurable via ``$config['error_views_path']``.
-   -  Added support non-HTML error templates for CLI applications.
-   -  Moved the Log class to *application/core/*
-   -  Global config files are loaded first, then environment ones. Environment config keys overwrite base ones, allowing to only set the keys we want changed per environment.
-   -  Changed detection of ``$view_folder`` so that if it's not found in the current path, it will now also be searched for under the application folder.
-   -  Path constants BASEPATH, APPPATH and VIEWPATH are now (internally) defined as absolute paths.
-   -  Updated email validation methods to use ``filter_var()`` instead of PCRE.
-   -  Changed environment defaults to report all errors in *development* and only fatal ones in *testing*, *production* but only display them in *development*.
-   -  Updated *ip_address* database field lengths from 16 to 45 for supporting IPv6 address on :doc:`Trackback Library <libraries/trackback>` and :doc:`Captcha Helper <helpers/captcha_helper>`.
-   -  Removed *cheatsheets* and *quick_reference* PDFs from the documentation.
-   -  Added availability checks where usage of dangerous functions like ``eval()`` and ``exec()`` is required.
-   -  Added support for changing the file extension of log files using ``$config['log_file_extension']``.
+   -  pem, p10, p12, p7a, p7c, p7m, p7r, p7s, crt, crl, der, kdb, rsa, cer, sst, csr CertsのMINE形式をサポートします。
+   -  pgp, gpg, zsh , cdr のMINE形式をサポートします。
+   -  3gp, 3g2, mp4, wmv, f4v, vlc といった動画のMINE形式をサポートします。
+   -   m4a, aac, m4u, xspf, au, ac3, flac, ogg, wmaといった音楽のMINE形式をサポートします。
+   -  kmz , kml (Google Earth) のMINE形式をサポートします。
+   -  ics のカレンダーのMINE形式をサポートします。
+   -  rar, jar and 7zip といった阿閦ファイルのMINE形式をサポートします。
+   -  xml ('application/xml') と xsl ('application/xml', 'text/xsl') のMINE形式をアップグレード。
+   -  docファイルのMINE形式をアップグレード。
+   -  docxファイルのMINE形式をアップグレード。
+   -  phpファイルのMINE形式をアップグレード。
+   -  zipファイルのMINE形式をアップグレード。
+   -  csvファイルのMINE形式をアップグレード。
+   -  ルーマニア語、ギリシャ語、ベトナム語、キリル文字を *application/config/foreign_characters.php* でサポート
+   -  ファイル生成時に設定されるファイルの所有者が変更されました。
+   -  非推奨だったSHA1 Libraryが削除されました。
+   -  非推奨だった``$autoload['core']``（ *application/config/autoload.php* ）が削除されました。
+      現在、``$autoload['libraries']``だけが自動ロードされます。
+   -  非推奨だったEXT定数が削除されました。
+   -  全てのクラスが可読性の高いPHP5形式で書き直され、プロパティにおいて``var``は使われなくなりました。
+   -  例外ハンドラを追加しました。
+   -  エラーテンプレートを *application/views/errors/* へと移動し、``$config['error_views_path']`でパスを指定できるようになりました。
+   -  コマンドラインインタフェースアプリ向けのnon-HTMLエラーテンプレートに対応しました。
+   -  ログクラスを *application/core/* へと変更しました。
+   -  グローバル設定ファイルは最初にロードされ、その後環境設定ファイルをロードします。環境設定ファイルは、変更するキーのみグローバル設定ファイルを上書きします。
+   -  ``$view_folder`` を変更し、それが現在のパスで見つからなかった場合、再帰的に下層フォルダを検索します。
+   -  パスは相対パスとして定義され、 APPPATH と VIEWPATH は定数として絶対パスで定義されます。
+   -  email のバリデーションが更新され、PCRE の代わりに ``filter_var()`` が使われるようになりました。
+   -  *development* と *testing* と *production* の中で、*development* のみがPHP上での全てのエラーを表示します。
+   -  IPv6 address に対応するために、 *ip_address* のデータベースを16から45に変更。`Trackback Library <libraries/trackback>` と `Captcha Helper <helpers/captcha_helper>` にドキュメントがあります。
+   -  ドキュメンテーションから、 *cheatsheets* と *quick_reference* の記述を削除。
+   -  PHPの危険な関数である ``eval()`` と ``exec()`　は可用性をチェックする機能として取り扱われます。
+   -  ログファイルの拡張子を ``$config['log_file_extension']`` を用いて変更できるようになりました。
    -  Added support for turning newline standardization on/off via ``$config['standardize_newlines']`` and set it to FALSE by default.
-   -  Added configuration setting ``$config['composer_autoload']`` to enable loading of a `Composer <https://getcomposer.org/>`_ auto-loader.
-   -  Removed the automatic conversion of 'programmatic characters' to HTML entities from the :doc:`URI Library <libraries/uri>`.
+   -  `Composer <https://getcomposer.org/>` のロードを可能にする設定 ``$config['composer_autoload']`` を追加しました。
+   -  機種依存文字をHTMLエンティティに自動変換する表記を `URI Library <libraries/uri>` のドキュメントから削除しました。
 
 -  Helpers
 

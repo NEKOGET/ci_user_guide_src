@@ -13,7 +13,10 @@ CodeIgniter ユーザーガイド
 Welcome
 *******
 
-- :doc:`general/welcome`
+.. toctree::
+	:titlesonly:
+
+	general/welcome
 
 **********
 基本情報
@@ -25,32 +28,31 @@ Welcome
 ************
 インストール
 ************
+.. toctree::
+	:includehidden:
+	:maxdepth: 2
+	:titlesonly:
 
-- :doc:`installation/downloads`
-- :doc:`installation/index`
-- :doc:`installation/upgrading`
-- :doc:`installation/troubleshooting`
+	installation/index
 
 ************
 はじめに
 ************
 
-- :doc:`overview/getting_started`
-- :doc:`overview/at_a_glance`
-- :doc:`overview/features`
-- :doc:`overview/appflow`
-- :doc:`overview/mvc`
-- :doc:`overview/goals`
+.. toctree::
+	:titlesonly:
+
+	overview/index
 
 **************
 チュートリアル
 **************
 
-- :doc:`tutorial/index`
-- :doc:`tutorial/static_pages`
-- :doc:`tutorial/news_section`
-- :doc:`tutorial/create_news_items`
-- :doc:`tutorial/conclusion`
+.. toctree::
+	:includehidden:
+	:titlesonly:
+
+	tutorial/index
 
 **************
 一般的なトピック
@@ -79,7 +81,7 @@ Welcome
 .. toctree::
 	:glob:
 	:titlesonly:
-	
+
 	database/index
 
 ********************
@@ -101,8 +103,6 @@ CodeIgniterへの貢献について
 	:titlesonly:
 
 	contributing/index
-	documentation/index
-	DCO
 
 .. toctree::
 	:glob:

@@ -188,6 +188,7 @@ Version 3.0 (planned)
       - Changed ``offset()`` to ignore empty values instead of always casting to integer.
       - Methods ``insert_batch()`` and ``update_batch()`` now return an integer representing the number of rows affected by them.
       - Methods ``where()``, ``or_where()``, ``having()`` and ``or_having()`` now convert trailing  ``=`` and ``<>``,  ``!=`` SQL operators to ``IS NULL`` and ``IS NOT NULL`` respectively when the supplied comparison value is ``NULL``.
+      - Added method chaining support to ``reset_query()``, ``start_cache()``, ``stop_cache()`` and ``flush_cache()``.
 
    -  :doc:`Database Results <database/results>` changes include:
 
@@ -197,9 +198,10 @@ Version 3.0 (planned)
 
    -  Improved support for the MySQLi driver, including:
 
-      - OOP style of the PHP extension is now used, instead of the procedural aliases.
+      - OOP style usage of the PHP extension is now used, instead of the procedural aliases.
       - Server version checking is now done via ``mysqli::$server_info`` instead of running an SQL query.
       - Added persistent connections support for PHP >= 5.3.
+      - Added support for configuring socket pipe connections.
       - Added support for ``backup()`` in :doc:`Database Utilities <database/utilities>`.
       - Changed methods ``trans_begin()``, ``trans_commit()`` and ``trans_rollback()`` to use the PHP API instead of sending queries.
 
@@ -2607,7 +2609,7 @@ Release Date: October 30, 2006
    the Date Helper.
 -  Added :doc:`$query->free_result() <./database/results>` to database
    class.
--  Added :doc:`$query->list_fields() <./database/fields>` function to
+-  Added :doc:`$query->list_fields() <./database/metadata>` function to
    database class
 -  Added :doc:`$this->db->platform() <./database/helpers>` function
 -  Added new :doc:`File Helper <./helpers/file_helper>`:

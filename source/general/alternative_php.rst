@@ -1,5 +1,5 @@
 ###################################
-Alternate PHP Syntax for View Files
+ビューファイルに対するPHP代替の構文
 ###################################
 
 If you do not utilize CodeIgniter's :doc:`template

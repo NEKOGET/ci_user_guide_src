@@ -2,12 +2,6 @@
 CodeIgniter ユーザーガイド
 ######################
 
-CodeIgniter®  The CodeIgniter mark is owned and may be registered by EllisLab, Inc.
-これは、Codeigniterのユーザーガイドをを日本語化するためユーザガイドのみをforkしたものになります。
-このユーザガイドの翻訳は下記URLで公開しています。
-http://pneskin2.nekoget.com/codeigniter/3/user_guide/index.html
-
-
 ******************
 セットアップ手順
 ******************

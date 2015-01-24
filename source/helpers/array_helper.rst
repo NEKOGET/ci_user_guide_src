@@ -1,5 +1,5 @@
 ############
-Array Helper
+配列ヘルパー
 ############
 
 The Array Helper file contains functions that assist in working with
@@ -12,7 +12,7 @@ arrays.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
+このヘルパーをロードする
 ===================
 
 This helper is loaded using the following code::
@@ -20,7 +20,7 @@ This helper is loaded using the following code::
 	$this->load->helper('array');
 
 
-Available Functions
+利用できる機能
 ===================
 
 The following functions are available:

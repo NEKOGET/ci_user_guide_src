@@ -21,7 +21,7 @@ This helper is loaded using the following code:
 
 	$this->load->helper('directory');
 
-Available Functions
+利用できる機能
 ===================
 
 The following functions are available:

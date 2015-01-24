@@ -112,7 +112,7 @@ To map the alias to the field id, pass them both into the
 
 	$image_array = smiley_js("comment_textarea_alias", "comments");
 
-Available Functions
+利用できる機能
 ===================
 
 .. function:: get_clickable_smileys($image_url[, $alias = ''[, $smileys = NULL]])

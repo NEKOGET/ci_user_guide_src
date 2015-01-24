@@ -20,7 +20,7 @@ This helper is loaded using the following code::
 
 The following functions are available:
 
-Available Functions
+利用できる機能
 ===================
 
 .. function:: site_url([$uri = ''[, $protocol = NULL]])

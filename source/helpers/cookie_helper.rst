@@ -1,5 +1,5 @@
 #############
-Cookie Helper
+Cookie ヘルパー
 #############
 
 The Cookie Helper file contains functions that assist in working with
@@ -12,7 +12,7 @@ cookies.
 
   <div class="custom-index container"></div>
 
-Loading this Helper
+ヘルパーをロードする
 ===================
 
 This helper is loaded using the following code::

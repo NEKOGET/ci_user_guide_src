@@ -8,7 +8,7 @@ class that helps minimize the amount of code you'll write.
 .. contents:: Page Contents
 
 ********
-Overview
+概要
 ********
 
 Before explaining CodeIgniter's approach to data validation, let's
@@ -42,7 +42,7 @@ HTML. Form validation, while simple to create, is generally very messy
 and tedious to implement.
 
 ************************
-Form Validation Tutorial
+チュートリアル
 ************************
 
 What follows is a "hands on" tutorial for implementing CodeIgniters Form
@@ -59,7 +59,7 @@ In order to implement form validation you'll need three things:
 Let's create those three things, using a member sign-up form as the
 example.
 
-The Form
+入力Form
 ========
 
 Using a text editor, create a form called myform.php. In it, place this
@@ -94,7 +94,7 @@ code and save it to your application/views/ folder::
 	</body>
 	</html>
 
-The Success Page
+成功ページ
 ================
 
 Using a text editor, create a form called formsuccess.php. In it, place
@@ -113,7 +113,7 @@ this code and save it to your application/views/ folder::
 	</body>
 	</html>
 
-The Controller
+Controller
 ==============
 
 Using a text editor, create a controller called form.php. In it, place
@@ -155,7 +155,7 @@ yet, it returns FALSE (boolean false) by default. ``The run()`` method
 only returns TRUE if it has successfully applied your rules without any
 of them failing.**
 
-Explanation
+解説
 ===========
 
 You'll notice several things about the above pages:
@@ -183,7 +183,7 @@ form or the success page.
 
 .. _setting-validation-rules:
 
-Setting Validation Rules
+Validation Rules を設定しよう
 ========================
 
 CodeIgniter lets you set as many validation rules as you need for a
@@ -250,7 +250,7 @@ see your success page.
 .. note:: The form fields are not yet being re-populated with the data
 	when there is an error. We'll get to that shortly.
 
-Setting Rules Using an Array
+連想配列でルールを設定しよう
 ============================
 
 Before moving on it should be noted that the rule setting method can
@@ -285,7 +285,7 @@ you use this approach, you must name your array keys as indicated::
 
 	$this->form_validation->set_rules($config);
 
-Cascading Rules
+複数のルールの設定
 ===============
 
 CodeIgniter lets you pipe multiple rules together. Let's try it. Change
@@ -319,7 +319,7 @@ rules available which you can read about in the validation reference.
 
 	$this->form_validation->set_rules('username', 'Username', array('required', 'min_length[5]'));
 
-Prepping Data
+データの整形
 =============
 
 In addition to the validation method like the ones we used above, you
@@ -342,7 +342,7 @@ rule, like htmlspecialchars, trim, md5, etc.**
 	**after** the validation rules so if there is an error, the
 	original data will be shown in the form.
 
-Re-populating the form
+フォームの再表示（データの引き継ぎ）
 ======================
 
 Thus far we have only been dealing with errors. It's time to repopulate
@@ -541,7 +541,7 @@ Anonymous function (PHP 5.3+) version::
 
 .. _setting-error-messages:
 
-Setting Error Messages
+エラーメッセージの設定
 ======================
 
 All of the native error messages are located in the following language
@@ -945,42 +945,42 @@ use:
 ========================= ========== ============================================================================================= =======================
 Rule                      Parameter  Description                                                                                   Example
 ========================= ========== ============================================================================================= =======================
-**required**              No         Returns FALSE if the form element is empty.
-**matches**               Yes        Returns FALSE if the form element does not match the one in the parameter.                    matches[form_item]
+**required**              No         空き要素の場合はFALSEを返す
+**matches**               Yes        formの要素が一致しない時はFALSEを返す											                   matches[form_item]
 **differs**               Yes        Returns FALSE if the form element does not differ from the one in the parameter.              differs[form_item]
-**is_unique**             Yes        Returns FALSE if the form element is not unique to the table and field name in the            is_unique[table.field]
-                                     parameter. Note: This rule requires :doc:`Query Builder <../database/query_builder>` to be
-                                     enabled in order to work.
-**min_length**            Yes        Returns FALSE if the form element is shorter than the parameter value.                        min_length[3]
-**max_length**            Yes        Returns FALSE if the form element is longer than the parameter value.                         max_length[12]
-**exact_length**          Yes        Returns FALSE if the form element is not exactly the parameter value.                         exact_length[8]
-**greater_than**          Yes        Returns FALSE if the form element is less than or equal to the parameter value or not         greater_than[8]
-                                     numeric.
-**greater_than_equal_to** Yes        Returns FALSE if the form element is less than the parameter value,                           greater_than_equal_to[8]
-                                     or not numeric.
-**less_than**             Yes        Returns FALSE if the form element is greater than or equal to the parameter value or          less_than[8]
-                                     not numeric.
-**less_than_equal_to**    Yes        Returns FALSE if the form element is greater than the parameter value,                        less_than_equal_to[8]
-                                     or not numeric.
-**alpha**                 No         Returns FALSE if the form element contains anything other than alphabetical characters.
-**alpha_numeric**         No         Returns FALSE if the form element contains anything other than alpha-numeric characters.
-**alpha_numeric_spaces**  No         Returns FALSE if the form element contains anything other than alpha-numeric characters
-                                     or spaces.  Should be used after trim to avoid spaces at the beginning or end.
-**alpha_dash**            No         Returns FALSE if the form element contains anything other than alpha-numeric characters,
-                                     underscores or dashes.
-**numeric**               No         Returns FALSE if the form element contains anything other than numeric characters.
-**integer**               No         Returns FALSE if the form element contains anything other than an integer.
-**decimal**               No         Returns FALSE if the form element contains anything other than a decimal number.
-**is_natural**            No         Returns FALSE if the form element contains anything other than a natural number:
+**is_unique**             Yes        DBテーブルのフィールド名と一致しない場合はFALSEを返します。								           is_unique[table.field]
+                                     Note: 動かす時には :doc:`Query Builder <../database/query_builder>` が
+                                     必要となります。
+**min_length**            Yes        指定する文字数より少ない場合はFALSEを返します。								 	                   min_length[3]
+**max_length**            Yes        指定する文字数を超えた場合はFALSEを返します。	             		 							   max_length[12]
+**exact_length**          Yes        指定する文字数と一致しない場合はFALSEを返します。								                       exact_length[8]
+**greater_than**          Yes        指定した値よりも（数字的に）小さいか、数字でない時にFALSEを							       		   greater_than[8]
+                                     返します。
+**greater_than_equal_to** Yes        指定した値よりも（数字的に）等しいもしくは小さいか、数字でない時にFALSEを                           	   greater_than_equal_to[8]
+                                     返します。
+**less_than**             Yes        指定した値よりも（数字的に）大きいか、数字でない時にFALSEを         								   less_than[8]
+                                     返します。
+**less_than_equal_to**    Yes        指定した値よりも（数字的に）等しいもしくは大きいか、数字でない時にFALSEを                        	   less_than_equal_to[8]
+                                     返します。
+**alpha**                 No         アルファベット以外の文字を含む場合、FALSEを返します。
+**alpha_numeric**         No         アルファベット・数字以外の文字を含む場合、FALSEを返します。
+**alpha_numeric_spaces**  No         アルファベット・数字・スペース以外の文字を含む場合、FALSEを返します。
+                                     Should be used after trim to avoid spaces at the beginning or end.
+**alpha_dash**            No         アルファベット、下線、dashesの以外の時にFALSEを返します。
+                                     数字を含む場合はFALSEを返します。
+**numeric**               No         数字以外の文字を含む場合FALSEを返します。
+**integer**               No         整数以外の数字・文字列の場合はFALSEを返します。
+**decimal**               No         小数点を含む数字以外の場合は、FALSEを返します。
+**is_natural**            No         自然数以外の場合は、FALSEを返します。
                                      0, 1, 2, 3, etc.
-**is_natural_no_zero**    No         Returns FALSE if the form element contains anything other than a natural
+**is_natural_no_zero**    No         0を除く自然数の場合以外の場合は、FALSEを返します。
                                      number, but not zero: 1, 2, 3, etc.
-**valid_url**             No         Returns FALSE if the form element does not contain a valid URL.
-**valid_email**           No         Returns FALSE if the form element does not contain a valid email address.
-**valid_emails**          No         Returns FALSE if any value provided in a comma separated list is not a valid email.
-**valid_ip**              No         Returns FALSE if the supplied IP is not valid.
-                                     Accepts an optional parameter of 'ipv4' or 'ipv6' to specify an IP format.
-**valid_base64**          No         Returns FALSE if the supplied string contains anything other than valid Base64 characters.
+**valid_url**             No         URL以外の値の場合は、FALSEを返します。
+**valid_email**           No         email以外の値の場合は、FALSEを返します。
+**valid_emails**          No         コンマを挟んだ複数のemail以外の値の場合は、FALSEを返します。
+**valid_ip**              No         IPアドレス以外の場合は、FALSEを返します。
+                                     'ipv4' or 'ipv6' の形式をサポートしています。
+**valid_base64**          No         Base64の形式以外の場合は、FALSEを返します。
 ========================= ========== ============================================================================================= =======================
 
 .. note:: These rules can also be called as discrete methods. For

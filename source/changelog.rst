@@ -81,9 +81,9 @@ Version 3.0 (planned)
       - Changed :func:`redirect()` to choose the **refresh** method only on IIS servers, instead of all servers on Windows (when **auto** is used).
       - 関数 :func:`anchor()`, :func:`anchor_popup()`, :func:`redirect()` で、protocol-relative URLs (e.g. *//ellislab.com/codeigniter*) に対応。
 
-   -  :doc:`HTML Helper <helpers/html_helper>` changes include:
+   -  :doc:`HTML Helper <helpers/html_helper>` の変更点:
 
-      - Added more doctypes.
+      - 様々なdoctypesが追加されました。
       - Changed application and environment config files to be loaded in a cascade-like manner.
       - Changed :func:`doctype()` to cache and only load once the doctypes array.
       - Deprecated functions ``nbs()`` and ``br()``, which are just aliases for the native ``str_repeat()`` with ``&nbsp;`` and ``<br />`` respectively.
@@ -96,9 +96,9 @@ Version 3.0 (planned)
 
    -  :doc:`Download Helper <helpers/download_helper>` changes include:
 
-      - Added an optional third parameter to :func:`force_download()` that enables/disables sending the actual file MIME type in the Content-Type header (disabled by default).
-      - Added a work-around in :func:`force_download()` for a bug Android <= 2.1, where the filename extension needs to be in uppercase.
-      - Added support for reading from an existing file path by passing NULL as the second parameter to :func:`force_download()` (useful for large files and/or safely transmitting binary data).
+      - :func:`force_download()` に第三引数のオプションがつきました。Content-TypeのMIME typeを送信するかしないかを設定できます（標準：しない）
+      - Android2.1以下のバグに対応して、 :func:`force_download()` でファイル名の拡張子を大文字にする機能を追加しました。
+      - :func:`force_download()` で、第二引数にNULLを渡すことによって、既存のファイルパスを用いる機能が追加されました。
 
    -  :doc:`Form Helper <helpers/form_helper>` changes include:
 
@@ -120,7 +120,7 @@ Version 3.0 (planned)
    -  :doc:`File Helper <helpers/file_helper>` changes include:
 
       - :func:`set_realpath()` can now also handle file paths as opposed to just directories.
-      - Added an optional paramater to :func:`delete_files()` to enable it to skip deleting files such as *.htaccess* and *index.html*.
+      - :func:`delete_files()` にオプションの引数を追加しました。*.htaccess* と *index.html* の削除をスキップすることができます。
       - Deprecated function ``read_file()`` - it's just an alias for PHP's native ``file_get_contents()``.
 
    -  :doc:`String Helper <helpers/string_helper>` changes include:
@@ -178,7 +178,7 @@ Version 3.0 (planned)
 
       - Renamed the Active Record class to Query Builder to remove confusion with the Active Record design pattern.
       - Added the ability to insert objects with ``insert_batch()``.
-      - Added new methods that return the SQL string of queries without executing them: ``get_compiled_select()``, ``get_compiled_insert()``, ``get_compiled_update()``, ``get_compiled_delete()``.
+      - ``get_compiled_select()``, ``get_compiled_insert()``, ``get_compiled_update()``, ``get_compiled_delete()`` を使わずにクエリのSQL文字列を返すメソッドの追加
       - Added an optional parameter that allows to disable escaping (useful for custom fields) for methods ``join()``, ``order_by()``, ``where_in()``, ``or_where_in()``, ``where_not_in()``, ``or_where_not_in()``, ``insert()``, ``insert_batch()``.
       - Added support for ``join()`` with multiple conditions.
       - Added support for *USING* in ``join()``.
@@ -273,20 +273,20 @@ Version 3.0 (planned)
 
 -  Libraries
 
-   -  Added a new :doc:`Encryption Library <libraries/encryption>` to replace the old, largely insecure :doc:`Encrypt Library <libraries/encrypt>`.
+   -  安全性のために、:doc:`Encryption Library <libraries/encryption>` を、以前の :doc:`Encrypt Library <libraries/encrypt>` から置き換えました。
 
    -  :doc:`Encrypt Library <libraries/encrypt>` changes include:
 
-      -  Deprecated the library in favor of the new :doc:`Encryption Library <libraries/encryption>`.
+      -  以前のLibraryは非推奨となったので、新しいLibraryを使って下さい。 :doc:`Encryption Library <libraries/encryption>`.
       -  Added support for hashing algorithms other than SHA1 and MD5.
       -  Removed previously deprecated ``sha1()`` method.
 
    -  :doc:`Session Library <libraries/sessions>` changes include:
 
       -  Library changed to :doc:`Driver <general/drivers>` with classic 'cookie' driver as the default.
-      -  Added a 'native' PHP Session driver to work with ``$_SESSION``.
-      -  Added a new **tempdata** feature that allows setting userdata items with expiration time (``tempdata()``, ``set_tempdata()``, ``unset_tempdata()``).
-      -  Added default ``$config['sess_driver']`` and ``$config['sess_valid_drivers']`` items to *application/config.php* file.
+      -  PHP標準の ``$_SESSION`` でも動くようになりました。
+      -  セッションの期限切れをしたユーザに表示するための **tempdata** (``tempdata()``, ``set_tempdata()``, ``unset_tempdata()``) を追加しました。
+      -  標準の ``$config['sess_driver']`` と ``$config['sess_valid_drivers']`` を *application/config.php* に追加
       -  Changed 'cookie' driver to respect php.ini's *session.gc_probability* and *session.gc_divisor* settings.
       -  Changed 'cookie' driver to use HMAC authentication instead of a simple md5 checksum.
       -  Changed 'cookie' driver to select only one row when using database sessions.
@@ -294,7 +294,7 @@ Version 3.0 (planned)
       -  Changed method ``keep_flashdata()`` to also accept an array of keys.
       -  Changed methods ``userdata()``, ``flashdata()`` to return an array of all userdata/flashdata when no parameter is passed.
       -  Deprecated method ``all_userdata()`` - it is now just an alias for ``userdata()`` with no parameters.
-      -  Added method ``has_userdata()`` that verifies the existence of a userdata item.
+      -  ユーザデータの存在を確認する ``has_userdata()`` を追加しました。
       -  Added *debug* level log messages for key events in the session validation process.
 
    -  :doc:`File Uploading Library <libraries/file_uploading>` changes include:
@@ -390,7 +390,7 @@ Version 3.0 (planned)
 
    -  :doc:`Pagination Library <libraries/pagination>` changes include:
 
-      -  Deprecated usage of the "anchor_class" setting (use the new "attributes" setting instead).
+      -  "anchor_class" は非推奨となりました。 (新しく、 "attributes" を使って下さい).
       -  Added method chaining support to ``initialize()`` method.
       -  Added support for the anchor "rel" attribute.
       -  Added support for setting custom attributes.
@@ -441,7 +441,7 @@ Version 3.0 (planned)
       -  Added support for per-directory *default_controller* and *404_override* classes.
       -  Added possibility to route requests using HTTP verbs.
       -  Added possibility to route requests using callbacks.
-      -  Added a new reserved route (*translate_uri_dashes*) to allow usage of dashes in the controller and method URI segments.
+      -  Controllerとfunctionで設定するURLにダッシュが使えるように、 (*translate_uri_dashes*) を予約語としました。
       -  Deprecated methods ``fetch_directory()``, ``fetch_class()`` and ``fetch_method()`` in favor of their respective public properties.
       -  Removed method ``_set_overrides()`` and moved its logic to the class constructor.
 
@@ -486,7 +486,7 @@ Version 3.0 (planned)
       -  Changed method ``_fetch_from_array()`` to parse array notation in field name.
       -  Changed method ``_fetch_from_array()`` to allow retrieving multiple fields at once.
       -  Added an option for ``_clean_input_keys()`` to return FALSE instead of terminating the whole script.
-      -  Deprecated the ``is_cli_request()`` method, it is now an alias for the new :func:`is_cli()` common function.
+      -  ``is_cli_request()`` は非推奨となり、 :func:`is_cli()` が推奨となりました。
       -  Added an ``$xss_clean`` parameter to method ``user_agent()`` and removed the ``$user_agent`` property.
 
    -  :doc:`Common functions <general/common_functions>` changes include:
@@ -562,7 +562,7 @@ Version 3.0 (planned)
       - `Standard Functions ``array_column()``, ``array_replace()``, ``array_replace_recursive()``, ``hex2bin()``, ``quoted_printable_encode()``.
 
    -  Removed ``CI_CORE`` boolean constant from *CodeIgniter.php* (no longer Reactor and Core versions).
-   -  Added support for HTTP-Only cookies with new config option *cookie_httponly* (default FALSE).
+   -  新しく、httpのみで使うcookieのために、configオプションとして *cookie_httponly* (default FALSE)が追加されました.
    -  ``$config['time_reference']`` now supports all timezone strings supported by PHP.
    -  Fatal PHP errors are now also passed to ``_error_handler()``, so they can be logged.
 

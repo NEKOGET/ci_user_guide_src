@@ -2,10 +2,10 @@
 Model-View-Controller
 #####################
 
-CodeIgniter is based on the Model-View-Controller development pattern.
-MVC is a software approach that separates application logic from
-presentation. In practice, it permits your web pages to contain minimal
-scripting since the presentation is separate from the PHP scripting.
+CodeIgniter はModel-View-Controller パターンに基づいています。MVC はプレ
+ゼンテーションからアプリケーションロジックを分離するためのソフトウェア
+アプローチです。実際には、PHPスクリプトからプレゼンテーションが分離される
+ので、webページには、必要最小限のスクリプトだけを書くようにできます。
 
 -  The **Model** represents your data structures. Typically your model
    classes will contain functions that help you retrieve, insert, and

@@ -1,8 +1,8 @@
 ####################
-CodeIgniter Overview
+CodeIgniter 概要
 ####################
 
-The following pages describe the broad concepts behind CodeIgniter:
+以下のページは、CodeIgniterの背景と概念を記載します
 
 .. toctree::
 	:titlesonly:

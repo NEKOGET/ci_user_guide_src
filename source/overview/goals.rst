@@ -1,9 +1,9 @@
 ##############################
-Design and Architectural Goals
+設計とアーキテクチャのゴール
 ##############################
 
-Our goal for CodeIgniter is maximum performance, capability, and
-flexibility in the smallest, lightest possible package.
+CodeIgniterのゴールは 最小かつ可能な限り軽量なパッケージで、
+パフォーマンス・許容性・柔軟性を最大化することです。
 
 To meet this goal we are committed to benchmarking, re-factoring, and
 simplifying at every step of the development process, rejecting anything

@@ -17,10 +17,9 @@ CodeIgniter はModel-View-Controller パターンに基づいています。MVC 
    webページを生成するために必要とされるリソース、これらを仲介しながら
    動作します。
 
-CodeIgniter has a fairly loose approach to MVC since Models are not
-required. If you don't need the added separation, or find that
-maintaining models requires more complexity than you want, you can
-ignore them and build your application minimally using Controllers and
-Views. CodeIgniter also enables you to incorporate your own existing
-scripts, or even develop core libraries for the system, enabling you to
-work in a way that makes the most sense to you.
+CodeIgniter においては、モデルは必ずしも必要ではありません。ですのでMVCに対してやや
+ルーズなアプローチをとっているといえます。余計な分離が不要な場合や、モデルをメンテ
+ナンスすることが希望より複雑であることがわかった場合には、 モデルを使用せず、最低限
+、コントローラとビューを利用してアプリケーションを構築できます。さらに、CodeIgniter 
+では既存のスクリプトを組み入れることもできるだけでなく、あなたが一番理解しやすい方法
+でプログラミングするために、システムのコアライブラリを開発することさえできます。

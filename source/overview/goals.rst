@@ -23,14 +23,10 @@ CodeIgniterのゴールは 最小かつ可能な限り軽量なパッケージ�
    いる度合いのことです。互いのコンポーネントの依存度が低ければ低
    いほどシステムは再利用性が高まり柔軟になります。私たちのゴール
    は非常に「疎」に結合されたシステムです。
-Coupling is the degree to which components of a
-   system rely on each other. The less components depend on each other
-   the more reusable and flexible the system becomes. Our goal was a
-   very loosely coupled system.
--  **Component Singularity.** Singularity is the degree to which
-   components have a narrowly focused purpose. In CodeIgniter, each
-   class and its functions are highly autonomous in order to allow
-   maximum usefulness.
+-  **凝集化されたコンポーネント。** 凝集性は、コンポーネントがどれ
+   だけ狭い範囲に集中した目的を持っているかという度合いのことです。
+   CodeIgniterでは、各クラスやメソッドは、利用性を最大限にするため、
+   高度に独立したものになっています。
 
 CodeIgniter is a dynamically instantiated, loosely coupled system with
 high component singularity. It strives for simplicity, flexibility, and

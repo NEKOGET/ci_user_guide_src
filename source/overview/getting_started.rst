@@ -5,19 +5,15 @@ CodeIgniter をはじめよう
 どんなソフトウェアアプリケーションも学習する努力が必要です。 学ぶ過程を
 できるだけ楽しくして、学習曲線を最小化するようベストを尽くしましょう。
 
-The first step is to :doc:`install <../installation/index>`
-CodeIgniter, then read all the topics in the **Introduction** section of
-the Table of Contents.
+最初のステップは、CodeIgniterをインストールすることです。 インストールが
+終わったら、目次にあるイントロダクションのトピックを全部読んでください。
 
-Next, read each of the **General Topics** pages in order. Each topic
-builds on the previous one, and includes code examples that you are
-encouraged to try.
+次に一般的なトピックのページを順に読みます。各トピックは、前のトピックを
+前提に話が進められています。 書いてあるサンプルコードはぜひ動かして試して
+みてください。
 
-Once you understand the basics you'll be ready to explore the **Class
-Reference** and **Helper Reference** pages to learn to utilize the
-native libraries and helper files.
+基礎を理解したらクラスリファレンスとヘルパ関数リファレンスのページを読んで、
+組み込みライブラリとヘルパ関数の使い方を学びましょう。
 
-Feel free to take advantage of our `Community
-Forums <http://forum.codeigniter.com/>`_ if you have questions or
-problems, and our `Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_ to see code
-examples posted by other users.
+質問や問題があれば、コミュニティフォーラムを お気軽にご利用ください。 
+他の人が投稿したサンプルコードを見たければWikiを見てみてください。

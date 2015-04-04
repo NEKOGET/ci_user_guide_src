@@ -28,6 +28,7 @@ CodeIgniterのゴールは 最小かつ可能な限り軽量なパッケージ�
    CodeIgniterでは、各クラスやメソッドは、利用性を最大限にするため、
    高度に独立したものになっています。
 
-CodeIgniter is a dynamically instantiated, loosely coupled system with
-high component singularity. It strives for simplicity, flexibility, and
-high performance in a small footprint package.
+CodeIgniter は、高度に凝集化されたコンポーネントで構成され、動的に
+インスタンス化される疎結合のシステムです。省スペースのパッケージに
+単純さと柔軟さ、そして高いパフォーマンスを詰め込むよう考え抜かれて
+いるのです。

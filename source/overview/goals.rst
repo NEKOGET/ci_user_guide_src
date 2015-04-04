@@ -9,8 +9,8 @@ CodeIgniterのゴールは 最小かつ可能な限り軽量なパッケージ�
 リファクタリングし、開発プロセスを単純化し、この目標に
 そぐわないあらゆるものを捨て去りました。
 
-From a technical and architectural standpoint, CodeIgniter was created
-with the following objectives:
+技術的・設計的視点に立つと、CodeIgniter は次の目標にもとづいて
+つくられているといえます:
 
 -  **Dynamic Instantiation.** In CodeIgniter, components are loaded and
    routines executed only when requested, rather than globally. No

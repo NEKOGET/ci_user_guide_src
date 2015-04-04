@@ -5,9 +5,9 @@
 CodeIgniterのゴールは 最小かつ可能な限り軽量なパッケージで、
 パフォーマンス・許容性・柔軟性を最大化することです。
 
-To meet this goal we are committed to benchmarking, re-factoring, and
-simplifying at every step of the development process, rejecting anything
-that doesn't further the stated objective.
+このゴールを達成するため、私たちはベンチマークを行い、
+リファクタリングし、開発プロセスを単純化し、この目標に
+そぐわないあらゆるものを捨て去りました。
 
 From a technical and architectural standpoint, CodeIgniter was created
 with the following objectives:

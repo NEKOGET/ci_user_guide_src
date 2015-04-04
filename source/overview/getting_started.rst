@@ -1,10 +1,9 @@
 ################################
-Getting Started With CodeIgniter
+CodeIgniter をはじめよう
 ################################
 
-Any software application requires some effort to learn. We've done our
-best to minimize the learning curve while making the process as
-enjoyable as possible.
+どんなソフトウェアアプリケーションも学習する努力が必要です。 学ぶ過程を
+できるだけ楽しくして、学習曲線を最小化するようベストを尽くしましょう。
 
 The first step is to :doc:`install <../installation/index>`
 CodeIgniter, then read all the topics in the **Introduction** section of

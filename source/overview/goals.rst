@@ -12,12 +12,13 @@ CodeIgniterのゴールは 最小かつ可能な限り軽量なパッケージ�
 技術的・設計的視点に立つと、CodeIgniter は次の目標にもとづいて
 つくられているといえます:
 
--  **Dynamic Instantiation.** In CodeIgniter, components are loaded and
-   routines executed only when requested, rather than globally. No
-   assumptions are made by the system regarding what may be needed
-   beyond the minimal core resources, so the system is very light-weight
-   by default. The events, as triggered by the HTTP request, and the
-   controllers and views you design will determine what is invoked.
+-  **動的なインスタンス化。** CodeIgniterでは、グローバルに読み
+   込んだり実行したりせず、必要とされたときだけ、コンポーネントを
+   ロードし、処理を実行します。システムが動作するのには、最低限の
+   コア以上のものを前提としないので、システムはデフォルトでは大変
+   軽量です。HTTPリクエストなどをトリガーとして起こるイベントで、
+   そして、プログラマが設計したコントローラやビューで、何を呼び出
+   すかを定義します。
 -  **Loose Coupling.** Coupling is the degree to which components of a
    system rely on each other. The less components depend on each other
    the more reusable and flexible the system becomes. Our goal was a

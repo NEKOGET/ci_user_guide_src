@@ -21,8 +21,8 @@ CodeIgniterのゴールは 最小かつ可能な限り軽量なパッケージ�
    すかを定義します。
 -  **疎結合。**  結合とはシステムのコンポーネントが互いに依存して
    いる度合いのことです。互いのコンポーネントの依存度が低ければ低
-   い   ほど、システムは、再利用性が高まり、柔軟になります。私たち
-   のゴールは、非常に「疎」に結合されたシステムです。
+   いほどシステムは再利用性が高まり、柔軟になります。私たちのゴール
+   は、非常に「疎」に結合されたシステムです。
 Coupling is the degree to which components of a
    system rely on each other. The less components depend on each other
    the more reusable and flexible the system becomes. Our goal was a

@@ -1,24 +1,24 @@
 ################################
-Getting Started With CodeIgniter
+CodeIgniter をはじめよう
 ################################
 
-Any software application requires some effort to learn. We've done our
-best to minimize the learning curve while making the process as
-enjoyable as possible.
+どんなソフトウェアアプリケーションも学習する努力が必要です。 
+学ぶ過程をできるだけ楽しくして、学習曲線を最小化するようベストを
+尽くしましょう。
 
-The first step is to :doc:`install <../installation/index>`
-CodeIgniter, then read all the topics in the **Introduction** section of
-the Table of Contents.
+最初のステップは、CodeIgniterを :doc:`インストール <../installation/index>`
+することです。 インストールが終わったら、目次にあるイントロダクションのトピ
+ックを全部読んでください。　
 
-Next, read each of the **General Topics** pages in order. Each topic
-builds on the previous one, and includes code examples that you are
-encouraged to try.
+次に一般的なトピックのページを順に読みます。各トピックは、前の
+トピックを前提に話が進められています。 書いてあるサンプルコード
+はぜひ動かして試してみてください。
 
-Once you understand the basics you'll be ready to explore the **Class
-Reference** and **Helper Reference** pages to learn to utilize the
-native libraries and helper files.
+基礎を理解したらクラスリファレンスとヘルパ関数リファレンスの
+ページを読んで、 組み込みライブラリとヘルパ関数の使い方を学び
+ましょう。
 
-Feel free to take advantage of our `Community
-Forums <http://forum.codeigniter.com/>`_ if you have questions or
-problems, and our `Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_ to see code
-examples posted by other users.
+質問や問題があれば、`コミュニティフォーラム 
+<http://forum.codeigniter.com/>`_ を お気軽にご利用ください。 
+他の人が投稿したサンプルコードを見たければ 
+`Wiki <https://github.com/bcit-ci/CodeIgniter/wiki>`_ を見てみてください。

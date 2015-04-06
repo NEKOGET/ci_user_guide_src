@@ -1,46 +1,46 @@
 ####################
-CodeIgniter Features
+CodeIgniter の機能
 ####################
 
-Features in and of themselves are a very poor way to judge an
-application since they tell you nothing about the user experience, or
-how intuitively or intelligently it is designed. Features don't reveal
-anything about the quality of the code, or the performance, or the
-attention to detail, or security practices. The only way to really judge
-an app is to try it and get to know the code.
-`Installing <../installation/>`_ CodeIgniter is child's play so we
-encourage you to do just that. In the mean time here's a list of
-CodeIgniter's main features.
+機能は、ユーザ・エクスペリエンスについて、あるいは、どのくらい直観的で
+知的に設計されているかということについては、何も教えてくれません。です
+ので、機能はアプリケーションを判断するのには非常に貧弱な方法です。 機能
+を知ったとしても、コードの品質やパフォーマンス、詳細な事項、セキュリティ
+のプラクティスについて何ら明らかにならないのです。本当の判断を下せるたっ
+た一つの方法は、アプリケーションを使い、コードを知ることです。CodeIgniter
+を `インストール <../installation/>`_  するのはとても簡単ですので、まず
+インストールしてみることをおすすめします。では、CodeIgniterの主な機能の
+リストは次の通りです。　
 
--  Model-View-Controller Based System
--  Extremely Light Weight
--  Full Featured database classes with support for several platforms.
--  Query Builder Database Support
--  Form and Data Validation
--  Security and XSS Filtering
--  Session Management
--  Email Sending Class. Supports Attachments, HTML/Text email, multiple
-   protocols (sendmail, SMTP, and Mail) and more.
--  Image Manipulation Library (cropping, resizing, rotating, etc.).
-   Supports GD, ImageMagick, and NetPBM
--  File Uploading Class
--  FTP Class
--  Localization
--  Pagination
--  Data Encryption
--  Benchmarking
--  Full Page Caching
--  Error Logging
--  Application Profiling
--  Calendaring Class
--  User Agent Class
--  Zip Encoding Class
--  Template Engine Class
--  Trackback Class
--  XML-RPC Library
--  Unit Testing Class
--  Search-engine Friendly URLs
--  Flexible URI Routing
--  Support for Hooks and Class Extensions
--  Large library of "helper" functions
+-  Model-View-Controller ベースのシステム
+-  極めて軽量
+-  複数のプラットフォームをサポートするフル機能のデータベースクラス
+-  Query Builder データベースサポート
+-  フォームとデータの検証（バリデーション）
+-  セキュリティとXSSフィルタリング
+-  セッション管理
+-  Email 送信クラス。添付・HTML/Text eメール・複数プロトコル
+   (sendmail、 SMTP、および Mail)などに対応。
+-  画像操作ライブラリ(切り抜き、 リサイズ、回転 など)。GD・
+   ImageMagick・NetPBMのサポート。
+-  ファイルアップロードクラス
+-  FTP クラス
+-  ローカリゼーション
+-  ページ処理（ページネーション）
+-  データ暗号化
+-  ベンチマーク
+-  完全なページキャッシング
+-  エラーロギング
+-  プロファイラ
+-  カレンダークラス
+-  User Agent クラス
+-  Zip 圧縮クラス
+-  テンプレートエンジンクラス
+-  トラックバッククラス
+-  XML-RPC ライブラリ
+-  ユニットテストクラス
+-  検索エンジンに適したURL
+-  柔軟なURIルーティング
+-  フック、クラス継承、プラグインのサポート
+-  多くのヘルパ関数ライブラリ
 

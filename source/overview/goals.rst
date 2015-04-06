@@ -1,32 +1,32 @@
 ##############################
-Design and Architectural Goals
+設計とアーキテクチャのゴール
 ##############################
 
-Our goal for CodeIgniter is maximum performance, capability, and
-flexibility in the smallest, lightest possible package.
+CodeIgniterのゴールは 最小かつ可能な限り軽量なパッケージで、
+パフォーマンス・許容性・柔軟性を最大化することです。 
 
-To meet this goal we are committed to benchmarking, re-factoring, and
-simplifying at every step of the development process, rejecting anything
-that doesn't further the stated objective.
+このゴールを達成するため、私たちはベンチマークを行い、
+リファクタリングし、開発プロセスを単純化し、この目標に
+そぐわないあらゆるものを捨て去りました。
 
-From a technical and architectural standpoint, CodeIgniter was created
-with the following objectives:
+技術的・設計的視点に立つと、CodeIgniter は次の目標にもとづいて
+つくられているといえます:
 
--  **Dynamic Instantiation.** In CodeIgniter, components are loaded and
-   routines executed only when requested, rather than globally. No
-   assumptions are made by the system regarding what may be needed
-   beyond the minimal core resources, so the system is very light-weight
-   by default. The events, as triggered by the HTTP request, and the
-   controllers and views you design will determine what is invoked.
--  **Loose Coupling.** Coupling is the degree to which components of a
-   system rely on each other. The less components depend on each other
-   the more reusable and flexible the system becomes. Our goal was a
-   very loosely coupled system.
--  **Component Singularity.** Singularity is the degree to which
-   components have a narrowly focused purpose. In CodeIgniter, each
-   class and its functions are highly autonomous in order to allow
-   maximum usefulness.
+-  **動的なインスタンス化。** CodeIgniterでは、グローバルに読み込んだ
+   り実行したりせず、必要とされたときだけ、コンポーネントをロードし、
+   処理を実行します。システムが動作するのには、最低限のコア以上のもの
+   を前提としないので、システムはデフォルトでは大変軽量です。HTTPリク
+   エストなどをトリガーとして起こるイベントで、そして、プログラマが設
+   計したコントローラやビューで、何を呼び出すかを定義します。
+-  **疎結合。**  結合とはシステムのコンポーネントが互いに依存している
+   度合いのことです。互いのコンポーネントの依存度が低ければ低いほどシ
+   ステムは再利用性が高まり柔軟になります。私たちのゴールは非常に「疎
+   」に結合されたシステムです。
+-  **凝集化されたコンポーネント。** 凝集性は、コンポーネントがどれだけ
+   狭い範囲に集中した目的を持っているかという度合いのことです。CodeIgn
+   iterでは、各クラスやメソッドは、利用性を最大限にするため、高度に独立
+   したものになっています。
 
-CodeIgniter is a dynamically instantiated, loosely coupled system with
-high component singularity. It strives for simplicity, flexibility, and
-high performance in a small footprint package.
+CodeIgniterは、高度に凝集化された部品で構成され、動的にインスタンス化
+される疎結合のシステムです。省スペースのパッケージに単純さと柔軟さ、そ
+して高いパフォーマンスを詰め込むよう考え抜かれているのです。

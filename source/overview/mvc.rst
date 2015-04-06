@@ -7,21 +7,21 @@ CodeIgniter はModel-View-Controller パターンに基づいています。MVC 
 アプローチです。実際には、PHPスクリプトからプレゼンテーションが分離される
 ので、webページには、必要最小限のスクリプトだけを書くようにできます。
 
--  The **Model** represents your data structures. Typically your model
-   classes will contain functions that help you retrieve, insert, and
-   update information in your database.
--  The **View** is the information that is being presented to a user. A
-   View will normally be a web page, but in CodeIgniter, a view can also
-   be a page fragment like a header or footer. It can also be an RSS
-   page, or any other type of "page".
--  The **Controller** serves as an *intermediary* between the Model, the
-   View, and any other resources needed to process the HTTP request and
-   generate a web page.
+-  **モデル** はデータ構造をあらわします。モデルクラスは多くの場合、
+   データベースから情報を取得・挿入・更新するメソッドを持ちます。
 
-CodeIgniter has a fairly loose approach to MVC since Models are not
-required. If you don't need the added separation, or find that
-maintaining models requires more complexity than you want, you can
-ignore them and build your application minimally using Controllers and
-Views. CodeIgniter also enables you to incorporate your own existing
-scripts, or even develop core libraries for the system, enabling you to
-work in a way that makes the most sense to you.
+-  **ビュー** はユーザに表示される情報です。
+   ビューは通常の場合、webページですが、CodeIgniterでは、ヘッダ・フッ
+   タなどのページの断片である場合もあります。またRSSページやその他の
+   タイプのページである場合もあります。
+-  **コントローラ** はモデルとビュー、それから、HTTPリクエストを処理し
+   webページを生成するために必要とされるリソース、これらを仲介しながら
+   動作します。
+   
+CodeIgniter においては、モデルは必ずしも必要ではありません。
+MVCに対してややルーズなアプローチをとっているといえます。 余計な分離が不要な場合や、
+モデルをメンテナンスすることが希望より複雑である場合には、モデルを使用せず、最低限、
+コントローラとビューを利用してアプリケーションを構築できます。
+さらに、CodeIgniter では既存のスクリプトを組み入れることもできるだけでなく、
+あなたが一番理解しやすい方法でプログラミングするために、システムのコアライブラリ
+を開発することさえできます。

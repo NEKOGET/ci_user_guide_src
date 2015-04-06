@@ -1,23 +1,23 @@
 ######################
-Application Flow Chart
+アプリケーションフローチャート
 ######################
 
-The following graphic illustrates how data flows throughout the system:
+次の図は、システムの中をどのようにデータが流れるかを示したものです:
 
 |CodeIgniter application flow|
 
-#. The index.php serves as the front controller, initializing the base
-   resources needed to run CodeIgniter.
-#. The Router examines the HTTP request to determine what should be done
-   with it.
-#. If a cache file exists, it is sent directly to the browser, bypassing
-   the normal system execution.
-#. Security. Before the application controller is loaded, the HTTP
-   request and any user submitted data is filtered for security.
-#. The Controller loads the model, core libraries, helpers, and any
-   other resources needed to process the specific request.
-#. The finalized View is rendered then sent to the web browser to be
-   seen. If caching is enabled, the view is cached first so that on
-   subsequent requests it can be served.
+#. index.phpがフロントコントローラとして振る舞い、CodeIgniterの実行に
+   必要な基本リソースを初期化します。
+#. ルータは、何を実行すべきかを決定するため、HTTPリクエストを解析しま
+   す。
+#. キャッシュが存在する場合、通常のシステム処理がバイパスされ、キャッ
+   シュが直接ブラウザに送信されます。
+#. セキュリティです。アプリケーションコントローラが読み込まれる前に、HTTPリクエスト
+   とユーザが送信したデータは、セキュリティのためにフィルタリングされます。
+#. コントローラがモデル、コア・ライブラリ、プラグイン、ヘルパ、
+   HTTPリクエスト処理に必要なすべてのリソースをロードします。
+#. 最終処理されたビューがレンダリングされ、閲覧できるようにするためにwebブラウザ
+   に送信されます。もしキャッシュ機能が有効になっていれば、後のリクエストでキャッ
+   シュが送信されるように、送信前にまずビューがキャッシュに保存されます。
 
 .. |CodeIgniter application flow| image:: ../images/appflowchart.gif

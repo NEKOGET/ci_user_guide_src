@@ -1,50 +1,50 @@
 #########################
-Installation Instructions
+インストール方法
 #########################
 
-CodeIgniter is installed in four steps:
+CodeIgniter は次の4つのステップでインストールできます:
 
-#. Unzip the package.
-#. Upload the CodeIgniter folders and files to your server. Normally the
-   index.php file will be at your root.
-#. Open the application/config/config.php file with a text editor and
-   set your base URL. If you intend to use encryption or sessions, set
-   your encryption key.
-#. If you intend to use a database, open the
-   application/config/database.php file with a text editor and set your
-   database settings.
+#. ZIP パッケージを展開します。
+#. サーバに CodeIgniter のフォルダとファイルをアップロードします。
+   通常は、index.php ファイルがルートになります。
+#. application/config/config.php ファイルをテキストエディタで開き、
+   ベース URL を記入します。暗号化、もしくはセッションを利用する際には
+   暗号鍵を記入します。
+#. データベースを使用する際には、 application/config/database.php 
+   ファイルをテキストエディタで開き、データベースの設定を
+   記入します。
 
-If you wish to increase security by hiding the location of your
-CodeIgniter files you can rename the system and application folders to
-something more private. If you do rename them, you must open your main
-index.php file and set the $system_path and $application_folder
-variables at the top of the file with the new name you've chosen.
+CodeIgniter のファイルの設置場所を隠すことでセキュリティを高めたい場合は、 system 
+および application フォルダを別の名前に変更することができます。
+これらのファイル名を変更した場合は、 index.php を開き $system_path 変数と $application_folder 
+変数の値を新しいフォルダ名に
+書き換えてください。
 
-For the best security, both the system and any application folders
-should be placed above web root so that they are not directly accessible
-via a browser. By default, .htaccess files are included in each folder
-to help prevent direct access, but it is best to remove them from public
-access entirely in case the web server configuration changes or doesn't
-abide by the .htaccess.
+セキュリティ的にベストなのは、system および application フォルダ
+をブラウザから直接アクセスできない、ウェブルートより上の階層に
+移すことです。デフォルトでは、それぞれのフォルダに置かれた .htaccess 
+ファイルにより、直接アクセスすることができないようになっています。
+しかし、Web サーバの設定変更や .htaccess に対応しない場合に備えて、
+これらは公開ディレクトリには置かないのがベストです。
 
-If you would like to keep your views public it is also possible to move
-the views folder out of your application folder.
+views を公開したままにしたい場合は、 application フォルダの外に 
+views フォルダを移動することもできます。
 
-After moving them, open your main index.php file and set the
-$system_path, $application_folder and $view_folder variables,
-preferably with a full path, e.g. '/www/MyUser/system'.
+各フォルダを移動した場合は、 index.php を開き、 $system_path 変数と
+$application_folder 変数、 $view_folder 変数の値を
+フルパスで指定するのが好ましいでしょう。例) '/www/MyUser/system'。
 
-One additional measure to take in production environments is to disable
-PHP error reporting and any other development-only functionality. In
-CodeIgniter, this can be done by setting the ENVIRONMENT constant, which
-is more fully described on the :doc:`security
-page <../general/security>`.
+追加の対策として、本番環境での PHP のエラー報告と、他の開発専用の
+機能を無効にしました。
+CodeIgniter では、環境変数は、設定することによって使用できます。
+詳細は :doc:`セキュリティページ <../general/security>` を
+確認してください。
 
-That's it!
+これで終わりです！
 
-If you're new to CodeIgniter, please read the :doc:`Getting
-Started <../overview/getting_started>` section of the User Guide
-to begin learning how to build dynamic PHP applications. Enjoy!
+初めて CodeIgniter を使うのでしたら、
+ユーザガイドの :doc:`はじめよう <../overview/getting_started>`
+から読んでみてください。動的な PHP アプリケーションの構築方法を学習できますよ！
 
 .. toctree::
 	:hidden:

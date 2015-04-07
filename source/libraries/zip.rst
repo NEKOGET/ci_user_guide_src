@@ -1,10 +1,10 @@
 ##################
-Zip Encoding Class
+Zip圧縮クラス
 ##################
 
-CodeIgniter's Zip Encoding Class classes permit you to create Zip
-archives. Archives can be downloaded to your desktop or saved to a
-directory.
+CodeIgniter のZip圧縮クラスを使うと、Zipアーカイブが作成できます。
+アーカイブは、 デスクトップにダウンロードさせたり、ディレクトリ
+に保存したりできます。
 
 .. contents::
   :local:
@@ -14,26 +14,26 @@ directory.
   <div class="custom-index container"></div>
 
 ****************************
-Using the Zip Encoding Class
+Zip圧縮クラスを使用する
 ****************************
 
-Initializing the Class
+クラスの初期化
 ======================
 
-Like most other classes in CodeIgniter, the Zip class is initialized in
-your controller using the $this->load->library function::
+CodeIgniterの大部分のクラスと同様に、Zip クラスはコントローラ
+の中で $this->load->library メソッドを使って初期化できます:
 
 	$this->load->library('zip');
 
-Once loaded, the Zip library object will be available using:
+いったん読み込まれれば、Zipライブラリのオブジェクトは次のようにして利用できます:
 
 	$this->zip
 
-Usage Example
+使用例
 =============
 
-This example demonstrates how to compress a file, save it to a folder on
-your server, and download it to your desktop.
+以下は、ファイルを圧縮し、サーバ上のフォルダに保存し、デスクトップに
+ダウンロードさせる方法を示した例です。
 
 ::
 
@@ -42,14 +42,14 @@ your server, and download it to your desktop.
 
 	$this->zip->add_data($name, $data);
 
-	// Write the zip file to a folder on your server. Name it "my_backup.zip"
+	// Zipファイルをサーバのフォルダに書き込みます。"my_backup.zip" という名前にします。
 	$this->zip->archive('/path/to/directory/my_backup.zip');
 
-	// Download the file to your desktop. Name it "my_backup.zip"
+	// "my_backup.zip" という名前で、デスクトップにファイルをダウンロードします。
 	$this->zip->download('my_backup.zip');
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Zip

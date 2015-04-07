@@ -1,19 +1,19 @@
 ###############
-Troubleshooting
+トラブルシューティング
 ###############
 
-If you find that no matter what you put in your URL only your default
-page is loading, it might be that your server does not support the
-PATH_INFO variable needed to serve search-engine friendly URLs. As a
-first step, open your application/config/config.php file and look for
-the URI Protocol information. It will recommend that you try a couple
-alternate settings. If it still doesn't work after you've tried this
-you'll need to force CodeIgniter to add a question mark to your URLs. To
-do this open your application/config/config.php file and change this::
+トップページの読み込みだけは問題なく、他のページがうまく表示されない場合は、
+検索エンジンに最適な URL を生成するのに必要な PATH_INFO 環境変数が
+サーバでサポートされていない可能性があります。 
+まず application/config/config.php ファイルを開き、URI Protocol の情報が
+書いてある部分を探します。他の設定を試します。
+それでもまだ動かない場合は、 application/config/config ファイルを開き、
+CodeIgniterのURLにクエスチョンマークを強制的に
+付加する必要があります。::
 
 	$config['index_page'] = "index.php";
 
-To this::
+上記の部分を次のように変更します。::
 
 	$config['index_page'] = "index.php?";
 

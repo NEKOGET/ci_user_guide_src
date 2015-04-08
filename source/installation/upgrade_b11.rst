@@ -1,29 +1,29 @@
 ###################################
-Upgrading From Beta 1.0 to Beta 1.1
+1.0(ベータ) から 1.1(ベータ) へのアップグレード
 ###################################
 
-To upgrade to Beta 1.1 please perform the following steps:
+1.1(ベータ) にアップグレードするには、以下のステップを実行してください:
 
-Step 1: Replace your index file
+Step 1: index ファイルの置き換え
 ===============================
 
-Replace your main index.php file with the new index.php file. Note: If
-you have renamed your "system" folder you will need to edit this info in
-the new file.
+メインの index.php ファイルを新しい index.php ファイルに置き換えてください。
+Note: "system"フォルダの名前を変更している場合は、
+その情報を新しいファイルに書き込んでください。
 
-Step 2: Relocate your config folder
+Step 2: config フォルダの移動
 ===================================
 
-This version of CodeIgniter now permits multiple sets of "applications"
-to all share a common set of backend files. In order to enable each
-application to have its own configuration values, the config directory
-must now reside inside of your application folder, so please move it
-there.
+このバージョンの CodeIgniter は、複数の"applications"が
+1つのバックエンドファイルを共有する事を許可しています。 
+各アプリケーションは自身の設定情報を持っており、 
+その config ディレクトリが application フォルダ内になくてはいけませんので、
+それらをそこへ移動してください。
 
-Step 3: Replace directories
+Step 3: ディレクトリの置き換え
 ===========================
 
-Replace the following directories with the new versions:
+以下のディレクトリを新しいバージョンのものに置き換えてください:
 
 -  drivers
 -  helpers
@@ -31,31 +31,31 @@ Replace the following directories with the new versions:
 -  libraries
 -  scaffolding
 
-Step 4: Add the calendar language file
+Step 4: calendar 言語ファイルの追加
 ======================================
 
-There is a new language file corresponding to the new calendaring class
-which must be added to your language folder. Add the following item to
-your version: language/english/calendar_lang.php
+language フォルダに、新しいカレンダークラスに対応した
+新たな言語ファイルを追加する必要があります。
+以下のファイルを追加してください: language/english/calendar_lang.php
 
-Step 5: Edit your config file
+Step 5: config ファイルの編集
 =============================
 
-The original application/config/config.php file has a typo in it Open
-the file and look for the items related to cookies::
+オリジナルの application/config/config.php には記述ミスがありますので、
+ファイル内のcookieに関連する項目を探してください::
 
 	$conf['cookie_prefix']	= "";
 	$conf['cookie_domain']	= "";
 	$conf['cookie_path']	= "/";
 
-Change the array name from $conf to $config, like this::
+以下のように、配列の変数名を $conf から $config に変更してください::
 
 	$config['cookie_prefix']	= "";
 	$config['cookie_domain']	= "";
 	$config['cookie_path']	= "/";
 
-Lastly, add the following new item to the config file (and edit the
-option if needed)::
+最後に、 config ファイルに以下の新しい要素を追加してください 
+(必要であればオプションを編集してください)::
 
 	
 	/*

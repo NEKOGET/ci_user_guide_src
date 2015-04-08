@@ -56,17 +56,17 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. attribute:: $compression_level = 2
 
-		The compression level to use.
+		圧縮レベルを使用します。
 
-		It can range from 0 to 9, with 9 being the highest and 0 effectively disabling compression::
+		効果的に圧縮を抑制している0から最も高圧縮な9までの範囲あります。::
 
 			$this->zip->compression_level = 0;
 
 	.. method:: add_data($filepath[, $data = NULL])
 
-		:param	mixed	$filepath: A single file path or an array of file => data pairs
-		:param	array	$data: File contents (ignored if $filepath is an array)
-		:rtype:	void
+		:パラメータ	mixed	$filepath: A single file path or an array of file => data pairs
+		:パラメータ	array	$data: File contents (ignored if $filepath is an array)
+		:返り値:	void
 
 		Adds data to the Zip archive. Can work both in single and multiple files mode.
 

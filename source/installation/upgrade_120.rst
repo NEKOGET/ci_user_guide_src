@@ -1,12 +1,12 @@
 ####################################
-Upgrading From Beta 1.0 to Final 1.2
+1.0(ベータ) から 1.1(ファイナル) へのアップグレード
 ####################################
 
-To upgrade to Version 1.2 please replace the following directories with
-the new versions:
+バージョン1.2 にアップグレードするには、
+以下のディレクトリを新しいものに置き換えてください:
 
-.. note:: If you have any custom developed files in these folders please
-	make copies of them first.
+.. note:: ユーザバージョンのファイルがフォルダ内にある場合には、
+    最初にそれらのコピーを取っておいてください。
 
 -  drivers
 -  helpers
@@ -16,5 +16,5 @@ the new versions:
 -  plugins
 -  scaffolding
 
-Please also replace your local copy of the user guide with the new
-version.
+また、ユーザガイドのローカルコピーを新しいバージョンのものに
+置き換えてください。

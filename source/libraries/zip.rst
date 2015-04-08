@@ -64,14 +64,14 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. method:: add_data($filepath[, $data = NULL])
 
-		:パラメータ	mixed	$filepath: A single file path or an array of file => data pairs
-		:パラメータ	array	$data: File contents (ignored if $filepath is an array)
-		:返り値:	void
+		:パラメータ	mixed	$filepath: 一つのファイル経路または多数のファイル => 配列
+		:パラメータ	array	$data: ファイルのデータ ($filepath が配列であれば無視されます)
+		:返り値型:	void
 
-		Adds data to the Zip archive. Can work both in single and multiple files mode.
+		Zipアーカイブにデータを追加できます。単独と複数のファイルモードで動作します。
 
-		When adding a single file, the first parameter must contain the name you would
-		like given to the file and the second must contain the file contents::
+		単独のファイルを追加するとき、第1引数はファイルに付けたい名前を指定し、
+		第2引数にはファイルのファイル内容を指定します。::
 
 			$name = 'mydata1.txt';
 			$data = 'A Data String!';
@@ -81,8 +81,8 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 			$data = 'Another Data String!';
 			$this->zip->add_data($name, $data);
 
-		When adding multiple files, the first parameter must contain *file => contents* pairs
-		and the second parameter is ignored::
+		複数のファイルを加えるとき、最初のパラメータは　ファイル名=>内容　の配列で渡します。
+		第2のパラメータは無視されます::
 
 			$data = array(
 				'mydata1.txt' => 'A Data String!',
@@ -91,83 +91,83 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 			$this->zip->add_data($data);
 
-		If you would like your compressed data organized into sub-directories, simply include
-		the path as part of the filename(s)::
+		圧縮データをサブフォルダの中に配置したい場合は、下記のようにファイル名の一部に
+		パスを含めてください::
 
 			$name = 'personal/my_bio.txt';
 			$data = 'I was born in an elevator...';
 
 			$this->zip->add_data($name, $data);
 
-		The above example will place my_bio.txt inside a folder called personal.
+		上の例では、 personal というフォルダの中に my_bio.txt が配置されます。 
 
 	.. method:: add_dir($directory)
 
-		:param	mixed	$directory: Directory name string or an array of multiple directories
-		:rtype:	void
+		:パラメータ	mixed	$directory: ディレクトリ名　文字列　または　配列
+		:返り値型:	void
 
-		Permits you to add a directory. Usually this method is unnecessary since you can place
-		your data into directories when using ``$this->zip->add_data()``, but if you would like
-		to create an empty directory you can do so::
+		ディレクトリを追加できます。$this->zip->add_data() を使った時にデータをフォルダに追加
+		できるので、通常はこのメソッドは必要ないですが、空のフォルダを作成したい場合は、
+		そうすることもできます。:
 
-			$this->zip->add_dir('myfolder'); // Creates a directory called "myfolder"
+			$this->zip->add_dir('myfolder'); // "myfolder"というフォルダを作成します
 
 	.. method:: read_file($path[, $archive_filepath = FALSE])
 
-		:param	string	$path: Path to file
-		:param	mixed	$archive_filepath: New file name/path (string) or (boolean) whether to maintain the original filepath
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$path: ファイルのパス
+		:パラメータ	mixed	$archive_filepath: 新ファイル名/パス (string) または (boolean) オリジナルのファイルパス
+		:返り値:	維持したい場合　TRUE , 維持しない場合　FALSE
+		:返り値型:	bool
 
-		Permits you to compress a file that already exists somewhere on your server.
-		Supply a file path and the zip class will read it and add it to the archive::
+		サーバ上に既に存在しているフォルダ (およびその中身) を圧縮できます。ディレクトまでのパスを指定すると、Zipクラスは、再帰的にその
+		フォルダを読み込み、Zipファイルとして再作成します。指定されたパスに含まれるサブフォルダの配下にあるものも含めてすべてのファイルが圧縮されます。
 
 			$path = '/path/to/photo.jpg';
 
 			$this->zip->read_file($path);
 
-			// Download the file to your desktop. Name it "my_backup.zip"
+			// "my_backup.zip"という名前でデスクトップにダウンロードさせます。
 			$this->zip->download('my_backup.zip');
 
-		If you would like the Zip archive to maintain the directory structure of
-		the file in it, pass TRUE (boolean) in the second parameter. Example::
+		Zip アーカイブで、そのファイルが含まれるディレクトリ構造を維持したい場合は、
+		第2引数に TRUE (ブール値) を指定します。例:
 
 			$path = '/path/to/photo.jpg';
 
 			$this->zip->read_file($path, TRUE);
 
-			// Download the file to your desktop. Name it "my_backup.zip"
+			// "my_backup.zip"という名前でデスクトップにダウンロードさせます。
 			$this->zip->download('my_backup.zip');
 
-		In the above example, photo.jpg will be placed into the *path/to/* directory.
+		上の例では、photo.jpg が次の2つのフォルダの配下に置かれます。: path/to/
 
-		You can also specify a new name (path included) for the added file on the fly::
+		更なるファイルの新しい名前（含まれるパス）を自動的にその場で指定することもできます:
 
 			$path = '/path/to/photo.jpg';
 			$new_path = '/new/path/some_photo.jpg';
 
 			$this->zip->read_file($path, $new_path);
 
-			// Download ZIP archive containing /new/path/some_photo.jpg
+			// 新しいパスを含んだZIPアーカイブをダウンロードさせます。: /new/path/some_photo.jpg
 			$this->zip->download('my_archive.zip');
 
 	.. method:: read_dir($path[, $preserve_filepath = TRUE[, $root_path = NULL]])
 
-		:param	string	$path: Path to directory
-		:param	bool	$preserve_filepath: Whether to maintain the original path
-		:param	string	$root_path: Part of the path to exclude from the archive directory
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$path: ファイルのパス
+		:パラメータ	bool	$preserve_filepath: オリジナルのファイルパス
+		:パラメータ	string	$root_path: アーカイブディレクトリから除外するパスの一部
+		:返り値:	維持したい場合　TRUE, 維持しない場合　FALSE
+		:返り値型:	bool
 
-		Permits you to compress a directory (and its contents) that already exists somewhere on your server.
-		Supply a path to the directory and the zip class will recursively read and recreate it as a Zip archive.
-		All files contained within the supplied path will be encoded, as will any sub-directories contained within it. Example::
+		サーバ上に既に存在しているフォルダ (およびその中身) を圧縮できます。ディレクトまでのパスを指定すると、
+		Zipクラスは、再帰的にそのフォルダを読み込み、Zipファイルとして再作成します。指定されたパスに含まれる
+		サブフォルダの配下にあるものも含めてすべてのファイルが圧縮されます。例:
 
 			$path = '/path/to/your/directory/';
 
 			$this->zip->read_dir($path);
 
-			// Download the file to your desktop. Name it "my_backup.zip"
+			// "my_backup.zip"という名前でデスクトップにダウンロードさせます。
 			$this->zip->download('my_backup.zip');
 
 		By default the Zip archive will place all directories listed in the first parameter

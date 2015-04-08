@@ -7,9 +7,9 @@ CodeIgniter 概要
 .. toctree::
 	:titlesonly:
 	
-	Getting Started <getting_started>
-	CodeIgniter at a Glance <at_a_glance>
-	Supported Features <features>
-	Application Flow Chart <appflow>
+	CodeIgniter をはじめよう <getting_started>
+	CodeIgniter の簡単な紹介 <at_a_glance>
+	CodeIgniter の機能 <features>
+	アプリケーションフローチャート <appflow>
 	Model-View-Controller <mvc>
-	Architectural Goals <goals>
+	設計とアーキテクチャのゴール <goals>

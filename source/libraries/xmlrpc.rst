@@ -13,7 +13,7 @@ server, or set up your own XML-RPC server to receive requests.
   <div class="custom-index container"></div>
 
 ****************
-What is XML-RPC?
+XML-RPCとは?
 ****************
 
 Quite simply it is a way for two computers to communicate over the
@@ -37,7 +37,7 @@ For detailed specifications, you can visit the `XML-RPC <http://www.xmlrpc.com/>
 Using the XML-RPC Class
 ***********************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the XML-RPC and XML-RPCS classes
@@ -62,7 +62,7 @@ $this->xmlrpcs
 .. note:: When using the XML-RPC Server class you must load BOTH the
 	XML-RPC class and the XML-RPC Server class.
 
-Sending XML-RPC Requests
+XML-RPC リクエストの送信
 ========================
 
 To send a request to an XML-RPC server you must specify the following
@@ -90,7 +90,7 @@ Here is a basic example that sends a simple Weblogs.com ping to the
 		echo $this->xmlrpc->display_error();
 	}
 
-Explanation
+解説
 -----------
 
 The above code initializes the XML-RPC class, sets the server URL and
@@ -100,7 +100,7 @@ and compiled using the request() function. Lastly, the full request is
 sent. If the send_request() method returns false we will display the
 error message sent back from the XML-RPC Server.
 
-Anatomy of a Request
+リクエストの詳細
 ====================
 
 An XML-RPC request is simply the data you are sending to the XML-RPC
@@ -134,7 +134,7 @@ with the data type in the second position::
 The `Data Types <#datatypes>`_ section below has a full list of data
 types.
 
-Creating an XML-RPC Server
+XML-RPC サーバの作成
 ==========================
 
 An XML-RPC Server acts as a traffic cop of sorts, waiting for incoming
@@ -183,7 +183,7 @@ initializing the server class: debug can be set to TRUE in order to
 enable debugging, and xss_clean may be set to FALSE to prevent sending
 data through the Security library's ``xss_clean()`` method.
 
-Processing Server Requests
+サーバリクエストの処理
 ==========================
 
 When the XML-RPC Server receives a request and loads the class/method
@@ -257,7 +257,7 @@ error message is returned using ``send_error_message()``.
 If the operation was successful, the client will be sent back a response
 array containing the user's info.
 
-Formatting a Response
+レスポンスのフォーマット
 =====================
 
 Similar to *Requests*, *Responses* must be formatted as an array.
@@ -289,7 +289,7 @@ common data type for responses.
 As with Requests, a response can be one of the seven data types listed
 in the `Data Types <#datatypes>`_ section.
 
-Sending an Error Response
+エラー応答の送信
 =========================
 
 If you need to send the client an error response you will use the
@@ -300,14 +300,14 @@ following::
 The first parameter is the error number while the second parameter is
 the error message.
 
-Creating Your Own Client and Server
+独自のクライアントとサーバの作成
 ===================================
 
 To help you understand everything we've covered thus far, let's create a
 couple controllers that act as XML-RPC Client and Server. You'll use the
 Client to send a request to the Server and receive a response.
 
-The Client
+クライアント
 ----------
 
 Using a text editor, create a controller called Xmlrpc_client.php. In
@@ -348,7 +348,7 @@ folder::
 .. note:: In the above code we are using a "url helper". You can find more
 	information in the :doc:`Helpers Functions <../general/helpers>` page.
 
-The Server
+サーバ
 ----------
 
 Using a text editor, create a controller called Xmlrpc_server.php. In
@@ -388,7 +388,7 @@ folder::
 	}
 
 
-Try it!
+やってみよう!
 -------
 
 Now visit the your site using a URL similar to this::
@@ -403,7 +403,7 @@ server, along with a request for the "Greetings" method. The Server
 receives the request and maps it to the ``process()`` method, where a
 response is sent back.
 
-Using Associative Arrays In a Request Parameter
+リクエストパラメータに連想配列を使用する
 ===============================================
 
 If you wish to use an associative array in your method parameters you
@@ -437,7 +437,7 @@ the Server.
 	$size = $parameters[1]['size'];
 	$shape = $parameters[1]['shape'];
 
-Data Types
+データ型
 ==========
 
 According to the `XML-RPC spec <http://www.xmlrpc.com/spec>`_ there are
@@ -453,7 +453,7 @@ seven types of values that you can send via XML-RPC:
 -  *array* (contains array of values)
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Xmlrpc

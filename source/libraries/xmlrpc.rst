@@ -34,7 +34,7 @@ message.
 For detailed specifications, you can visit the `XML-RPC <http://www.xmlrpc.com/>`_ site.
 
 ***********************
-Using the XML-RPC Class
+XML-RPCクラスの使い方
 ***********************
 
 クラスの初期化

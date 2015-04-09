@@ -1,21 +1,21 @@
 #########################
-Upgrading from 1.2 to 1.3
+1.2 から 1.3 へのアップグレード
 #########################
 
-.. note:: The instructions on this page assume you are running version
-	1.2. If you have not upgraded to that version please do so first.
+.. note:: このページは、バージョン 1.2 向けです。 
+    それ以外のバージョンをお使いなら、まず最初にアップグレードしてください
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップデートを行う前に、 index.php ファイルを静的ページに置き換えて、 
+オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
+Step 1: CodeIgniterファイルのアップデート
 =====================================
 
-Replace the following directories in your "system" folder with the new
-versions:
+"system" フォルダの以下のファイルとディレクトリを
+新しいバージョンのものに置き換えてください:
 
-.. note:: If you have any custom developed files in these folders please
-	make copies of them first.
+.. note:: ユーザバージョンのファイルがフォルダ内にある場合には、
+    最初にそれらのコピーを取っておいてください。
 
 -  application/**models**/ (new for 1.3)
 -  codeigniter (new for 1.3)
@@ -27,41 +27,41 @@ versions:
 -  plugins
 -  scaffolding
 
-Step 2: Update your error files
+Step 2: エラーファイルのアップデート
 ===============================
 
-Version 1.3 contains two new error templates located in
-application/errors, and for naming consistency the other error templates
-have been renamed.
+バージョン 1.3 では、エラー表示用に2つの新しいテンプレートが application/errors に
+配置されており、一貫性を保つ為に
+他のエラー用テンプレートは名前が変更されました。
 
-If you **have not** customized any of the error templates simply replace
-this folder:
+もしエラー用テンプレートをカスタマイズして **いない** 場合は、 
+単純にこのフォルダを置き換えてください:
 
 -  application/errors/
 
-If you **have** customized your error templates, rename them as follows:
+もしエラー用テンプレートをカスタマイズして **いる** 場合は、 以下のように名前を変更してください:
 
 -  404.php = error_404.php
 -  error.php = error_general.php
 -  error_db.php (new)
 -  error_php.php (new)
 
-Step 3: Update your index.php file
+Step 3: index.php ファイルのアップデート
 ==================================
 
-Please open your main index.php file (located at your root). At the very
-bottom of the file, change this::
+index.php ファイル(アプリケーションのルートディレクトリにあります)を開いてください。
+そのファイルの最下部にある、以下の箇所を変更します::
 
 	require_once BASEPATH.'libraries/Front_controller'.EXT;
 
-To this::
+このように変更してください::
 
 	require_once BASEPATH.'codeigniter/CodeIgniter'.EXT;
 
-Step 4: Update your config.php file
+Step 4: config.php ファイルのアップデート
 ===================================
 
-Open your application/config/config.php file and add these new items::
+application/config/config.php ファイルを開いて、以下の要素を追加してください::
 
 
     /*
@@ -109,17 +109,17 @@ Open your application/config/config.php file and add these new items::
     $config['controller_trigger'] = 'c';
     $config['function_trigger'] = 'm';
 
-Step 5: Update your database.php file
+Step 5: database.php ファイルのアップデート
 =====================================
 
-Open your application/config/database.php file and add these new items::
+application/config/database.php ファイルを開いて、以下の要素を追加してください::
 
 
     $db['default']['dbprefix'] = "";
     $db['default']['active_r'] = TRUE;
 
-Step 6: Update your user guide
+Step 6: ユーザガイドの更新
 ==============================
 
-Please also replace your local copy of the user guide with the new
-version.
+ユーザガイドのローカルコピーを
+新しいバージョンのものに置き換えてください。

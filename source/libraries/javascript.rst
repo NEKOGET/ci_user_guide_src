@@ -309,14 +309,14 @@ Used to add distinct corners to page elements. For full details see
 tablesorter()
 -------------
 
-description to come
+description to come(執筆中)
 
 modal()
 -------
 
-description to come
+description to come(執筆中)
 
 calendar()
 ----------
 
-description to come
+description to come(執筆中)

@@ -21,7 +21,7 @@ The current version is found in **application/config/migration.php**.
   <div class="custom-index container"></div>
 
 ********************
-Migration file names
+マイグレーションファイル名
 ********************
 
 Each Migration is run in numeric order forward or backwards depending on the
@@ -46,7 +46,7 @@ name for the migration. For example:
 * 20121031100537_add_blog.php (timestamp numbering)
 
 ******************
-Create a Migration
+マイグレーションの作成
 ******************
 	
 This will be the first migration for a new site which has a blog. All 
@@ -91,7 +91,7 @@ as *20121031100537_add_blog.php*.
 Then in **application/config/migration.php** set ``$config['migration_version'] = 1;``.
 
 *************
-Usage Example
+使用例
 *************
 
 In this example some simple code is placed in **application/controllers/Migrate.php** 
@@ -115,13 +115,13 @@ to update the schema.::
 	}
 
 *********************
-Migration Preferences
+マイグレーション設定
 *********************
 
 The following is a table of all the config options for migrations.
 
 ========================== ====================== ========================== =============================================
-Preference                 Default                Options                    Description
+設定項目                 初期値                オプション                    説明
 ========================== ====================== ========================== =============================================
 **migration_enabled**      FALSE                  TRUE / FALSE               Enable or disable migrations.
 **migration_path**         APPPATH.'migrations/'  None                       The path to your migrations folder.

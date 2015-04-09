@@ -19,7 +19,7 @@ can be libraries (classes) :doc:`View files <../general/views>`,
   <div class="custom-index container"></div>
 
 **********************
-Application "Packages"
+アプリケーションパッケージ
 **********************
 
 An application package allows for the easy distribution of complete sets
@@ -47,7 +47,7 @@ these resources in your controllers, you first need to tell the Loader
 that you are going to be loading resources from a package, by adding the
 package path via the ``add_package_path()`` method.
 
-Package view files
+パッケージのビューファイル
 ------------------
 
 By Default, package view files paths are set when ``add_package_path()``
@@ -74,7 +74,7 @@ calling ``add_package_path()``.
 	$this->load->view('welcome_message'); // Loads
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Loader

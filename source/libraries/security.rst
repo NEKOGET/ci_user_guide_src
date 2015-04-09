@@ -13,7 +13,7 @@ application, processing input data for security.
   <div class="custom-index container"></div>
 
 *************
-XSS Filtering
+XSS フィルタリング
 *************
 
 CodeIgniter comes with a Cross Site Scripting Hack prevention filter
@@ -59,7 +59,7 @@ browser may attempt to execute.
 	}
 
 *********************************
-Cross-site request forgery (CSRF)
+クロスサイトリクエストフォージェリ (CSRF)
 *********************************
 
 You can enable CSRF protection by altering your **application/config/config.php**
@@ -107,7 +107,7 @@ Regular expressions are also supported (case-insensitive)::
 	);
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Security

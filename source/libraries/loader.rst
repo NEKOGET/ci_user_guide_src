@@ -1,5 +1,5 @@
 ############
-Loader Class
+ローダークラス
 ############
 
 Loader, as the name suggests, is used to load elements. These elements

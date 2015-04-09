@@ -1,5 +1,5 @@
 ################
-Migrations Class
+マイグレーションクラス
 ################
 
 Migrations are a convenient way for you to alter your database in a 

@@ -135,7 +135,7 @@ The following is a table of all the config options for migrations.
 ========================== ====================== ========================== =============================================
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Migration

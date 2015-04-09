@@ -1,5 +1,5 @@
 ##############
-Language Class
+言語クラス
 ##############
 
 The Language Class provides functions to retrieve language files and

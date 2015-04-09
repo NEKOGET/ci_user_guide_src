@@ -36,7 +36,7 @@ first and will then look for an override in your **application/language/** direc
   <div class="custom-index container"></div>
 
 ***************************
-Handling Multiple Languages
+複数の言語を取り扱うこと
 ***************************
 
 If you want to support multiple languages in your application, you would provide folders inside
@@ -52,7 +52,7 @@ any additional ones needed by your application.
 
 You would store the language you are currently using, for instance in a session variable.
 
-Sample Language Files
+サンプル言語ファイル
 =====================
 
 ::
@@ -76,7 +76,7 @@ Sample Language Files
 				form_validation_lang.php
 				...
 
-Example of switching languages
+言語を変更する例
 ==============================
 
 ::
@@ -86,7 +86,7 @@ Example of switching languages
 	$oops = $this->lang->line('message_key');
 
 ********************
-Internationalization
+国際化
 ********************
 
 The Language class in CodeIgniter is meant to provide an easy and lightweight
@@ -101,10 +101,10 @@ or "en-CA-x-ca" for English and some of its variants.
 .. note:: There is nothing to prevent you from using those abbreviations in your application!
 
 ************************
-Using the Language Class
+言語クラスの使い方
 ************************
 
-Creating Language Files
+言語ファイルの作成
 =======================
 
 Language files must be named with **_lang.php** as the filename extension.
@@ -127,7 +127,7 @@ Within the file you will assign each line of text to an array called
 	$lang['error_url_missing'] = 'You must submit a URL';
 	$lang['error_username_missing'] = 'You must submit a username';
 
-Loading A Language File
+言語ファイルの読み込み
 =======================
 
 In order to fetch a line from a particular file you must load the file
@@ -147,7 +147,7 @@ You can also load multiple language files at the same time by passing an array o
 
 .. note:: The *language* parameter can only consist of letters.
 
-Fetching a Line of Text
+テキストの行を読み取る
 =======================
 
 Once your desired language file is loaded you can access any line of
@@ -165,14 +165,14 @@ disable error logging, in case you're not sure if the line exists::
 
 .. note:: This method simply returns the line. It does not echo it.
 
-Using language lines as form labels
+フォームのラベルを出力
 -----------------------------------
 
-This feature has been deprecated from the language library and moved to
-the :func:`lang()` function of the :doc:`Language Helper
-<../helpers/language_helper>`.
+この機能は重複していたため:doc:`言語ヘルパー
+<../helpers/language_helper>`の :func:`lang()` 
+関数に統一されました。
 
-Auto-loading Languages
+言語の自動読み込み
 ======================
 
 If you find that you need a particular language globally throughout your

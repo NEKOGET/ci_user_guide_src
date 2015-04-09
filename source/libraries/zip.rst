@@ -170,50 +170,50 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 			// "my_backup.zip"という名前でデスクトップにダウンロードさせます。
 			$this->zip->download('my_backup.zip');
 
-		By default the Zip archive will place all directories listed in the first parameter
-		inside the zip. If you want the tree preceding the target directory to be ignored,
-		you can pass FALSE (boolean) in the second parameter. Example::
+		デフォルトでは Zip アーカイブには第1引数に指定されたすべてのディレクトリが含まれます。
+		もし、指定フォルダまでのパスを無視したい場合は、 第2引数に FALSE (ブール値)
+		を指定してください。例::
 
 			$path = '/path/to/your/directory/';
 
 			$this->zip->read_dir($path, FALSE);
 
-		This will create a ZIP with a directory named "directory" inside, then all sub-directories
-		stored correctly inside that, but will not include the */path/to/your* part of the path.
+		これは、"directory" フォルダの中身を含んだ ZIP を作成します。すべてのサブフォルダは
+		正しく保存されますが、/path/to/your は含まれません。
 
 	.. method:: archive($filepath)
 
-		:param	string	$filepath: Path to target zip archive
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$filepath: パスはZIPアーカイブを対象とします。
+		:返り値:	成功するとTRUE, 失敗するとFALSE を返します。
+		:返り値型:	bool
 
-		Writes the Zip-encoded file to a directory on your server. Submit a valid server path
-		ending in the file name. Make sure the directory is writable (755 is usually OK).
-		Example::
+		Zip 圧縮ファイルをサーバ上のディレクトリに書き込みます。ファイル名で終わる正しいサーバのパスを
+		渡します。 ディレクトリが書き込み可能(755であれば通常は大丈夫です)かどうかを確かめてください。
+		例:
 
-			$this->zip->archive('/path/to/folder/myarchive.zip'); // Creates a file named myarchive.zip
+			$this->zip->archive('/path/to/folder/myarchive.zip'); // myarchive.zip という名前のファイルを作成します。
 
 	.. method:: download($filename = 'backup.zip')
 
-		:param	string	$filename: Archive file name
-		:rtype:	void
+		:パラメータ	string	$filename: アーカイブ　ファイル名
+		:返り値型:	void
 
-		Causes the Zip file to be downloaded from your server.
-		You must pass the name you would like the zip file called. Example::
+		サーバから Zipファイルをダウンロードさせます。このメソッドは、
+		Zipファイルにつけたい名前を指定する必要があります。 例:
 
-			$this->zip->download('latest_stuff.zip'); // File will be named "latest_stuff.zip"
+			$this->zip->download('latest_stuff.zip'); //"latest_stuff.zip" という名前になります。
 
-		.. note:: Do not display any data in the controller in which you call
-			this method since it sends various server headers that cause the
-			download to happen and the file to be treated as binary.
+		.. note::  このメソッドを使用するときは、ダウンロードさせ、バイナリとして
+			データを取り扱わせるための様々なヘッダを送信する必要があるので、 
+			コントローラでどんなデータも表示させないで下さい。
 
 	.. method:: get_zip()
 
-		:returns:	Zip file content
-		:rtype:	string
+		:パラメータ:	ZIPファイル実体
+		:返り値型:	string
 
-		Returns the Zip-compressed file data. Generally you will not need this method unless you
-		want to do something unique with the data. Example::
+		Zip 圧縮データを返します。データを使って何か特別な事をしない限りは、通常はこのメソッドは
+		必要ではありません。 例:
 
 			$name = 'my_bio.txt';
 			$data = 'I was born in an elevator...';
@@ -224,11 +224,11 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 
 	.. method:: clear_data()
 
-		:rtype:	void
+		:返り値型:	void
 
-		The Zip class caches your zip data so that it doesn't need to recompile the Zip archive
-		for each method you use above. If, however, you need to create multiple Zip archives,
-		each with different data, you can clear the cache between calls. Example::
+		Zip クラスは、上のメソッドを使うたびにZipアーカイブを再圧縮しなくて済むように、Zipデータを
+		キャッシュします。 しかし、それぞれ異なるデータの複数のZipを作成する場合、それらのメソッド
+		を呼び出す間で、キャッシュをクリアすることができます。例:
 
 			$name = 'my_bio.txt';
 			$data = 'I was born in an elevator...';
@@ -239,6 +239,6 @@ CodeIgniterの大部分のクラスと同様に、Zip クラスはコントロ�
 			$this->zip->clear_data();
 
 			$name = 'photo.jpg';
-			$this->zip->read_file("/path/to/photo.jpg"); // Read the file's contents
+			$this->zip->read_file("/path/to/photo.jpg"); // ファイルを読み込みます
 
 			$this->zip->download('myphotos.zip');

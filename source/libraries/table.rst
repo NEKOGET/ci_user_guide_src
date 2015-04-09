@@ -1,5 +1,5 @@
 ################
-HTML Table Class
+HTML テーブルクラス
 ################
 
 The Table Class provides functions that enable you to auto-generate HTML

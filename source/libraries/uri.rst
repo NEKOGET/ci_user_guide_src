@@ -1,5 +1,5 @@
 #########
-URI Class
+URI クラス
 #########
 
 The URI Class provides methods that help you retrieve information from

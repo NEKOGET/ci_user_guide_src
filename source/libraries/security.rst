@@ -1,5 +1,5 @@
 ##############
-Security Class
+セキュリティクラス
 ##############
 
 The Security Class contains methods that help you create a secure

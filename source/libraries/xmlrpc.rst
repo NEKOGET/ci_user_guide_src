@@ -1,5 +1,5 @@
 ##################################
-XML-RPC and XML-RPC Server Classes
+XML-RPC および XML-RPC サーバクラス
 ##################################
 
 CodeIgniter's XML-RPC classes permit you to send requests to another

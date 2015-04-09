@@ -1,5 +1,5 @@
 #########
-FTP Class
+FTP クラス
 #########
 
 CodeIgniter's FTP Class permits files to be transfered to a remote

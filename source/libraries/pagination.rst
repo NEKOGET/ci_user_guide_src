@@ -2,8 +2,8 @@
 ページネーションクラス
 ################
 
-CodeIgniter's Pagination class is very easy to use, and it is 100%
-customizable, either dynamically or via stored preferences.
+CodeIgniter のページネーションクラスは、簡単に利用でき、動的にあるいは保存
+した設定情報にもとづいて、100%カスタマイズ可能です。
 
 .. contents::
   :local:
@@ -12,13 +12,13 @@ customizable, either dynamically or via stored preferences.
 
   <div class="custom-index container"></div>
 
-If you are not familiar with the term "pagination", it refers to links
-that allows you to navigate from page to page, like this::
+"ページネーション" という言葉をあまり聞いたことがないでしょうか。次のようなページ間の
+ナビゲーションを可能にするリンクのことを指します:
 
 	« First  < 1 2 3 4 5 >  Last »
 
 *******
-Example
+例
 *******
 
 Here is a simple example showing how to create pagination in one of your
@@ -56,7 +56,7 @@ three shown. Here is a description of what those items represent:
 The ``create_links()`` method returns an empty string when there is no
 pagination to show.
 
-Setting preferences in a config file
+設定ファイルで設定する
 ====================================
 
 If you prefer not to set preferences using the above method, you can
@@ -67,7 +67,7 @@ You will NOT need to use ``$this->pagination->initialize()`` if you save
 your preferences in a config file.
 
 **************************
-Customizing the Pagination
+ページネーションのカスタマイズ
 **************************
 
 The following is a list of all the preferences you can pass to the
@@ -132,7 +132,7 @@ A custom suffix added to the path. The sufix value will be right after
 the offset segment.
 
 ***********************
-Adding Enclosing Markup
+囲みのマークアップの追加
 ***********************
 
 If you would like to surround the entire pagination with some markup you
@@ -147,7 +147,7 @@ The opening tag placed on the left side of the entire result.
 The closing tag placed on the right side of the entire result.
 
 **************************
-Customizing the First Link
+最初のページへのリンクのカスタマイズ
 **************************
 
 **$config['first_link'] = 'First';**
@@ -170,7 +170,7 @@ The closing tag for the "first" link.
 An alternative URL to use for the "first page" link.
 
 *************************
-Customizing the Last Link
+最後のページへのリンクのカスタマイズ
 *************************
 
 **$config['last_link'] = 'Last';**
@@ -189,7 +189,7 @@ The opening tag for the "last" link.
 The closing tag for the "last" link.
 
 ***************************
-Customizing the "Next" Link
+"次" のページへのリンクのカスタマイズ
 ***************************
 
 **$config['next_link'] = '&gt;';**
@@ -208,7 +208,7 @@ The opening tag for the "next" link.
 The closing tag for the "next" link.
 
 *******************************
-Customizing the "Previous" Link
+"前" のページへのリンクのカスタマイズ
 *******************************
 
 **$config['prev_link'] = '&lt;';**
@@ -227,7 +227,7 @@ The opening tag for the "previous" link.
 The closing tag for the "previous" link.
 
 ***********************************
-Customizing the "Current Page" Link
+"現在のページ" のページ番号のカスタマイズ
 ***********************************
 
 **$config['cur_tag_open'] = '<b>';**
@@ -239,7 +239,7 @@ The opening tag for the "current" link.
 The closing tag for the "current" link.
 
 ****************************
-Customizing the "Digit" Link
+"数字" のページリンクのカスタマイズ
 ****************************
 
 **$config['num_tag_open'] = '<div>';**
@@ -251,7 +251,7 @@ The opening tag for the "digit" link.
 The closing tag for the "digit" link.
 
 ****************
-Hiding the Pages
+ページ移動リンクを隠す
 ****************
 
 If you wanted to not list the specific pages (for example, you only want
@@ -261,7 +261,7 @@ adding::
 	 $config['display_pages'] = FALSE;
 
 ****************************
-Adding attributes to anchors
+アンカーに属性を追加
 ****************************
 
 If you want to add an extra attribute to be added to every link rendered
@@ -275,7 +275,7 @@ by the pagination class, you can set them as key/value pairs in the
 	is deprecated.
 
 *****************************
-Disabling the "rel" attribute
+"rel"属性の無効化
 *****************************
 
 By default the rel attribute is dynamically generated and appended to
@@ -287,7 +287,7 @@ you can pass boolean FALSE as a regular attribute
 	$config['attributes']['rel'] = FALSE;
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Pagination

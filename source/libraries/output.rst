@@ -26,7 +26,7 @@ need to.
   <div class="custom-index container"></div>
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Output

@@ -2,12 +2,12 @@
 テンプレートパーサクラス
 #####################
 
-The Template Parser Class can perform simple text substitution for 
-pseudo-variables contained within your view files. 
-It can parse simple variables or variable tag pairs. 
+テンプレートパーサクラスを使うと、ビューファイルに含まれる
+擬似変数を解析できます。
+単一の擬似変数と擬似変数のペアを解析できます。
 
-If you've never used a template engine,
-pseudo-variable names are enclosed in braces, like this::
+テンプレートエンジンを一度も使ったことがないでしょうか？
+擬似変数とは次のようなものです:
 
 	<html>
 		<head>
@@ -24,19 +24,19 @@ pseudo-variable names are enclosed in braces, like this::
 		</body>
 	</html>
 
-These variables are not actual PHP variables, but rather plain text
-representations that allow you to eliminate PHP from your templates
-(view files).
+これらの疑似変数は、本当の PHP 変数ではなく、
+テンプレート (ビューファイル)からPHPを取り除くための、 
+普通のテキストです。
 
-.. note:: CodeIgniter does **not** require you to use this class since
-	using pure PHP in your view pages lets them run a little faster.
-	However, some developers prefer to use a template engine if
-        they work with designers who they feel would find some
-        confusion working with PHP.
+.. note:: ビューページで純粋なPHPを使う方が少し早いので、CodeIgniterでは、
+	　このクラスを必ずしも 必要としません。
+　　　　　しかし、PHPのコードで混乱してしまうデザイナーと一緒に仕事をして
+　　　　　いる場合、開発者の中には、テンプレートエンジンを使用したい人も
+　　　　　いると思います。
 
-.. important:: The Template Parser Class is **not** a full-blown
-	template parsing solution. We've kept it very lean on purpose in order
-	to maintain maximum performance.
+.. important:: テンプレートパーサクラスは、本格的なテンプレート解析ソリューション
+	ではありません。 私達は、パフォーマンス最大化のために、これを非常にスマート
+	にしています。
 
 .. contents::
   :local:
@@ -46,10 +46,10 @@ representations that allow you to eliminate PHP from your templates
   <div class="custom-index container"></div>
 
 *******************************
-Using the Template Parser Class
+テンプレートパーサクラスの使い方
 *******************************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the Parser class is initialized
@@ -60,7 +60,7 @@ in your controller using the ``$this->load->library()`` method::
 Once loaded, the Parser library object will be available using:
 $this->parser
 
-Parsing templates
+テンプレートを解析すること
 =================
 
 You can use the ``parse()`` method to parse (or render) simple templates,
@@ -87,7 +87,7 @@ third parameter::
 
 	$string = $this->parser->parse('blog_template', $data, TRUE);
 
-Variable Pairs
+ペアの擬似変数
 ==============
 
 The above example code allows simple variables to be replaced. What if
@@ -151,7 +151,7 @@ method::
 
 	$this->parser->parse('blog_template', $data);
 
-Usage Notes
+使用メモ
 ===========
 
 If you include substitution parameters that are not referenced in your
@@ -215,7 +215,7 @@ used inside a variable pair, the results may not be as expected::
 
 	// Result: Hello, John Doe (Mr Mr )
 
-View Fragments
+ビューフラグメント
 ==============
 
 You do not have to use variable pairs to get the effect of iteration in
@@ -273,7 +273,7 @@ Result::
 	</ul>
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Parser

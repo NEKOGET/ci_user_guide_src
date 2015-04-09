@@ -1,5 +1,5 @@
 ################
-User Agent Class
+ユーザエージェントクラス
 ################
 
 The User Agent Class provides functions that help identify information

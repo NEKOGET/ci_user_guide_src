@@ -1,5 +1,5 @@
 ###############
-Trackback Class
+トラックバッククラス
 ###############
 
 The Trackback Class provides functions that enable you to send and

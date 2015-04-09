@@ -13,10 +13,10 @@ tables from arrays or database result sets.
   <div class="custom-index container"></div>
 
 *********************
-Using the Table Class
+テーブルクラスの使い方
 *********************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the Table class is initialized
@@ -28,7 +28,7 @@ Once loaded, the Table library object will be available using::
 
 	$this->table
 
-Examples
+例
 ========
 
 Here is an example showing how you can create a table from a
@@ -88,7 +88,7 @@ arrays are used::
 
 	echo $this->table->generate();
 
-Changing the Look of Your Table
+テーブルの見かけを変更する
 ===============================
 
 The Table Class permits you to set a table template with which you can
@@ -140,7 +140,7 @@ example, only the table opening tag is being changed::
 You can also set defaults for these in a config file.
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Table

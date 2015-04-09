@@ -261,7 +261,7 @@ adding::
 	 $config['display_pages'] = FALSE;
 
 ****************************
-属性にアンカーを追加する
+アンカーに属性を追加
 ****************************
 
 If you want to add an extra attribute to be added to every link rendered

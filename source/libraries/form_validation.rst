@@ -675,7 +675,7 @@ message will appear.
 
 For more info please see the :ref:`using-arrays-as-field-names` section below.
 
-Validating an Array (other than $_POST)
+配列（$_POST以外の）のバリデーション
 =======================================
 
 Sometimes you may want to validate an array that does not originate from ``$_POST`` data.

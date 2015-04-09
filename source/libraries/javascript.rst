@@ -20,10 +20,10 @@ as a convenience if you choose to use it.
   <div class="custom-index container"></div>
 
 **************************
-Using the Javascript Class
+JavaScript クラスの使い方
 **************************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 To initialize the Javascript class manually in your controller
@@ -58,10 +58,10 @@ Once loaded, the jQuery library object will be available using:
 
 	$this->javascript
 
-Setup and Configuration
+準備と設定
 =======================
 
-Set these variables in your view
+ビューに変数をセットする
 --------------------------------
 
 As a Javascript library, your files must be available to your
@@ -82,7 +82,7 @@ sections of your output.
 well as any subsequent plugin script calls; $script_head is where
 specific events, functions and other commands will be rendered.
 
-Set the path to the librarys with config items
+設定ファイルでライブラリのパスを指定する
 ----------------------------------------------
 
 There are some configuration items in Javascript library. These can
@@ -102,7 +102,7 @@ need to be made.
 If you keep your files in the same directories they were downloaded
 from, then you need not set this configuration items.
 
-The jQuery Class
+jQuery クラス
 ================
 
 To initialize the jQuery class manually in your controller constructor,
@@ -121,7 +121,7 @@ Once loaded, the jQuery library object will be available using:
 
 	$this->jquery
 
-jQuery Events
+jQuery イベント
 =============
 
 Events are set using the following syntax.
@@ -143,7 +143,7 @@ In the above example:
 -  "``code_to_run()``" is script your write yourself, or an action such as
    an effect from the jQuery library below.
 
-Effects
+エフェクト（効果）
 =======
 
 The query library supports a powerful
@@ -279,7 +279,7 @@ These effects cause an element(s) to slide.
 -  "extra information" is optional, and could include a callback, or
    other additional information.
 
-Plugins
+プラグイン
 =======
 
 Some select jQuery plugins are made available using this library.

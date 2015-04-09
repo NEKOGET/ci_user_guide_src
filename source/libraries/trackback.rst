@@ -16,10 +16,10 @@ If you are not familiar with Trackbacks you'll find more information
   <div class="custom-index container"></div>
 
 *************************
-Using the Trackback Class
+トラックバッククラスの使い方
 *************************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the Trackback class is
@@ -31,7 +31,7 @@ Once loaded, the Trackback library object will be available using::
 
 	$this->trackback
 
-Sending Trackbacks
+トラックバックの送信
 ==================
 
 A Trackback can be sent from any of your controller functions using code
@@ -75,7 +75,7 @@ or failure. If it fails, you can retrieve the error message using::
 
 	$this->trackback->display_errors();
 
-Receiving Trackbacks
+トラックバックの受信
 ====================
 
 Before you can receive Trackbacks you must create a weblog. If you don't
@@ -90,7 +90,7 @@ allow from a particular IP within a given span of time to further
 curtail spam. The process of receiving a Trackback is quite simple; the
 validation is what takes most of the effort.
 
-Your Ping URL
+トラックバックPing URL
 =============
 
 In order to accept Trackbacks you must display a Trackback URL next to
@@ -111,7 +111,7 @@ like this::
 Where entry_id represents the individual ID number for each of your
 entries.
 
-Creating a Trackback Table
+トラックバック用のテーブルの作成
 ==========================
 
 Before you can receive Trackbacks you must create a table in which to
@@ -135,7 +135,7 @@ be sent in a Trackback (url, title, excerpt, blog_name), but to make
 the data more useful we've added a few more fields in the above table
 schema (date, IP address, etc.).
 
-Processing a Trackback
+トラックバックの処理
 ======================
 
 Here is an example showing how you will receive and process a Trackback.
@@ -210,7 +210,7 @@ message using::
 	encouraged to add.
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Trackback

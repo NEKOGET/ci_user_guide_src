@@ -1,5 +1,5 @@
 ###########
-Input Class
+入力クラス
 ###########
 
 The Input Class serves two purposes:

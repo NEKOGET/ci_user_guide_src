@@ -1,5 +1,5 @@
 ####################
-File Uploading Class
+ファイルアップロードクラス
 ####################
 
 CodeIgniter's File Uploading Class permits files to be uploaded. You can

@@ -1,5 +1,5 @@
 #####################
-Template Parser Class
+テンプレートパーサクラス
 #####################
 
 The Template Parser Class can perform simple text substitution for 

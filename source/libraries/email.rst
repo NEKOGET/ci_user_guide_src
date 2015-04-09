@@ -1,5 +1,5 @@
 ###########
-Email Class
+Email クラス
 ###########
 
 CodeIgniter's robust Email Class supports the following features:

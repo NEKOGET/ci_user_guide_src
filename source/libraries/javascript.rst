@@ -1,5 +1,5 @@
 ################
-Javascript Class
+JavaScript クラス
 ################
 
 CodeIgniter provides a library to help you with certain common functions

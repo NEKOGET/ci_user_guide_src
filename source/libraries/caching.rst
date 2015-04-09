@@ -1,5 +1,5 @@
 ##############
-Caching Driver
+キャッシングドライバ
 ##############
 
 CodeIgniter features wrappers around some of the most popular forms of

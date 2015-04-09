@@ -1,5 +1,5 @@
 ##################
-Encryption Library
+暗号化ライブラリ
 ##################
 
 The Encryption Library provides two-way data encryption. To do so in

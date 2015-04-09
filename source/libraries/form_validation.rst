@@ -1,5 +1,5 @@
 ###############
-Form Validation
+フォームバリデーション(検証)
 ###############
 
 CodeIgniter provides a comprehensive form validation and data prepping

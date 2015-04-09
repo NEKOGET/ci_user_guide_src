@@ -1,5 +1,5 @@
 ##################
-Benchmarking Class
+ベンチマーククラス
 ##################
 
 CodeIgniter has a Benchmarking class that is always active, enabling the

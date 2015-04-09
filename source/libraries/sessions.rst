@@ -17,10 +17,10 @@ you wish, while still taking advantage of the features of the Session class.
   <div class="custom-index container"></div>
 
 ***********************
-Using the Session Class
+セッションクラスの使い方
 ***********************
 
-Initializing a Session
+セッションの初期化
 ======================
 
 Sessions will typically run globally with each page load, so the session
@@ -40,7 +40,7 @@ Once loaded, the Sessions library object will be available using::
 
 	$this->session
 
-How do Sessions work?
+セッションはどのように動作しますか?
 =====================
 
 When a page is loaded, the session class will check to see if valid
@@ -55,7 +55,7 @@ above behavior to happen. You can, as you'll see below, work with
 session data or even add your own data to a user's session, but the
 process of reading, writing, and updating a session is automatic.
 
-What is Session Data?
+セッションデータとは?
 =====================
 
 A *session*, as far as CodeIgniter is concerned, is simply an array
@@ -87,7 +87,7 @@ prototype::
 	configurable by changing the $config['sess_time_to_update'] line in
 	your system/config/config.php file.
 
-Retrieving Session Data
+セッションデータの読み取り
 =======================
 
 Any piece of information from the session array is available using the
@@ -120,7 +120,7 @@ omit the item key parameter::
 	 *	)
 	 */
 
-Adding Custom Session Data
+ユーザ定義のセッションデータを追加する
 ==========================
 
 A useful aspect of the session array is that you can add your own data
@@ -161,7 +161,7 @@ If you want to verify that a userdata value exists, call ``has_userdata()``.
 
 	$this->session->has_userdata('some_name');
 
-Removing Session Data
+セッションデータの削除
 =====================
 
 Just as set_userdata() can be used to add information into a session,
@@ -181,7 +181,7 @@ This function can also be passed an associative array of items to unset.
 	$this->session->unset_userdata($array_items);
 
 
-Flashdata
+フラッシュデータ
 =========
 
 CodeIgniter supports "flashdata", or session data that will only be
@@ -220,7 +220,7 @@ You can either pass a single item or an array of flashdata items to keep.
 
 .. note:: The function will return NULL if the item cannot be found.
 
-Tempdata
+一時データ
 ========
 
 CodeIgniter also supports "tempdata", or session data with a specific
@@ -255,7 +255,7 @@ use ``unset_tempdata()``::
 
 	$this->session->unset_tempdata('item');
 
-Destroying a Session
+セッションの破棄 
 ====================
 
 To clear the current session::
@@ -266,14 +266,14 @@ To clear the current session::
 	variables will no longer be available. If you only want some items
 	destroyed and not all, use ``unset_userdata()``.
 
-Session Preferences
+セッションの設定
 ===================
 
 You'll find the following Session related preferences in your
 *application/config/config.php* file:
 
 =========================== =============== =========================== ==========================================================================
-Preference                  Default         Options                     Description
+設定項目                  初期値         選択肢                     説明
 =========================== =============== =========================== ==========================================================================
 **sess_driver**             cookie          cookie/native/*custom*      The initial session driver to load.
 **sess_valid_drivers**      cookie, native  None                        Additional valid drivers which may be loaded.
@@ -302,14 +302,14 @@ following configuration values shared by the :doc:`Input <input>` and
 :doc:`Security <security>` classes:
 
 =========================== =============== ==========================================================================
-Preference                  Default         Description
+設定項目                  初期値         説明
 =========================== =============== ==========================================================================
 **cookie_prefix**           ''              Set a cookie name prefix in order to avoid name collisions
 **cookie_domain**           ''              The domain for which the session is applicable
 **cookie_path**             /               The path to which the session is applicable
 =========================== =============== ==========================================================================
 
-Session Drivers
+セッションドライバ
 ===============
 
 By default, the `Cookie Driver`_ is loaded when a session is initialized.
@@ -353,7 +353,7 @@ methods with the ``select_driver()`` call::
 
 	$this->session->userdata('item');	// Uses the native driver
 
-Cookie Driver
+クッキードライバ
 -------------
 
 The Cookie driver stores session information for each user as serialized
@@ -379,7 +379,7 @@ automatically.
 	data string than the original so keep careful track of how much data you
 	are storing.
 
-Saving Session Data to a Database
+セッションデータをデータベースに保存する
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 While the session data array stored in the user's cookie contains a
@@ -440,14 +440,14 @@ Or if you're using PostgreSQL::
 	out expired sessions so you do not need to write your own routine to do
 	it.
 
-Native Driver
+ネイティブドライバ
 -------------
 
 The Native driver relies on native PHP sessions to store data in the
 $_SESSION superglobal array. All stored values continue to be available
 through $_SESSION, but flash- and temp- data items carry special prefixes.
 
-Custom Drivers
+カスタムドライバ
 --------------
 
 You may also :doc:`create your own <../general/creating_drivers>` custom
@@ -519,7 +519,7 @@ your config.php file to an array including your driver name::
 	$config['sess_valid_drivers'] = array('sess_driver');
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Session

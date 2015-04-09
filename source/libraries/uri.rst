@@ -17,7 +17,7 @@ information about the re-routed segments.
   <div class="custom-index container"></div>
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_URI

@@ -15,10 +15,10 @@ supported character-set information.
   <div class="custom-index container"></div>
 
 **************************
-Using the User Agent Class
+ユーザーエージェントクラスの使い方
 **************************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the User Agent class is
@@ -28,14 +28,14 @@ initialized in your controller using the $this->load->library function::
 
 Once loaded, the object will be available using: ``$this->agent``
 
-User Agent Definitions
+User Agent の定義
 ======================
 
 The user agent name definitions are located in a config file located at:
 application/config/user_agents.php. You may add items to the various
 user agent arrays if needed.
 
-Example
+例
 =======
 
 When the User Agent class is initialized it will attempt to determine
@@ -69,7 +69,7 @@ is available.
 	echo $this->agent->platform(); // Platform info (Windows, Linux, Mac, etc.)
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_User_agent

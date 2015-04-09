@@ -1,5 +1,5 @@
 ############
-Output Class
+出力クラス
 ############
 
 The Output class is a core class with one main function: To send the

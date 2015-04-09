@@ -1,5 +1,5 @@
 ###################
-Shopping Cart Class
+ショッピングカートクラス
 ###################
 
 The Cart Class permits items to be added to a session that stays active

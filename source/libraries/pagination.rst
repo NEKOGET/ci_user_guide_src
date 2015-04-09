@@ -1,5 +1,5 @@
 ################
-Pagination Class
+ページネーションクラス
 ################
 
 CodeIgniter's Pagination class is very easy to use, and it is 100%

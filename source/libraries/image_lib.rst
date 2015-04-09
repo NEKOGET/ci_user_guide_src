@@ -1,5 +1,5 @@
 ########################
-Image Manipulation Class
+画像操作クラス
 ########################
 
 CodeIgniter's Image Manipulation class lets you perform the following

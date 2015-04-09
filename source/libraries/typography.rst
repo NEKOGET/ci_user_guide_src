@@ -1,5 +1,5 @@
 ################
-Typography Class
+タイポグラフィークラス
 ################
 
 The Typography Class provides methods that help you format text.

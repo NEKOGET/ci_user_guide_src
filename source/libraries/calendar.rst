@@ -1,5 +1,5 @@
 #################
-Calendaring Class
+カレンダークラス
 #################
 
 The Calendar class enables you to dynamically create calendars. Your

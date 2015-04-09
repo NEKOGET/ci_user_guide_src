@@ -1,5 +1,5 @@
 ############
-Config Class
+設定クラス
 ############
 
 The Config class provides a means to retrieve configuration preferences.

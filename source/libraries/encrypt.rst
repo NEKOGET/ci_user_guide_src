@@ -1,5 +1,5 @@
 #############
-Encrypt Class
+暗号化クラス
 #############
 
 The Encrypt Class provides two-way data encryption. It encrypted using

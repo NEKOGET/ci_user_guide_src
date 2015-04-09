@@ -19,10 +19,10 @@ code to determine if it is producing the correct data type and result.
   <div class="custom-index container"></div>
 
 ******************************
-Using the Unit Testing Library
+ユニットテストライブラリの使い方
 ******************************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the Unit Test class is
@@ -32,7 +32,7 @@ initialized in your controller using the $this->load->library function::
 
 Once loaded, the Unit Test object will be available using ``$this->unit``
 
-Running Tests
+テストの実行
 =============
 
 Running a test involves supplying a test and an expected result in the
@@ -77,7 +77,7 @@ result. Here is a list of allowed comparison types:
 -  is_array
 -  is_null
 
-Generating Reports
+レポートの生成
 ==================
 
 You can either display results after each test, or your can run several
@@ -95,7 +95,7 @@ the raw data you can retrieve an array using::
 
 	echo $this->unit->result();
 
-Strict Mode
+Strict モード
 ===========
 
 By default the unit test class evaluates literal matches loosely.
@@ -118,7 +118,7 @@ To enable strict mode use this::
 
 	$this->unit->use_strict(TRUE);
 
-Enabling/Disabling Unit Testing
+ユニットテストの有効化/無効化
 ===============================
 
 If you would like to leave some testing in place in your scripts, but
@@ -126,7 +126,7 @@ not have it run unless you need it, you can disable unit testing using::
 
 	$this->unit->active(FALSE);
 
-Unit Test Display
+ユニットテストの結果表示
 =================
 
 When your unit test results display, the following items show by
@@ -144,14 +144,14 @@ You can customize which of these items get displayed by using
 $this->unit->set_test_items(). For example, if you only wanted the test name
 and the result displayed:
 
-Customizing displayed tests
+テスト結果表示のカスタマイズ
 ---------------------------
 
 ::
 
 	$this->unit->set_test_items(array('test_name', 'result'));
 
-Creating a Template
+テンプレートの作成
 -------------------
 
 If you would like your test results formatted differently then the
@@ -174,7 +174,7 @@ template. Note the required pseudo-variables::
 	test process.
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Unit_test

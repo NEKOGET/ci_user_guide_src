@@ -98,7 +98,7 @@ month heading, and the "short" day names. More information regarding
 preferences below.
 
 ======================  =================  ============================================  ===================================================================
-設定項目              初期値            オプション                                       説明
+設定項目                初期値             オプション                                    説明
 ======================  =================  ============================================  ===================================================================
 **template**           	None               None                                          A string or array containing your calendar template.
 											   See the template section below.

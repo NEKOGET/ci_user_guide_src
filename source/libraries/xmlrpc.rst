@@ -72,8 +72,8 @@ XML-RPC サーバにリクエストを送信するには、次の情報を指定
 -  呼び出したいサーバ上のメソッド
 -  *リクエスト データ* (後述)
 
-Here is a basic example that sends a simple Weblogs.com ping to the
-`Ping-o-Matic <http://pingomatic.com/>`_
+以下は、`Ping-o-Matic <http://pingomatic.com/>`_ で、
+単純にWeblogs.comにPingを送信する基本的な例です。
 
 ::
 
@@ -93,35 +93,35 @@ Here is a basic example that sends a simple Weblogs.com ping to the
 解説
 -----------
 
-The above code initializes the XML-RPC class, sets the server URL and
-method to be called (weblogUpdates.ping). The request (in this case, the
-title and URL of your site) is placed into an array for transportation,
-and compiled using the request() function. Lastly, the full request is
-sent. If the send_request() method returns false we will display the
-error message sent back from the XML-RPC Server.
+上のコードでは、XML-RPC クラスを初期化し、サーバの URL と呼び出すメソッド
+(weblogUpdates.ping)をセットしています。 リクエスト (この場合は、タイトル
+と自分のサイトの URL) が送信用に配列に格納され、 request() メソッドを使っ
+てコンパイルされます。 最後に、完全なリクエストが送信されます。send_request() 
+メソッドが FALSE を返した場合は、 XML-RPC サーバから返ってきたエラーメッ
+セージを表示します。
 
 リクエストの詳細
 ====================
 
-An XML-RPC request is simply the data you are sending to the XML-RPC
-server. Each piece of data in a request is referred to as a request
-parameter. The above example has two parameters: The URL and title of
-your site. When the XML-RPC server receives your request, it will look
-for parameters it requires.
+リクエストとは単純に XML-RPC サーバに送信するデータのことです。 
+リクエストの中の各データはリクエストパラメータとして参照されます。
+上の例では、2つのパラメータをもっています: 自分のサイトの URL と 
+タイトルです。XML-RPC サーバがリクエストを受信したとき、必要なパラ
+メータを探します。
 
-Request parameters must be placed into an array for transportation, and
-each parameter can be one of seven data types (strings, numbers, dates,
-etc.). If your parameters are something other than strings you will have
-to include the data type in the request array.
+リクエストパラメータは、送信のため、配列に格納する必要があり、 
+各パラメータは7つのデータ型(文字列、数値、日付 など) のうちのどれか
+になります。 パラメータが文字列型以外の場合は、データ型をリクエスト
+の配列に含める必要があります。
 
-Here is an example of a simple array with three parameters::
+下記は、3つのパラメータの単純な配列の例です::
 
 	$request = array('John', 'Doe', 'www.some-site.com');
 	$this->xmlrpc->request($request);
 
-If you use data types other than strings, or if you have several
-different data types, you will place each parameter into its own array,
-with the data type in the second position::
+文字列でないデータ型のデータや何種類かの異なるデータ型のデータを
+指定するときは、 各パラメータを配列にし、その配列の2番目でデータ
+型を指定します:
 
 	$request = array(
 		array('John', 'string'),
@@ -131,23 +131,23 @@ with the data type in the second position::
 	); 
 	$this->xmlrpc->request($request);
 
-The `Data Types <#datatypes>`_ section below has a full list of data
-types.
+下の`データ型 <#datatypes>`_ のセクションにデータ型の
+全リストがあります。 
 
 XML-RPC サーバの作成
 ==========================
 
-An XML-RPC Server acts as a traffic cop of sorts, waiting for incoming
-requests and redirecting them to the appropriate functions for
-processing.
+XML-RPC サーバは交通整理役として動作し、送信されてくるリ
+クエストを待ち受け、 その処理を行う適切なメソッドへリダ
+イレクトします。
 
-To create your own XML-RPC server involves initializing the XML-RPC
-Server class in your controller where you expect the incoming request to
-appear, then setting up an array with mapping instructions so that
-incoming requests can be sent to the appropriate class and method for
-processing.
+XML-RPC サーバを作成するには、XML-RPC Server クラスを、 
+送信されてくるリクエストを受け取るコントローラで初期化し、 
+処理できる適切なクラス/メソッドに送信されてきたリクエスト
+を送るためにマッピングを指示した配列をセットアップする必
+要があります。
 
-Here is an example to illustrate::
+次は、説明のための例です::
 
 	$this->load->library('xmlrpc');
 	$this->load->library('xmlrpcs');
@@ -159,19 +159,19 @@ Here is an example to illustrate::
 	$this->xmlrpcs->initialize($config);
 	$this->xmlrpcs->serve();
 
-The above example contains an array specifying two method requests that
-the Server allows. The allowed methods are on the left side of the
-array. When either of those are received, they will be mapped to the
-class and method on the right.
+上のサンプルには、サーバが処理できる2つのメソッドが配列に指定されて
+いる箇所があります。 処理できる公開メソッドは、配列の左側になります。
+メソッドのどちらかのリクエストが受信されると、右側で指定したクラスと
+メソッドにマッピングされます。
 
-The 'object' key is a special key that you pass an instantiated class
-object with, which is necessary when the method you are mapping to is
-not part of the CodeIgniter super object.
+'object' キーは、インスタンス化されたクラスを渡すための特別なキーです。
+これは、あなたがマッピングするメソッドが CodeIgniter スーパーオブジェクト
+の一部でない場合に必要となります。
 
-In other words, if an XML-RPC Client sends a request for the new_post
-method, your server will load the My_blog class and call the new_entry
-function. If the request is for the update_post method, your server
-will load the My_blog class and call the ``update_entry()`` method.
+言い換えると、XML-RPC クライアントがnew_post メソッドを呼び出すリクエスト
+を送信した場合、 サーバはMy_blog クラスを読み込み、new_entry メソッドを呼
+び出します。 update_post メソッドを呼び出すリクエストを送信した場合は、 サ
+ーバはMy_blog クラスを読み込み、update_entry メソッドを呼び出します。
 
 The function names in the above example are arbitrary. You'll decide
 what they should be called on your server, or if you are using

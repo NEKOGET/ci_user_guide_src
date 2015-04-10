@@ -8,10 +8,10 @@ CodeIgniter には、常時アクティブなベンチマーククラスがあ�
 .. note:: このクラスは、システムで自動的に初期化されるので、
 手動で初期化する必要はありません。
 
-In addition, the benchmark is always started the moment the framework is
-invoked, and ended by the output class right before sending the final
-view to the browser, enabling a very accurate timing of the entire
-system execution to be shown.
+さらに、ベンチマークは、フレームワークが呼び出される瞬間に必ず
+開始され、出力クラスがブラウザに最後のビューを送信する直前に終
+わるので、 非常に正確なタイミングで全システムの実行について示す
+ことができます。
 
 .. contents::
   :local:

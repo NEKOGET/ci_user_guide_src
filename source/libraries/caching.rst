@@ -2,10 +2,10 @@
 キャッシングドライバ
 ##############
 
-CodeIgniter features wrappers around some of the most popular forms of
-fast and dynamic caching. All but file-based caching require specific
-server requirements, and a Fatal Exception will be thrown if server
-requirements are not met.
+CodeIgniter は、いくつかのもっとも人気のある形式の高速な動的キャッシング
+へのラッパーを提供します。ファイルベースのキャッシング以外は特定のサーバ
+要件を必要とし、もし、サーバ要件が満たされない場合は致命的な例外が投げら
+れます。
 
 .. contents::
   :local:
@@ -18,9 +18,9 @@ requirements are not met.
 使用例
 *************
 
-The following example will load the cache driver, specify `APC <#apc>`_
-as the driver to use, and fall back to file-based caching if APC is not
-available in the hosting environment.
+以下の例はキャッシュドライバをロードし、APC を使用するドライバに指定します。
+`APC <#apc>`_がホスト環境で利用できない場合、ファイルベースのキャッシングにフォール
+バックします。
 
 ::
 
@@ -37,8 +37,8 @@ available in the hosting environment.
 
 	echo $foo;
 
-You can also prefix cache item names via the **key_prefix** setting, which is useful
-to avoid collisions when you're running multiple applications on the same environment.
+**key_prefix**セッティングを通してキャッシュ・アイテム名に接頭辞を付けることもできます。
+複数のアプリケーションを同じ環境で実行しているとき、名前の衝突を避けることに役立ちます。
 
 ::
 
@@ -56,14 +56,14 @@ to avoid collisions when you're running multiple applications on the same enviro
 
 	.. method:: is_supported($driver)
 
-		:パラメータ	string	$driver: the name of the caching driver
-		:返り値:	TRUE if supported, FALSE if not
+		:パラメータ	string	$driver: キャッシング・ドライバの名前
+		:返り値:	対応できればTRUE、そうでなければFALSEを返します。
 		:返り値型:	bool
 
-		This method is automatically called when accessing drivers via
-		``$this->cache->get()``. However, if the individual drivers are used,
-		make sure to call this method to ensure the driver is supported in the
-		hosting environment.
+		このメソッドは、``$this->cache->get()`` 経由でドライバにアクセスする際に、
+		自動的に呼び出されます。しかしながら、もし、個別のドライバを使用する
+		場合、このメソッドを呼び出し、そのドライバがホスト環境でサポートされ
+		ているか確かめてください。
 		::
 
 			if ($this->cache->apc->is_supported()
@@ -76,143 +76,143 @@ to avoid collisions when you're running multiple applications on the same enviro
 
 	.. method:: get($id)
 
-		:パラメータ	string	$id: Cache item name
-		:返り値:	Item value or FALSE if not found
+		:パラメータ	string	$id: キャッシュ・アイテム名
+		:返り値:	アイテムが存在しない場合、FALSE を返します。
 		:返り値型:	mixed
 
-		This method will attempt to fetch an item from the cache store. If the
-		item does not exist, the method will return FALSE.
+		このメソッドはキャッシュから1つのアイテムを取得することを試みます。
+		もしそのアイテムが存在しない場合、このメソッドは FALSE を返します。
 		::
 
 			$foo = $this->cache->get('my_cached_item');
 
 	.. method:: save($id, $data[, $ttl = 60[, $raw = FALSE]])
 
-		:パラメータ	string	$id: Cache item name
-		:パラメータ	mixed	$data: the data to save
-		:パラメータ	int	$ttl: Time To Live, in seconds (default 60)
-		:パラメータ	bool	$raw: Whether to store the raw value
-		:返り値:	TRUE on success, FALSE on failure
+		:パラメータ	string	$id: キャッシュ・アイテム名
+		:パラメータ	mixed	$data: 保存するデータ
+		:パラメータ	int	$ttl: Time To Live のデフォルトは 60 秒です。
+		:パラメータ	bool	$raw: 元の値を保存するべきかどうか
+		:返り値:	成功時　TRUE、 失敗時　FALSE
 		:返り値型:	string
 
-		This method will save an item to the cache store. If saving fails, the
-		method will return FALSE.
+		このメソッドはキャッシュに1つのアイテムを保存します。
+		もし、保存に失敗した場合、このメソッドは FALSE を返します。
 		::
 
 			$this->cache->save('cache_item_id', 'data_to_cache');
 
-		.. note:: The ``$raw`` parameter is only utilized by APC and Memcache,
-			in order to allow usage of ``increment()`` and ``decrement()``.
+		.. note:: ``$raw`` パラメータは、APCとMemcacheによって増加``increment()``と
+                        漸減``decrement()``に適切に使用されます。
 
 	.. method:: delete($id)
 
-		:パラメータ	string	$id: name of cached item
-		:返り値:	TRUE on success, FALSE on failure
+		:パラメータ	string	$id: キャッシュされたアイテムの名前
+		:返り値:	成功時 TRUE、失敗時 FALSE
 		:返り値型:	bool
 
-		This method will delete a specific item from the cache store. If item
-		deletion fails, the method will return FALSE.
+		このメソッドは特定の1つのアイテムをキャッシュから削除します。
+		もし、削除に失敗した場合、このメソッドは FALSE を返します。
 		::
 
 			$this->cache->delete('cache_item_id');
 
 	.. method:: increment($id[, $offset = 1])
 
-		:パラメータ	string	$id: Cache ID
-		:パラメータ	int	$offset: Step/value to add
-		:返り値:	New value on success, FALSE on failure
+		:パラメータ	string	$id: キャッシュID
+		:パラメータ	int	$offset: 値に進行上の数値を追加する
+		:返り値:	新しい値が保存されたら成功、失敗時　FALSE 
 		:返り値型:	mixed
 
-		Performs atomic incrementation of a raw stored value.
+		元の保存された値に極小の増加を実行します。
 		::
 
-			// 'iterator' has a value of 2
+			// 'iterator' は2の値を持っています
 
-			$this->cache->increment('iterator'); // 'iterator' is now 3
+			$this->cache->increment('iterator'); // 'iterator' は3です。
 
-			$this->cache->increment('iterator', 3); // 'iterator' is now 6
+			$this->cache->increment('iterator', 3); // 'iterator' は6です
 
 	.. method:: decrement($id[, $offset = 1])
 
-		:パラメータ	string	$id: Cache ID
-		:パラメータ	int	$offset: Step/value to reduce by
-		:返り値:	New value on success, FALSE on failure
+		:パラメータ	string	$id: キャッシュID
+		:パラメータ	int	$offset: S値に進行上の数値を減算する
+		:返り値:	新しい値が保存されたら成功、失敗時　FALSE
 		:返り値型:	mixed
 
-		Performs atomic decrementation of a raw stored value.
+		元の保存された値に極小の減算を実行します。
 		::
 
-			// 'iterator' has a value of 6
+			// 'iterator' の値は 6です
 
-			$this->cache->decrement('iterator'); // 'iterator' is now 5
+			$this->cache->decrement('iterator'); // 'iterator' は 5です。
 
-			$this->cache->decrement('iterator', 2); // 'iterator' is now 3
+			$this->cache->decrement('iterator', 2); // 'iterator' は 3です。
 
 	.. method:: clean()
 
-		:返り値:	TRUE on success, FALSE on failure
+		:返り値:	成功時　TRUE、失敗時　FALSE
 		:返り値型:	bool
 
-		This method will 'clean' the entire cache. If the deletion of the
-		cache files fails, the method will return FALSE.
+		このメソッドはキャッシュ全体をクリアします。もしキャッシュファイルの
+		削除に失敗した場合、このメソッドは FALSE を返します。
 		::
 
 			$this->cache->clean();
 
 	.. method:: cache_info()
 
-		:返り値:	Information on the entire cache database
+		:返り値:	全キャッシュ・データベースの情報
 		:返り値型:	mixed
 
-		This method will return information on the entire cache.
+		このメソッドはキャッシュ全体の情報を返します。
 		::
 
 			var_dump($this->cache->cache_info());
 
-		.. note:: The information returned and the structure of the data is dependent
-			on which adapter is being used.
-
+		.. note:: 情報はデータの構造がどのアダプターが使われているか
+		依存した上で返ります。
+		
 	.. method:: get_metadata($id)
 
-		:パラメータ	string	$id: Cache item name
-		:返り値:	Metadata for the cached item
+		:パラメータ	string	$id: キャッシュ・アイテム名
+		:返り値:	キャッシュアイテムのメタデータ
 		:返り値型:	mixed
 
-		This method will return detailed information on a specific item in the
-		cache.
+		このメソッドは、キャッシュの中の特定の1つのアイテムに
+		関する詳細な情報を返します。
 		::
 
 			var_dump($this->cache->get_metadata('my_cached_item'));
 
-		.. note:: The information returned and the structure of the data is dependent
-			on which adapter is being used.
+		.. note:: 情報はデータの構造がどのアダプターが使われているか
+		依存した上で返ります。
 
 *******
 ドライバ
 *******
 
-Alternative PHP Cache (APC) Caching
+Alternative PHP Cache (APC) キャッシング
 ===================================
 
-All of the methods listed above can be accessed without passing a
-specific adapter to the driver loader as follows::
+上記で記載されたすべてのメソッドは、以下のように特定のアダプタを
+ドライバのローダーに渡すことなくアクセスできます::
 
 	$this->load->driver('cache');
 	$this->cache->apc->save('foo', 'bar', 10);
 
-For more information on APC, please see
-`http://php.net/apc <http://php.net/apc>`_.
+APC に関するさらなる情報は、`http://php.net/apc <http://php.net/apc>`_
+を参照してください。
 
 ファイルベースキャッシュ
 ==================
 
-Unlike caching from the Output Class, the driver file-based caching
-allows for pieces of view files to be cached. Use this with care, and
-make sure to benchmark your application, as a point can come where disk
-I/O will negate positive gains by caching.
+出力クラスのキャッシングとは異なり、ファイルベースのキャッシングドライバ
+は、ビューファイルの一部分をキャッシュできます。アプリケーションをベンチ
+マークしながら、キャッシングによる効果をディスク I/O が打ち消してしまう
+ポイントに到達しないよう注意して使用してください。
 
-All of the methods listed above can be accessed without passing a
-specific adapter to the driver loader as follows::
+上記で記載されたすべてのメソッドは、以下のように特定のアダプタを
+ドライバのローダーに渡すことなくアクセスできます::
 
 	$this->load->driver('cache');
 	$this->cache->file->save('foo', 'bar', 10);
@@ -220,61 +220,61 @@ specific adapter to the driver loader as follows::
 Memcached キャッシュ
 =================
 
-Multiple Memcached servers can be specified in the memcached.php
-configuration file, located in the _application/config/* directory.
+複数の Memcached サーバは、application/config/ ディレクトリに
+置いた memcached.php 設定ファイルで指定することができます。 
 
-All of the methods listed above can be accessed without passing a
-specific adapter to the driver loader as follows::
+上記で記載されたすべてのメソッドは、以下のように特定のアダプタ
+をドライバのローダーに渡すことなくアクセスできます::
 
 	$this->load->driver('cache');
 	$this->cache->memcached->save('foo', 'bar', 10);
 
-For more information on Memcached, please see
-`http://php.net/memcached <http://php.net/memcached>`_.
+Memcached に関するさらなる情報は、`http://php.net/memcached <http://php.net/memcached>`_
+を参照してください。
 
 WinCache キャッシュ
 ================
 
-Under Windows, you can also utilize the WinCache driver.
+Windowsの下で、WinCacheドライバを利用することもできます。
 
-All of the methods listed above can be accessed without passing a
-specific adapter to the driver loader as follows::
+上記で記載されたすべてのメソッドは、以下のように特定のアダプタ
+をドライバのローダーに渡すことなくアクセスできます::
 
 	$this->load->driver('cache');
 	$this->cache->wincache->save('foo', 'bar', 10);
 
-For more information on WinCache, please see
-`http://php.net/wincache <http://php.net/wincache>`_.
+WinCache, に関するさらなる情報は、`http://php.net/wincache <http://php.net/wincache>`_.
+を参照してください。
 
 Redis キャッシュ
 =============
 
-Redis is an in-memory key-value store which can operate in LRU cache mode. 
-To use it, you need Redis server and phpredis PHP extension 
-`https://github.com/nicolasff/phpredis <https://github.com/nicolasff/phpredis>`_.
+Redisは、LRUキャッシュ・モードで動くことができるkey-valueストアです。
+使うためにはRedisサーバと phpredis PHPエクステンション`https://github.com/nicolasff/phpredis 
+<https://github.com/nicolasff/phpredis>`_を必要とします
 
-Config options to connect to redis server must be stored in the application/config/redis.php file.
-Available options are::
+redisサーバーに接続する構成オプションは、application/config/redis.phpファイルに格納されなければなりません。
+利用できるオプション::
 	
-	$config['socket_type'] = 'tcp'; //`tcp` or `unix`
-	$config['socket'] = '/var/run/redis.sock'; // in case of `unix` socket type
+	$config['socket_type'] = 'tcp'; //`tcp` または `unix`
+	$config['socket'] = '/var/run/redis.sock'; // `unix`ソケットタイプの場合
 	$config['host'] = '127.0.0.1';
 	$config['password'] = NULL;
 	$config['port'] = 6379;
 	$config['timeout'] = 0;
 
-All of the methods listed above can be accessed without passing a
-specific adapter to the driver loader as follows::
+上記で記載されたすべてのメソッドは、以下のように特定のアダプタ
+をドライバのローダーに渡すことなくアクセスできます::
 
 	$this->load->driver('cache');
 	$this->cache->redis->save('foo', 'bar', 10);
 
-For more information on Redis, please see
-`http://redis.io <http://redis.io>`_.
+に関するさらなる情報は、`http://redis.io <http://redis.io>`_.
+を参照してください。
 
-Dummy キャッシュ
+ダミー キャッシュ
 ===========
 
-This is a caching backend that will always 'miss.' It stores no data,
-but lets you keep your caching code in place in environments that don't
-support your chosen cache.
+これは絶えず 'miss' するキャッシングバックエンドです。データをストアし
+ませんが、指定したキャッシュをサポートしない環境で、キャッシュを使用す
+るコードをそのままにできます。

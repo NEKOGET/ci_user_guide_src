@@ -2,8 +2,8 @@
 XML-RPC および XML-RPC サーバクラス
 ##################################
 
-CodeIgniter's XML-RPC classes permit you to send requests to another
-server, or set up your own XML-RPC server to receive requests.
+CodeIgniter の XML-RPC クラスを使うと、他のサーバにリクエストを送信したり、
+リクエストを受信するために XML-RPCサーバをセットアップしたりできます。
 
 .. contents::
   :local:
@@ -16,22 +16,22 @@ server, or set up your own XML-RPC server to receive requests.
 XML-RPCとは?
 ****************
 
-Quite simply it is a way for two computers to communicate over the
-internet using XML. One computer, which we will call the client, sends
-an XML-RPC **request** to another computer, which we will call the
-server. Once the server receives and processes the request it will send
-back a **response** to the client.
+インターネット上の2つのコンピュータが対話する方法で非常にシンプル
+なのは、XML を使うものです。 クライアントと呼ばれる一方のコンピュ
+ータは、XML-RPC リクエストを サーバと呼ばれるもう一方のコンピュー
+タに送信します。サーバがリクエストを受信し、処理すると、 クライア
+ントにレスポンスを返します。
 
-For example, using the MetaWeblog API, an XML-RPC Client (usually a
-desktop publishing tool) will send a request to an XML-RPC Server
-running on your site. This request might be a new weblog entry being
-sent for publication, or it could be a request for an existing entry for
-editing. When the XML-RPC Server receives this request it will examine
-it to determine which class/method should be called to process the
-request. Once processed, the server will then send back a response
-message.
+たとえば、MetaWeblog API を使う場合、XML-RPC クライアント (大抵は、
+デスクトップの投稿ツール) は、 サイトで実行されている XML-RPC サ
+ーバにリクエストを送ります。記事を公開するために、 新しいブログの
+記事を作成するリクエストであったり、既存の記事を編集するためのリク
+エストであったりします。 XML-RPC サーバはリクエストを受信すると、
+リクエストを処理するために、どのクラス/メソッドを呼び出せばいいの
+かを決定します。 処理されると、サーバはレスポンスメッセージを送り
+返します。
 
-For detailed specifications, you can visit the `XML-RPC <http://www.xmlrpc.com/>`_ site.
+仕様の詳細については、`XML-RPC <http://www.xmlrpc.com/>`_ のサイトをみてください。
 
 ***********************
 XML-RPCクラスの使い方

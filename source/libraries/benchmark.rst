@@ -21,7 +21,7 @@ system execution to be shown.
   <div class="custom-index container"></div>
 
 *************************
-Using the Benchmark Class
+ベンチマーククラスを使用する
 *************************
 
 The Benchmark class can be used within your
@@ -62,7 +62,7 @@ Here's an example using real code::
 		echo $this->benchmark->elapsed_time('dog', 'bird');
 
 
-Profiling Your Benchmark Points
+プロファイラ用の観測点
 ===============================
 
 If you want your benchmark data to be available to the
@@ -85,7 +85,7 @@ _end. Each pair of points must otherwise be named identically. Example::
 Please read the :doc:`Profiler page </general/profiling>` for more
 information.
 
-Displaying Total Execution Time
+総計実行時間の表示
 ===============================
 
 If you would like to display the total elapsed time from the moment
@@ -109,7 +109,7 @@ this pseudo-variable, if you prefer not to use the pure PHP::
 .. note:: If you want to benchmark anything within your controller
 	functions you must set your own start/end points.
 
-Displaying Memory Consumption
+メモリ使用量の表示
 =============================
 
 If your PHP installation is configured with --enable-memory-limit, you
@@ -128,25 +128,25 @@ this pseudo-variable, if you prefer not to use the pure PHP::
 
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Benchmark
 
 	.. method:: mark($name)
 
-		:param	string	$name: the name you wish to assign to your marker
-		:rtype:	void
+		:パラメータ	string	$name: the name you wish to assign to your marker
+		:返り値型:	void
 
 		Sets a benchmark marker.
 
 	.. method:: elapsed_time([$point1 = ''[, $point2 = ''[, $decimals = 4]]])
 
-		:param	string	$point1: a particular marked point
-		:param	string	$point2: a particular marked point
-		:param	int	$decimals: number of decimal places for precision
-		:returns:	Elapsed time
-		:rtype:	string
+		:パラメータ	string	$point1: a particular marked point
+		:パラメータ	string	$point2: a particular marked point
+		:パラメータ	int	$decimals: number of decimal places for precision
+		:返り値:	Elapsed time
+		:返り値型:	string
 
 		Calculates and returns the time difference between two marked points.
 
@@ -158,8 +158,8 @@ Class Reference
 
 	.. method:: memory_usage()
 
-		:returns:	Memory usage info
-		:rtype:	string
+		:返り値:	Memory usage info
+		:返り値型:	string
 
 		Simply returns the ``{memory_usage}`` marker.
 

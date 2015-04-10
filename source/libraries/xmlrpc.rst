@@ -59,8 +59,8 @@ XML-RPC Server クラスを読み込むには次のようにします::
 読み込まれると、xml-rpcs ライブラリのオブジェクトは次のようにして利用できます::
 $this->xmlrpcs
 
-.. note::XML-RPC Sever クラスを使うときは、XML-RPC クラスと 
-         XML-RPC Server クラスの「両方」を読み込む必要があります。
+.. note:: XML-RPC Sever クラスを使うときは、XML-RPC クラスと 
+	XML-RPC Server クラスの「両方」を読み込む必要があります。
 
 
 XML-RPC リクエストの送信

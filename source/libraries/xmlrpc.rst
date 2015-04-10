@@ -62,16 +62,15 @@ $this->xmlrpcs
 .. note:: XML-RPC Sever クラスを使うときは、XML-RPC クラスと 
 	XML-RPC Server クラスの「両方」を読み込む必要があります。
 
-
 XML-RPC リクエストの送信
 ========================
 
-To send a request to an XML-RPC server you must specify the following
-information:
+XML-RPC サーバにリクエストを送信するには、次の情報を指定する
+必要があります:
 
--  The URL of the server
--  The method on the server you wish to call
--  The *request* data (explained below).
+-  サーバの URL
+-  呼び出したいサーバ上のメソッド
+-  *リクエスト データ* (後述)
 
 Here is a basic example that sends a simple Weblogs.com ping to the
 `Ping-o-Matic <http://pingomatic.com/>`_

@@ -24,36 +24,36 @@ CodeIgniter には、常時アクティブなベンチマーククラスがあ�
 ベンチマーククラスを使用する
 *************************
 
-The Benchmark class can be used within your
-:doc:`controllers </general/controllers>`,
-:doc:`views </general/views>`, or your :doc:`models </general/models>`.
-The process for usage is this:
+ベンチマーククラスは:doc:`コントローラ </general/controllers>`、
+:doc:`ビュー </general/views>`または:doc:`モデル 
+</general/models>`の中で使用できます。
+使う手順は次のとおりです:
 
-#. Mark a start point
-#. Mark an end point
-#. Run the "elapsed time" function to view the results
+#. 観測開始点をマークします。
+#. 観測終了点をマークします。
+#. 結果を見るため「経過時間("elapsed time")」メソッドを実行します。
 
-Here's an example using real code::
+実際のコードでの使用例です::
 
 	$this->benchmark->mark('code_start');
 
-	// Some code happens here
+	// ここに何かのコードを記述
 
 	$this->benchmark->mark('code_end');
 
 	echo $this->benchmark->elapsed_time('code_start', 'code_end');
 
-.. note:: The words "code_start" and "code_end" are arbitrary. They
-	are simply words used to set two markers. You can use any words you
-	want, and you can set multiple sets of markers. Consider this example::
+.. note::  "code_start" と "code_end" のところの語は、任意の語が使えます。 
+	これら2つの言葉は、単に観測点を2つ設定するために使われたに過ぎません。	好きな言葉を使えますし、
+	重複させて観測点の組み合わせを設定することもできます。次のような例が考えられます:
 
 		$this->benchmark->mark('dog');
 
-		// Some code happens here
+		// ここに何かのコードを記述
 
 		$this->benchmark->mark('cat');
 
-		// More code happens here
+		// さらに、ここに何かのコードを記述
 
 		$this->benchmark->mark('bird');
 
@@ -65,64 +65,64 @@ Here's an example using real code::
 プロファイラ用の観測点
 ===============================
 
-If you want your benchmark data to be available to the
-:doc:`Profiler </general/profiling>` all of your marked points must
-be set up in pairs, and each mark point name must end with _start and
-_end. Each pair of points must otherwise be named identically. Example::
+:doc:`プロファイラ </general/profiling>` でベンチマークデータを使用するには、 観測点はペアにする必要があり、
+各々の観測点の名前の末尾を _start と _end にしなければなりません。 さらに、ペアになる観測点の名前は、
+元が同じ(identicaly)である必要があります [ 訳注: ペアになっている開始点と終了点の名前は、末尾の_start _end 
+を除いた部分が同じものでなければなりません ]。 例:
 
 	$this->benchmark->mark('my_mark_start');
 
-	// Some code happens here...
+	// ここに何かのコードを記述...
 
 	$this->benchmark->mark('my_mark_end');
 
 	$this->benchmark->mark('another_mark_start');
 
-	// Some more code happens here...
+	// さらに、ここに何かのコードを記述...
 
 	$this->benchmark->mark('another_mark_end');
 
-Please read the :doc:`Profiler page </general/profiling>` for more
-information.
+詳しくは、:doc:`プロファイラ </general/profiling>`のページ
+をご覧ください。
 
 総計実行時間の表示
 ===============================
 
-If you would like to display the total elapsed time from the moment
-CodeIgniter starts to the moment the final output is sent to the
-browser, simply place this in one of your view templates::
+CodeIgniter がスタートした瞬間から、出力がブラウザに送信された瞬間ま
+での総計の経過時間を表示したいときには、 ビューのテンプレートに次の
+コードを設置するだけです:
 
 	<?php echo $this->benchmark->elapsed_time();?>
 
-You'll notice that it's the same function used in the examples above to
-calculate the time between two point, except you are **not** using any
-parameters. When the parameters are absent, CodeIgniter does not stop
-the benchmark until right before the final output is sent to the
-browser. It doesn't matter where you use the function call, the timer
-will continue to run until the very end.
+上の2つの観測点の計算で、使った関数と引数がないという
+こと以外同じものを使用していることに気づいたと思います。 
+CodeIgniterでは、引数が省略されたとき、最終出力がブラウ
+ザに送信されるまでベンチマークは停止しません。どこで関
+数を使用したかには関係なく、タイマーは最後の最後まで継
+続されます。
 
-An alternate way to show your elapsed time in your view files is to use
-this pseudo-variable, if you prefer not to use the pure PHP::
+PHP をそのまま使用したくないときは、ビューのファイル内で次の
+擬似変数を用いれば、総計経過時間を見る代替手段になります::
 
 	{elapsed_time}
 
-.. note:: If you want to benchmark anything within your controller
-	functions you must set your own start/end points.
+.. note:: ベンチマークをコントローラの関数内で使用する場合は、
+          必ず開始と終了の観測点をセットする必要があります。
 
 メモリ使用量の表示
 =============================
 
-If your PHP installation is configured with --enable-memory-limit, you
-can display the amount of memory consumed by the entire system using the
-following code in one of your view file::
+PHP の設定が --enable-memory-limit になっている場合、ビューのファイル内
+に次のコードを配置することで、 システム全体のメモリの使用量を表示させる
+ことができます::
 
 	<?php echo $this->benchmark->memory_usage();?>
 
-.. note:: This function can only be used in your view files. The consumption
-	will reflect the total memory used by the entire app.
+.. note:: この関数は、ビューのファイル内でのみ使用できます。この使用量は、
+アプリケーション全体で使っているメモリの使用量です。
 
-An alternate way to show your memory usage in your view files is to use
-this pseudo-variable, if you prefer not to use the pure PHP::
+PHP をそのまま使用したくないときは、ビューのファイル内で次の擬似変数を用いれば、
+メモリ消費量を見る代替手段になります:::
 
 	{memory_usage}
 
@@ -135,25 +135,25 @@ this pseudo-variable, if you prefer not to use the pure PHP::
 
 	.. method:: mark($name)
 
-		:パラメータ	string	$name: the name you wish to assign to your marker
+		:パラメータ	string	$name: マーカーにつけたい名前
 		:返り値型:	void
 
-		Sets a benchmark marker.
+		ベンチマークマーカーをセットします。
 
 	.. method:: elapsed_time([$point1 = ''[, $point2 = ''[, $decimals = 4]]])
 
-		:パラメータ	string	$point1: a particular marked point
+		:パラメータ	string	$point1: 特定のマークされた点
 		:パラメータ	string	$point2: a particular marked point
-		:パラメータ	int	$decimals: number of decimal places for precision
-		:返り値:	Elapsed time
+		:パラメータ	int	$decimals: 小数点以下の桁数
+		:返り値:	経過時間
 		:返り値型:	string
 
-		Calculates and returns the time difference between two marked points.
+		2つのマークされた点の時差を計算して、返します。
 
-		If the first parameter is empty this function instead returns the
-		``{elapsed_time}`` pseudo-variable. This permits the full system
-		execution time to be shown in a template. The output class will
-		swap the real value for this variable.
+		最初の引数が省略されたとき、｛elapsed_time｝擬似
+		変数を用いれば、システム全体のテンプレートで示さ
+		れる実行時間を代替し、クラスが実行値をこの変数に
+		変換して出力します。
 
 
 	.. method:: memory_usage()
@@ -161,8 +161,9 @@ this pseudo-variable, if you prefer not to use the pure PHP::
 		:返り値:	Memory usage info
 		:返り値型:	string
 
-		Simply returns the ``{memory_usage}`` marker.
+		単に``{memory_usage}``マーカーを返します。
 
-		This permits it to be put it anywhere in a template without the memory
-		being calculated until the end. The :doc:`Output Class <output>` will
-		swap the real value for this variable.
+		どこでもテンプレート上の最後まで計算された
+		メモリ量を許容し、:doc:`出力クラス <output>`は
+		実行値をこの変数に変換します。
+		

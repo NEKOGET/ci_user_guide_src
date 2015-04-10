@@ -17,10 +17,10 @@ These preferences can come from the default config file
   <div class="custom-index container"></div>
 
 *****************************
-Working with the Config Class
+設定クラスの機能
 *****************************
 
-Anatomy of a Config File
+設定ファイルの詳細
 ========================
 
 By default, CodeIgniter has one primary config file, located at
@@ -38,7 +38,7 @@ simply create your own file and save it in config folder.
 	conflict even though the array has the same name (assuming an array
 	index is not named the same as another).
 
-Loading a Config File
+設定ファイルの読み込み
 =====================
 
 .. note::
@@ -48,7 +48,7 @@ Loading a Config File
 
 There are two ways to load a config file:
 
-Manual Loading
+手動での読み込み
 **************
 
 To load one of your custom config files you will use the following
@@ -78,7 +78,7 @@ config file does not exist::
 
 	$this->config->load('blog_settings', FALSE, TRUE);
 
-Auto-loading
+自動読み込み
 ************
 
 If you find that you need a particular config file globally, you can
@@ -87,7 +87,7 @@ have it loaded automatically by the system. To do this, open the
 and add your config file as indicated in the file.
 
 
-Fetching Config Items
+設定項目の取り出し
 =====================
 
 To retrieve an item from your config file, use the following function::
@@ -117,7 +117,7 @@ the $this->config->item() function. Example::
 	$blog_config = $this->config->item('blog_settings');
 	$site_name = $blog_config['site_name'];
 
-Setting a Config Item
+設定項目をセットする
 =====================
 
 If you would like to dynamically set a config item or change an existing
@@ -130,7 +130,7 @@ item_value is its value.
 
 .. _config-environments:
 
-Environments
+複数の環境
 ============
 
 You may load different configuration files depending on the current
@@ -168,7 +168,7 @@ folders:
 
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Config

@@ -943,7 +943,7 @@ The following is a list of all the native rules that are available to
 use:
 
 ========================= ========== ============================================================================================= =======================
-ルール                    パラメータ  説明                                                                                   Example
+ルール                    パラメータ 説明                                                                                   Example
 ========================= ========== ============================================================================================= =======================
 **required**              No         空き要素の場合はFALSEを返す
 **matches**               Yes        formの要素が一致しない時はFALSEを返す											                   matches[form_item]
@@ -1000,7 +1000,7 @@ The following is a list of all the prepping methods that are available
 to use:
 
 ==================== ========= =======================================================================================================
-名前                 パラメータ 説明
+名前                 パラメータ説明
 ==================== ========= =======================================================================================================
 **xss_clean**        No        Runs the data through the XSS filtering method, described in the :doc:`Security Class <security>` page.
 **prep_for_form**    No        Converts special characters so that HTML data can be shown in a form field without breaking it.

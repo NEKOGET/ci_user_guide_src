@@ -2,11 +2,11 @@
 ベンチマーククラス
 ##################
 
-CodeIgniter has a Benchmarking class that is always active, enabling the
-time difference between any two marked points to be calculated.
+CodeIgniter には、常時アクティブなベンチマーククラスがあります。 ベンチマーククラスは、
+あらかじめマークしておいた複数の観測点のうちの任意の2つの時点の時間差を計算できます。
 
-.. note:: This class is initialized automatically by the system so there
-	is no need to do it manually.
+.. note:: このクラスは、システムで自動的に初期化されるので、
+手動で初期化する必要はありません。
 
 In addition, the benchmark is always started the moment the framework is
 invoked, and ended by the output class right before sending the final

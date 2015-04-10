@@ -943,24 +943,23 @@ The following is a list of all the native rules that are available to
 use:
 
 ========================= ========== ============================================================================================= =======================
-ルール                    パラメータ 説明                                                                                   Example
+ルール                    値         説明                                                                                          例
 ========================= ========== ============================================================================================= =======================
 **required**              No         空き要素の場合はFALSEを返す
-**matches**               Yes        formの要素が一致しない時はFALSEを返す											                   matches[form_item]
+**matches**               Yes        formの要素が一致しない時はFALSEを返す                                                         matches[form_item]
 **differs**               Yes        Returns FALSE if the form element does not differ from the one in the parameter.              differs[form_item]
-**is_unique**             Yes        DBテーブルのフィールド名と一致しない場合はFALSEを返します。								           is_unique[table.field]
-                                     Note: 動かす時には :doc:`Query Builder <../database/query_builder>` が
-                                     必要となります。
-**min_length**            Yes        指定する文字数より少ない場合はFALSEを返します。								 	                   min_length[3]
-**max_length**            Yes        指定する文字数を超えた場合はFALSEを返します。	             		 							   max_length[12]
-**exact_length**          Yes        指定する文字数と一致しない場合はFALSEを返します。								                       exact_length[8]
-**greater_than**          Yes        指定した値よりも（数字的に）小さいか、数字でない時にFALSEを							       		   greater_than[8]
+**is_unique**             Yes        DBテーブルのフィールド名と一致しない場合はFALSEを返します。                                   is_unique[table.field]
+                                     Note: 動かす時には :doc:`Query Builder <../database/query_builder>` が必要となります。
+**min_length**            Yes        指定する文字数より少ない場合はFALSEを返します。                                               min_length[3]
+**max_length**            Yes        指定する文字数を超えた場合はFALSEを返します。                                                 max_length[12]
+**exact_length**          Yes        指定する文字数と一致しない場合はFALSEを返します。                                             exact_length[8]
+**greater_than**          Yes        指定した値よりも（数字的に）小さいか、数字でない時にFALSEを                                   greater_than[8]
                                      返します。
-**greater_than_equal_to** Yes        指定した値よりも（数字的に）等しいもしくは小さいか、数字でない時にFALSEを                           	   greater_than_equal_to[8]
+**greater_than_equal_to** Yes        指定した値よりも（数字的に）等しいもしくは小さいか、数字でない時にFALSEを                     greater_than_equal_to[8]
                                      返します。
-**less_than**             Yes        指定した値よりも（数字的に）大きいか、数字でない時にFALSEを         								   less_than[8]
+**less_than**             Yes        指定した値よりも（数字的に）大きいか、数字でない時にFALSEを                                   less_than[8]
                                      返します。
-**less_than_equal_to**    Yes        指定した値よりも（数字的に）等しいもしくは大きいか、数字でない時にFALSEを                        	   less_than_equal_to[8]
+**less_than_equal_to**    Yes        指定した値よりも（数字的に）等しいもしくは大きいか、数字でない時にFALSEを              	   less_than_equal_to[8]
                                      返します。
 **alpha**                 No         アルファベット以外の文字を含む場合、FALSEを返します。
 **alpha_numeric**         No         アルファベット・数字以外の文字を含む場合、FALSEを返します。

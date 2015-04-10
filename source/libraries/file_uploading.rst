@@ -13,7 +13,7 @@ set various preferences, restricting the type and size of the files.
   <div class="custom-index container"></div>
 
 ***********
-The Process
+手順
 ***********
 
 Uploading a file involves the following general process:
@@ -29,7 +29,7 @@ Uploading a file involves the following general process:
 To demonstrate this process here is brief tutorial. Afterward you'll
 find reference information.
 
-Creating the Upload Form
+アップロードフォームの作成
 ========================
 
 Using a text editor, create a form called upload_form.php. In it, place
@@ -62,7 +62,7 @@ syntax for you. You'll also notice we have an $error variable. This is
 so we can show error messages in the event the user does something
 wrong.
 
-The Success Page
+成功ページ
 ================
 
 Using a text editor, create a form called upload_success.php. In it,
@@ -87,7 +87,7 @@ place this code and save it to your **application/views/** directory::
 	</body>
 	</html>
 
-The Controller
+コントローラ
 ==============
 
 Using a text editor, create a controller called Upload.php. In it, place
@@ -134,14 +134,14 @@ this code and save it to your **application/controllers/** directory::
 	}
 	?>
 
-The Upload Directory
+アップロードディレクトリ
 ====================
 
 You'll need a destination directory for your uploaded images. Create a
 directory at the root of your CodeIgniter installation called uploads
 and set its file permissions to 777.
 
-Try it!
+動かして試してみよう！
 =======
 
 To try your form, visit your site using a URL similar to this one::
@@ -153,10 +153,10 @@ jpg, gif, or png). If the path in your controller is correct it should
 work.
 
 ***************
-Reference Guide
+リファレンスガイド
 ***************
 
-Initializing the Upload Class
+アップロードクラスの初期化
 =============================
 
 Like most other classes in CodeIgniter, the Upload class is initialized
@@ -167,7 +167,7 @@ in your controller using the ``$this->load->library()`` method::
 Once the Upload class is loaded, the object will be available using:
 $this->upload
 
-Setting Preferences
+オプションの設定
 ===================
 
 Similar to other libraries, you'll control what is allowed to be upload
@@ -188,14 +188,14 @@ following preferences::
 The above preferences should be fairly self-explanatory. Below is a
 table describing all available preferences.
 
-Preferences
+設定項目
 ===========
 
 The following preferences are available. The default value indicates
 what will be used if you do not specify that preference.
 
 ============================ ================= ======================= ======================================================================
-Preference                   Default Value     Options                 Description
+設定項目                   初期値    選択肢                 説明
 ============================ ================= ======================= ======================================================================
 **upload_path**              None              None                    The path to the directory where the upload should be placed. The
                                                                        directory must be writable and the path can be absolute or relative.
@@ -238,7 +238,7 @@ Preference                   Default Value     Options                 Descripti
                                                                        is a security risk.
 ============================ ================= ======================= ======================================================================
 
-Setting preferences in a config file
+設定ファイルに設定を記述する
 ====================================
 
 If you prefer not to set preferences using the above method, you can
@@ -249,7 +249,7 @@ need to use the ``$this->upload->initialize()`` method if you save your
 preferences in a config file.
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Upload
@@ -336,7 +336,7 @@ Class Reference
 		Here's a table explaining the above-displayed array items:
 
 		================ ====================================================================================================
-		Item             Description
+		項目             説明
 		================ ====================================================================================================
 		file_name        Name of the file that was uploaded, including the filename extension
 		file_type        File MIME type identifier

@@ -2,19 +2,19 @@
 Email クラス
 ###########
 
-CodeIgniter's robust Email Class supports the following features:
+CodeIgniter の堅牢な Email クラスは、次のような機能に対応しています:
 
--  Multiple Protocols: Mail, Sendmail, and SMTP
--  TLS and SSL Encryption for SMTP
--  Multiple recipients
--  CC and BCCs
--  HTML or Plaintext email
--  Attachments
--  Word wrapping
--  Priorities
--  BCC Batch Mode, enabling large email lists to be broken into small
-   BCC batches.
--  Email Debugging tools
+-  複数プロトコル: メール、Sendmail、および SMTP
+-  SMTPのための暗号化　TLS および SSL 
+-  複数の受取人
+-  CC と BCC
+-  HTML または プレーンテキスト email
+-  添付
+-  ワードラップ
+-  優先度
+-  BCC バッチモード。これは、大きなメールリストを小さな 
+   BCC バッチに分割します。
+-  Email デバッグツール
 
 .. contents::
   :local:
@@ -24,10 +24,10 @@ CodeIgniter's robust Email Class supports the following features:
   <div class="custom-index container"></div>
 
 ***********************
-Using the Email Library
+Email クラスを使う
 ***********************
 
-Sending Email
+Email の送信
 =============
 
 Sending email is not only simple, but you can configure it on the fly or
@@ -51,7 +51,7 @@ This example assumes you are sending the email from one of your
 
 	$this->email->send();
 
-Setting Email Preferences
+Email のオプションを設定する
 =========================
 
 There are 21 different preferences available to tailor how your email
@@ -73,7 +73,7 @@ preferences::
 .. note:: Most of the preferences have default values that will be used
 	if you do not set them.
 
-Setting Email Preferences in a Config File
+設定ファイルでEmailの設定を行う
 ------------------------------------------
 
 If you prefer not to set preferences using the above method, you can
@@ -83,14 +83,14 @@ config/email.php and it will be used automatically. You will NOT need to
 use the ``$this->email->initialize()`` method if you save your
 preferences in a config file.
 
-Email Preferences
+Email クラスの設定項目
 =================
 
 The following is a list of all the preferences that can be set when
 sending email.
 
 =================== ====================== ============================ =======================================================================
-Preference          Default Value          Options                      Description
+設定項目          初期値          選択肢                      説明
 =================== ====================== ============================ =======================================================================
 **useragent**       CodeIgniter            None                         The "user agent".
 **protocol**        mail                   mail, sendmail, or smtp      The mail sending protocol.
@@ -117,28 +117,28 @@ Preference          Default Value          Options                      Descript
 **dsn**             FALSE                  TRUE or FALSE (boolean)      Enable notify message from server
 =================== ====================== ============================ =======================================================================
 
-Overriding Word Wrapping
+ワードラップ設定の上書き
 ========================
 
-If you have word wrapping enabled (recommended to comply with RFC 822)
-and you have a very long link in your email it can get wrapped too,
-causing it to become un-clickable by the person receiving it.
-CodeIgniter lets you manually override word wrapping within part of your
-message like this::
+ワードラップが有効になっている (RFC 822 に従うことを推奨します)
+場合 、email に非常に長いリンクがあると折り返されてしまい、受信
+した人がクリックできないようになります。 CodeIgniter では、次の
+ようにして、メッセージの一部で手動でワードラップ設定を上書きする
+ことができます:
 
-	The text of your email that
-	gets wrapped normally.
+	通常通り折り返された
+	メールのテキスト。
 
 	{unwrap}http://example.com/a_long_link_that_should_not_be_wrapped.html{/unwrap}
 
-	More text that will be
-	wrapped normally.
+	さらに通常通り折り返
+	されたテキスト.
 
 
-Place the item you do not want word-wrapped between: {unwrap} {/unwrap}
+折り返したくない項目を {unwrap} {/unwrap}で挟んでください。
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Email

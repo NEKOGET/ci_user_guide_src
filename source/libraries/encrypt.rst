@@ -17,10 +17,10 @@ the Mcrypt PHP extension, which is required for the Encrypt Class to run.
   <div class="custom-index container"></div>
 
 *************************
-Using the Encrypt Library
+暗号化クラスを使う
 *************************
 
-Setting your Key
+キーの設定
 ================
 
 A *key* is a piece of information that controls the cryptographic
@@ -50,7 +50,7 @@ and set::
 
 	$config['encryption_key'] = "YOUR KEY";
 
-Message Length
+メッセージの長さ
 ==============
 
 It's important for you to know that the encoded messages the encryption
@@ -63,7 +63,7 @@ exactly linear). Keep this information in mind when selecting your data
 storage mechanism. Cookies, for example, can only hold 4K of
 information.
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the Encrypt class is
@@ -77,7 +77,7 @@ Once loaded, the Encrypt library object will be available using::
 	$this->encrypt
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Encrypt

@@ -15,7 +15,7 @@ requirements are not met.
   <div class="custom-index container"></div>
 
 *************
-Example Usage
+使用例
 *************
 
 The following example will load the cache driver, specify `APC <#apc>`_
@@ -49,16 +49,16 @@ to avoid collisions when you're running multiple applications on the same enviro
 	$this->cache->get('foo'); // Will get the cache entry named 'my_foo'
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Cache
 
 	.. method:: is_supported($driver)
 
-		:param	string	$driver: the name of the caching driver
-		:returns:	TRUE if supported, FALSE if not
-		:rtype:	bool
+		:パラメータ	string	$driver: the name of the caching driver
+		:返り値:	TRUE if supported, FALSE if not
+		:返り値型:	bool
 
 		This method is automatically called when accessing drivers via
 		``$this->cache->get()``. However, if the individual drivers are used,
@@ -76,9 +76,9 @@ Class Reference
 
 	.. method:: get($id)
 
-		:param	string	$id: Cache item name
-		:returns:	Item value or FALSE if not found
-		:rtype:	mixed
+		:パラメータ	string	$id: Cache item name
+		:返り値:	Item value or FALSE if not found
+		:返り値型:	mixed
 
 		This method will attempt to fetch an item from the cache store. If the
 		item does not exist, the method will return FALSE.
@@ -88,12 +88,12 @@ Class Reference
 
 	.. method:: save($id, $data[, $ttl = 60[, $raw = FALSE]])
 
-		:param	string	$id: Cache item name
-		:param	mixed	$data: the data to save
-		:param	int	$ttl: Time To Live, in seconds (default 60)
-		:param	bool	$raw: Whether to store the raw value
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	string
+		:パラメータ	string	$id: Cache item name
+		:パラメータ	mixed	$data: the data to save
+		:パラメータ	int	$ttl: Time To Live, in seconds (default 60)
+		:パラメータ	bool	$raw: Whether to store the raw value
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	string
 
 		This method will save an item to the cache store. If saving fails, the
 		method will return FALSE.
@@ -106,9 +106,9 @@ Class Reference
 
 	.. method:: delete($id)
 
-		:param	string	$id: name of cached item
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$id: name of cached item
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		This method will delete a specific item from the cache store. If item
 		deletion fails, the method will return FALSE.
@@ -118,10 +118,10 @@ Class Reference
 
 	.. method:: increment($id[, $offset = 1])
 
-		:param	string	$id: Cache ID
-		:param	int	$offset: Step/value to add
-		:returns:	New value on success, FALSE on failure
-		:rtype:	mixed
+		:パラメータ	string	$id: Cache ID
+		:パラメータ	int	$offset: Step/value to add
+		:返り値:	New value on success, FALSE on failure
+		:返り値型:	mixed
 
 		Performs atomic incrementation of a raw stored value.
 		::
@@ -134,10 +134,10 @@ Class Reference
 
 	.. method:: decrement($id[, $offset = 1])
 
-		:param	string	$id: Cache ID
-		:param	int	$offset: Step/value to reduce by
-		:returns:	New value on success, FALSE on failure
-		:rtype:	mixed
+		:パラメータ	string	$id: Cache ID
+		:パラメータ	int	$offset: Step/value to reduce by
+		:返り値:	New value on success, FALSE on failure
+		:返り値型:	mixed
 
 		Performs atomic decrementation of a raw stored value.
 		::
@@ -150,8 +150,8 @@ Class Reference
 
 	.. method:: clean()
 
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		This method will 'clean' the entire cache. If the deletion of the
 		cache files fails, the method will return FALSE.
@@ -161,8 +161,8 @@ Class Reference
 
 	.. method:: cache_info()
 
-		:returns:	Information on the entire cache database
-		:rtype:	mixed
+		:返り値:	Information on the entire cache database
+		:返り値型:	mixed
 
 		This method will return information on the entire cache.
 		::
@@ -174,9 +174,9 @@ Class Reference
 
 	.. method:: get_metadata($id)
 
-		:param	string	$id: Cache item name
-		:returns:	Metadata for the cached item
-		:rtype:	mixed
+		:パラメータ	string	$id: Cache item name
+		:返り値:	Metadata for the cached item
+		:返り値型:	mixed
 
 		This method will return detailed information on a specific item in the
 		cache.
@@ -188,7 +188,7 @@ Class Reference
 			on which adapter is being used.
 
 *******
-Drivers
+ドライバ
 *******
 
 Alternative PHP Cache (APC) Caching
@@ -203,7 +203,7 @@ specific adapter to the driver loader as follows::
 For more information on APC, please see
 `http://php.net/apc <http://php.net/apc>`_.
 
-File-based Caching
+ファイルベースキャッシュ
 ==================
 
 Unlike caching from the Output Class, the driver file-based caching
@@ -217,7 +217,7 @@ specific adapter to the driver loader as follows::
 	$this->load->driver('cache');
 	$this->cache->file->save('foo', 'bar', 10);
 
-Memcached Caching
+Memcached キャッシュ
 =================
 
 Multiple Memcached servers can be specified in the memcached.php
@@ -232,7 +232,7 @@ specific adapter to the driver loader as follows::
 For more information on Memcached, please see
 `http://php.net/memcached <http://php.net/memcached>`_.
 
-WinCache Caching
+WinCache キャッシュ
 ================
 
 Under Windows, you can also utilize the WinCache driver.
@@ -246,7 +246,7 @@ specific adapter to the driver loader as follows::
 For more information on WinCache, please see
 `http://php.net/wincache <http://php.net/wincache>`_.
 
-Redis Caching
+Redis キャッシュ
 =============
 
 Redis is an in-memory key-value store which can operate in LRU cache mode. 
@@ -272,7 +272,7 @@ specific adapter to the driver loader as follows::
 For more information on Redis, please see
 `http://redis.io <http://redis.io>`_.
 
-Dummy Cache
+Dummy キャッシュ
 ===========
 
 This is a caching backend that will always 'miss.' It stores no data,

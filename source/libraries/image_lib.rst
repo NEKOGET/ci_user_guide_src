@@ -5,11 +5,11 @@
 CodeIgniter's Image Manipulation class lets you perform the following
 actions:
 
--  Image Resizing
--  Thumbnail Creation
--  Image Cropping
--  Image Rotating
--  Image Watermarking
+-  画像のリサイズ
+-  サムネイルの作成
+-  画像の切り抜き
+-  画像の回転
+-  画像の合成
 
 All three major image libraries are supported: GD/GD2, NetPBM, and
 ImageMagick
@@ -27,7 +27,7 @@ ImageMagick
   <div class="custom-index container"></div>
 
 **********************
-Initializing the Class
+クラスの初期化
 **********************
 
 Like most other classes in CodeIgniter, the image class is initialized
@@ -38,7 +38,7 @@ in your controller using the $this->load->library function::
 Once the library is loaded it will be ready for use. The image library
 object you will use to call all functions is: ``$this->image_lib``
 
-Processing an Image
+画像の処理
 ===================
 
 Regardless of the type of processing you would like to perform
@@ -74,7 +74,7 @@ ratio. The thumbnail will be called *mypic_thumb.jpg*
 	while processing images you may need to limit their maximum size, and/or
 	adjust PHP memory limits.
 
-Processing Methods
+処理メソッド
 ==================
 
 There are four available processing methods:
@@ -105,7 +105,7 @@ error upon failure, like this::
 
 .. _processing-preferences:
 
-Preferences
+設定
 ===========
 
 The preferences described below allow you to tailor the image processing
@@ -117,15 +117,15 @@ Likewise, the width and height preferences have no effect on cropping.
 The "availability" column indicates which functions support a given
 preference.
 
-Availability Legend:
+「可能な操作」欄の凡例:
 
--  R - Image Resizing
+-  R - 画像のリサイズ
 -  C - Image Cropping
 -  X - Image Rotation
 -  W - Image Watermarking
 
 ======================= ======================= =============================== =========================================================================== =============
-Preference              Default Value           Options                         Description                                                                 Availability
+設定項目              初期値           選択肢                         説明                                                                 Availability
 ======================= ======================= =============================== =========================================================================== =============
 **image_library**       GD2                     GD, GD2, ImageMagick, NetPBM    Sets the image library to be used.                                          R, C, X, W
 **library_path**        None                    None                            Sets the server path to your ImageMagick or NetPBM library. If you use      R, C, X
@@ -166,7 +166,7 @@ Preference              Default Value           Options                         
                                                                                 setting of 30 will crop an image 30 pixels from the top.
 ======================= ======================= =============================== =========================================================================== =============
 
-Setting preferences in a config file
+設定ファイルによる設定
 ====================================
 
 If you prefer not to set preferences using the above method, you can
@@ -177,12 +177,12 @@ NOT need to use the ``$this->image_lib->initialize()`` method if you save
 your preferences in a config file.
 
 ******************
-Image Watermarking
+画像の合成
 ******************
 
-The Watermarking feature requires the GD/GD2 library.
+画像の合成機能は、GD/GD2 ライブラリが必要になります。
 
-Two Types of Watermarking
+2種類の合成
 =========================
 
 There are two types of watermarking that you can use:
@@ -198,7 +198,7 @@ There are two types of watermarking that you can use:
 
 .. _watermarking:
 
-Watermarking an Image
+画像の合成
 =====================
 
 Just as with the other methods (resizing, cropping, and rotating) the
@@ -228,14 +228,14 @@ bottom/center of the image, 20 pixels from the bottom of the image.
 	processing, the image file must have "write" file permissions
 	For example, 777.
 
-Watermarking Preferences
+画像合成の設定
 ========================
 
 This table shown the preferences that are available for both types of
 watermarking (text or overlay)
 
 ======================= =================== ======================= ==========================================================================
-Preference              Default Value       Options                 Description
+設定項目              初期値       選択肢                 説明
 ======================= =================== ======================= ==========================================================================
 **wm_type**             text                text, overlay           Sets the type of watermarking that should be used.
 **source_image**        None                None                    Sets the source image name/path. The path must be a relative or absolute
@@ -261,14 +261,14 @@ Preference              Default Value       Options                 Description
                                                                     watermark toward the top of the image.
 ======================= =================== ======================= ==========================================================================
 
-Text Preferences
+テキストの設定
 ----------------
 
 This table shown the preferences that are available for the text type of
 watermarking.
 
 ======================= =================== =================== ==========================================================================
-Preference              Default Value       Options             Description
+設定項目              初期値      選択肢             説明
 ======================= =================== =================== ==========================================================================
 **wm_text**             None                None                The text you would like shown as the watermark. Typically this will be a
                                                                 copyright notice.
@@ -286,14 +286,14 @@ Preference              Default Value       Options             Description
                                                                 appear.
 ======================= =================== =================== ==========================================================================
 
-Overlay Preferences
+オーバーレイの設定
 -------------------
 
 This table shown the preferences that are available for the overlay type
 of watermarking.
 
 ======================= =================== =================== ==========================================================================
-Preference              Default Value       Options             Description
+設定項目              初期値      選択肢             説明
 ======================= =================== =================== ==========================================================================
 **wm_overlay_path**     None                None                The server path to the image you wish to use as your watermark. Required
                                                                 only if you are using the overlay method.
@@ -313,23 +313,23 @@ Preference              Default Value       Options             Description
 ======================= =================== =================== ==========================================================================
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Image_lib
 
 	.. method:: initialize([$props = array()])
 
-		:param	array	$props: Image processing preferences
-		:returns:	TRUE on success, FALSE in case of invalid settings
-		:rtype:	bool
+		:パラメータ	array	$props: Image processing preferences
+		:返り値:	TRUE on success, FALSE in case of invalid settings
+		:返り値型:	bool
 
 		Initializes the class for processing an image.
 
 	.. method:: resize()
 
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		The image resizing method lets you resize the original image, create a
 		copy (with or without resizing), or create a thumbnail image.
@@ -375,8 +375,8 @@ Class Reference
 
 	.. method:: crop()
 
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		The cropping method works nearly identically to the resizing function
 		except it requires that you set preferences for the X and Y axis (in
@@ -411,8 +411,8 @@ Class Reference
 
 	.. method:: rotate()
 
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		The image rotation method requires that the angle of rotation be set
 		via its preference::
@@ -443,15 +443,15 @@ Class Reference
 
 	.. method:: watermark()
 
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Creates a watermark over an image, please refer to the :ref:`watermarking`
 		section for more info.		
 
 	.. method:: clear()
 
-		:rtype:	void
+		:返り値:	void
 
 		The clear method resets all of the values used when processing an
 		image. You will want to call this if you are processing images in a
@@ -463,10 +463,10 @@ Class Reference
 
 	.. method:: display_errors([$open = '<p>[, $close = '</p>']])
 
-		:param	string	$open: Error message opening tag
-		:param	string	$close: Error message closing tag
-		:returns:	Error messages
-		:rtype:	string
+		:パラメータ	string	$open: Error message opening tag
+		:パラメータ	string	$close: Error message closing tag
+		:返り値:	Error messages
+		:返り値型:	string
 
 		Returns all detected errors formatted as a string.
 		::

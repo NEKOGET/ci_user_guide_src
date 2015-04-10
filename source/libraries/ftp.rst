@@ -18,10 +18,10 @@ directory to be recreated remotely via FTP.
   <div class="custom-index container"></div>
 
 **************************
-Working with the FTP Class
+FTPクラスの機能
 **************************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the FTP class is initialized in
@@ -31,7 +31,7 @@ your controller using the $this->load->library function::
 
 Once loaded, the FTP object will be available using: $this->ftp
 
-Usage Examples
+使用例
 ==============
 
 In this example a connection is opened to the FTP server, and a local
@@ -87,16 +87,16 @@ In this example a local directory is mirrored on the server.
 	$this->ftp->close();
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_FTP
 
 	.. method:: connect([$config = array()])
 
-		:param	array	$config: Connection values
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	array	$config: Connection values
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Connects and logs into to the FTP server. Connection preferences are set
 		by passing an array to the function, or you can store them in a config
@@ -137,12 +137,12 @@ Class Reference
 
 	.. method:: upload($locpath, $rempath[, $mode = 'auto'[, $permissions = NULL]])
 
-		:param	string	$locpath: Local file path
-		:param	string	$rempath: Remote file path
-		:param	string	$mode: FTP mode, defaults to 'auto' (options are: 'auto', 'binary', 'ascii')
-		:param	int	$permissions: File permissions (octal)
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$locpath: Local file path
+		:パラメータ	string	$rempath: Remote file path
+		:パラメータ	string	$mode: FTP mode, defaults to 'auto' (options are: 'auto', 'binary', 'ascii')
+		:パラメータ	int	$permissions: File permissions (octal)
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Uploads a file to your server. You must supply the local path and the
 		remote path, and you can optionally set the mode and permissions.
@@ -156,11 +156,11 @@ Class Reference
 
 	.. method:: download($rempath, $locpath[, $mode = 'auto'])
 
-		:param	string	$rempath: Remote file path
-		:param	string	$locpath: Local file path
-		:param	string	$mode: FTP mode, defaults to 'auto' (options are: 'auto', 'binary', 'ascii')
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$rempath: Remote file path
+		:パラメータ	string	$locpath: Local file path
+		:パラメータ	string	$mode: FTP mode, defaults to 'auto' (options are: 'auto', 'binary', 'ascii')
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Downloads a file from your server. You must supply the remote path and
 		the local path, and you can optionally set the mode. Example::
@@ -174,11 +174,11 @@ Class Reference
 
 	.. method:: rename($old_file, $new_file[, $move = FALSE])
 
-		:param	string	$old_file: Old file name
-		:param	string	$new_file: New file name
-		:param	bool	$move: Whether a move is being performed
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$old_file: Old file name
+		:パラメータ	string	$new_file: New file name
+		:パラメータ	bool	$move: Whether a move is being performed
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Permits you to rename a file. Supply the source file name/path and the new file name/path.
 		::
@@ -188,10 +188,10 @@ Class Reference
 
 	.. method:: move($old_file, $new_file)
 
-		:param	string	$old_file: Old file name
-		:param	string	$new_file: New file name
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$old_file: Old file name
+		:パラメータ	string	$new_file: New file name
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Lets you move a file. Supply the source and destination paths::
 
@@ -202,9 +202,9 @@ Class Reference
 
 	.. method:: delete_file($filepath)
 
-		:param	string	$filepath: Path to file to delete
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$filepath: Path to file to delete
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Lets you delete a file. Supply the source path with the file name.
 		::
@@ -213,9 +213,9 @@ Class Reference
 
 	.. method:: delete_dir($filepath)
 
-		:param	string	$filepath: Path to directory to delete
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$filepath: Path to directory to delete
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Lets you delete a directory and everything it contains. Supply the
 		source path to the directory with a trailing slash.
@@ -231,9 +231,9 @@ Class Reference
 
 	.. method:: list_files([$path = '.'])
 
-		:param	string	$path: Directory path
-		:returns:	An array list of files or FALSE on failure
-		:rtype:	array
+		:パラメータ	string	$path: Directory path
+		:返り値:	An array list of files or FALSE on failure
+		:返り値型:	array
 
 		Permits you to retrieve a list of files on your server returned as an
 		array. You must supply the path to the desired directory.
@@ -244,10 +244,10 @@ Class Reference
 
 	.. method:: mirror($locpath, $rempath)
 
-		:param	string	$locpath: Local path
-		:param	string	$rempath: Remote path
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$locpath: Local path
+		:パラメータ	string	$rempath: Remote path
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Recursively reads a local folder and everything it contains (including
 		sub-folders) and creates a mirror via FTP based on it. Whatever the
@@ -258,10 +258,10 @@ Class Reference
 
 	.. method:: mkdir($path[, $permissions = NULL])
 
-		:param	string	$path: Path to directory to create
-		:param	int	$permissions: Permissions (octal)
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$path: Path to directory to create
+		:パラメータ	int	$permissions: Permissions (octal)
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Lets you create a directory on your server. Supply the path ending in
 		the folder name you wish to create, with a trailing slash.
@@ -274,10 +274,10 @@ Class Reference
 
 	.. method:: chmod($path, $perm)
 
-		:param	string	$path: Path to alter permissions for
-		:param	int	$perm: Permissions (octal)
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$path: Path to alter permissions for
+		:パラメータ	int	$perm: Permissions (octal)
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Permits you to set file permissions. Supply the path to the file or
 		directory you wish to alter permissions on::
@@ -287,10 +287,10 @@ Class Reference
 
 	.. method:: changedir($path[, $suppress_debug = FALSE])
 
-		:param	string	$path: Directory path
-		:param	bool	$suppress_debug: Whether to turn off debug messages for this command
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$path: Directory path
+		:パラメータ	bool	$suppress_debug: Whether to turn off debug messages for this command
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Changes the current working directory to the specified path.
 
@@ -299,8 +299,8 @@ Class Reference
 
 	.. method:: close()
 
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:返り値:	TRUE on success, FALSE on failure
+		:返り値型:	bool
 
 		Closes the connection to your server. It's recommended that you use this
 		when you are finished uploading.

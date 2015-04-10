@@ -40,27 +40,28 @@ XML-RPCクラスの使い方
 クラスの初期化
 ======================
 
-Like most other classes in CodeIgniter, the XML-RPC and XML-RPCS classes
-are initialized in your controller using the $this->load->library
-function:
+CodeIgniter のほとんどのクラスと同様、XML-RPC および XML-RPCS
+クラスは、コントローラの中で $this->load->library メソッドを使
+って初期化します:
 
-To load the XML-RPC class you will use::
+XML-RPC クラスを読み込むには次のようにします::
 
 	$this->load->library('xmlrpc');
 
-Once loaded, the xml-rpc library object will be available using:
+一旦読み込まれると、xml-rpc ライブラリのオブジェクトは、次のようにして利用できます:
 $this->xmlrpc
 
-To load the XML-RPC Server class you will use::
+XML-RPC Server クラスを読み込むには次のようにします::
 
 	$this->load->library('xmlrpc');
 	$this->load->library('xmlrpcs');
 
-Once loaded, the xml-rpcs library object will be available using:
+読み込まれると、xml-rpcs ライブラリのオブジェクトは次のようにして利用できます::
 $this->xmlrpcs
 
-.. note:: When using the XML-RPC Server class you must load BOTH the
-	XML-RPC class and the XML-RPC Server class.
+.. note::XML-RPC Sever クラスを使うときは、XML-RPC クラスと 
+         XML-RPC Server クラスの「両方」を読み込む必要があります。
+
 
 XML-RPC リクエストの送信
 ========================

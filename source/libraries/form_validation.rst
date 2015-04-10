@@ -999,7 +999,7 @@ The following is a list of all the prepping methods that are available
 to use:
 
 ==================== ========= =======================================================================================================
-名前                 パラメータ説明
+名前                 値        説明
 ==================== ========= =======================================================================================================
 **xss_clean**        No        Runs the data through the XSS filtering method, described in the :doc:`Security Class <security>` page.
 **prep_for_form**    No        Converts special characters so that HTML data can be shown in a form field without breaking it.

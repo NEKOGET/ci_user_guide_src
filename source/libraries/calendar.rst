@@ -15,10 +15,10 @@ can pass data to your calendar cells.
   <div class="custom-index container"></div>
 
 ***************************
-Using the Calendaring Class
+カレンダークラスを使う
 ***************************
 
-Initializing the Class
+クラスの初期化
 ======================
 
 Like most other classes in CodeIgniter, the Calendar class is
@@ -30,7 +30,7 @@ Once loaded, the Calendar object will be available using::
 
 	$this->calendar
 
-Displaying a Calendar
+カレンダーの表示
 =====================
 
 Here is a very simple example showing how you can display a calendar::
@@ -49,7 +49,7 @@ The above code will generate a calendar showing the month of June in
 2006. The first parameter specifies the year, the second parameter
 specifies the month.
 
-Passing Data to your Calendar Cells
+カレンダーのセルへのデータ引き渡し
 ===================================
 
 To add data to your calendar cells involves creating an associative
@@ -76,7 +76,7 @@ pointing to the URLs you've provided.
 	you can customize how data passed to your cells is handled so you can
 	pass different types of information.
 
-Setting Display Preferences
+表示設定の変更
 ===========================
 
 There are seven preferences you can set to control various aspects of
@@ -98,7 +98,7 @@ month heading, and the "short" day names. More information regarding
 preferences below.
 
 ======================  =================  ============================================  ===================================================================
-Preference              Default            Options                                       Description
+設定項目              初期値            オプション                                       説明
 ======================  =================  ============================================  ===================================================================
 **template**           	None               None                                          A string or array containing your calendar template.
 											   See the template section below.
@@ -116,7 +116,7 @@ Preference              Default            Options                              
 ======================  =================  ============================================  ===================================================================
 
 
-Showing Next/Previous Month Links
+次の月 / 前の月 リンクの表示
 =================================
 
 To allow your calendar to dynamically increment/decrement via the
@@ -143,7 +143,7 @@ You'll notice a few things about the above example:
    class automatically adds the year/month to the base URL you
    provide.).
 
-Creating a Calendar Template
+カレンダーテンプレートの作成
 ============================
 
 By creating a calendar template you have 100% control over the design of
@@ -197,7 +197,7 @@ Using the array method, you will pass `key => value` pairs. You can pass as
 many or as few values as you'd like. Omitted keys will use the default values
 inherited in the calendar class.
 
-Example::
+使用例::
 
 	$prefs['template'] = array(
 		'table_open'           => '<table class="calendar">',
@@ -210,7 +210,7 @@ Example::
 	echo $this->calendar->generate();
 
 ***************
-Class Reference
+クラスリファレンス
 ***************
 
 .. class:: CI_Calendar

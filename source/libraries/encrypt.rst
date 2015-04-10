@@ -187,7 +187,7 @@ Once loaded, the Encrypt library object will be available using::
 			$new_data = $this->encrypt->encode_from_legacy($old_encrypted_string);
 
 		======================	===============	 =======================================================================
-		Parameter		 Default	  Description
+		パラメータ		初期値           説明
 		======================	===============  =======================================================================
 		**$orig_data**		n/a 		 The original encrypted data from CodeIgniter 1.x's Encryption library
 		**$legacy_mode**	MCRYPT_MODE_ECB	 The Mcrypt mode that was used to generate the original encrypted data.

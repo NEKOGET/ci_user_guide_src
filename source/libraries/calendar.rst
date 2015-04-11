@@ -2,10 +2,10 @@
 カレンダークラス
 #################
 
-The Calendar class enables you to dynamically create calendars. Your
-calendars can be formatted through the use of a calendar template,
-allowing 100% control over every aspect of its design. In addition, you
-can pass data to your calendar cells.
+カレンダークラスを使うと動的にカレンダーを
+生成できます。カレンダーはデザインのどんな
+側面も100%コントロール可能なカレンダーテン
+プレートをもとに整形されます。
 
 .. contents::
   :local:
@@ -21,41 +21,41 @@ can pass data to your calendar cells.
 クラスの初期化
 ======================
 
-Like most other classes in CodeIgniter, the Calendar class is
-initialized in your controller using the $this->load->library function::
+CodeIgniter の大半のクラスと同様に、カレンダークラスはコントローラの中で、 
+$this->load->library メソッドを使って初期化します::
 
 	$this->load->library('calendar');
 
-Once loaded, the Calendar object will be available using::
+一旦呼び出せば、カレンダーオブジェクトは $this->calendar を使用することで利用できます。::
 
 	$this->calendar
 
 カレンダーの表示
 =====================
 
-Here is a very simple example showing how you can display a calendar::
+カレンダーの表示方法の非常に簡単な例です::
 
 	$this->load->library('calendar');
 	echo $this->calendar->generate();
 
-The above code will generate a calendar for the current month/year based
-on your server time. To show a calendar for a specific month and year
-you will pass this information to the calendar generating function::
+上のコードは、サーバ時間の年月のカレンダーを生成します。 
+特定の年月のカレンダーを表示させるには、カレンダー生成
+関数に次のように情報を渡します::
 
 	$this->load->library('calendar');
 	echo $this->calendar->generate(2006, 6);
 
-The above code will generate a calendar showing the month of June in
-2006. The first parameter specifies the year, the second parameter
-specifies the month.
+上のコードは、2006年6月を表示するカレンダ
+ーを生成します。最初の引数は年を、2番目の
+引数は月を指定します。
 
 カレンダーのセルへのデータ引き渡し
 ===================================
 
-To add data to your calendar cells involves creating an associative
-array in which the keys correspond to the days you wish to populate and
-the array value contains the data. The array is passed to the third
-parameter of the calendar generating function. Consider this example::
+カレンダーのセルにデータを追加するには、埋め込みたい日をキーにし、
+それに対応する値に埋め込むデータを入れた連想配列を作成します。 
+作成した配列は、カレンダー生成関数の第3引数に渡します。 
+次のような例が考えられます::
 
 	$this->load->library('calendar');
 
@@ -68,20 +68,20 @@ parameter of the calendar generating function. Consider this example::
 
 	echo $this->calendar->generate(2006, 6, $data);
 
-Using the above example, day numbers 3, 7, 13, and 26 will become links
-pointing to the URLs you've provided.
+上の例を使用すると、3,7,13および26日が渡された 
+URL を指すリンクになります。
 
-.. note:: By default it is assumed that your array will contain links.
-	In the section that explains the calendar template below you'll see how
-	you can customize how data passed to your cells is handled so you can
-	pass different types of information.
+.. note:: 初期状態では、配列にはリンクが含まれるものとされています。
+下のカレンダーテンプレートを説明した箇所では、セルに渡されたデータが
+どのように扱われるかが示されています。 そこで、違う情報のタイプを指定
+することができ、どのようにしてカスタマイズ可能かを知ることができます。
 
 表示設定の変更
 ===========================
 
-There are seven preferences you can set to control various aspects of
-the calendar. Preferences are set by passing an array of preferences in
-the second parameter of the loading function. Here is an example::
+7つの設定項目でカレンダーの様々な面をコントロールできます。 
+設定項目は呼び出し関数の第2引数に配列として渡して設定します。
+例です::
 
 	$prefs = array(
 		'start_day'    => 'saturday',
@@ -93,35 +93,35 @@ the second parameter of the loading function. Here is an example::
 
 	echo $this->calendar->generate();
 
-The above code would start the calendar on saturday, use the "long"
-month heading, and the "short" day names. More information regarding
-preferences below.
+上のコードは、土曜日から始まり、「長い」形式の月名と「短い」
+形式の曜日名をヘッダに使用します。 設定項目についての詳しい
+情報は下記のとおりです。
 
 ======================  =================  ============================================  ===================================================================
 設定項目                初期値             オプション                                    説明
 ======================  =================  ============================================  ===================================================================
-**template**           	None               None                                          A string or array containing your calendar template.
-											   See the template section below.
-**local_time**        	time()             None                                          A Unix timestamp corresponding to the current time.
-**start_day**           sunday             Any week day (sunday, monday, tuesday, etc.)  Sets the day of the week the calendar should start on.
-**month_type**          long               long, short                                   Determines what version of the month name to use in the header.
+**template**           	None               None                                          カレンダーテンプレートの文字列。テンプレート
+											 のセクションを参照。
+**local_time**        	time()             None                                          現在時刻として関連づける UNIX タイムスタンプ。
+**start_day**           sunday             Any week day (sunday, monday, tuesday, etc.)  カレンダーの開始曜日。
+**month_type**          long               long, short                                   ヘッダの月名をどの形式にするか。 
 											   long = January, short = Jan.
-**day_type**            abr                long, short, abr                              Determines what version of the weekday names to use in
-											   the column headers. long = Sunday, short = Sun, abr = Su.
-**show_next_prev**      FALSE              TRUE/FALSE (boolean)                          Determines whether to display links allowing you to toggle
-											   to next/previous months. See information on this feature below.
-**next_prev_url**       controller/method  A URL                                         Sets the basepath used in the next/previous calendar links.
-**show_other_days**     FALSE              TRUE/FALSE (boolean)                          Determines whether to display days of other months that share the
-											   first or last week of the calendar month.
+**day_type**            abr                long, short, abr                              ヘッダのカラムの曜日名の形式にどの形式を用いるか。
+											 long = Sunday, short = Sun, abr = Su.
+**show_next_prev**      FALSE              TRUE/FALSE (boolean)                          次/ 前 の 月に移動できる URL を表示するかどうか。
+											 この機能については下記参照。
+**next_prev_url**       controller/method  A URL                                         次の月/ 前の月 のリンクを利用する場合の基準パス。
+**show_other_days**     FALSE              TRUE/FALSE (boolean)                          暦月の最初であるか先週を分ける他の月日を表示するべきか
+											 どうか決定します。
 ======================  =================  ============================================  ===================================================================
 
 
 次の月 / 前の月 リンクの表示
 =================================
 
-To allow your calendar to dynamically increment/decrement via the
-next/previous links requires that you set up your calendar code similar
-to this example::
+次へ / 前へ のリンクを経由してカレンダーを動的に進める / 戻る 
+ようにするには、次の例のようなコードをカレンダーのコードに設定
+する必要があります::
 
 	$prefs = array(
 		'show_next_prev'  => TRUE,
@@ -132,23 +132,23 @@ to this example::
 
 	echo $this->calendar->generate($this->uri->segment(3), $this->uri->segment(4));
 
-You'll notice a few things about the above example:
+上のサンプルで、何点か気づいた点があるはずです:
 
--  You must set the "show_next_prev" to TRUE.
--  You must supply the URL to the controller containing your calendar in
-   the "next_prev_url" preference. If you don't, it will be set to the current
-   *controller/method*.
--  You must supply the "year" and "month" to the calendar generating
-   function via the URI segments where they appear (Note: The calendar
-   class automatically adds the year/month to the base URL you
-   provide.).
+-  "show_next_prev" を TRUE にする必要があります。
+-  "next_prev_url" の設定項目でカレンダーが設置されている
+   コントローラへの URL を指定しなければなりません。
+   指定しなければ、*controller/method*にセットされます。
+-  カレンダー生成関数に指定する「年」と「月」には、
+   URI セグメントに出現するものを指定します
+   (Note: カレンダークラスは基準の URL に対して
+   年と月を自動的に追加します)
 
 カレンダーテンプレートの作成
 ============================
 
-By creating a calendar template you have 100% control over the design of
-your calendar. Using the string method, each component of your calendar
-will be placed within a pair of pseudo-variables as shown here::
+カレンダーテンプレートを作成することで、カレンダーのデザイン
+を100%コントロールできます。 カレンダーの各部品は次に示す
+擬似変数のペアの間に配置されます::
 
 	$prefs['template'] = '
 
@@ -193,9 +193,9 @@ will be placed within a pair of pseudo-variables as shown here::
 
 	echo $this->calendar->generate();
 
-Using the array method, you will pass `key => value` pairs. You can pass as
-many or as few values as you'd like. Omitted keys will use the default values
-inherited in the calendar class.
+配列を使用して、`key=>value`ペアを渡すことで多くの
+望む値を渡すことができます。省略するとCalendarクラス
+で継承されたデフォルト値を使用します
 
 使用例::
 
@@ -217,7 +217,7 @@ inherited in the calendar class.
 
 	.. method:: initialize([$config = array()])
 
-		:param	array	$config: Configuration parameters
+		:パラメータ/////	array	$config: Configuration parameters
 		:returns:	CI_Calendar instance (method chaining)
 		:rtype:	CI_Calendar
 

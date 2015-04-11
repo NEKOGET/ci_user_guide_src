@@ -217,30 +217,30 @@ URL を指すリンクになります。
 
 	.. method:: initialize([$config = array()])
 
-		:パラメータ	array	$config: Configuration parameters
-		:返り値:	CI_Calendar instance (method chaining)
+		:パラメータ	array	$config: 構成パラメータ
+		:返り値:	CI_Calendar インスタンス (メソッドチェーン)
 		:返り値型:	CI_Calendar
 
-		Initializes the Calendaring preferences. Accepts an associative array as input, containing display preferences.
+		カレンダーの環境設定を初期化します。表示設定を含む入力として連想配列を受け入れます。
 
 	.. method:: generate([$year = ''[, $month = ''[, $data = array()]]])
 
-		:パラメータ	int	$year: Year
-		:パラメータ	int	$month: Month
-		:パラメータ	array	$data: Data to be shown in the calendar cells
-		:返り値:	HTML-formatted calendar
+		:パラメータ	int	$year: 年
+		:パラメータ	int	$month: 月
+		:パラメータ	array	$data: カレンダーセルにデータを表示
+		:返り値:	HTMLフォーマット カレンダー
 		:返り値型:	string
 
-		Generate the calendar.
+		カレンダーを生成
 
 
 	.. method:: get_month_name($month)
 
-		:パラメータ	int	$month: Month
-		:返り値:	Month name
+		:パラメータ	int	$month: 月
+		:返り値:	月名
 		:返り値型:	string
 
-		Generates a textual month name based on the numeric month provided.
+		月の数値に基づいての月名を生成します。
 
 	.. method:: get_day_names($day_type = '')
 
@@ -248,21 +248,21 @@ URL を指すリンクになります。
 		:返り値:	Array of day names
 		:返り値型:	array
 
-		Returns an array of day names (Sunday, Monday, etc.) based on the type
-		provided. Options: long, short, abr. If no ``$day_type`` is provided (or
-		if an invalid type is provided) this method will return the "abbreviated"
-		style.
+		型に基づき、曜日名（日曜日、月曜日、など）の配列を返します。
+		オプション：long, short, abr または なし ``$day_type``が提供
+		されていない場合（または無効な型が提供されている場合）
+		「省略」を返します
 
 	.. method:: adjust_date($month, $year)
 
-		:パラメータ	int	$month: Month
-		:パラメータ	int	$year: Year
-		:返り値:	An associative array containing month and year
+		:パラメータ	int	$month: 月
+		:パラメータ	int	$year: 年
+		:返り値:	月と年を含む連想配列
 		:返り値型:	array
 
-		This method makes sure that you have a valid month/year. For example, if
-		you submit 13 as the month, the year will increment and the month will
-		become January::
+		この方法では、有効な月/年保持していることを確認します。
+		例えば月に13を提出した場合、年が増加すると月が1月
+		になります::
 
 			print_r($this->calendar->adjust_date(13, 2014));
 
@@ -276,32 +276,32 @@ URL を指すリンクになります。
 
 	.. method:: get_total_days($month, $year)
 
-		:パラメータ	int	$month: Month
-		:パラメータ	int	$year: Year
-		:返り値:	Count of days in the specified month
+		:パラメータ	int	$month: 月
+		:パラメータ	int	$year: 年
+		:返り値:	指定された月の日数カウント
 		:返り値型:	int
 
-		Total days in a given month::
+		指定された月の総日数::
 
 			echo $this->calendar->get_total_days(2, 2012);
 			// 29
 
-		.. note:: This method is an alias for :doc:`Date Helper
+		.. note:: このメソッドの別名 :doc:`Date Helper
 			<../helpers/date_helper>` function :func:`days_in_month()`.
 
 	.. method:: default_template()
 
-		:返り値:	An array of template values
+		:返り値:	テンプレート値の配列
 		:返り値型:	array
 
-		Sets the default template. This method is used when you have not created
-		your own template.
+		デフォルトのテンプレートを設定します。このメソッドはあなたが作成していない
+		ときに使用される独自のテンプレートを返します。
 
 
 	.. method:: parse_template()
 
-		:返り値:	CI_Calendar instance (method chaining)
+		:返り値:	CI_Calendar インスタンス (メソッドチェーン)
 		:返り値型:	CI_Calendar
 
-		Harvests the data within the template ``{pseudo-variables}`` used to
-		display the calendar.
+		テンプレート内のデータを収集 
+		``{疑似変数}``カレンダーを表示するために使用されます。

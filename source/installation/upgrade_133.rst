@@ -1,21 +1,21 @@
 #############################
-Upgrading from 1.3.2 to 1.3.3
+1.3.2 から 1.3.3 へのアップグレード
 #############################
 
-.. note:: The instructions on this page assume you are running version
-	1.3.2. If you have not upgraded to that version please do so first.
+.. note:: このページは、バージョン 1.3.2 向けです。 
+	それ以外のバージョンをお使いなら、まず最初にアップグレードしてください。
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
+Step 1: CodeIgniter ファイルのアップグレード
 =====================================
 
-Replace the following directories in your "system" folder with the new
-versions:
+"system" フォルダの以下のファイルとディレクトリを
+新しいバージョンのものに置き換えてください:
 
-.. note:: If you have any custom developed files in these folders please
-	make copies of them first.
+.. note:: ユーザバージョンのファイルがフォルダ内にある場合には、
+	最初にそれらのコピーを取っておいてください。
 
 -  codeigniter
 -  drivers
@@ -23,22 +23,22 @@ versions:
 -  init
 -  libraries
 
-Step 2: Update your Models
+Step 2: Model のアップグレード
 ==========================
 
-If you are **NOT** using CodeIgniter's
-:doc:`Models <../general/models>` feature disregard this step.
+CodeIgniter の :doc:`Model <../general/models>` を **利用していない** 場合は、
+このステップを無視してください。
 
-As of version 1.3.3, CodeIgniter does **not** connect automatically to
-your database when a model is loaded. This allows you greater
-flexibility in determining which databases you would like used with your
-models. If your application is not connecting to your database prior to
-a model being loaded you will have to update your code. There are
-several options for connecting, :doc:`as described
-here <../general/models>`.
+バージョン 1.3.3 では、CodeIgniter はモデルがロードされた時に、
+データベースへの接続を自動的に **行いません** 。
+これは、モデルでどのデータベースを利用するかという決定に対して、 
+より柔軟性をもたらします。
+もし、アプリケーションでモデルがロードされる前にデータベースに接続されていなければ、
+コードを書き換える必要があるでしょう。
+接続に関するいくつかのオプションは :doc:`こちら <../general/models>` で紹介されています。
 
-Step 3: Update your user guide
+Step 3: ユーザガイドの更新
 ==============================
 
-Please also replace your local copy of the user guide with the new
-version.
+ユーザガイドのローカルコピーを新しいバージョンのものに
+置き換えてください。

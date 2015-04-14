@@ -1,21 +1,21 @@
 #############################
-Upgrading from 1.3.3 to 1.4.0
+1.3.3 から 1.4.0 へのアップグレード
 #############################
 
-.. note:: The instructions on this page assume you are running version
-	1.3.3. If you have not upgraded to that version please do so first.
+.. note:: このページは、バージョン 1.3.3 向けです。 
+	それ以外のバージョンをお使いなら、まず最初にアップグレードしてください。
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
+Step 1: CodeIgniter ファイルのアップグレード
 =====================================
 
-Replace the following directories in your "system" folder with the new
-versions:
+"system" フォルダの以下のファイルとディレクトリを
+新しいバージョンのものに置き換えてください:
 
-.. note:: If you have any custom developed files in these folders please
-	make copies of them first.
+.. note:: ユーザバージョンのファイルがフォルダ内にある場合には、
+	最初にそれらのコピーを取っておいてください。
 
 -  application/config/**hooks.php**
 -  application/config/**mimes.php**
@@ -27,10 +27,10 @@ versions:
 -  libraries
 -  scaffolding
 
-Step 2: Update your config.php file
+Step 2: config.php ファイルのアップグレード
 ===================================
 
-Open your application/config/config.php file and add these new items::
+application/config/config.php ファイルを開き、下記項目を追加してください。::
 
 
 
@@ -65,8 +65,8 @@ Open your application/config/config.php file and add these new items::
     */
     $config['permitted_uri_chars'] = 'a-z 0-9~%.:_-';
 
-Step 3: Update your user guide
+Step 3: ユーザガイドの更新
 ==============================
 
-Please also replace your local copy of the user guide with the new
-version.
+ユーザガイドのローカルコピーを新しいバージョンのものに
+置き換えてください。

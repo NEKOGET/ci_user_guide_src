@@ -1,31 +1,31 @@
 #############################
-Upgrading from 1.4.0 to 1.4.1
+1.4.0 から 1.4.1 へのアップグレード
 #############################
 
-.. note:: The instructions on this page assume you are running version
-	1.4.0. If you have not upgraded to that version please do so first.
+.. note:: このページは、バージョン 1.4.0 向けです。 
+	それ以外のバージョンをお使いなら、まず最初にアップグレードしてください。
 
-Before performing an update you should take your site offline by
-replacing the index.php file with a static one.
+アップグレードを行う前に、
+index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
-Step 1: Update your CodeIgniter files
+Step 1: CodeIgniter ファイルのアップグレード
 =====================================
 
-Replace the following directories in your "system" folder with the new
-versions:
+"system" フォルダの以下のファイルとディレクトリを
+新しいバージョンのものに置き換えてください:
 
-.. note:: If you have any custom developed files in these folders please
-	make copies of them first.
+.. note:: ユーザバージョンのファイルがフォルダ内にある場合には、
+	最初にそれらのコピーを取っておいてください。
 
 -  codeigniter
 -  drivers
 -  helpers
 -  libraries
 
-Step 2: Update your config.php file
+Step 2: config.php ファイルのアップグレード
 ===================================
 
-Open your application/config/config.php file and add this new item::
+application/config/config.php ファイルを開き、下記要素を追加してください。::
 
 
 
@@ -48,24 +48,24 @@ Open your application/config/config.php file and add this new item::
     */
     $config['compress_output'] = FALSE;
 
-Step 3: Rename an Autoload Item
+Step 3: Autoload 項目の名前変更
 ===============================
 
-Open the following file: application/config/autoload.php
+次のファイルを開いてください: application/config/autoload.php
 
-Find this array item::
+以下の配列要素を探します::
 
 	$autoload['core'] = array();
 
-And rename it to this::
+上記を以下のように変更します::
 
 	$autoload['libraries'] = array();
 
-This change was made to improve clarity since some users were not sure
-that their own libraries could be auto-loaded.
+この変更は、ユーザ独自のライブラリを
+オートロードできることを明確にするためになされました。
 
-Step 4: Update your user guide
+Step 4: ユーザガイドの更新
 ==============================
 
-Please also replace your local copy of the user guide with the new
-version.
+ユーザガイドのローカルコピーを新しいバージョンのものに
+置き換えてください。

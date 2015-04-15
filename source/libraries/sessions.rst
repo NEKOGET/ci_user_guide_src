@@ -399,26 +399,26 @@ In order to store sessions, you must first create a database table for
 this purpose. Here is the basic prototype (for MySQL) required by the
 session class::
 
-	CREATE TABLE IF NOT EXISTS  `ci_sessions` (
-		session_id varchar(40) DEFAULT '0' NOT NULL,
-		ip_address varchar(45) DEFAULT '0' NOT NULL,
-		user_agent varchar(120) NOT NULL,
-		last_activity int(10) unsigned DEFAULT 0 NOT NULL,
-		user_data text NOT NULL,
-		PRIMARY KEY (session_id, ip_address, user_agent),
-		KEY `last_activity_idx` (`last_activity`)
-	);
+	CREATE TABLE IF NOT EXISTS `ci_sessions` (
+        `id` varchar(40) NOT NULL,
+        `ip_address` varchar(45) NOT NULL,
+        `timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
+        `data` blob NOT NULL,
+        PRIMARY KEY (id),
+        KEY `ci_sessions_timestamp` (`timestamp`)
+    );
+
 
 Or if you're using PostgreSQL::
 
-	CREATE TABLE  ci_sessions (
-		session_id varchar(40) DEFAULT '0' NOT NULL,
-		ip_address varchar(45) DEFAULT '0' NOT NULL,
-		user_agent varchar(120) NOT NULL,
-		last_activity bigint DEFAULT 0 NOT NULL,
-		user_data text NOT NULL,
-		PRIMARY KEY (session_id)
-	);
+	CREATE TABLE "ci_sessions" (
+        "id" varchar(40) NOT NULL,
+        "ip_address" varchar(45) NOT NULL,
+        "timestamp" bigint DEFAULT 0 NOT NULL,
+        "data" text DEFAULT '' NOT NULL,
+        PRIMARY KEY ("id")
+    );
+
 
 	CREATE INDEX last_activity_idx ON ci_sessions(last_activity);
 

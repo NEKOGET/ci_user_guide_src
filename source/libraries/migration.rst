@@ -121,7 +121,7 @@ to update the schema.::
 The following is a table of all the config options for migrations.
 
 ========================== ====================== ========================== =============================================
-設定項目                 初期値                オプション                    説明
+設定項目                   初期値                 オプション                 説明
 ========================== ====================== ========================== =============================================
 **migration_enabled**      FALSE                  TRUE / FALSE               Enable or disable migrations.
 **migration_path**         APPPATH.'migrations/'  None                       The path to your migrations folder.

@@ -195,7 +195,7 @@ The following preferences are available. The default value indicates
 what will be used if you do not specify that preference.
 
 ============================ ================= ======================= ======================================================================
-設定項目                   初期値    選択肢                 説明
+設定項目                     初期値            選択肢                  説明
 ============================ ================= ======================= ======================================================================
 **upload_path**              None              None                    The path to the directory where the upload should be placed. The
                                                                        directory must be writable and the path can be absolute or relative.

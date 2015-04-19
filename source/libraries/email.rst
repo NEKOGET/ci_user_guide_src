@@ -90,7 +90,7 @@ The following is a list of all the preferences that can be set when
 sending email.
 
 =================== ====================== ============================ =======================================================================
-設定項目          初期値          選択肢                      説明
+設定項目            初期値                 選択肢                       説明
 =================== ====================== ============================ =======================================================================
 **useragent**       CodeIgniter            None                         The "user agent".
 **protocol**        mail                   mail, sendmail, or smtp      The mail sending protocol.

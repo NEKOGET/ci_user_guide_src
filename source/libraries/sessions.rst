@@ -273,7 +273,7 @@ You'll find the following Session related preferences in your
 *application/config/config.php* file:
 
 =========================== =============== =========================== ==========================================================================
-設定項目                  初期値         選択肢                     説明
+設定項目                    初期値          選択肢                      説明
 =========================== =============== =========================== ==========================================================================
 **sess_driver**             cookie          cookie/native/*custom*      The initial session driver to load.
 **sess_valid_drivers**      cookie, native  None                        Additional valid drivers which may be loaded.
@@ -302,7 +302,7 @@ following configuration values shared by the :doc:`Input <input>` and
 :doc:`Security <security>` classes:
 
 =========================== =============== ==========================================================================
-設定項目                  初期値         説明
+設定項目                    初期値          説明
 =========================== =============== ==========================================================================
 **cookie_prefix**           ''              Set a cookie name prefix in order to avoid name collisions
 **cookie_domain**           ''              The domain for which the session is applicable

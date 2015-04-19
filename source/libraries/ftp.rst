@@ -125,7 +125,7 @@ In this example a local directory is mirrored on the server.
 		**Available connection options**
 
 		============== =============== =============================================================================
-		Option name    Default value   Description
+		選択肢         初期値          説明
 		============== =============== =============================================================================
 		**hostname**   n/a             FTP hostname (usually something like: ftp.example.com)
 		**username**   n/a             FTP username

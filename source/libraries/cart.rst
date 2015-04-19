@@ -2,17 +2,17 @@
 ショッピングカートクラス
 ###################
 
-The Cart Class permits items to be added to a session that stays active
-while a user is browsing your site. These items can be retrieved and
-displayed in a standard "shopping cart" format, allowing the user to
-update the quantity or remove items from the cart.
+カートクラスを使うと、ユーザがサイトを閲覧中に有効なセッションに、
+商品を追加できます。 これらの商品は、カートから読みだすことができ、
+ユーザが数量を変更したり、カートから商品を削除したりできる、よくある 
+"ショッピングカート" の体裁に表示させることができます。
 
-.. important:: The Card library is DEPRECATED and should not be used. 
-	It is currently only kept for backwards compatibility.
+.. important:: カードライブラリは廃止され、使用すべきではありません。
+現時点では、後方互換性のためだけに保持されます。
 
-Please note that the Cart Class ONLY provides the core "cart"
-functionality. It does not provide shipping, credit card authorization,
-or other processing components.
+カートクラスは、"カート"のコアの機能「だけ」を提供するものであること
+に注意してください。出荷、クレジットカードの有効性確認やその他の処理
+コンポーネントは提供しません。
 
 .. contents::
   :local:
@@ -28,32 +28,32 @@ or other processing components.
 ショッピングカートクラスを初期化する
 ====================================
 
-.. important:: The Cart class utilizes CodeIgniter's :doc:`Session
-	Class <sessions>` to save the cart information to a database, so
-	before using the Cart class you must set up a database table as
-	indicated in the :doc:`Session Documentation <sessions>`, and set the
-	session preferences in your application/config/config.php file to
-	utilize a database.
+.. important:: カートクラスは、データベースに情報を保存するために
+CodeIgniter の セッションクラス を利用しますので、カートク
+ラスを利用する前に、セッションの説明で示しているように、
+データベーステーブルをセットアップする必要があります。
+また、データベースを利用するために、application/config/config.php 
+ファイルの:doc:`セッション <sessions>`の設定項目を設定してください。
 
-To initialize the Shopping Cart Class in your controller constructor,
-use the ``$this->load->library()`` method::
+ショッピングカートクラスをコントローラのコンストラクタ
+で初期化するには、$this->load->library メソッドを利用します:
 
 	$this->load->library('cart');
 
-Once loaded, the Cart object will be available using::
+ロードされると、カートオブジェクトが利用可能になります: $this->cart
 
 	$this->cart
 
-.. note:: The Cart Class will load and initialize the Session Class
-	automatically, so unless you are using sessions elsewhere in your
-	application, you do not need to load the Session class.
+.. note:: カートクラスは、セッションクラスを自動的に読み込んで初期化します。
+アプリケーションの中で、セッションをまだどこでも使っていなかったとしても、
+セッションクラスをロードする必要はありません。
 
 カートに商品を追加する
 ==========================
 
-To add an item to the shopping cart, simply pass an array with the
-product information to the ``$this->cart->insert()`` method, as shown
-below::
+ショッピングカートに商品を追加するには、
+下記のように ``$this->cart->insert()`` メソッドに、商品情報の配列を
+渡すだけです::
 
 	$data = array(
 		'id'      => 'sku_123ABC',
@@ -65,31 +65,31 @@ below::
 
 	$this->cart->insert($data);
 
-.. important:: The first four array indexes above (id, qty, price, and
-	name) are **required**. If you omit any of them the data will not be
-	saved to the cart. The fifth index (options) is optional. It is intended
-	to be used in cases where your product has options associated with it.
-	Use an array for options, as shown above.
+.. important:: 上記の最初の4つのインデックス(id, qty, price, および name)
+は **必須**です. ひとつでも省略した場合は、データはカートに保存されません。
+5番目のインデックス (options) は、任意の項目です。この項目は、その商品
+に関連するオプションがある場合に使われるのを想定しています。上で示され
+ているように、options には、配列を使用してください。
 
-The five reserved indexes are:
+5つの既定のインデックスは次のとおりです:
 
--  **id** - Each product in your store must have a unique identifier.
-   Typically this will be an "sku" or other such identifier.
--  **qty** - The quantity being purchased.
--  **price** - The price of the item.
--  **name** - The name of the item.
--  **options** - Any additional attributes that are needed to identify
-   the product. These must be passed via an array.
+-  **id** - 店舗の各商品は、一意識別子を持っている必要があります。
+一般的には、"sku" や、その他の識別子になります。
+-  **qty** - 購入する数量。
+-  **price** - 商品の価格。
+-  **name** - 商品の名前。
+-  **options** - 商品を識別するために必要なその他のすべての属性。
+これらは、配列として渡す必要があります。
 
-In addition to the five indexes above, there are two reserved words:
-rowid and subtotal. These are used internally by the Cart class, so
-please do NOT use those words as index names when inserting data into
-the cart.
+上の5つのインデックスに加え、2つの予約語: rowid と subtotal 
+があります。これらは、カートクラスの内部で使用されます。 そ
+れらの語をカートにデータを追加する際のインデックス名には使用
+しないでください。
 
-Your array may contain additional data. Anything you include in your
-array will be stored in the session. However, it is best to standardize
-your data among all your products in order to make displaying the
-information in a table easier.
+配列には、追加のデータを含むことができます。配列に追加したど
+んなデータも、セッションに保存されます。とはいえ、 表にした
+ときに情報を表示しやすいよう、すべての商品で使われるデータを
+標準化するのが、一番良い方法です。
 
 ::
 
@@ -103,16 +103,16 @@ information in a table easier.
 
 	$this->cart->insert($data);
 
-The ``insert()`` method will return the $rowid if you successfully insert a
-single item.
+あなたが正常に挿入した場合、 ``insert()`` メソッドは、
+単一の項目として$ROWIDを返します。
 
 カートに複数の商品を追加する
 =================================
 
-By using a multi-dimensional array, as shown below, it is possible to
-add multiple products to the cart in one action. This is useful in cases
-where you wish to allow people to select from among several items on the
-same page.
+下記に示したように、多次元配列を使うことによって、一度の
+アクションで複数の商品をカートに追加することができます。 
+これは、同じページの中で、複数の商品を選ばせたいときな
+どに有用です。
 
 ::
 
@@ -143,11 +143,11 @@ same page.
 カートを表示する
 ===================
 
-To display the cart you will create a :doc:`view
-file </general/views>` with code similar to the one shown below.
+カートを表示するには、下のようなコードの :doc:`ビューファイル
+ </general/views>` を作成します。
 
-Please note that this example uses the :doc:`form
-helper </helpers/form_helper>`.
+この例では、:doc:`フォームヘルパー </helpers/form_helper>` を
+利用しているのを注意してください。
 
 ::
 
@@ -156,10 +156,10 @@ helper </helpers/form_helper>`.
 	<table cellpadding="6" cellspacing="1" style="width:100%" border="0">
 
 	<tr>
-		<th>QTY</th>
-		<th>Item Description</th>
-		<th style="text-align:right">Item Price</th>
-		<th style="text-align:right">Sub-Total</th>
+		<th>数量</th>
+		<th>商品説明</th>
+		<th style="text-align:right">価格</th>
+		<th style="text-align:right">小計</th>
 	</tr>
 
 	<?php $i = 1; ?>
@@ -202,17 +202,17 @@ helper </helpers/form_helper>`.
 
 	</table>
 
-	<p><?php echo form_submit('', 'Update your Cart'); ?></p>
+	<p><?php echo form_submit('', 'カートを更新する'); ?></p>
 
 カートを更新する
 =================
 
-To update the information in your cart, you must pass an array
-containing the Row ID and one or more pre-defined properties to the 
-``$this->cart->update()`` method.
+カートの情報を更新するには、Row ID と数量
+を含む配列を``$this->cart->update()`` メソッド
+に渡す必要があります
 
-.. note:: If the quantity is set to zero, the item will be removed from
-	the cart.
+.. note:: 数量をゼロにセットした場合、その商品は、カートから
+削除されます。
 
 ::
 
@@ -223,7 +223,7 @@ containing the Row ID and one or more pre-defined properties to the
 
 	$this->cart->update($data);
 
-	// Or a multi-dimensional array
+	//  または、多次元配列
 
 	$data = array(
 		array(
@@ -242,8 +242,8 @@ containing the Row ID and one or more pre-defined properties to the
 
 	$this->cart->update($data);
 
-You may also update any property you have previously defined when
-inserting the item such as options, price or other custom fields.
+また、以前に定義した任意のプロパティ、オプションとして価格やその他の
+カスタムフィールドとしてのアイテムを挿入し更新することができます。
 
 ::
 
@@ -259,26 +259,26 @@ inserting the item such as options, price or other custom fields.
 Row ID とは?
 *****************
 
-The row ID is a unique identifier that is generated by the cart code
-when an item is added to the cart. The reason a unique ID is created
-is so that identical products with different options can be managed
-by the cart.
+row ID は、商品がカートに追加される際に、カートのコード
+で生成される一意識別子です。 一意識別子が生成される理由
+は、異なるオプションを持つ同一の商品をカートで管理できる
+ようにするためです。
 
-For example, let's say someone buys two identical t-shirts (same product
-ID), but in different sizes. The product ID (and other attributes) will
-be identical for both sizes because it's the same shirt. The only
-difference will be the size. The cart must therefore have a means of
-identifying this difference so that the two sizes of shirts can be
-managed independently. It does so by creating a unique "row ID" based on
-the product ID and any options associated with it.
+たとえば、ある人が、サイズが異なる以外は同じ、2つのTシャツ
+(同じ商品 ID )を購入するとするとします。 商品 ID (およびその他の属性)
+は、同一のシャツなので、2つのサイズのシャツは同じものです。違うのは
+サイズだけです。2つのサイズのシャツを別々に取り扱うことができるよう、
+カートは、この違いを識別する方法を持っていなければなりません。カート
+は、一意の "row ID"を商品 ID と関連するオプションを元に生成すること
+で、違いを識別します。
 
-In nearly all cases, updating the cart will be something the user does
-via the "view cart" page, so as a developer, it is unlikely that you
-will ever have to concern yourself with the "row ID", other than making
-sure your "view cart" page contains this information in a hidden form
-field, and making sure it gets passed to the ``update()`` method when
-the update form is submitted. Please examine the construction of the
-"view cart" page above for more information.
+ほとんどの場合、カートが更新されるのは、"カートの中身" のようなページで
+ユーザが操作する事によってなされますので、 開発者のように、 "row ID" の
+事をいつも考慮しなければならないというようなことは、考えられません。
+ですので、"カートの中身" のページにこの情報を隠しフォームフィールドで確
+実に保管させ、 更新フォームが送信されたときに、それを確実に update メソッド
+に渡すようにしてください。より多くの情報を得るために、上の"カートの中身" 
+のページの作成を試してみてください。
 
 
 ***************
@@ -289,110 +289,110 @@ the update form is submitted. Please examine the construction of the
 
 	.. attribute:: $product_id_rules = '\.a-z0-9_-'
 
-		These are the regular expression rules that we use to validate the product
-		ID - alpha-numeric, dashes, underscores, or periods by default
+		デフォルトで、英数字、ダッシュ、アンダースコア、ピリオド - 
+		これらは、製品IDを検証するために使用する正規表現ルールです
 
 	.. attribute:: $product_name_rules	= '\w \-\.\:'
 
-		These are the regular expression rules that we use to validate the product ID and product name - alpha-numeric, dashes, underscores, colons or periods by
-		default
+		デフォルトで 英数字、ダッシュ、アンダースコア、コロン、ピリオド
+		これらは、製品IDと製品名を検証するために使用する正規表現ルールです
 
 	.. attribute:: $product_name_safe = TRUE
 
-		Whether or not to only allow safe product names. Default TRUE.
+		唯一で安全な製品名を判定する。 デフォルトでTRUE。
 
 
 	.. method:: insert([$items = array()])
 
-		:param	array	$items: Items to insert into the cart
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	array	$items: カートに挿入する項目
+		:返り値:	成功時　TRUE  失敗時　FALSE 
+		:返り値型:	bool
 
-		Insert items into the cart and save it to the session table. Returns TRUE
-		on success and FALSE on failure.
+		カートに項目を挿入しセッションテーブルに保存します。
+		成功時TRUE、失敗した場合FALSEを返します
 
 
 	.. method:: update([$items = array()])
 
-		:param	array	$items: Items to update in the cart
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	array	$items: カートのアイテムを更新する
+		:返り値:	成功時　TRUE、失敗時　FALSE 
+		:返り値型:	bool
 
-		This method permits changing the properties of a given item.
-		Typically it is called from the "view cart" page if a user makes changes
-		to the quantity before checkout. That array must contain the rowid
-		for each item.
+		このメソッドは、指定された項目のプロパティを変更することが可能です。
+		数量の変更を加える場合、通常チェックアウトの前に「カートを見る」ページ
+		から呼び出されます。その配列は、各項目のROWIDが含まれている必要が
+		あります。
 
 	.. method:: remove($rowid)
 
-		:param	int	$rowid: ID of the item to remove from the cart
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	int	$rowid: アイテムのIDをショッピングカートから削除する
+		:返り値:	成功時　TRUE、失敗時　FALSE 
+		:返り値型:	bool
 
-		Allows you to remove an item from the shopping cart by passing it the
-		``$rowid``.
+		`` $rowid``を渡すことでショッピングカートからアイテムを削除すること
+		ができます。
 
 	.. method:: total()
 
-		:returns:	Total amount
-		:rtype:	int
+		:返り値:	合計金額
+		:返り値型:	int
 
-		Displays the total amount in the cart.
+		カート内の合計金額が表示されます。
 
 
 	.. method:: total_items()
 
-		:returns:	Total amount of items in the cart
-		:rtype:	int
+		:返り値:	カート内のアイテムの合計額
+		:返り値型:	int
 
-		Displays the total number of items in the cart.
+		カート内のアイテムの合計数を表示します。
 
 
 	.. method:: contents([$newest_first = FALSE])
 
-		:param	bool	$newest_first: Whether to order the array with newest items first
-		:returns:	An array of cart contents
-		:rtype:	array
+		:パラメータ	bool	$newest_first: Whether to order the array with newest items first
+		:返り値:	An array of cart contents
+		:返り値型:	array
 
-		Returns an array containing everything in the cart. You can sort the
-		order by which the array is returned by passing it TRUE where the contents
-		will be sorted from newest to oldest, otherwise it is sorted from oldest
-		to newest.
+		カート内のすべてのものを含む配列を返します。
+		あなたは返された配列、新から旧へまたは
+		旧から新へ並べ替え合格した内容の順序を
+		並べ替えることができます
 
 	.. method:: get_item($row_id)
 
-		:param	int	$row_id: Row ID to retrieve
-		:returns:	Array of item data
-		:rtype:	array
+		:パラメータ	int	$row_id: Row ID の所得 
+		:返り値:	アイテムデータの配列
+		:返り値型:	array
 
-		Returns an array containing data for the item matching the specified row
-		ID, or FALSE if no such item exists.
+		指定された行のIDと一致する項目の配列を含むデータを返し、
+		またはそのような項目が存在しない場合はFALSEを返します。
 
 	.. method:: has_options($row_id = '')
 
-		:param	int	$row_id: Row ID to inspect
-		:returns:	TRUE if options exist, FALSE otherwise
-		:rtype:	bool
+		:パラメータ	int	$row_id: Row ID の検査
+		:返り値:	オプションが存在する場合TRUE、それ以外の場合はFALSE
+		:返り値型:	bool
 
-		Returns TRUE (boolean) if a particular row in the cart contains options.
-		This method is designed to be used in a loop with ``contents()``, since
-		you must pass the rowid to this method, as shown in the Displaying
-		the Cart example above.
+		カート内の特定の行がオプションが含まれている場合はTRUE（ブール値）を返します。
+		このメソッドは、rowid を渡す必要があるので、カートを表示する の例
+		で示すように、ループの中で、$this->cart->contents() と一緒に使われ
+		るのを想定しています。
 
 	.. method:: product_options([$row_id = ''])
 
-		:param	int	$row_id: Row ID
-		:returns:	Array of product options
-		:rtype:	array
+		:パラメータ	int	$row_id: Row ID
+		:返り値:	製品のオプションの配列
+		:返り値型:	array
 
-		Returns an array of options for a particular product. This method is
-		designed to be used in a loop with ``contents()``, since you
-		must pass the rowid to this method, as shown in the Displaying the
-		Cart example above.
+		特定の商品のオプションの配列を返します。このメソッドは、r
+		owid を渡す必要があるので、カートを表示する の例で示すよう
+		に、ループの中で、$this->cart->contents() と一緒に使われる
+		のを想定しています。
 
 	.. method:: destroy()
 
-		:rtype: void
+		:返り値型: void
 
-		Permits you to destroy the cart. This method will likely be called
-		when you are finished processing the customer's order.
+		カートを破棄します。
+		このメソッドは、顧客の注文が完了した際などに呼ばれます。

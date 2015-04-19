@@ -125,7 +125,7 @@ preference.
 -  W - Image Watermarking
 
 ======================= ======================= =============================== =========================================================================== =============
-設定項目              初期値           選択肢                         説明                                                                 Availability
+設定項目                初期値                  選択肢                          説明                                                                        有効性
 ======================= ======================= =============================== =========================================================================== =============
 **image_library**       GD2                     GD, GD2, ImageMagick, NetPBM    Sets the image library to be used.                                          R, C, X, W
 **library_path**        None                    None                            Sets the server path to your ImageMagick or NetPBM library. If you use      R, C, X
@@ -235,7 +235,7 @@ This table shown the preferences that are available for both types of
 watermarking (text or overlay)
 
 ======================= =================== ======================= ==========================================================================
-設定項目              初期値       選択肢                 説明
+設定項目                初期値              選択肢                  説明
 ======================= =================== ======================= ==========================================================================
 **wm_type**             text                text, overlay           Sets the type of watermarking that should be used.
 **source_image**        None                None                    Sets the source image name/path. The path must be a relative or absolute
@@ -268,7 +268,7 @@ This table shown the preferences that are available for the text type of
 watermarking.
 
 ======================= =================== =================== ==========================================================================
-設定項目              初期値      選択肢             説明
+設定項目                初期値              選択肢              説明
 ======================= =================== =================== ==========================================================================
 **wm_text**             None                None                The text you would like shown as the watermark. Typically this will be a
                                                                 copyright notice.
@@ -293,7 +293,7 @@ This table shown the preferences that are available for the overlay type
 of watermarking.
 
 ======================= =================== =================== ==========================================================================
-設定項目              初期値      選択肢             説明
+設定項目                初期値              選択肢              説明
 ======================= =================== =================== ==========================================================================
 **wm_overlay_path**     None                None                The server path to the image you wish to use as your watermark. Required
                                                                 only if you are using the overlay method.

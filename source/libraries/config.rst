@@ -2,12 +2,12 @@
 設定クラス
 ############
 
-The Config class provides a means to retrieve configuration preferences.
-These preferences can come from the default config file
-(application/config/config.php) or from your own custom config files.
+設定クラスは、設定情報を取得する手段を提供します。設定情報は、 
+デフォルトの設定ファイル (application/config/config.php) 
+または、ユーザ定義の設定ファイルから取得できます。
 
-.. note:: This class is initialized automatically by the system so there
-	is no need to do it manually.
+.. note:: このクラスは、システムで自動的に初期化されるので、
+手動で初期化する必要はありません。
 
 .. contents::
   :local:
@@ -23,148 +23,148 @@ These preferences can come from the default config file
 設定ファイルの詳細
 ========================
 
-By default, CodeIgniter has one primary config file, located at
-application/config/config.php. If you open the file using your text
-editor you'll see that config items are stored in an array called
-$config.
+初期状態では、CodeIgniter には、application/config/config.php 
+にある一個のメイン設定ファイルがあります。 テキストエディタを
+使ってファイルを開くと、$config という名前の配列に、設定項目が
+セットされているのがわかると思います。
 
-You can add your own config items to this file, or if you prefer to keep
-your configuration items separate (assuming you even need config items),
-simply create your own file and save it in config folder.
+このファイルにユーザ定義の設定項目を追加することもできますし、設定項目を分けて
+おきたい場合は (ユーザ定義の設定項目が必要だと仮定した場合の話です)、 単に、ユ
+ーザ用のファイルを作成し、config フォルダに保存するだけです。
 
-.. note:: If you do create your own config files use the same format as
-	the primary one, storing your items in an array called $config.
-	CodeIgniter will intelligently manage these files so there will be no
-	conflict even though the array has the same name (assuming an array
-	index is not named the same as another).
+.. note:: ユーザ用の設定ファイルを作成する場合は、メインのものと同じ
+フォーマットを使って、 $config という名前の配列に設定項目をセットし
+てください。 CodeIgniter では(配列の添字が他と同じ名前でないとすれば)
+配列の名前が同じであったとしても衝突がないように、設定ファイルが賢く
+管理されます。
 
 設定ファイルの読み込み
 =====================
 
 .. note::
-	CodeIgniter automatically loads the primary config file
-	(application/config/config.php), so you will only need to load a config
-	file if you have created your own.
+ CodeIgniter では、メインの設定ファイル (application/config/config.php) 
+ は自動で 読み込まれますので、 ユーザ定義の設定ファイルだけをロードする
+ 必要があります。
 
-There are two ways to load a config file:
+設定ファイルをロードするには2つの方法があります:
 
 手動での読み込み
 **************
 
-To load one of your custom config files you will use the following
-function within the :doc:`controller </general/controllers>` that
-needs it::
+ユーザ定義の設定ファイルをロードするには、その設定ファイルが必要に
+なる:doc:`コントローラ </general/controllers>`の中で次のメソッド
+を使います::
 
 	$this->config->load('filename');
 
-Where filename is the name of your config file, without the .php file
-extension.
+ここでの filename は、ファイル拡張子の .php を除いたユーザ定義
+設定ファイルの名前になります。
 
-If you need to load multiple config files normally they will be
-merged into one master config array. Name collisions can occur,
-however, if you have identically named array indexes in different
-config files. To avoid collisions you can set the second parameter to
-TRUE and each config file will be stored in an array index
-corresponding to the name of the config file. Example::
+複数の設定ファイルを読み込む必要がある場合、通常は一つのマスタ
+設定配列に設定項目が展開されます。しかし、 別々の設定ファイルで
+、同じ名前の添字を使っていた場合は、名前の衝突が起こる可能性が
+あります。衝突を避けるには、第2引数を TRUE に設定し、格納先の配
+列の添字でをそれぞれの設定ファイルを設定ファイルの名前にして、そ
+の中に設定を格納させます。例:
 
-	// Stored in an array with this prototype: $this->config['blog_settings'] = $config
+	// 次のような形で配列に保管されます: $this->config['blog_settings'] = $config
 	$this->config->load('blog_settings', TRUE);
 
-Please see the section entitled Fetching Config Items below to learn
-how to retrieve config items set this way.
+上記の方法でセットした設定項目を読み取る方法については、下の 設定項目の取り出し
+というタイトルのセクションを見てください。
 
-The third parameter allows you to suppress errors in the event that a
-config file does not exist::
+第3引数で、設定ファイルが存在しなかった時に発生するエラーを出さないようにすることが
+できます[ 訳注: TRUE に設定するとエラーがでなくなります ]。:
 
 	$this->config->load('blog_settings', FALSE, TRUE);
 
 自動読み込み
 ************
 
-If you find that you need a particular config file globally, you can
-have it loaded automatically by the system. To do this, open the
-**autoload.php** file, located at application/config/autoload.php,
-and add your config file as indicated in the file.
+特定の設定ファイルをグローバルに利用すべきことが分かった場合、システム
+でその設定を自動読み込みすることができます。これを実施するには、 
+application/config/autoload.phpにある **autoload.php**ファイルを開き、
+そこに書いてある方法に従って、 設定ファイルを追加してください。
 
 
 設定項目の取り出し
 =====================
 
-To retrieve an item from your config file, use the following function::
+設定ファイルから設定項目を読み取るには、次のメソッドを使います::
 
 	$this->config->item('item name');
 
-Where item name is the $config array index you want to retrieve. For
-example, to fetch your language choice you'll do this::
+ここでの item name は、読み取りたい $config 配列の添字です。たとえば、
+選択した言語を取得するには次のようにします::
 
 	$lang = $this->config->item('language');
 
-The function returns NULL if the item you are trying to fetch
-does not exist.
+このメソッドは、読み取ろうとする項目が存在しない場合、
+NULLを返します。
 
-If you are using the second parameter of the $this->config->load
-function in order to assign your config items to a specific index you
-can retrieve it by specifying the index name in the second parameter of
-the $this->config->item() function. Example::
+指定の添字に設定項目を代入するために、$this->config->load 
+メソッドの第2引数を使った場合、 $this->config->item() メソッド
+の第2引数でも指定した添字の名前を設定することで、それを読み取
+ることができます。例:
 
-	// Loads a config file named blog_settings.php and assigns it to an index named "blog_settings"
+	// blog_settings.php というファイル名の設定ファイルをロードし、"blog_settings" というインデックスに代入します
 	$this->config->load('blog_settings', TRUE);
 
-	// Retrieve a config item named site_name contained within the blog_settings array
+	// blog_settings 配列にある site_name という設定項目を取得します
 	$site_name = $this->config->item('site_name', 'blog_settings');
 
-	// An alternate way to specify the same item:
+	// 同じ項目を指定する別の方法です:
 	$blog_config = $this->config->item('blog_settings');
 	$site_name = $blog_config['site_name'];
 
 設定項目をセットする
 =====================
 
-If you would like to dynamically set a config item or change an existing
-one, you can do so using::
+動的に設定項目をセットしたり既存の設定を変更したりするには、
+下記のようなコードを使います::
 
 	$this->config->set_item('item_name', 'item_value');
 
-Where item_name is the $config array index you want to change, and
-item_value is its value.
+ここでの item_name は、変更したい項目の $config 配列
+の添字で、 item_value はその値になります。
 
 .. _config-environments:
 
 複数の環境
 ============
 
-You may load different configuration files depending on the current
-environment. The ENVIRONMENT constant is defined in index.php, and is
-described in detail in the :doc:`Handling
-Environments </general/environments>` section.
+現状の環境により異なった設定ファイルをロードすることができます。 
+定数 ENVIRONMENT が index.php で定義されており、 :doc:`複数の
+環境の取扱い </general/environments>`のセクションに詳細が記述
+されています。 
 
-To create an environment-specific configuration file, create or copy a
-configuration file in application/config/{ENVIRONMENT}/{FILENAME}.php
+環境固有の設定ファイルを作成するには、 application/config/{ENVIRONMENT}/{FILENAME}.php 
+に設定ファイルを作成またはコピーします。 
 
-For example, to create a production-only config.php, you would:
+たとえば、本番環境での config.php を作成するには、以下のようにします:
 
-#. Create the directory application/config/production/
-#. Copy your existing config.php into the above directory
-#. Edit application/config/production/config.php so it contains your
-   production settings
+#. ディレクトリ application/config/production/ を作成します
+#. 既存の config.php を上記のディレクトリにコピーします
+#. application/config/production/config.php を編集し本番
+環境の設定を記述します
 
-When you set the ENVIRONMENT constant to 'production', the settings for
-your new production-only config.php will be loaded.
+定数 ENVIRONMENT を 'production' に設定すると、
+新しく作成した本番環境用の config.php がロードされます。 
 
-You can place the following configuration files in environment-specific
-folders:
+環境固有のフォルダに以下の設定ファイルを置くこと
+ができます:
 
--  Default CodeIgniter configuration files
--  Your own custom configuration files
+-  デフォルトの CodeIgniter の設定ファイル群
+-  あなた自身のカスタム設定ファイル群
 
 .. note::
-	CodeIgniter always loads the global config file first (i.e., the one in application/config/),
-	then tries to load the configuration files for the current environment.
-	This means you are not obligated to place **all** of your configuration files in an
-	environment folder. Only the files that change per environment. Additionally you don't
-	have to copy **all** the config items in the environment config file. Only the config items
-	that you wish to change for your environment. The config items declared in your environment
-	folders always overwrite those in your global config files.
+ CodeIgniter は、現在の環境の設定ファイルを最初にロード
+ しよう と試みます。もし、ファイルが存在しなければ、グ
+ ローバルの設定 ファイル(すなわち、application/config/ 
+ にあるファイル)をロー ドします。これは、あなたは **すべ
+ て**の 設定ファイルを環境 固有のフォルダに置く必要はな
+ い こと、環境により変更するファ イルだけを置けばよいこ
+ とを意味します
 
 
 ***************
@@ -173,80 +173,80 @@ folders:
 
 .. class:: CI_Config
 
-	.. attribute:: $config
+	.. 属性:: $config
 
-		Array of all loaded config values
+		ロードされたすべての設定値の配列
 
-	.. attribute:: $is_loaded
+	.. 属性:: $is_loaded
 
-		Array of all loaded config files
+		すべてのロードされた設定ファイルの配列
 
 
-	.. method:: item($item[, $index=''])
+	.. メソッド:: item($item[, $index=''])
 
-		:param	string	$item: Config item name
-		:param	string	$index: Index name
-		:returns:	Config item value or NULL if not found
-		:rtype:	mixed
+		:パラメータ	string	$item: Configの項目名
+		:パラメータ	string	$index: インデックス名
+		:返り値:	Configの項目値、見つからない場合はNULL
+		:返り値型:	mixed
 
-		Fetch a config file item.
+		設定ファイルの項目を取得します。
 
-	.. method:: set_item($item, $value)
+	.. メソッド:: set_item($item, $value)
 
-		:param	string	$item: Config item name
-		:param	string	$value: Config item value
-		:rtype:	void
+		:パラメータ	string	$item: Configの項目名
+		:パラメータ	string	$value: Configの項目値
+		:返り値型:	void
 
-		Sets a config file item to the specified value.
+		指定された値に設定ファイルの項目を設定します。
 
-	.. method:: slash_item($item)
+	.. メソッド:: slash_item($item)
 
-		:param	string	$item: config item name
-		:returns:	Config item value with a trailing forward slash or NULL if not found
-		:rtype:	mixed
+		:パラメータ	string	$item: Configの項目名
+		:返り値:	Configの項目フォワード末尾の値スラッシュ見つからない場合はnull
+		:返り値型:	mixed
 
-		This method is identical to ``item()``, except it appends a forward
-		slash to the end of the item, if it exists.
+		この方法は、``item()``と同じです,  設定項目の末尾に
+		スラッシュを加えます。
 
-	.. method:: load([$file = ''[, $use_sections = FALSE[, $fail_gracefully = FALSE]]])
+	.. メソッド:: load([$file = ''[, $use_sections = FALSE[, $fail_gracefully = FALSE]]])
 
-		:param	string	$file: Configuration file name
-		:param	bool	$use_sections: Whether config values shoud be loaded into their own section (index of the main config array)
-		:param	bool	$fail_gracefully: Whether to return FALSE or to display an error message
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	string	$file: 構成ファイル名
+		:パラメータ	bool	$use_sections: 設定値　独自のセクションにロードする必要があるかどうか(主な構成配列のインデックス)
+		:パラメータ	bool	$fail_gracefully: falseを返す、またはエラーメッセージを表示するかどうか
+		:返り値:	成功時　TRUE 失敗時　FALSE
+		:返り値型:	bool
 
-		Loads a configuration file.
+		設定ファイルをロードします。
 
-	.. method:: site_url()
+	.. メソッド:: site_url()
 
-		:returns:	Site URL
-		:rtype:	string
+		:返り値:	サイトURL
+		:返り値型:	string
 
-		This method retrieves the URL to your site, along with the "index" value
-		you've specified in the config file.
+		このメソッドは、設定ファイルで、"index" の値に指定した、
+		サイトへの URL を取得します。
 
-		This method is normally accessed via the corresponding functions in the
-		:doc:`URL Helper </helpers/url_helper>`.
+		このメソッドは、通常:doc:`URLヘルパー </helpers/url_helper>`
+		で対応する関数を経由してアクセスされます。
 
-	.. method:: base_url()
+	.. メソッド:: base_url()
 
-		:returns:	Base URL
-		:rtype:	string
+		:返り値:	ベース URL
+		:返り値型:	string
 
-		This method retrieves the URL to your site, plus an optional path such
-		as to a stylesheet or image.
+		このメソッドは、サイトの URL、プラス、オプションの
+		スタイルシートや画像などへのパスを取得します。
 
-		This method is normally accessed via the corresponding functions in the
-		:doc:`URL Helper </helpers/url_helper>`.
+		このメソッドは、通常:doc:`URLヘルパー </helpers/url_helper>`
+		で対応する関数を経由してアクセスされます。
 
-	.. method:: system_url()
+	.. メソッド:: system_url()
 
-		:returns:	URL pointing at your CI system/ directory
-		:rtype:	string
+		:返り値:	CI system/ フォルダの指しているURL
+		:返り値型:	string
 
-		This method retrieves the URL to your CodeIgniter system/ directory.
+		このメソッドを使うと system フォルダ の URL を取得できます。
 
-		.. note:: This method is DEPRECATED because it encourages usage of
-			insecure coding practices. Your *system/* directory shouldn't
-			be publicly accessible.
+		.. note:: このメソッドは推奨されていません。理由は安全でない
+		コーディングの使用を奨励しています。お使いの*system/* ディレ
+		クトリは、公的にアクセス可能にすべきではありません。

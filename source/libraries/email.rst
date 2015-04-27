@@ -30,12 +30,12 @@ Email クラスを使う
 Email の送信
 =============
 
-Sending email is not only simple, but you can configure it on the fly or
-set your preferences in a config file.
+メールの送信は単純なだけでなく、送信する直前にも設定ファイル
+でも、メール送信の設定ができます。
 
-Here is a basic example demonstrating how you might send email. Note:
-This example assumes you are sending the email from one of your
-:doc:`controllers <../general/controllers>`.
+以下は、どうやってメールを送信できるかを示した基本的な例です。 Note: 
+この例では、:doc:`コントローラ  <../general/controllers>`
+でメールを送信すると仮定しています。
 
 ::
 
@@ -54,14 +54,14 @@ This example assumes you are sending the email from one of your
 Email のオプションを設定する
 =========================
 
-There are 21 different preferences available to tailor how your email
-messages are sent. You can either set them manually as described here,
-or automatically via preferences stored in your config file, described
-below:
+メールの送信方法をカスタマイズできる21の設定項目が
+利用可能です。以下で述べるように手動で設定することも
+できますし、後述するように、設定ファイルに保管された
+項目から自動設定することもできます:
 
-Preferences are set by passing an array of preference values to the
-email initialize method. Here is an example of how you might set some
-preferences::
+設定項目は、email クラスの initialize メソッドに設定項目の配列を渡す
+ことでセットすることができます。以下は、設定項目をどのようにセット
+できるかの例です:
 
 	$config['protocol'] = 'sendmail';
 	$config['mailpath'] = '/usr/sbin/sendmail';
@@ -70,51 +70,51 @@ preferences::
 
 	$this->email->initialize($config);
 
-.. note:: Most of the preferences have default values that will be used
-	if you do not set them.
+.. note:: ほとんどの設定項目には、設定しなかった場合に使われる
+初期値があります。
 
 設定ファイルでEmailの設定を行う
 ------------------------------------------
 
-If you prefer not to set preferences using the above method, you can
-instead put them into a config file. Simply create a new file called the
-email.php, add the $config array in that file. Then save the file at
-config/email.php and it will be used automatically. You will NOT need to
-use the ``$this->email->initialize()`` method if you save your
-preferences in a config file.
+設定をするのに、上で述べた方法を使いたくない場合は、代わりに設定
+ファイルにその設定を書いておくことができます。 email.php という
+名前で新しいファイルをつくり、$config という配列をそのファイル
+に書くだけです。 そして、config/email.php にそのファイルを保存
+すると、自動的にそれが使われます。 設定ファイルで設定した場合は、
+$this->email->initialize() メソッドを使う必要は「ありません」。
 
 Email クラスの設定項目
 =================
 
-The following is a list of all the preferences that can be set when
-sending email.
+次のリストは、メールを送信する際にセットできる
+設定項目の全リストです。
 
 =================== ====================== ============================ =======================================================================
 設定項目            初期値                 選択肢                       説明
 =================== ====================== ============================ =======================================================================
-**useragent**       CodeIgniter            None                         The "user agent".
-**protocol**        mail                   mail, sendmail, or smtp      The mail sending protocol.
-**mailpath**        /usr/sbin/sendmail     None                         The server path to Sendmail.
-**smtp_host**       No Default             None                         SMTP Server Address.
-**smtp_user**       No Default             None                         SMTP Username.
-**smtp_pass**       No Default             None                         SMTP Password.
-**smtp_port**       25                     None                         SMTP Port.
-**smtp_timeout**    5                      None                         SMTP Timeout (in seconds).
-**smtp_keepalive**  FALSE                  TRUE or FALSE (boolean)      Enable persistent SMTP connections.
-**smtp_crypto**     No Default             tls or ssl                   SMTP Encryption
-**wordwrap**        TRUE                   TRUE or FALSE (boolean)      Enable word-wrap.
-**wrapchars**       76                                                  Character count to wrap at.
-**mailtype**        text                   text or html                 Type of mail. If you send HTML email you must send it as a complete web
-                                                                        page. Make sure you don't have any relative links or relative image
-                                                                        paths otherwise they will not work.
-**charset**         ``$config['charset']``                              Character set (utf-8, iso-8859-1, etc.).
-**validate**        FALSE                  TRUE or FALSE (boolean)      Whether to validate the email address.
-**priority**        3                      1, 2, 3, 4, 5                Email Priority. 1 = highest. 5 = lowest. 3 = normal.
-**crlf**            \\n                    "\\r\\n" or "\\n" or "\\r"   Newline character. (Use "\\r\\n" to comply with RFC 822).
-**newline**         \\n                    "\\r\\n" or "\\n" or "\\r"   Newline character. (Use "\\r\\n" to comply with RFC 822).
-**bcc_batch_mode**  FALSE                  TRUE or FALSE (boolean)      Enable BCC Batch Mode.
-**bcc_batch_size**  200                    None                         Number of emails in each BCC batch.
-**dsn**             FALSE                  TRUE or FALSE (boolean)      Enable notify message from server
+**useragent**       CodeIgniter            なし                         ユーザエージェント
+**protocol**        mail                   mail, sendmail, または smtp  メールを送信するプロトコル
+**mailpath**        /usr/sbin/sendmail     なし                         Sendmail へのパス
+**smtp_host**       初期値なし             なし                         SMTP サーバのアドレス
+**smtp_user**       初期値なし             なし                         SMTP のユーザ名
+**smtp_pass**       初期値なし             なし                         SMTP のパスワード
+**smtp_port**       25                     なし                         SMTP のポート番号
+**smtp_timeout**    5                      なし                         SMTP のタイムアウト (秒単位)
+**smtp_keepalive**  FALSE                  TRUE または FALSE(boolean)   持続的SMTP接続の有効化
+**smtp_crypto**     初期値なし             tls または ssl               SMTP暗号化
+**wordwrap**        TRUE                   TRUE または FALSE (boolean)  ワードラップの有効化設定
+**wrapchars**       76                                                  何番目の文字で折り返すか
+**mailtype**        text                   text または html             メールのタイプ。HTML メールを送信すると、メールは完全な Web 
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　ページとして送信されます。このとき、相対リンクや画像への相対
+　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　パスがないか確かめてください。それらは動作しません。
+**charset**         ``$config['charset']``                              文字セット (utf-8、iso-8859-1、など)
+**validate**        FALSE                  TRUE または FALSE(boolean)   メールアドレスを検証するかどうか
+**priority**        3                      1, 2, 3, 4, 5                メールの優先度。 1 = 最高 5 = 最低 3 = 通常
+**crlf**            \\n                    "\\r\\n" or "\\n" or "\\r"   CRLF ("\\r\\n" RFC 822に応じて使用). 
+**newline**         \\n                    "\\r\\n" or "\\n" or "\\r"   改行文字 ("\\r\\n" RFC 822に応じて使用). 
+**bcc_batch_mode**  FALSE                  TRUE またはFALSE(boolean)    BCC バッチモードを有効にするかどうか
+**bcc_batch_size**  200                    なし                         各 BCC バッチで送るメール件数。
+**dsn**             FALSE                  TRUE または FALSE (boolean)  サーバーからのメッセージ通知を有効にする
 =================== ====================== ============================ =======================================================================
 
 ワードラップ設定の上書き
@@ -143,45 +143,45 @@ sending email.
 
 .. class:: CI_Email
 
-	.. method:: from($from[, $name = ''[, $return_path = NULL]])
+	.. メソッド:: from($from[, $name = ''[, $return_path = NULL]])
 
-		:param	string	$from: "From" e-mail address
-		:param	string	$name: "From" display name
-		:param	string	$return_path: Optional email address to redirect undelivered e-mail to
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	string	$from: "From" メールアドレス
+		:パラメータ	string	$name: "From" 表示名
+		:パラメータ	string	$return_path: 未配達の電子メールをリダイレクトするオプションのメールアドレス
+		:返り値:	CI_Email インスタンス (メソッドチエーン)
+		:返り値型:	CI_Email
 
-		Sets the email address and name of the person sending the email::
+		電子メール送信者の電子メールアドレスと氏名をセットします::
 
-			$this->email->from('you@example.com', 'Your Name');
+			$this->email->from('you@example.com', 'あなたの名前');
 
-		You can also set a Return-Path, to help redirect undelivered mail::
+		送信したメールのリターンパスを決めることもできます。未配達のメールを転送するのを支援します。::
 
-			$this->email->from('you@example.com', 'Your Name', 'returned_emails@example.com');
+			$this->email->from('you@example.com', 'あなたの名前', 'returned_emails@example.com');
 
-		.. note:: Return-Path can't be used if you've configured 'smtp' as
-			your protocol.
+		.. note:: プロトコルとして「SMTP」を設定した場合、
+		リターンパスは使用できません。
 
-	.. method:: reply_to($replyto[, $name = ''])
+	.. メソッド:: reply_to($replyto[, $name = ''])
 
-		:param	string	$replyto: E-mail address for replies
-		:param	string	$name: Display name for the reply-to e-mail address
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	string	$replyto: 返信の電子メール・アドレス
+		:パラメータ	string	$name: 返信の電子メールアドレス名を示します
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型:	CI_Email
 
-		Sets the reply-to address. If the information is not provided the
-		information in the :meth:from method is used. Example::
+		返信先アドレスをセットします。指定しない場合は、"from" メソッド
+		で指定されたものが使われます。例:
 
-			$this->email->reply_to('you@example.com', 'Your Name');
+			$this->email->reply_to('you@example.com', 'あなたの名前');
 
-	.. method:: to($to)
+	.. メソッド:: to($to)
 
-		:param	mixed	$to: Comma-delimited string or an array of e-mail addresses
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	mixed	$to: メールアドレス　カンマで区切られた列または配列
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型:	CI_Email
 
-		Sets the email address(s) of the recipient(s). Can be a single e-mail,
-		a comma-delimited list or an array::
+		受取人のメールアドレスをセットします(複数可)。次のように、単一のメールアドレス、
+		カンマ区切りのリスト、あるいは配列で指定可能です:
 
 			$this->email->to('someone@example.com');
 
@@ -195,87 +195,87 @@ sending email.
 				array('one@example.com', 'two@example.com', 'three@example.com')
 			);
 
-	.. method:: cc($cc)
+	.. メソッド:: cc($cc)
 
-		:param	mixed	$cc: Comma-delimited string or an array of e-mail addresses
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	mixed	$cc: メールアドレス　カンマで区切られた列または配列
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型:	CI_Email
 
-		Sets the CC email address(s). Just like the "to", can be a single e-mail,
-		a comma-delimited list or an array.
+		CC のメールアドレスをセットします(複数可)。 "to" メソッドのように、単一のメールアドレス、
+		カンマ区切りのリスト、あるいは配列で指定可能です。
 
-	.. method:: bcc($bcc[, $limit = ''])
+	.. メソッド:: bcc($bcc[, $limit = ''])
 
-		:param	mixed	$bcc: Comma-delimited string or an array of e-mail addresses
-		:param	int	$limit: Maximum number of e-mails to send per batch
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	mixed	$bcc: メールアドレス　カンマで区切られた列または配列
+		:パラメータ	int	$limit: バッチ送信する電子メールの最大数
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型:	CI_Email
 
-		Sets the BCC email address(s). Just like the ``to()`` method, can be a single
-		e-mail, a comma-delimited list or an array.
+		BCC のメールアドレスをセットします(複数可)。"to" メソッドのように、単一のメールアドレス、
+		ンマ区切りのリスト、あるいは配列で指定可能です。
 
-		If ``$limit`` is set, "batch mode" will be enabled, which will send
-		the emails to batches, with each batch not exceeding the specified
-		``$limit``.
+		「$LIMIT」が設定されている場合は、「バッチモード」は、各バッチ
+		が指定された「$LIMIT」を超えないと、バッチに電子メールを送信します、
+		これが有効になります。
 
-	.. method:: subject($subject)
+	.. メソッド:: subject($subject)
 
-		:param	string	$subject: E-mail subject line
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	string	$subject: 電子メールの件名
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型:	CI_Email
 
-		Sets the email subject::
+		電子メールの件名をセットします::
 
 			$this->email->subject('This is my subject');
 
-	.. method:: message($body)
+	.. メソッド:: message($body)
 
-		:param	string	$body: E-mail message body
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	string	$body: 電子メール本文
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型:	CI_Email
 
-		Sets the e-mail message body::
+		電子メールの本文をセットします::
 
 			$this->email->message('This is my message');
 
-	.. method:: set_alt_message($str)
+	.. メソッド:: set_alt_message($str)
 
-		:param	string	$str: Alternative e-mail message body
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	string	$str: 代替のメール本文:
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型:	CI_Email
 
-		Sets the alternative e-mail message body::
+		代替のメール本文をセットします::
 
 			$this->email->set_alt_message('This is the alternative message');
 
-		This is an optional message string which can be used if you send
-		HTML formatted email. It lets you specify an alternative message
-		with no HTML formatting which is added to the header string for
-		people who do not accept HTML email. If you do not set your own
-		message CodeIgniter will extract the message from your HTML email
-		and strip the tags.
+		これは、HTML形式にフォーマットされた電子メールを送信する場合に使用
+		できるオプションのメッセージ文字列です。あなたがHTML形式のメールを
+		対応していない人々の為、ヘッダ文字列に追加されていないHTMLフォーマ
+		ットで代替メッセージを指定することができます。あなた自身のメッセー
+		ジを設定しないとCodeIgniterはHTMLメールからメッセージを抽出しタグを
+		削除します。
 
-	.. method:: set_header($header, $value)
+	.. メソッド:: set_header($header, $value)
 
-		:param	string	$header: Header name
-		:param	string	$value: Header value
-		:returns:	CI_Email instance (method chaining)
-		:rtype: CI_Email
+		:パラメータ	string	$header: ヘッダ名
+		:パラメータ	string	$value: ヘッダ内容
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型: CI_Email
 
-		Appends additional headers to the e-mail::
+		電子メールの追加のヘッダーを付加::
 
 			$this->email->set_header('Header1', 'Value1');
 			$this->email->set_header('Header2', 'Value2');
 
-	.. method:: clear([$clear_attachments = FALSE])
+	.. メソッド:: clear([$clear_attachments = FALSE])
 
-		:param	bool	$clear_attachments: Whether or not to clear attachments
-		:returns:	CI_Email instance (method chaining)
-		:rtype: CI_Email
+		:パラメータ	bool	$clear_attachments: 添付ファイルをクリアするかどうか
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型: CI_Email
 
-		Initializes all the email variables to an empty state. This method
-		is intended for use if you run the email sending method in a loop,
-		permitting the data to be reset between cycles.
+		メールの設定を空状態にします。 このメソッドは、ループの
+		各サイクルでデータをリセットしながらメール送信機能を使う
+		場合を意図しています。
 
 		::
 
@@ -285,87 +285,87 @@ sending email.
 
 				$this->email->to($address);
 				$this->email->from('your@example.com');
-				$this->email->subject('Here is your info '.$name);
-				$this->email->message('Hi '.$name.' Here is the info you requested.');
+				$this->email->subject('あなたの情報 '.$name);
+				$this->email->message('こんにちは  '.$name.'さん ご要望の情報です。');
 				$this->email->send();
 			}
 
-		If you set the parameter to TRUE any attachments will be cleared as
-		well::
+		次のように引数に TRUE をセットした場合は、すべての添付も
+		解除されます::
 
 			$this->email->clear(TRUE);
 
-	.. method:: send([$auto_clear = TRUE])
+	.. メソッド:: send([$auto_clear = TRUE])
 
-		:param	bool	$auto_clear: Whether to clear message data automatically
-		:returns:	TRUE on success, FALSE on failure
-		:rtype:	bool
+		:パラメータ	bool	$auto_clear: 自動的にメッセージデータをクリアするかどうか
+		:返り値:	成功時TRUE、失敗した場合FALSE
+		:返り値型:	bool
 
-		The e-mail sending method. Returns boolean TRUE or FALSE based on
-		success or failure, enabling it to be used conditionally::
+		メール送信メソッド。 条件判断が利用できるよう、送信が成功したか失敗したかに
+		基づいてブール値の TRUE か FALSE が返ります::
 
 			if ( ! $this->email->send())
 			{
-				// Generate error
+				// エラーを生成します
 			}
 
-		This method will automatically clear all parameters if the request was
-		successful. To stop this behaviour pass FALSE::
+		要求が成功した場合、このメソッドは自動的にすべてのパラメータをクリアします。
+		この動作を停止するにはFALSEを渡します。
 
 		 	if ($this->email->send(FALSE))
 		 	{
-		 		// Parameters won't be cleared
+		 		// パラメータはクリアされません
 		 	}
 
-		.. note:: In order to use the ``print_debugger()`` method, you need
-			to avoid clearing the email parameters.
+		.. note:: 「print_debugger」を使用するためには、電子メールのパラメータ
+		をクリアしないようにする必要があります。
 
-	.. method:: attach($filename[, $disposition = ''[, $newname = NULL[, $mime = '']]])
+	.. メソッド:: attach($filename[, $disposition = ''[, $newname = NULL[, $mime = '']]])
 
-		:param	string	$filename: File name
-		:param	string	$disposition: 'disposition' of the attachment. Most
-			email clients make their own decision regardless of the MIME
-			specification used here. https://www.iana.org/assignments/cont-disp/cont-disp.xhtml
-		:param	string	$newname: Custom file name to use in the e-mail
-		:param	string	$mime: MIME type to use (useful for buffered data)
-		:returns:	CI_Email instance (method chaining)
-		:rtype:	CI_Email
+		:パラメータ	string	$filename: ファイル名
+		:パラメータ	string	$disposition: 添付ファイルを「配置」します。ほとんどの電子メールクライアント
+		にかかわらず、ここで使用されるMIME仕様の独自の判断を下します。
+		https://www.iana.org/assignments/cont-disp/cont-disp.xhtml
+		:パラメータ	string	$newname: 電子メールで使用するカスタムファイル名
+		:パラメータ	string	$mime: MIMEタイプを使用する (バッファリングされたデータに利用)
+		:返り値:	CI_Email インスタンス (メソッドチェイン)
+		:返り値型:	CI_Email
 
-		Enables you to send an attachment. Put the file path/name in the first
-		parameter. For multiple attachments use the method multiple times.
-		For example::
+		添付ファイルを送信できます。第1引数にファイルのパスとファイル名を指定してください。
+		複数ファイルを添付する場合は、複数回メソッドを呼んでください。例えば以下のように
+		します::
 
 			$this->email->attach('/path/to/photo1.jpg');
 			$this->email->attach('/path/to/photo2.jpg');
 			$this->email->attach('/path/to/photo3.jpg');
 
-		To use the default disposition (attachment), leave the second parameter blank,
-		otherwise use a custom disposition::
+		デフォルトの設定（添付ファイル）を使用します。それ以外の場合はカスタム配置を使用し、
+		二番目のパラメータを空白のままにします::
 
 			$this->email->attach('image.jpg', 'inline');
 
-		You can also use a URL::
+		また、URLを使用することができます::
 
 			$this->email->attach('http://example.com/filename.pdf');
 
-		If you'd like to use a custom file name, you can use the third paramater::
+		カスタムファイル名を使用したい場合は、第三のパラメータを使用することができます::
 
 			$this->email->attach('filename.pdf', 'attachment', 'report.pdf');
 
-		If you need to use a buffer string instead of a real - physical - file you can
-		use the first parameter as buffer, the third parameter as file name and the fourth
-		parameter as mime-type::
+		本当の物理的なファイルの代わりに、バッファ文字列を使用する必要がある場合、
+		バッファとしての最初のパラメータ、ファイル名としての第3のパラメータとMIME
+		タイプとしての第4のパラメータを使うことができます::
 
 			$this->email->attach($buffer, 'attachment', 'report.pdf', 'application/pdf');
 
-	.. method:: attachment_cid($filename)
+	.. メソッド:: attachment_cid($filename)
 
-		:param	string	$filename: Existing attachment filename
-		:returns:	Attachment Content-ID or FALSE if not found
-		:rtype:	string
+		:パラメータ	string	$filename: 既存の添付ファイル名
+		:返り値:	添付ファイルのContent-ID、見つからない場合はFALSE
+		:返り値型:	string
  
-		Sets and returns an attachment's Content-ID, which enables your to embed an inline
-		(picture) attachment into HTML. First parameter must be the already attached file name.
+		添付ファイルのセットとContent-IDを返し、添付ファイルをHTMLにインライン（写真）埋め込むため有効にします。
+		最初のパラメータは、すでに添付されたファイル名でなければなりません。
 		::
  
 			$filename = '/img/photo1.jpg';
@@ -378,28 +378,28 @@ sending email.
 				$this->email->send();
 			}
 
-		.. note:: Content-ID for each e-mail must be re-created for it to be unique.
+		.. note:: 一意にするため、それぞれ電子メール用のContent-IDは、再作成する必要があります。
 
-	.. method:: print_debugger([$include = array('headers', 'subject', 'body')])
+	.. メソッド:: print_debugger([$include = array('headers', 'subject', 'body')])
 
-		:param	array	$include: Which parts of the message to print out
-		:returns:	Formatted debug data
-		:rtype:	string
+		:パラメータ	array	$include: メッセージのどの部分を印刷するか
+		:返り値:	フォーマットされたデバッグデータ
+		:返り値型:	string
 
-		Returns a string containing any server messages, the email headers, and
-		the email messsage. Useful for debugging.
+		すべてのサーバメッセージ、メールヘッダ、メールメッセージを文字列として返します。
+		デバッグに役立ちます。
+		
+		オプションで、メッセージの一部を印刷するかを指定することができます。
+		有効なオプションは以下のとおりです。「ヘッダ」「件名」「本文」
 
-		You can optionally specify which parts of the message should be printed.
-		Valid options are: **headers**, **subject**, **body**.
+		例::
 
-		Example::
-
-			// You need to pass FALSE while sending in order for the email data
-			// to not be cleared - if that happens, print_debugger() would have
-			// nothing to output.
+			// クリアされないように電子メールデータのための順序で送信しているときには、
+			// FALSEを渡す必要があります。その場合、print_debugger（）の出力には何も
+			// ないでしょう。
 			$this->email->send(FALSE);
 
-			// Will only print the email headers, excluding the message subject and body
+			// 唯一のメッセージの件名と本文を除く、電子メールのヘッダを出力します
 			$this->email->print_debugger(array('headers'));
 
-		.. note:: By default, all of the raw data will be printed.
+		.. note:: デフォルトでは、すべての生データが印刷されます。

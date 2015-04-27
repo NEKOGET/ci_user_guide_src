@@ -61,7 +61,7 @@ Email のオプションを設定する
 
 設定項目は、email クラスの initialize メソッドに設定項目の配列を渡す
 ことでセットすることができます。以下は、設定項目をどのようにセット
-できるかの例です:
+できるかの例です::
 
 	$config['protocol'] = 'sendmail';
 	$config['mailpath'] = '/usr/sbin/sendmail';

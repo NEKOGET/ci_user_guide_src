@@ -173,16 +173,16 @@ NULLを返します。
 
 .. class:: CI_Config
 
-	.. 属性:: $config
+	.. attribute:: $config
 
 		ロードされたすべての設定値の配列
 
-	.. 属性:: $is_loaded
+	.. attribute:: $is_loaded
 
 		すべてのロードされた設定ファイルの配列
 
 
-	.. メソッド:: item($item[, $index=''])
+	.. method:: item($item[, $index=''])
 
 		:パラメータ	string	$item: Configの項目名
 		:パラメータ	string	$index: インデックス名
@@ -191,7 +191,7 @@ NULLを返します。
 
 		設定ファイルの項目を取得します。
 
-	.. メソッド:: set_item($item, $value)
+	.. method:: set_item($item, $value)
 
 		:パラメータ	string	$item: Configの項目名
 		:パラメータ	string	$value: Configの項目値
@@ -199,7 +199,7 @@ NULLを返します。
 
 		指定された値に設定ファイルの項目を設定します。
 
-	.. メソッド:: slash_item($item)
+	.. method:: slash_item($item)
 
 		:パラメータ	string	$item: Configの項目名
 		:返り値:	Configの項目フォワード末尾の値スラッシュ見つからない場合はnull
@@ -208,7 +208,7 @@ NULLを返します。
 		この方法は、``item()``と同じです,  設定項目の末尾に
 		スラッシュを加えます。
 
-	.. メソッド:: load([$file = ''[, $use_sections = FALSE[, $fail_gracefully = FALSE]]])
+	.. method:: load([$file = ''[, $use_sections = FALSE[, $fail_gracefully = FALSE]]])
 
 		:パラメータ	string	$file: 構成ファイル名
 		:パラメータ	bool	$use_sections: 設定値　独自のセクションにロードする必要があるかどうか(主な構成配列のインデックス)
@@ -218,7 +218,7 @@ NULLを返します。
 
 		設定ファイルをロードします。
 
-	.. メソッド:: site_url()
+	.. method:: site_url()
 
 		:返り値:	サイトURL
 		:返り値型:	string
@@ -229,7 +229,7 @@ NULLを返します。
 		このメソッドは、通常:doc:`URLヘルパー </helpers/url_helper>`
 		で対応する関数を経由してアクセスされます。
 
-	.. メソッド:: base_url()
+	.. method:: base_url()
 
 		:返り値:	ベース URL
 		:返り値型:	string
@@ -240,7 +240,7 @@ NULLを返します。
 		このメソッドは、通常:doc:`URLヘルパー </helpers/url_helper>`
 		で対応する関数を経由してアクセスされます。
 
-	.. メソッド:: system_url()
+	.. method:: system_url()
 
 		:返り値:	CI system/ フォルダの指しているURL
 		:返り値型:	string

@@ -143,7 +143,7 @@ Email クラスの設定項目
 
 .. class:: CI_Email
 
-	.. メソッド:: from($from[, $name = ''[, $return_path = NULL]])
+	.. method:: from($from[, $name = ''[, $return_path = NULL]])
 
 		:パラメータ	string	$from: "From" メールアドレス
 		:パラメータ	string	$name: "From" 表示名
@@ -162,7 +162,7 @@ Email クラスの設定項目
 		.. note:: プロトコルとして「SMTP」を設定した場合、
 		リターンパスは使用できません。
 
-	.. メソッド:: reply_to($replyto[, $name = ''])
+	.. method:: reply_to($replyto[, $name = ''])
 
 		:パラメータ	string	$replyto: 返信の電子メール・アドレス
 		:パラメータ	string	$name: 返信の電子メールアドレス名を示します
@@ -174,7 +174,7 @@ Email クラスの設定項目
 
 			$this->email->reply_to('you@example.com', 'あなたの名前');
 
-	.. メソッド:: to($to)
+	.. method:: to($to)
 
 		:パラメータ	mixed	$to: メールアドレス　カンマで区切られた列または配列
 		:返り値:	CI_Email インスタンス (メソッドチェイン)
@@ -195,7 +195,7 @@ Email クラスの設定項目
 				array('one@example.com', 'two@example.com', 'three@example.com')
 			);
 
-	.. メソッド:: cc($cc)
+	.. method:: cc($cc)
 
 		:パラメータ	mixed	$cc: メールアドレス　カンマで区切られた列または配列
 		:返り値:	CI_Email インスタンス (メソッドチェイン)
@@ -204,7 +204,7 @@ Email クラスの設定項目
 		CC のメールアドレスをセットします(複数可)。 "to" メソッドのように、単一のメールアドレス、
 		カンマ区切りのリスト、あるいは配列で指定可能です。
 
-	.. メソッド:: bcc($bcc[, $limit = ''])
+	.. method:: bcc($bcc[, $limit = ''])
 
 		:パラメータ	mixed	$bcc: メールアドレス　カンマで区切られた列または配列
 		:パラメータ	int	$limit: バッチ送信する電子メールの最大数
@@ -218,7 +218,7 @@ Email クラスの設定項目
 		が指定された「$LIMIT」を超えないと、バッチに電子メールを送信します、
 		これが有効になります。
 
-	.. メソッド:: subject($subject)
+	.. method:: subject($subject)
 
 		:パラメータ	string	$subject: 電子メールの件名
 		:返り値:	CI_Email インスタンス (メソッドチェイン)
@@ -228,7 +228,7 @@ Email クラスの設定項目
 
 			$this->email->subject('This is my subject');
 
-	.. メソッド:: message($body)
+	.. method:: message($body)
 
 		:パラメータ	string	$body: 電子メール本文
 		:返り値:	CI_Email インスタンス (メソッドチェイン)
@@ -238,7 +238,7 @@ Email クラスの設定項目
 
 			$this->email->message('This is my message');
 
-	.. メソッド:: set_alt_message($str)
+	.. method:: set_alt_message($str)
 
 		:パラメータ	string	$str: 代替のメール本文:
 		:返り値:	CI_Email インスタンス (メソッドチェイン)
@@ -255,7 +255,7 @@ Email クラスの設定項目
 		ジを設定しないとCodeIgniterはHTMLメールからメッセージを抽出しタグを
 		削除します。
 
-	.. メソッド:: set_header($header, $value)
+	.. method:: set_header($header, $value)
 
 		:パラメータ	string	$header: ヘッダ名
 		:パラメータ	string	$value: ヘッダ内容
@@ -267,7 +267,7 @@ Email クラスの設定項目
 			$this->email->set_header('Header1', 'Value1');
 			$this->email->set_header('Header2', 'Value2');
 
-	.. メソッド:: clear([$clear_attachments = FALSE])
+	.. method:: clear([$clear_attachments = FALSE])
 
 		:パラメータ	bool	$clear_attachments: 添付ファイルをクリアするかどうか
 		:返り値:	CI_Email インスタンス (メソッドチェイン)
@@ -295,7 +295,7 @@ Email クラスの設定項目
 
 			$this->email->clear(TRUE);
 
-	.. メソッド:: send([$auto_clear = TRUE])
+	.. method:: send([$auto_clear = TRUE])
 
 		:パラメータ	bool	$auto_clear: 自動的にメッセージデータをクリアするかどうか
 		:返り値:	成功時TRUE、失敗した場合FALSE
@@ -320,7 +320,7 @@ Email クラスの設定項目
 		.. note:: 「print_debugger」を使用するためには、電子メールのパラメータ
 		をクリアしないようにする必要があります。
 
-	.. メソッド:: attach($filename[, $disposition = ''[, $newname = NULL[, $mime = '']]])
+	.. method:: attach($filename[, $disposition = ''[, $newname = NULL[, $mime = '']]])
 
 		:パラメータ	string	$filename: ファイル名
 		:パラメータ	string	$disposition: 添付ファイルを「配置」します。ほとんどの電子メールクライアント
@@ -358,7 +358,7 @@ Email クラスの設定項目
 
 			$this->email->attach($buffer, 'attachment', 'report.pdf', 'application/pdf');
 
-	.. メソッド:: attachment_cid($filename)
+	.. method:: attachment_cid($filename)
 
 		:パラメータ	string	$filename: 既存の添付ファイル名
 		:返り値:	添付ファイルのContent-ID、見つからない場合はFALSE
@@ -380,7 +380,7 @@ Email クラスの設定項目
 
 		.. note:: 一意にするため、それぞれ電子メール用のContent-IDは、再作成する必要があります。
 
-	.. メソッド:: print_debugger([$include = array('headers', 'subject', 'body')])
+	.. method:: print_debugger([$include = array('headers', 'subject', 'body')])
 
 		:パラメータ	array	$include: メッセージのどの部分を印刷するか
 		:返り値:	フォーマットされたデバッグデータ

@@ -7,7 +7,7 @@
 ユーザが数量を変更したり、カートから商品を削除したりできる、よくある 
 "ショッピングカート" の体裁に表示させることができます。
 
-.. important:: カードライブラリは廃止され、使用すべきではありません。
+.. important:: カートライブラリは廃止され、使用すべきではありません。
 現時点では、後方互換性のためだけに保持されます。
 
 カートクラスは、"カート"のコアの機能「だけ」を提供するものであること
@@ -285,7 +285,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 クラスリファレンス
 ***************
 
-.. class:: CI_Cart
+.. php:class:: CI_Cart
 
 	.. attribute:: $product_id_rules = '\.a-z0-9_-'
 
@@ -302,7 +302,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		唯一で安全な製品名を判定する。 デフォルトでTRUE。
 
 
-	.. method:: insert([$items = array()])
+	.. php:method:: insert([$items = array()])
 
 		:パラメータ	array	$items: カートに挿入する項目
 		:返り値:	成功時　TRUE  失敗時　FALSE 
@@ -312,7 +312,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		成功時TRUE、失敗した場合FALSEを返します
 
 
-	.. method:: update([$items = array()])
+	.. php:method:: update([$items = array()])
 
 		:パラメータ	array	$items: カートのアイテムを更新する
 		:返り値:	成功時　TRUE、失敗時　FALSE 
@@ -323,7 +323,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		から呼び出されます。その配列は、各項目のROWIDが含まれている必要が
 		あります。
 
-	.. method:: remove($rowid)
+	.. php:method:: remove($rowid)
 
 		:パラメータ	int	$rowid: アイテムのIDをショッピングカートから削除する
 		:返り値:	成功時　TRUE、失敗時　FALSE 
@@ -332,7 +332,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		`` $rowid``を渡すことでショッピングカートからアイテムを削除すること
 		ができます。
 
-	.. method:: total()
+	.. php:method:: total()
 
 		:返り値:	合計金額
 		:返り値型:	int
@@ -340,7 +340,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		カート内の合計金額が表示されます。
 
 
-	.. method:: total_items()
+	.. php:method:: total_items()
 
 		:返り値:	カート内のアイテムの合計額
 		:返り値型:	int
@@ -348,7 +348,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		カート内のアイテムの合計数を表示します。
 
 
-	.. method:: contents([$newest_first = FALSE])
+	.. php:method:: contents([$newest_first = FALSE])
 
 		:パラメータ	bool	$newest_first: Whether to order the array with newest items first
 		:返り値:	An array of cart contents
@@ -359,7 +359,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		旧から新へ並べ替え合格した内容の順序を
 		並べ替えることができます
 
-	.. method:: get_item($row_id)
+	.. php:method:: get_item($row_id)
 
 		:パラメータ	int	$row_id: Row ID の所得 
 		:返り値:	アイテムデータの配列
@@ -368,7 +368,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		指定された行のIDと一致する項目の配列を含むデータを返し、
 		またはそのような項目が存在しない場合はFALSEを返します。
 
-	.. method:: has_options($row_id = '')
+	.. php:method:: has_options($row_id = '')
 
 		:パラメータ	int	$row_id: Row ID の検査
 		:返り値:	オプションが存在する場合TRUE、それ以外の場合はFALSE
@@ -379,7 +379,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		で示すように、ループの中で、$this->cart->contents() と一緒に使われ
 		るのを想定しています。
 
-	.. method:: product_options([$row_id = ''])
+	.. php:method:: product_options([$row_id = ''])
 
 		:パラメータ	int	$row_id: Row ID
 		:返り値:	製品のオプションの配列
@@ -390,7 +390,7 @@ row ID は、商品がカートに追加される際に、カートのコード
 		に、ループの中で、$this->cart->contents() と一緒に使われる
 		のを想定しています。
 
-	.. method:: destroy()
+	.. php:method:: destroy()
 
 		:返り値型: void
 

@@ -90,9 +90,9 @@ In this example a local directory is mirrored on the server.
 クラスリファレンス
 ***************
 
-.. class:: CI_FTP
+.. php:class:: CI_FTP
 
-	.. method:: connect([$config = array()])
+	.. php:method:: connect([$config = array()])
 
 		:パラメータ	array	$config: Connection values
 		:返り値:	TRUE on success, FALSE on failure
@@ -135,7 +135,7 @@ In this example a local directory is mirrored on the server.
 		**passive**    TRUE            TRUE/FALSE (boolean): Whether to use passive mode
 		============== =============== =============================================================================
 
-	.. method:: upload($locpath, $rempath[, $mode = 'auto'[, $permissions = NULL]])
+	.. php:method:: upload($locpath, $rempath[, $mode = 'auto'[, $permissions = NULL]])
 
 		:パラメータ	string	$locpath: Local file path
 		:パラメータ	string	$rempath: Remote file path
@@ -154,7 +154,7 @@ In this example a local directory is mirrored on the server.
 
 		If set, permissions have to be passed as an octal value.
 
-	.. method:: download($rempath, $locpath[, $mode = 'auto'])
+	.. php:method:: download($rempath, $locpath[, $mode = 'auto'])
 
 		:パラメータ	string	$rempath: Remote file path
 		:パラメータ	string	$locpath: Local file path
@@ -172,7 +172,7 @@ In this example a local directory is mirrored on the server.
 		Returns FALSE if the download does not execute successfully
 		(including if PHP does not have permission to write the local file).
 
-	.. method:: rename($old_file, $new_file[, $move = FALSE])
+	.. php:method:: rename($old_file, $new_file[, $move = FALSE])
 
 		:パラメータ	string	$old_file: Old file name
 		:パラメータ	string	$new_file: New file name
@@ -186,7 +186,7 @@ In this example a local directory is mirrored on the server.
 			// Renames green.html to blue.html
 			$this->ftp->rename('/public_html/foo/green.html', '/public_html/foo/blue.html');
 
-	.. method:: move($old_file, $new_file)
+	.. php:method:: move($old_file, $new_file)
 
 		:パラメータ	string	$old_file: Old file name
 		:パラメータ	string	$new_file: New file name
@@ -200,7 +200,7 @@ In this example a local directory is mirrored on the server.
 
 		.. note:: If the destination file name is different the file will be renamed.
 
-	.. method:: delete_file($filepath)
+	.. php:method:: delete_file($filepath)
 
 		:パラメータ	string	$filepath: Path to file to delete
 		:返り値:	TRUE on success, FALSE on failure
@@ -211,7 +211,7 @@ In this example a local directory is mirrored on the server.
 
 			 $this->ftp->delete_file('/public_html/joe/blog.html');
 
-	.. method:: delete_dir($filepath)
+	.. php:method:: delete_dir($filepath)
 
 		:パラメータ	string	$filepath: Path to directory to delete
 		:返り値:	TRUE on success, FALSE on failure
@@ -229,7 +229,7 @@ In this example a local directory is mirrored on the server.
 
 			 $this->ftp->delete_dir('/public_html/path/to/folder/');
 
-	.. method:: list_files([$path = '.'])
+	.. php:method:: list_files([$path = '.'])
 
 		:パラメータ	string	$path: Directory path
 		:返り値:	An array list of files or FALSE on failure
@@ -242,7 +242,7 @@ In this example a local directory is mirrored on the server.
 			$list = $this->ftp->list_files('/public_html/');
 			print_r($list);
 
-	.. method:: mirror($locpath, $rempath)
+	.. php:method:: mirror($locpath, $rempath)
 
 		:パラメータ	string	$locpath: Local path
 		:パラメータ	string	$rempath: Remote path
@@ -256,7 +256,7 @@ In this example a local directory is mirrored on the server.
 
 			 $this->ftp->mirror('/path/to/myfolder/', '/public_html/myfolder/');
 
-	.. method:: mkdir($path[, $permissions = NULL])
+	.. php:method:: mkdir($path[, $permissions = NULL])
 
 		:パラメータ	string	$path: Path to directory to create
 		:パラメータ	int	$permissions: Permissions (octal)
@@ -272,7 +272,7 @@ In this example a local directory is mirrored on the server.
 			// Creates a folder named "bar"
 			$this->ftp->mkdir('/public_html/foo/bar/', 0755);
 
-	.. method:: chmod($path, $perm)
+	.. php:method:: chmod($path, $perm)
 
 		:パラメータ	string	$path: Path to alter permissions for
 		:パラメータ	int	$perm: Permissions (octal)
@@ -285,7 +285,7 @@ In this example a local directory is mirrored on the server.
 			// Chmod "bar" to 755
 			$this->ftp->chmod('/public_html/foo/bar/', 0755);
 
-	.. method:: changedir($path[, $suppress_debug = FALSE])
+	.. php:method:: changedir($path[, $suppress_debug = FALSE])
 
 		:パラメータ	string	$path: Directory path
 		:パラメータ	bool	$suppress_debug: Whether to turn off debug messages for this command
@@ -297,7 +297,7 @@ In this example a local directory is mirrored on the server.
 		The ``$suppress_debug`` parameter is useful in case you want to use this method
 		as an ``is_dir()`` alternative for FTP.
 
-	.. method:: close()
+	.. php:method:: close()
 
 		:返り値:	TRUE on success, FALSE on failure
 		:返り値型:	bool

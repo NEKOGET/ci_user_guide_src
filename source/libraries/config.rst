@@ -92,9 +92,9 @@ application/config/autoload.phpにある **autoload.php**ファイルを開き�
 
 設定ファイルから設定項目を読み取るには、次のメソッドを使います::
 
-	$this->config->item('item name');
+	$this->config->item('item_name');
 
-ここでの item name は、読み取りたい $config 配列の添字です。たとえば、
+ここでの item_name は、読み取りたい $config 配列の添字です。たとえば、
 選択した言語を取得するには次のようにします::
 
 	$lang = $this->config->item('language');
@@ -171,7 +171,7 @@ NULLを返します。
 クラスリファレンス
 ***************
 
-.. class:: CI_Config
+.. php:class:: CI_Config
 
 	.. attribute:: $config
 
@@ -182,7 +182,7 @@ NULLを返します。
 		すべてのロードされた設定ファイルの配列
 
 
-	.. method:: item($item[, $index=''])
+	.. php:method:: item($item[, $index=''])
 
 		:パラメータ	string	$item: Configの項目名
 		:パラメータ	string	$index: インデックス名
@@ -191,7 +191,7 @@ NULLを返します。
 
 		設定ファイルの項目を取得します。
 
-	.. method:: set_item($item, $value)
+	.. php:method:: set_item($item, $value)
 
 		:パラメータ	string	$item: Configの項目名
 		:パラメータ	string	$value: Configの項目値
@@ -199,7 +199,7 @@ NULLを返します。
 
 		指定された値に設定ファイルの項目を設定します。
 
-	.. method:: slash_item($item)
+	.. php:method:: slash_item($item)
 
 		:パラメータ	string	$item: Configの項目名
 		:返り値:	Configの項目フォワード末尾の値スラッシュ見つからない場合はnull
@@ -208,7 +208,7 @@ NULLを返します。
 		この方法は、``item()``と同じです,  設定項目の末尾に
 		スラッシュを加えます。
 
-	.. method:: load([$file = ''[, $use_sections = FALSE[, $fail_gracefully = FALSE]]])
+	.. php:method:: load([$file = ''[, $use_sections = FALSE[, $fail_gracefully = FALSE]]])
 
 		:パラメータ	string	$file: 構成ファイル名
 		:パラメータ	bool	$use_sections: 設定値　独自のセクションにロードする必要があるかどうか(主な構成配列のインデックス)
@@ -218,7 +218,7 @@ NULLを返します。
 
 		設定ファイルをロードします。
 
-	.. method:: site_url()
+	.. php:method:: site_url()
 
 		:返り値:	サイトURL
 		:返り値型:	string
@@ -229,7 +229,7 @@ NULLを返します。
 		このメソッドは、通常:doc:`URLヘルパー </helpers/url_helper>`
 		で対応する関数を経由してアクセスされます。
 
-	.. method:: base_url()
+	.. php:method:: base_url()
 
 		:返り値:	ベース URL
 		:返り値型:	string
@@ -240,7 +240,7 @@ NULLを返します。
 		このメソッドは、通常:doc:`URLヘルパー </helpers/url_helper>`
 		で対応する関数を経由してアクセスされます。
 
-	.. method:: system_url()
+	.. php:method:: system_url()
 
 		:返り値:	CI system/ フォルダの指しているURL
 		:返り値型:	string

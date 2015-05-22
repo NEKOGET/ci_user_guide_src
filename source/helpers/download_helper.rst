@@ -24,7 +24,7 @@ This helper is loaded using the following code::
 The following functions are available:
 
 
-.. function:: force_download([$filename = ''[, $data = ''[, $set_mime = FALSE]]])
+.. php:function:: force_download([$filename = ''[, $data = ''[, $set_mime = FALSE]]])
 
 	:param	string	$filename: Filename
 	:param	mixed	$data: File contents

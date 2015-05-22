@@ -25,7 +25,7 @@ This helper is loaded using the following code::
 The following functions are available:
 
 
-.. function:: byte_format($num[, $precision = 1])
+.. php:function:: byte_format($num[, $precision = 1])
 
 	:param	mixed	$num: Number of bytes
 	:param	int	$precision: Floating point precision

@@ -18,9 +18,9 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 使用例
 *************
 
-以下の例はキャッシュドライバをロードし、APC を使用するドライバに指定します。
-`APC <#apc>`_がホスト環境で利用できない場合、ファイルベースのキャッシングにフォール
-バックします。
+The following example will load the cache driver, specify `APC <#alternative-php-cache-apc-caching>`_
+as the driver to use, and fall back to file-based caching if APC is not
+available in the hosting environment.
 
 ::
 
@@ -52,9 +52,9 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 クラスリファレンス
 ***************
 
-.. class:: CI_Cache
+.. php:class:: CI_Cache
 
-	.. method:: is_supported($driver)
+	.. php:method:: is_supported($driver)
 
 		:パラメータ	string	$driver: キャッシング・ドライバの名前
 		:返り値:	対応できればTRUE、そうでなければFALSEを返します。
@@ -66,7 +66,7 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 		ているか確かめてください。
 		::
 
-			if ($this->cache->apc->is_supported()
+			if ($this->cache->apc->is_supported())
 			{
 				if ($data = $this->cache->apc->get('my_cache'))
 				{
@@ -74,7 +74,7 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 				}
 			}
 
-	.. method:: get($id)
+	.. php:method:: get($id)
 
 		:パラメータ	string	$id: キャッシュ・アイテム名
 		:返り値:	アイテムが存在しない場合、FALSE を返します。
@@ -86,7 +86,7 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 
 			$foo = $this->cache->get('my_cached_item');
 
-	.. method:: save($id, $data[, $ttl = 60[, $raw = FALSE]])
+	.. php:method:: save($id, $data[, $ttl = 60[, $raw = FALSE]])
 
 		:パラメータ	string	$id: キャッシュ・アイテム名
 		:パラメータ	mixed	$data: 保存するデータ
@@ -104,7 +104,7 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 		.. note:: ``$raw`` パラメータは、APCとMemcacheによって増加``increment()``と
                         漸減``decrement()``に適切に使用されます。
 
-	.. method:: delete($id)
+	.. php:method:: delete($id)
 
 		:パラメータ	string	$id: キャッシュされたアイテムの名前
 		:返り値:	成功時 TRUE、失敗時 FALSE
@@ -116,7 +116,7 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 
 			$this->cache->delete('cache_item_id');
 
-	.. method:: increment($id[, $offset = 1])
+	.. php:method:: increment($id[, $offset = 1])
 
 		:パラメータ	string	$id: キャッシュID
 		:パラメータ	int	$offset: 値に進行上の数値を追加する
@@ -132,7 +132,7 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 
 			$this->cache->increment('iterator', 3); // 'iterator' は6です
 
-	.. method:: decrement($id[, $offset = 1])
+	.. php:method:: decrement($id[, $offset = 1])
 
 		:パラメータ	string	$id: キャッシュID
 		:パラメータ	int	$offset: S値に進行上の数値を減算する
@@ -148,7 +148,7 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 
 			$this->cache->decrement('iterator', 2); // 'iterator' は 3です。
 
-	.. method:: clean()
+	.. php:method:: clean()
 
 		:返り値:	成功時　TRUE、失敗時　FALSE
 		:返り値型:	bool
@@ -159,7 +159,7 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 
 			$this->cache->clean();
 
-	.. method:: cache_info()
+	.. php:method:: cache_info()
 
 		:返り値:	全キャッシュ・データベースの情報
 		:返り値型:	mixed
@@ -169,10 +169,10 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 
 			var_dump($this->cache->cache_info());
 
-		.. note:: 情報はデータの構造がどのアダプターが使われているか
-		依存した上で返ります。
-		
-	.. method:: get_metadata($id)
+		.. note:: The information returned and the structure of the data is dependent
+			on which adapter is being used.
+
+	.. php:method:: get_metadata($id)
 
 		:パラメータ	string	$id: キャッシュ・アイテム名
 		:返り値:	キャッシュアイテムのメタデータ
@@ -249,9 +249,8 @@ WinCache, に関するさらなる情報は、`http://php.net/wincache <http://p
 Redis キャッシュ
 =============
 
-Redisは、LRUキャッシュ・モードで動くことができるkey-valueストアです。
-使うためにはRedisサーバと phpredis PHPエクステンション`https://github.com/nicolasff/phpredis 
-<https://github.com/nicolasff/phpredis>`_を必要とします
+Redis is an in-memory key-value store which can operate in LRU cache mode. 
+To use it, you need `Redis server and phpredis PHP extension <https://github.com/phpredis/phpredis>`_.
 
 redisサーバーに接続する構成オプションは、application/config/redis.phpファイルに格納されなければなりません。
 利用できるオプション::

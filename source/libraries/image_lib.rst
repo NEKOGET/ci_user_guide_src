@@ -89,7 +89,7 @@ If they fail you can retrieve the error message using this function::
 
 	echo $this->image_lib->display_errors();
 
-A good practice is use the processing function conditionally, showing an
+A good practice is to use the processing function conditionally, showing an
 error upon failure, like this::
 
 	if ( ! $this->image_lib->resize())
@@ -187,7 +187,7 @@ your preferences in a config file.
 
 There are two types of watermarking that you can use:
 
--  **Text**: The watermark message will be generating using text, either
+-  **Text**: The watermark message will be generated using text, either
    with a True Type font that you specify, or using the native text
    output that the GD library supports. If you use the True Type version
    your GD installation must be compiled with True Type support (most
@@ -231,7 +231,7 @@ bottom/center of the image, 20 pixels from the bottom of the image.
 画像合成の設定
 ========================
 
-This table shown the preferences that are available for both types of
+This table shows the preferences that are available for both types of
 watermarking (text or overlay)
 
 ======================= =================== ======================= ==========================================================================
@@ -264,7 +264,7 @@ watermarking (text or overlay)
 テキストの設定
 ----------------
 
-This table shown the preferences that are available for the text type of
+This table shows the preferences that are available for the text type of
 watermarking.
 
 ======================= =================== =================== ==========================================================================
@@ -289,7 +289,7 @@ watermarking.
 オーバーレイの設定
 -------------------
 
-This table shown the preferences that are available for the overlay type
+This table shows the preferences that are available for the overlay type
 of watermarking.
 
 ======================= =================== =================== ==========================================================================
@@ -316,9 +316,9 @@ of watermarking.
 クラスリファレンス
 ***************
 
-.. class:: CI_Image_lib
+.. php:class:: CI_Image_lib
 
-	.. method:: initialize([$props = array()])
+	.. php:method:: initialize([$props = array()])
 
 		:パラメータ	array	$props: Image processing preferences
 		:返り値:	TRUE on success, FALSE in case of invalid settings
@@ -326,7 +326,7 @@ of watermarking.
 
 		Initializes the class for processing an image.
 
-	.. method:: resize()
+	.. php:method:: resize()
 
 		:返り値:	TRUE on success, FALSE on failure
 		:返り値型:	bool
@@ -373,7 +373,7 @@ of watermarking.
 		new_image) are used, the resizing method will instead target the
 		original image for processing.
 
-	.. method:: crop()
+	.. php:method:: crop()
 
 		:返り値:	TRUE on success, FALSE on failure
 		:返り値型:	bool
@@ -409,7 +409,7 @@ of watermarking.
 			in ExpressionEngine, the CMS we develop. We added a JavaScript UI that
 			lets the cropping area be selected.
 
-	.. method:: rotate()
+	.. php:method:: rotate()
 
 		:返り値:	TRUE on success, FALSE on failure
 		:返り値型:	bool
@@ -441,7 +441,7 @@ of watermarking.
 				echo $this->image_lib->display_errors();
 			}
 
-	.. method:: watermark()
+	.. php:method:: watermark()
 
 		:返り値:	TRUE on success, FALSE on failure
 		:返り値型:	bool
@@ -449,7 +449,7 @@ of watermarking.
 		Creates a watermark over an image, please refer to the :ref:`watermarking`
 		section for more info.		
 
-	.. method:: clear()
+	.. php:method:: clear()
 
 		:返り値:	void
 
@@ -461,7 +461,7 @@ of watermarking.
 
 			$this->image_lib->clear();
 
-	.. method:: display_errors([$open = '<p>[, $close = '</p>']])
+	.. php:method:: display_errors([$open = '<p>[, $close = '</p>']])
 
 		:パラメータ	string	$open: Error message opening tag
 		:パラメータ	string	$close: Error message closing tag

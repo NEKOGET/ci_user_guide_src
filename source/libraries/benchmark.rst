@@ -131,16 +131,16 @@ PHP をそのまま使用したくないときは、ビューのファイル内�
 クラスリファレンス
 ***************
 
-.. class:: CI_Benchmark
+.. php:class:: CI_Benchmark
 
-	.. method:: mark($name)
+	.. php:method:: mark($name)
 
 		:パラメータ	string	$name: マーカーにつけたい名前
 		:返り値型:	void
 
 		ベンチマークマーカーをセットします。
 
-	.. method:: elapsed_time([$point1 = ''[, $point2 = ''[, $decimals = 4]]])
+	.. php:method:: elapsed_time([$point1 = ''[, $point2 = ''[, $decimals = 4]]])
 
 		:パラメータ	string	$point1: 特定のマークされた点
 		:パラメータ	string	$point2: a particular marked point
@@ -156,7 +156,7 @@ PHP をそのまま使用したくないときは、ビューのファイル内�
 		変換して出力します。
 
 
-	.. method:: memory_usage()
+	.. php:method:: memory_usage()
 
 		:返り値:	Memory usage info
 		:返り値型:	string

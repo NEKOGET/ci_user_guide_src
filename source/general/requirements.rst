@@ -2,10 +2,15 @@
 サーバ要件
 ###################
 
-- `PHP <http://www.php.net/>`_ バージョン5.2.4以降.
-- A Database is required for most web application programming.
+`PHP <http://php.net/>`_ version 5.4 or newer is recommended.
 
- Currently supported databases are:
+It should work on 5.2.4 as well, but we strongly advise you NOT to run
+such old versions of PHP, because of potential security and performance
+issues, as well as missing features.
+
+A database is required for most web application programming.
+Currently supported databases are:
+
   - MySQL (5.1+) via the *mysql* (deprecated), *mysqli* and *pdo* drivers
   - Oracle via the *oci8* and *pdo* drivers
   - PostgreSQL via the *postgre* and *pdo* drivers
@@ -13,4 +18,4 @@
   - SQLite via the *sqlite* (version 2), *sqlite3* (version 3) and *pdo* drivers
   - CUBRID via the *cubrid* and *pdo* drivers
   - Interbase/Firebird via the *ibase* and *pdo* drivers
-  - ODBC via the *odbc* and *pdo* drivers (you should know that ODBC is actually an abstraction layer)
+  - ODBC via the *odbc* and *pdo* drivers (you should know that ODBC is actually an abstraction layer)is actually an abstraction layer)

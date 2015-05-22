@@ -326,17 +326,16 @@ In addition to the validation method like the ones we used above, you
 can also prep your data in various ways. For example, you can set up
 rules like this::
 
-	$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]|xss_clean');
-	$this->form_validation->set_rules('password', 'Password', 'trim|required|md5');
+	$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]');
+	$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
 	$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
 	$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 
-In the above example, we are "trimming" the fields, converting the
-password to MD5, and running the username through the `xss_clean()`
-method, which removes malicious data.
+In the above example, we are "trimming" the fields, checking for length
+where necessary and making sure that both password fields match.
 
 **Any native PHP function that accepts one parameter can be used as a
-rule, like htmlspecialchars, trim, md5, etc.**
+rule, like ``htmlspecialchars()``, ``trim()``, etc.**
 
 .. note:: You will generally want to use the prepping functions
 	**after** the validation rules so if there is an error, the
@@ -353,9 +352,9 @@ commonly is::
 	set_value('field name')
 
 Open your myform.php view file and update the **value** in each field
-using the :func:`set_value()` function:
+using the :php:func:`set_value()` function:
 
-**Don't forget to include each field name in the :func:`set_value()`
+**Don't forget to include each field name in the :php:func:`set_value()`
 function calls!**
 
 ::
@@ -644,7 +643,7 @@ globally, individually, or change the defaults in a config file.
 ===========================
 
 If you prefer to show an error message next to each form field, rather
-than as a list, you can use the :func:`form_error()` function.
+than as a list, you can use the :php:func:`form_error()` function.
 
 Try it! Change your form so that it looks like this::
 
@@ -947,10 +946,11 @@ use:
 ========================= ========== ============================================================================================= =======================
 **required**              No         空き要素の場合はFALSEを返す
 **matches**               Yes        formの要素が一致しない時はFALSEを返す											                   matches[form_item]
+**regex_match**           Yes        Returns FALSE if the form element does not match the regular expression.                      regex_match[/regex/]
 **differs**               Yes        Returns FALSE if the form element does not differ from the one in the parameter.              differs[form_item]
-**is_unique**             Yes        DBテーブルのフィールド名と一致しない場合はFALSEを返します。								           is_unique[table.field]
-                                     Note: 動かす時には :doc:`Query Builder <../database/query_builder>` が
-                                     必要となります。
+**is_unique**             Yes        Returns FALSE if the form element is not unique to the table and field name in the            is_unique[table.field]
+                                     parameter. Note: This rule requires :doc:`Query Builder <../database/query_builder>` to be
+                                     enabled in order to work.
 **min_length**            Yes        指定する文字数より少ない場合はFALSEを返します。								 	                   min_length[3]
 **max_length**            Yes        指定する文字数を超えた場合はFALSEを返します。	             		 							   max_length[12]
 **exact_length**          Yes        指定する文字数と一致しない場合はFALSEを返します。								                       exact_length[8]
@@ -964,8 +964,8 @@ use:
                                      返します。
 **alpha**                 No         アルファベット以外の文字を含む場合、FALSEを返します。
 **alpha_numeric**         No         アルファベット・数字以外の文字を含む場合、FALSEを返します。
-**alpha_numeric_spaces**  No         アルファベット・数字・スペース以外の文字を含む場合、FALSEを返します。
-                                     Should be used after trim to avoid spaces at the beginning or end.
+**alpha_numeric_spaces**  No         Returns FALSE if the form element contains anything other than alpha-numeric characters
+                                     or spaces.  Should be used after trim to avoid spaces at the beginning or end.
 **alpha_dash**            No         アルファベット、下線、dashesの以外の時にFALSEを返します。
                                      数字を含む場合はFALSEを返します。
 **numeric**               No         数字以外の文字を含む場合FALSEを返します。
@@ -1002,7 +1002,6 @@ to use:
 ==================== ========= =======================================================================================================
 名前                 パラメータ 説明
 ==================== ========= =======================================================================================================
-**xss_clean**        No        Runs the data through the XSS filtering method, described in the :doc:`Security Class <security>` page.
 **prep_for_form**    No        Converts special characters so that HTML data can be shown in a form field without breaking it.
 **prep_url**         No        Adds "\http://" to URLs if missing.
 **strip_image_tags** No        Strips the HTML from image tags leaving the raw URL.
@@ -1019,9 +1018,9 @@ to use:
 クラスリファレンス
 ***************
 
-.. class:: CI_Form_validation
+.. php:class:: CI_Form_validation
 
-	.. method:: set_rules($field[, $label = ''[, $rules = '']])
+	.. php:method:: set_rules($field[, $label = ''[, $rules = '']])
 
 		:パラメータ	string	$field: Field name
 		:パラメータ	string	$label: Field label
@@ -1035,7 +1034,7 @@ to use:
 		-  :ref:`setting-validation-rules`
 		-  :ref:`saving-groups`
 
-	.. method:: run([$group = ''])
+	.. php:method:: run([$group = ''])
 
 		:パラメータ	string	$group: The name of the validation group to run
 		:返り値:	TRUE on success, FALSE if validation failed
@@ -1045,7 +1044,7 @@ to use:
 		on failure. You can optionally pass the name of the validation group via
 		the method, as described in: :ref:`saving-groups`
 
-	.. method:: set_message($lang[, $val = ''])
+	.. php:method:: set_message($lang[, $val = ''])
 
 		:パラメータ	string	$lang: The rule the message is for
 		:パラメータ	string	$val: The message
@@ -1054,7 +1053,7 @@ to use:
 
 		Permits you to set custom error messages. See :ref:`setting-error-messages`
 
-	.. method:: set_error_delimiters([$prefix = '<p>'[, $suffix = '</p>']])
+	.. php:method:: set_error_delimiters([$prefix = '<p>'[, $suffix = '</p>']])
 
 		:パラメータ	string	$prefix: Error message prefix
 		:パラメータ	string	$suffix: Error message suffix
@@ -1063,7 +1062,7 @@ to use:
 
 		Sets the default prefix and suffix for error messages.
 
-	.. method:: set_data($data)
+	.. php:method:: set_data($data)
 
 		:パラメータ	array	$data: Array of data validate
 		:返り値:	CI_Form_validation instance (method chaining)
@@ -1072,7 +1071,7 @@ to use:
 		Permits you to set an array for validation, instead of using the default
 		``$_POST`` array.
 
-	.. method:: reset_validation()
+	.. php:method:: reset_validation()
 
 		:返り値:	CI_Form_validation instance (method chaining)
 		:返り値型:	CI_Form_validation
@@ -1080,14 +1079,14 @@ to use:
 		Permits you to reset the validation when you validate more than one array.
 		This method should be called before validating each new array.
 
-	.. method:: error_array()
+	.. php:method:: error_array()
 
 		:返り値:	Array of error messages
 		:返り値型:	array
 
 		Returns the error messages as an array.
 
-	.. method:: error_string([$prefix = ''[, $suffix = '']])
+	.. php:method:: error_string([$prefix = ''[, $suffix = '']])
 
 		:パラメータ	string	$prefix: Error message prefix
 		:パラメータ	string	$suffix: Error message suffix
@@ -1097,7 +1096,7 @@ to use:
 		Returns all error messages (as returned from error_array()) formatted as a
 		string and separated by a newline character.
 
-	.. method:: error($field[, $prefix = ''[, $suffix = '']])
+	.. php:method:: error($field[, $prefix = ''[, $suffix = '']])
 
 		:パラメータ	string $field: Field name
 		:パラメータ	string $prefix: Optional prefix
@@ -1108,7 +1107,7 @@ to use:
 		Returns the error message for a specific field, optionally adding a
 		prefix and/or suffix to it (usually HTML tags).
 
-	.. method:: has_rule($field)
+	.. php:method:: has_rule($field)
 
 		:パラメータ	string	$field: Field name
 		:返り値:	TRUE if the field has rules set, FALSE if not
@@ -1125,12 +1124,12 @@ to use:
 Please refer to the :doc:`Form Helper <../helpers/form_helper>` manual for
 the following functions:
 
--  :func:`form_error()`
--  :func:`validation_errors()`
--  :func:`set_value()`
--  :func:`set_select()`
--  :func:`set_checkbox()`
--  :func:`set_radio()`
+-  :php:func:`form_error()`
+-  :php:func:`validation_errors()`
+-  :php:func:`set_value()`
+-  :php:func:`set_select()`
+-  :php:func:`set_checkbox()`
+-  :php:func:`set_radio()`
 
 Note that these are procedural functions, so they **do not** require you
 to prepend them with ``$this->form_validation``.

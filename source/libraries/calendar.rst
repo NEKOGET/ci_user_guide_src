@@ -213,9 +213,9 @@ URL を指すリンクになります。
 クラスリファレンス
 ***************
 
-.. class:: CI_Calendar
+.. php:class:: CI_Calendar
 
-	.. method:: initialize([$config = array()])
+	.. php:method:: initialize([$config = array()])
 
 		:パラメータ	array	$config: 構成パラメータ
 		:返り値:	CI_Calendar インスタンス (メソッドチェーン)
@@ -223,7 +223,7 @@ URL を指すリンクになります。
 
 		カレンダーの環境設定を初期化します。表示設定を含む入力として連想配列を受け入れます。
 
-	.. method:: generate([$year = ''[, $month = ''[, $data = array()]]])
+	.. php:method:: generate([$year = ''[, $month = ''[, $data = array()]]])
 
 		:パラメータ	int	$year: 年
 		:パラメータ	int	$month: 月
@@ -234,7 +234,7 @@ URL を指すリンクになります。
 		カレンダーを生成
 
 
-	.. method:: get_month_name($month)
+	.. php:method:: get_month_name($month)
 
 		:パラメータ	int	$month: 月
 		:返り値:	月名
@@ -242,7 +242,7 @@ URL を指すリンクになります。
 
 		月の数値に基づいての月名を生成します。
 
-	.. method:: get_day_names($day_type = '')
+	.. php:method:: get_day_names($day_type = '')
 
 		:パラメータ	string	$day_type: 'long', 'short', or 'abr'
 		:返り値:	Array of day names
@@ -253,7 +253,7 @@ URL を指すリンクになります。
 		されていない場合（または無効な型が提供されている場合）
 		「省略」を返します
 
-	.. method:: adjust_date($month, $year)
+	.. php:method:: adjust_date($month, $year)
 
 		:パラメータ	int	$month: 月
 		:パラメータ	int	$year: 年
@@ -274,7 +274,7 @@ URL を指すリンクになります。
 				[year] => '2015'
 			)
 
-	.. method:: get_total_days($month, $year)
+	.. php:method:: get_total_days($month, $year)
 
 		:パラメータ	int	$month: 月
 		:パラメータ	int	$year: 年
@@ -287,9 +287,9 @@ URL を指すリンクになります。
 			// 29
 
 		.. note:: このメソッドの別名 :doc:`Date Helper
-			<../helpers/date_helper>` function :func:`days_in_month()`.
+			<../helpers/date_helper>` function :php:func:`days_in_month()`.
 
-	.. method:: default_template()
+	.. php:method:: default_template()
 
 		:返り値:	テンプレート値の配列
 		:返り値型:	array
@@ -298,7 +298,7 @@ URL を指すリンクになります。
 		ときに使用される独自のテンプレートを返します。
 
 
-	.. method:: parse_template()
+	.. php:method:: parse_template()
 
 		:返り値:	CI_Calendar インスタンス (メソッドチェーン)
 		:返り値型:	CI_Calendar

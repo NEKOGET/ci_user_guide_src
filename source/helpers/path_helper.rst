@@ -25,7 +25,7 @@ This helper is loaded using the following code::
 The following functions are available:
 
 
-.. function:: set_realpath($path[, $check_existance = FALSE])
+.. php:function:: set_realpath($path[, $check_existance = FALSE])
 
 	:param	string	$path: Path
 	:param	bool	$check_existance: Whether to check if the path actually exists

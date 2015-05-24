@@ -8,10 +8,10 @@
 .. toctree::
 	:titlesonly:
 
-	Upgrading from 2.2.x to 3.0.0 <upgrade_300>
-	Upgrading from 2.2.0 to 2.2.1 <upgrade_221>
-	Upgrading from 2.1.4 to 2.2.0 <upgrade_220>
-	Upgrading from 2.1.3 to 2.1.4 <upgrade_214>
+	2.2.x から 3.0.0 へのアップグレード <upgrade_300>
+	2.2.0 から 2.2.1 へのアップグレード <upgrade_221>
+	2.1.4 から 2.2.0 へのアップグレード <upgrade_220>
+	2.1.3 から 2.1.4 へのアップグレード <upgrade_214>
     2.1.2 から 2.1.3 へのアップグレード <upgrade_213>
     2.1.1 から 2.1.2 へのアップグレード <upgrade_212>
     2.1.0 から 2.1.1 へのアップグレード <upgrade_211>

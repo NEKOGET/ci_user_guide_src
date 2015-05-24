@@ -1,177 +1,177 @@
 #############################
-Upgrading from 2.2.x to 3.0.0
+2.2.x から 3.0.0 へのアップグレード
 #############################
 
-Before performing an update you should take your site offline by replacing the index.php file with a static one.
+アップグレードを行う前に、 index.phpファイルを静的ページに置き換えて、オフラインにする必要があります。
 
 *************************************
-Step 1: Update your CodeIgniter files
+Step 1: CodeIgniter ファイルのアップグレード
 *************************************
 
-Replace all files and directories in your "system" folder and replace
-your index.php file. If any modifications were made to your index.php
-they will need to be made fresh in this new one.
+"system" フォルダのすべてのファイルを新しいものに置き換えてください。
+index.php に何か変更を加えていた場合、
+新しいファイルに再度適用する必要があります。
 
-.. note:: If you have any custom developed files in these folders please
-	make copies of them first.
+.. note:: もし独自に開発したファイルをこのフォルダに入れているなら、
+	新しいもので置き換える前にコピーを取ってください。
 
 **************************************
-Step 2: Update your classes file names
+Step 2: クラスファイルの名前を更新
 **************************************
 
-Starting with CodeIgniter 3.0, all class filenames (libraries, drivers, controllers
-and models) must be named in a Ucfirst-like manner or in other words - they must
-start with a capital letter.
+CodeIgniter 3.0 以降、全てのクラスファイル
+（ライブラリ・ドライバ・コントローラ・モデル）はUcfirst形式、
+つまり大文字で始まるようにしなければなりません。
 
-For example, if you have the following library file:
+例えばあなたが次のようなライブラリを持っているなら
 
 	application/libraries/mylibrary.php
 
-... then you'll have to rename it to:
+このようにファイル名を変更します。
 
 	application/libraries/Mylibrary.php
 
-The same goes for driver libraries and extensions and/or overrides of CodeIgniter's
-own libraries and core classes.
+ドライバライブラリ、エクステンション、それからCodeIgniter付属の
+コアクラスやライブラリを上書きしている場合も同様です。
 
 	application/libraries/MY_email.php
 	application/core/MY_log.php
 
-The above files should respectively be renamed to the following:
+これらのファイル名は次のように変更します。
 
 	application/libraries/MY_Email.php
 	application/core/MY_Log.php
 
-Controllers:
+コントローラ:
 
 	application/controllers/welcome.php	->	application/controllers/Welcome.php
 
-Models:
+モデル:
 
 	application/models/misc_model.php	->	application/models/Misc_model.php
 
-Please note that this DOES NOT affect directories, configuration files, views,
-helpers, hooks and anything else - it is only applied to classes.
+このルールはディレクトリ名、設定ファイル、ビュー、ヘルパー、フック等には適用されません。
+クラスのみが対象です。
 
-You must now follow just one simple rule - class names in Ucfirst and everything else
-in lowercase.
+まとめると、次のシンプルなルールになります。
+クラス名はUcfirst、それ以外はlowercaseです。
 
 ********************************
-Step 3: Replace config/mimes.php
+Step 3: config/mimes.php の更新
 ********************************
 
-This config file has been updated to contain more user mime-types, please copy
-it to _application/config/mimes.php*.
+より多くのMIMEタイプを含むように更新されています。
+これを _application/config/mimes.php* にコピーしてください.
 
 **************************************************************
-Step 4: Remove $autoload['core'] from your config/autoload.php
+Step 4: config/autoload.php から $autoload['core'] を削除する
 **************************************************************
 
-Use of the ``$autoload['core']`` config array has been deprecated as of CodeIgniter 1.4.1 and is now removed.
-Move any entries that you might have listed there to ``$autoload['libraries']`` instead.
+``$autoload['core']`` は CodeIgniter 1.4.1 で非推奨になっていましたが、ついに削除されました。
+もし何か指定されていれば ``$autoload['libraries']`` に移動してください。
 
 ***************************************************
-Step 5: Move your Log class overrides or extensions
+Step 5: ログクラスへの拡張・置き換えを移動する
 ***************************************************
 
-The Log Class is considered as a "core" class and is now located in the
-**system/core/** directory. Therefore, in order for your Log class overrides
-or extensions to work, you need to move them to **application/core/**::
+ログクラスは "core" クラスとして扱われるようになったため、
+**system/core/** ディレクトリに移動されました。
+もしこのクラスを拡張・置き換えていた場合、それらのファイルを **application/core/** に移動してください::
 
 	application/libraries/Log.php -> application/core/Log.php
 	application/libraries/MY_Log.php -> application/core/MY_Log.php
 
 *****************************************
-Step 6: Update your Session library usage
+Step 6: セッションライブラリの使い方を更新する
 *****************************************
 
-The :doc:`Session Library </libraries/sessions>` has been completely
-re-written in CodeIgniter 3 and now comes with a bunch of new features,
-but that also means that there are changes that you should make ...
+:doc:`セッションライブラリ </libraries/sessions>` は CodeIgniter 3 で刷新され、
+様々な新機能が追加されています。
+しかし同時に、注意の必要な変更も加えられています。
 
-Most notably, the library now uses separate storage drivers instead of
-always relying on (encrypted) cookies.
-In fact, cookies as storage have now been removed and you must always use
-some kind of server-side storage engine, with the file-system being the
-default option.
+最も大きな変更は、（暗号化された）クッキーの代わりに
+独立したストレージを使うようになったことです。
+データの格納先としてのクッキーは完全に廃止されたので、
+今後はサーバー上のストレージを使わなければなりません。
+デフォルトではファイルシステムが使われます。
 
-The Session Class now utilizes PHP's own mechanisms for building custom
-session handlers, which also means that your session data is now
-accessible via the ``$_SESSION`` superglobal (though, we've kept the
-possibility to use it as "userdata", like you've done until now).
+新しいセッションクラスはPHPのカスタムセッションハンドラを利用しています。
+これによりスーパーグローバルの ``$_SESSION`` からも
+セッションにアクセスできるようになりました。
+（これまで同様 "userdata" としても使えます）
 
-A few configuration options have been removed and a few have been added.
-You should really read the whole :doc:`Session library manual
-</libraries/sessions>` for the details, but here's a short list of changes
-that you should make:
+構成オプションも追加・削除されています。
+詳しくは :doc:`セッションライブラリのマニュアル </libraries/sessions>` を
+確認されることをお勧めしますが、
+ここでもいくつかのポイントを説明します。
 
-  - Set your ``$config['sess_driver']`` value
+  - ``$config['sess_driver']`` の追加
 
-    It will default to 'files', unles you've previously used
-    ``$config['sess_use_database']``, in which case it will be set to
-    'database'.
+    デフォルトは 'files' ですが、もしあなたが
+    ``$config['sess_use_database']`` を設定していた場合は
+    'database' になります。
 
-  - Set a ``$config['sess_save_path']`` value
+  - ``$config['sess_save_path']`` の追加
 
-    For the 'database' driver, a fallback to ``$config['sess_table_name']``
-    is in place, but otherwise requires you to read the manual for the
-    specific driver of your choice.
+    'database' ドライバでは ``$config['sess_table_name']`` に
+    フォールバックしますが、それ以外のドライバではマニュアルを参照して
+    適切な値を設定する必要があります。
 
-  - Update your ``ci_sessions`` table ('database' driver only)
+  - ``ci_sessions`` テーブルの変更 ('database' ドライバのみ)
 
-    The table structure has changed a bit, and more specifically:
+    テーブルの構造が少し変更されています。
 
-      - ``session_id`` field is renamed to ``id``
-      - ``user_agent`` field is dropped
-      - ``user_data`` field is renamed to ``data`` and under MySQL is now of type BLOB
-      - ``last_activity`` field is renamed to ``timestamp``
+      - ``session_id`` 列は ``id`` に名前が変わりました
+      - ``user_agent`` 列は削除されました
+      - ``user_data`` 列は ``data`` に名前が変わり、 MySQL では BLOB 型が使われます
+      - ``last_activity`` 列は ``timestamp`` に名前が変わりました
 
-    This is accompanied by a slight change in the table indexes too, so
-    please read the manual about the `Session Database Driver
-    <../libraries/sessions.html#database-driver>`_ for more information.
+    これに伴いインデックスも更新が必要です。
+    詳しくは `databaseドライバ
+    <../libraries/sessions.html#database-driver>`_ の説明を参照してください。
 
-    .. important:: Only MySQL and PostgreSQL are officially supported
-    	now. Other databases may still work, but due to lack of advisory
-    	locking features, they are unsafe for concurrent requests and
-    	you should consider using another driver instead.
+    .. important:: 現在公式にサポートしているのは MySQL と PostgreSQL のみです。
+    	他のデータベースでも動作するかもしれませんが、助言ロックがないために
+    	同時アクセスに対して安全ではありません。
+        この場合は他のドライバを検討してください。
 
-  - Remove ``$config['sess_match_useragent']``
+  - ``$config['sess_match_useragent']`` の廃止
 
-    The user-agent string is input supplied by the user's browser, or in
-    other words: client side input. As such, it is an ineffective feature
-    and hence why it has been removed.
+    User-Agent はブラウザから提供される値、つまりクライアントからの
+    入力値です。これを検証しても意味がないので、
+    この機能は廃止されました。
 
-  - Remove ``$config['sess_encrypt_cookie']``
+  - ``$config['sess_encrypt_cookie']`` の廃止
 
-    As already noted, the library no longer uses cookies as a storage
-    mechanism, which renders this option useless.
+    前述の通り、今後クッキーにセッションデータが格納されることは
+    ありませんから、このオプションもお役御免になりました。
 
-  - Remove ``$config['sess_expire_on_close']``
+  - ``$config['sess_expire_on_close']`` の廃止
 
-    This option is still usable, but only for backwards compatibility
-    purposes and it should be otherwise removed. The same effect is
-    achieved by setting ``$config['sess_expiration']`` to 0.
+    このオプションはまだ使えますが、後方互換性のためだけに残されています。
+    同じ効果は ``$config['sess_expiration']`` を 0 に設定することでも
+    得ることができます。
 
-  - Check "flashdata" for collisions with "userdata"
+  - "flashdata" と "userdata" の衝突に注意
 
-    Flashdata is now just regular "userdata", only marked for deletion on
-    the next request. In other words: you can't have both "userdata" and
-    "flashdata" with the same name, because it's the same thing.
+    フラッシュデータは次のリクエストで削除するようにマークされている以外は
+    ただの "userdata" になりました。 つまり、同じ名前の "userdata" と
+    "flashdata" を別々に扱うことはできません。
 
-  - Check usage of session metadata
+  - セッションメタデータについて
 
-    Previously, you could access the 'session_id', 'ip_address',
-    'user_agent' and 'last_activity' metadata items as userdata.
-    This is no longer possible, and you should read the notes about
-    `Session Metadata <../libraries/sessions.html#accessing-session-metadata>`_
-    if your application relies on those values.
+    これまでは 'session_id' 、'ip_address' 、'user_agent' 、'last_activity' 
+    といったメタデータに userdata としてアクセスできましたが、
+    今後はできません。もしこれらのデータを利用しているなら、
+    `セッションメタデータ <../libraries/sessions.html#accessing-session-metadata>`_
+    に関する説明を参照してください。
 
-  - Check ``unset_userdata()`` usage
+  - ``unset_userdata()`` について
 
-    Previously, this method used to accept an associative array of
-    ``'key' => 'dummy value'`` pairs for unsetting multiple keys. That
-    however makes no sense and you now have to pass *only* the keys, as
-    the elements of an array.
+    これまでは ``'key' => 'dummy value'`` といった連想配列で、
+    一度に複数のキーを削除していました。
+    この無駄な方法は廃止されたので、
+    今後はキー *だけ* を配列の要素として渡さなければなりません。
 
     ::
 
@@ -181,62 +181,62 @@ that you should make:
     	// New
     	$this->session->unset_userdata(array('item', 'item2'));
 
-Finally, if you have written a Session extension, you must now move it to
-the *application/libraries/Session/* directory, although chances are that
-it will now also have to be re-factored.
+もしセッション拡張を使っていたら、
+（おそらく修正が必要ですが）
+*application/libraries/Session/* ディレクトリに移動してください。
 
 ***************************************
-Step 7: Update your config/database.php
+Step 7: config/database.php の更新
 ***************************************
 
-Due to 3.0.0's renaming of Active Record to Query Builder, inside your
-**config/database.php**, you will need to rename the ``$active_record``
-variable to ``$query_builder``::
+3.0.0 で Active Record から Query Builder に名前が変更されたので、
+**config/database.php** の ``$active_record`` 変数も
+``$query_builder`` に変更する必要があります::
 
 	$active_group = 'default';
 	// $active_record = TRUE;
 	$query_builder = TRUE;
 
 ************************************
-Step 8: Replace your error templates
+Step 8: エラーテンプレートの置き換え
 ************************************
 
-In CodeIgniter 3.0, the error templates are now considered as views and have been moved to the
-_application/views/errors* directory.
+CodeIgniter 3.0 ではエラーテンプレートもビューとして扱われ、
+_application/views/errors* ディレクトリに移動されました。
 
-Furthermore, we've added support for CLI error templates in plain-text format that unlike HTML,
-is suitable for the command line. This of course requires another level of separation.
+また、CLI向けにプレインテキストのエラーテンプレートを
+サポートするようになりました。これも新たに分ける必要があります。
 
-It is safe to move your old templates from _application/errors* to _application/views/errors/html*,
-but you'll have to copy the new _application/views/errors/cli* directory from the CodeIgniter archive.
+これまでのテンプレートは _application/errors* から _application/views/errors/html* にそのまま移動して構いませんが、
+新しい _application/views/errors/cli* ディレクトリには CodeIgniter のアーカイブからコピーしてください。
 
 ******************************************
-Step 9: Update your config/routes.php file
+Step 9: config/routes.php ファイルの更新
 ******************************************
 
-Routes containing :any
+:any を含むルート
 ======================
 
-Historically, CodeIgniter has always provided the **:any** wildcard in
-routing, with the intention of providing a way to match any character
-**within** an URI segment.
+歴史的に、 CodeIgniter はこれまでずっとワイルドカード **:any** を
+提供してきました。これは URI セグメント **内** で
+任意の文字列にマッチします。
 
-However, the **:any** wildcard is actually just an alias for a regular
-expression and used to be executed in that manner as **.+**. This is
-considered a bug, as it also matches the / (forward slash) character, which
-is the URI segment delimiter and that was never the intention.
+しかし実際の **:any** は **.+** という正規表現のエイリアスとして
+処理されていました。この正規表現は URI セグメントの
+区切り文字である / (スラッシュ) にもマッチするため、
+意図しない挙動を生むことになります。
 
-In CodeIgniter 3, the **:any** wildcard will now represent **[^/]+**, so
-that it will not match a forward slash.
+CodeIgniter 3 では **:any** が **[^/]+** を表わすようになり、
+スラッシュにマッチすることはなくなりました。
 
-There are certainly many developers that have utilized this bug as an actual
-feature. If you're one of them and want to match a forward slash, please use
-the **.+** regular expression::
+一方でこのバグを活用していた開発者もいることでしょう。
+もしあなたがその一人で、引き続きスラッシュにマッチさせたいなら、
+正規表現 **.+** を使ってください::
 
-	(.+)	// matches ANYTHING
-	(:any)	// matches any character, except for '/'
+	(.+)	// 全ての文字にマッチする
+	(:any)	// '/' 以外、全ての文字にマッチする
 
-Directories and 'default_controller', '404_override'
+ディレクトリと 'default_controller', '404_override'
 ====================================================
 
 As you should know, the ``$route['default_controller']`` and
@@ -268,7 +268,7 @@ admin/ directory as well. If not found, it will fallback to the parent
 The same rule applies to the '404_override' setting.
 
 *************************************************************************
-Step 10: Many functions now return NULL instead of FALSE on missing items
+Step 10: 要素が存在しないとき、FALSEではなくNULLを返すようになりました
 *************************************************************************
 
 Many methods and functions now return NULL instead of FALSE when the required items don't exist:
@@ -308,7 +308,7 @@ Many methods and functions now return NULL instead of FALSE when the required it
    - elements()
 
 *******************************
-Step 11: Usage of XSS filtering
+Step 11: XSS フィルタについて
 *******************************
 
 Many functions in CodeIgniter allow you to use its XSS filtering feature
@@ -339,7 +339,7 @@ Otherwise however, please review your usage of the following functions:
 	automatically overwritten when global XSS filtering is turned on.
 
 *************************************************
-Step 12: Check for potential XSS issues with URIs
+Step 12: URI にまつわる潜在的な XSS 問題に注意
 *************************************************
 
 The :doc:`URI Library <../libraries/uri>` used to automatically convert
@@ -355,7 +355,7 @@ filter URI segments through ``$this->security->xss_clean()`` whenever you
 output them.
 
 ****************************************************************
-Step 13: Check for usage of the 'xss_clean' Form validation rule
+Step 13: バリデーションルールから 'xss_clean' を使う際の注意
 ****************************************************************
 
 A largely unknown rule about XSS cleaning is that it should *only be
@@ -376,7 +376,7 @@ If you really, really need to apply that rule, you should now also load the
 a validation rule.
 
 ********************************************************
-Step 14: Update usage of Input Class's get_post() method
+Step 14: 入力クラス get_post() メソッドの変更点
 ********************************************************
 
 Previously, the :doc:`Input Class <../libraries/input>` method ``get_post()``
@@ -387,14 +387,14 @@ A method has been added, ``post_get()``, which searches in POST then in GET, as
 ``get_post()`` was doing before.
 
 ********************************************************************
-Step 15: Update usage of Directory Helper's directory_map() function
+Step 15: ディレクトリヘルパー directory_map() 関数の変更点
 ********************************************************************
 
 In the resulting array, directories now end with a trailing directory
 separator (i.e. a slash, usually).
 
 *************************************************************
-Step 16: Update usage of Database Forge's drop_table() method
+Step 16: データベースフォージ drop_table() メソッドの変更点
 *************************************************************
 
 Up until now, ``drop_table()`` added an IF EXISTS clause by default or it didn't work
@@ -416,7 +416,7 @@ If your application relies on IF EXISTS, you'll have to change its usage.
 	all drivers with the exception of ODBC.
 
 ***********************************************************
-Step 17: Change usage of Email library with multiple emails
+Step 17: Email ライブラリで複数のメールを送る際の変更点
 ***********************************************************
 
 The :doc:`Email Library <../libraries/email>` will automatically clear the
@@ -431,7 +431,7 @@ pass FALSE as the first parameter in the ``send()`` method:
  	}
 
 ***************************************************
-Step 18: Update your Form_validation language lines
+Step 18: Form_validation の言語ファイル
 ***************************************************
 
 Two improvements have been made to the :doc:`Form Validation Library
@@ -462,7 +462,7 @@ files and error messages format:
 	later.
 
 ****************************************************************
-Step 19: Remove usage of (previously) deprecated functionalities
+Step 19: (以前から)非推奨だった機能の廃止
 ****************************************************************
 
 In addition to the ``$autoload['core']`` configuration setting, there's a
@@ -809,7 +809,7 @@ It is now deprecated and scheduled for removal in CodeIgniter 3.1+.
 	sooner rather than later.
 
 ***********************************************************
-Step 20: Check your usage of Text helper highlight_phrase()
+Step 20: テキストヘルパー highlight_phrase() の注意点
 ***********************************************************
 
 The default HTML tag used by :doc:`Text Helper <../helpers/text_helper>` function

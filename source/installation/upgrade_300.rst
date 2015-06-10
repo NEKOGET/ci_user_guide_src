@@ -8,10 +8,14 @@
 Step 1: CodeIgniter ファイルのアップグレード
 *************************************
 
-"system" フォルダのすべてのファイルを新しいものに置き換えてください。
+**Replace** "system" フォルダのすべてのファイルを新しいものに置き換えてください。
 index.php に何か変更を加えていた場合、
 新しいファイルに再度適用する必要があります。
 
+.. important:: You have to delete the old *system/* directory first and
+	then put the new one in its place. A simple copy-paste may cause
+	issues.
+	
 .. note:: もし独自に開発したファイルをこのフォルダに入れているなら、
 	新しいもので置き換える前にコピーを取ってください。
 
@@ -34,12 +38,12 @@ CodeIgniter 3.0 以降、全てのクラスファイル
 ドライバライブラリ、エクステンション、それからCodeIgniter付属の
 コアクラスやライブラリを上書きしている場合も同様です。
 
-	application/libraries/MY_email.php
+	application/libraries/MY_email.php  
 	application/core/MY_log.php
 
 これらのファイル名は次のように変更します。
 
-	application/libraries/MY_Email.php
+	application/libraries/MY_Email.php  
 	application/core/MY_Log.php
 
 コントローラ:
@@ -76,9 +80,9 @@ Step 5: ログクラスへの拡張・置き換えを移動する
 
 ログクラスは "core" クラスとして扱われるようになったため、
 **system/core/** ディレクトリに移動されました。
-もしこのクラスを拡張・置き換えていた場合、それらのファイルを **application/core/** に移動してください::
+もしこのクラスを拡張・置き換えていた場合、それらのファイルを **application/core/** に移動してください:
 
-	application/libraries/Log.php -> application/core/Log.php
+	application/libraries/Log.php -> application/core/Log.php  
 	application/libraries/MY_Log.php -> application/core/MY_Log.php
 
 *****************************************

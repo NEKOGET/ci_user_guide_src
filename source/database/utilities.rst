@@ -18,7 +18,7 @@ Initializing the Utility Class
 
 Load the Utility Class as follows::
 
-	$this->load->dbutil()
+	$this->load->dbutil();
 
 You can also pass another database object to the DB Utility loader, in case
 the database you want to manage isn't the default one::
@@ -35,7 +35,7 @@ assigning it directly to ``$this->dbutil``.
 Once initialized you will access the methods using the ``$this->dbutil``
 object::
 
-	$this->dbutil->some_method()
+	$this->dbutil->some_method();
 
 ****************************
 Using the Database Utilities
@@ -65,7 +65,7 @@ Returns a boolean TRUE/FALSE. Usage example::
 		// some code...
 	}
 
-.. note:: Replace *database_name* with the name of the table you are
+.. note:: Replace *database_name* with the name of the database you are
 	looking for. This method is case sensitive.
 
 Optimize a Table
@@ -111,7 +111,7 @@ FALSE on failure.
 		print_r($result);
 	}
 
-.. note:: Not all database platforms support table optimization. It
+.. note:: Not all database platforms support database optimization. It
 	it is mostly for use with MySQL.
 
 Export a Query Result as a CSV File
@@ -180,7 +180,7 @@ backup data can be compressed in either Zip or Gzip format.
 
 .. note:: For Interbase/Firebird databases, the backup file name is the only parameter.
 
-		Eg. $this->dbutil->backup('db_backup_filename');
+		$this->dbutil->backup('db_backup_filename');
 
 .. note:: Due to the limited execution time and memory available to PHP,
 	backing up very large databases may not be possible. If your database is
@@ -197,7 +197,7 @@ Usage Example
 	$this->load->dbutil();
 
 	// Backup your entire database and assign it to a variable
-	$backup =& $this->dbutil->backup();
+	$backup = $this->dbutil->backup();
 
 	// Load the file helper and write the file to your server
 	$this->load->helper('file');
@@ -247,17 +247,17 @@ Preference              Default Value           Options                 Descript
 Class Reference
 ***************
 
-.. class:: CI_DB_utility
+.. php:class:: CI_DB_utility
 
-	.. method:: backup([$params = array()])
+	.. php:method:: backup([$params = array()])
 
 		:param	array	$params: An associative array of options
-		:returns:	void
-		:rtype:	void
+		:returns:	raw/(g)zipped SQL query string
+		:rtype:	string
 
 		Perform a database backup, per user preferences.
 
-	.. method:: database_exists($database_name)
+	.. php:method:: database_exists($database_name)
 
 		:param	string	$database_name: Database name
 		:returns:	TRUE if the database exists, FALSE otherwise
@@ -265,21 +265,21 @@ Class Reference
 
 		Check for the existence of a database.
 
-	.. method:: list_databases()
+	.. php:method:: list_databases()
 
 		:returns:	Array of database names found
 		:rtype:	array
 
 		Retrieve a list of all the database names.
 
-	.. method:: optimize_database()
+	.. php:method:: optimize_database()
 
 		:returns:	Array of optimization messages or FALSE on failure
 		:rtype:	array
 
 		Optimizes the database.
 
-	.. method:: optimize_table($table_name)
+	.. php:method:: optimize_table($table_name)
 
 		:param	string	$table_name:	Name of the table to optimize
 		:returns:	Array of optimization messages or FALSE on failure
@@ -287,7 +287,7 @@ Class Reference
 
 		Optimizes a database table.
 
-	.. method:: repair_table($table_name)
+	.. php:method:: repair_table($table_name)
 
 		:param	string	$table_name:	Name of the table to repair
 		:returns:	Array of repair messages or FALSE on failure
@@ -295,7 +295,7 @@ Class Reference
 
 		Repairs a database table.
 
-	.. method:: csv_from_results($query[, $delim = ','[, $newline = "\n"[, $enclosure = '"']]])
+	.. php:method:: csv_from_result($query[, $delim = ','[, $newline = "\n"[, $enclosure = '"']]])
 
 		:param	object	$query:	A database result object
 		:param	string	$delim: The CSV field delimiter to use
@@ -306,7 +306,7 @@ Class Reference
 
 		Translates a database result object into a CSV document.
 
-	.. method:: xml_from_results($query[, $params = array()])
+	.. php:method:: xml_from_result($query[, $params = array()])
 
 		:param	object	$query: A database result object
 		:param	array	$params: An associative array of preferences

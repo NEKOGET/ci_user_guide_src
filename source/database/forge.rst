@@ -143,13 +143,15 @@ string into the field definitions with add_field()
 	$this->dbforge->add_field("label varchar(100) NOT NULL DEFAULT 'default label'");
 
 
+.. note:: Passing raw strings as fields cannot be followed by ``add_key()`` calls on those fields.
+
 .. note:: Multiple calls to add_field() are cumulative.
 
 Creating an id field
 --------------------
 
 There is a special exception for creating id fields. A field with type
-id will automatically be assinged as an INT(9) auto_incrementing
+id will automatically be assigned as an INT(9) auto_incrementing
 Primary Key.
 
 ::
@@ -227,7 +229,7 @@ Execute a DROP TABLE statement and optionally add an IF EXISTS clause.
 	$this->dbforge->drop_table('table_name');
 
 	// Produces: DROP TABLE IF EXISTS table_name
-	$this->dbforge->drop_table('table_name');
+	$this->dbforge->drop_table('table_name',TRUE);
 
 
 Renaming a table
@@ -316,9 +318,9 @@ change the name you can add a "name" key into the field defining array.
 Class Reference
 ***************
 
-.. class:: CI_DB_forge
+.. php:class:: CI_DB_forge
 
-	.. method:: add_column($table[, $field = array()[, $_after = NULL]])
+	.. php:method:: add_column($table[, $field = array()[, $_after = NULL]])
 
 		:param	string	$table: Table name to add the column to
 		:param	array	$field: Column definition(s)
@@ -328,7 +330,7 @@ Class Reference
 
 		Adds a column to a table. Usage:  See `Adding a Column to a Table`_.
 
-	.. method:: add_field($field)
+	.. php:method:: add_field($field)
 
 		:param	array	$field: Field definition to add
 		:returns:	CI_DB_forge instance (method chaining)
@@ -336,7 +338,7 @@ Class Reference
 
                 Adds a field to the set that will be used to create a table. Usage:  See `Adding fields`_.
 
-	.. method:: add_key($key[, $primary = FALSE])
+	.. php:method:: add_key($key[, $primary = FALSE])
 
 		:param	array	$key: Name of a key field
 		:param	bool	$primary: Set to TRUE if it should be a primary key or a regular one
@@ -345,7 +347,7 @@ Class Reference
 
 		Adds a key to the set that will be used to create a table. Usage:  See `Adding Keys`_.
 
-	.. method:: create_database($db_name)
+	.. php:method:: create_database($db_name)
 
 		:param	string	$db_name: Name of the database to create
 		:returns:	TRUE on success, FALSE on failure
@@ -353,7 +355,7 @@ Class Reference
 
 		Creates a new database. Usage:  See `Creating and Dropping Databases`_.
 
-	.. method:: create_table($table[, $if_not_exists = FALSE[, array $attributes = array()]])
+	.. php:method:: create_table($table[, $if_not_exists = FALSE[, array $attributes = array()]])
 
 		:param	string	$table: Name of the table to create
 		:param	string	$if_not_exists: Set to TRUE to add an 'IF NOT EXISTS' clause
@@ -363,7 +365,7 @@ Class Reference
 
 		Creates a new table. Usage:  See `Creating a table`_.
 
-	.. method:: drop_column($table, $column_name)
+	.. php:method:: drop_column($table, $column_name)
 
 		:param	string	$table: Table name
 		:param	array	$column_name: The column name to drop
@@ -372,7 +374,7 @@ Class Reference
 
 		Drops a column from a table. Usage:  See `Dropping a Column From a Table`_.
 
-	.. method:: drop_database($db_name)
+	.. php:method:: drop_database($db_name)
 
 		:param	string	$db_name: Name of the database to drop
 		:returns:	TRUE on success, FALSE on failure
@@ -380,7 +382,7 @@ Class Reference
 
 		Drops a database. Usage:  See `Creating and Dropping Databases`_.
 
-	.. method:: drop_table($table_name[, $if_exists = FALSE])
+	.. php:method:: drop_table($table_name[, $if_exists = FALSE])
 
 		:param	string	$table: Name of the table to drop
 		:param	string	$if_exists: Set to TRUE to add an 'IF EXISTS' clause
@@ -389,7 +391,7 @@ Class Reference
 
 		Drops a table. Usage:  See `Dropping a table`_.
 
-	.. method:: modify_column($table, $field)
+	.. php:method:: modify_column($table, $field)
 
 		:param	string	$table: Table name
 		:param	array	$field: Column definition(s)
@@ -398,7 +400,7 @@ Class Reference
 
 		Modifies a table column. Usage:  See `Modifying a Column in a Table`_.
 
-	.. method:: rename_table($table_name, $new_table_name)
+	.. php:method:: rename_table($table_name, $new_table_name)
 
 		:param	string	$table: Current of the table
 		:param	string	$new_table_name: New name of the table

@@ -1,6 +1,6 @@
-#########################
+######################
 CodeIgniter ユーザーガイド
-#########################
+######################
 
 - :doc:`License Agreement <license>`
 - :doc:`Change Log <changelog>`
@@ -54,6 +54,16 @@ Welcome
 
 	tutorial/index
 
+***************************
+CodeIgniterへの貢献について
+***************************
+
+.. toctree::
+	:glob:
+	:titlesonly:
+
+	contributing/index
+
 **************
 一般的なトピック
 **************
@@ -93,16 +103,6 @@ Welcome
 	:titlesonly:
 
 	helpers/index
-
-***************************
-CodeIgniterへの貢献について
-***************************
-
-.. toctree::
-	:glob:
-	:titlesonly:
-
-	contributing/index
 
 .. toctree::
 	:glob:

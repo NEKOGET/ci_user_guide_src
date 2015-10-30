@@ -8,7 +8,13 @@
 .. toctree::
 	:titlesonly:
 
+	Upgrading from 3.0.x to 3.1.x <upgrade_310>
+	Upgrading from 3.0.2 to 3.0.3 <upgrade_303>
+	Upgrading from 3.0.1 to 3.0.2 <upgrade_302>
+	Upgrading from 3.0.0 to 3.0.1 <upgrade_301>
 	2.2.x から 3.0.0 へのアップグレード <upgrade_300>
+	Upgrading from 2.2.2 to 2.2.3 <upgrade_223>
+	Upgrading from 2.2.1 to 2.2.2 <upgrade_222>
 	2.2.0 から 2.2.1 へのアップグレード <upgrade_221>
 	2.1.4 から 2.2.0 へのアップグレード <upgrade_220>
 	2.1.3 から 2.1.4 へのアップグレード <upgrade_214>

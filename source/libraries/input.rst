@@ -58,10 +58,10 @@ information on using XSS Filtering in your application.
 	be performed on *output*, not *input*!
 
 *******************
-データにアクセスする
+Accessing form data
 *******************
 
-POST、COOKIE、あるいは SERVER データの使用
+Using POST, GET, COOKIE, or SERVER Data
 =======================================
 
 CodeIgniter comes with helper methods that let you fetch POST, GET,
@@ -132,10 +132,10 @@ a boolean value as the second parameter::
 
 	.. php:method:: post([$index = NULL[, $xss_clean = NULL]])
 
-		:パラメータ	mixed	$index: POST parameter name
-		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	$_POST if no parameters supplied, otherwise the POST value if found or NULL if not
-		:返り値型:	mixed
+		:param	mixed	$index: POST parameter name
+		:param	bool	$xss_clean: Whether to apply XSS filtering
+		:returns:	$_POST if no parameters supplied, otherwise the POST value if found or NULL if not
+		:rtype:	mixed
 
 		The first parameter will contain the name of the POST item you are
 		looking for::
@@ -423,7 +423,7 @@ a boolean value as the second parameter::
 
 		:パラメータ	string	$index: HTTP request header name
 		:パラメータ	bool	$xss_clean: Whether to apply XSS filtering
-		:返り値:	An HTTP request header or NULL if not found
+		:返り値:	    An HTTP request header or NULL if not found
 		:返り値型:	string
 
 		Returns a single member of the request headers array or NULL
@@ -462,7 +462,7 @@ a boolean value as the second parameter::
 	.. php:method:: method([$upper = FALSE])
 
 		:パラメータ	bool	$upper: Whether to return the request method name in upper or lower case
-		:返り値:	HTTP request method
+		:返り値:	    HTTP request method
 		:返り値型:	string
 
 		Returns the ``$_SERVER['REQUEST_METHOD']``, with the option to set it

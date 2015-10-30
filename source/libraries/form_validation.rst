@@ -547,7 +547,10 @@ All of the native error messages are located in the following language
 file: **system/language/english/form_validation_lang.php**
 
 To set your own global custom message for a rule, you can either 
-edit that file, or use the following method::
+extend/override the language file by creating your own in
+**application/language/english/form_validation_lang.php** (read more
+about this in the :doc:`Language Class <language>` documentation),
+or use the following method::
 
 	$this->form_validation->set_message('rule', 'Error Message');
 
@@ -689,8 +692,12 @@ In this case, you can specify the array to be validated::
 
 	$this->form_validation->set_data($data);
 
-Creating validation rules, running the validation, and retrieving error messages works the
-same whether you are validating ``$_POST`` data or an array.
+Creating validation rules, running the validation, and retrieving error
+messages works the same whether you are validating ``$_POST`` data or
+another array of your choice.
+
+.. important:: You have to call the ``set_data()`` method *before* defining
+	any validation rules.
 
 .. important:: If you want to validate more than one array during a single
 	execution, then you should call the ``reset_validation()`` method
@@ -1000,7 +1007,7 @@ The following is a list of all the prepping methods that are available
 to use:
 
 ==================== ========= =======================================================================================================
-名前                 パラメータ 説明
+名前                  Parameter 説明
 ==================== ========= =======================================================================================================
 **prep_for_form**    No        Converts special characters so that HTML data can be shown in a form field without breaking it.
 **prep_url**         No        Adds "\http://" to URLs if missing.
@@ -1037,7 +1044,7 @@ to use:
 	.. php:method:: run([$group = ''])
 
 		:パラメータ	string	$group: The name of the validation group to run
-		:返り値:	TRUE on success, FALSE if validation failed
+		:返り値:	    TRUE on success, FALSE if validation failed
 		:返り値型:	bool
 
 		Runs the validation routines. Returns boolean TRUE on success and FALSE
@@ -1057,7 +1064,7 @@ to use:
 
 		:パラメータ	string	$prefix: Error message prefix
 		:パラメータ	string	$suffix: Error message suffix
-		:返り値:	CI_Form_validation instance (method chaining)
+		:返り値:	    CI_Form_validation instance (method chaining)
 		:返り値型:	CI_Form_validation
 
 		Sets the default prefix and suffix for error messages.
@@ -1065,7 +1072,7 @@ to use:
 	.. php:method:: set_data($data)
 
 		:パラメータ	array	$data: Array of data validate
-		:返り値:	CI_Form_validation instance (method chaining)
+		:返り値:  	CI_Form_validation instance (method chaining)
 		:返り値型:	CI_Form_validation
 
 		Permits you to set an array for validation, instead of using the default
@@ -1073,7 +1080,7 @@ to use:
 
 	.. php:method:: reset_validation()
 
-		:返り値:	CI_Form_validation instance (method chaining)
+		:返り値:	    CI_Form_validation instance (method chaining)
 		:返り値型:	CI_Form_validation
 
 		Permits you to reset the validation when you validate more than one array.
@@ -1081,7 +1088,7 @@ to use:
 
 	.. php:method:: error_array()
 
-		:返り値:	Array of error messages
+		:返り値:	    Array of error messages
 		:返り値型:	array
 
 		Returns the error messages as an array.
@@ -1090,7 +1097,7 @@ to use:
 
 		:パラメータ	string	$prefix: Error message prefix
 		:パラメータ	string	$suffix: Error message suffix
-		:返り値:	Error messages as a string
+		:返り値:	    Error messages as a string
 		:返り値型:	string
 
 		Returns all error messages (as returned from error_array()) formatted as a
@@ -1101,7 +1108,7 @@ to use:
 		:パラメータ	string $field: Field name
 		:パラメータ	string $prefix: Optional prefix
 		:パラメータ	string $suffix: Optional suffix
-		:返り値:	Error message string
+		:返り値:	    Error message string
 		:返り値型:	string
 
 		Returns the error message for a specific field, optionally adding a
@@ -1110,7 +1117,7 @@ to use:
 	.. php:method:: has_rule($field)
 
 		:パラメータ	string	$field: Field name
-		:返り値:	TRUE if the field has rules set, FALSE if not
+		:返り値:	    TRUE if the field has rules set, FALSE if not
 		:返り値型:	bool
 
 		Checks to see if there is a rule set for the specified field.

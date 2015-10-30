@@ -15,7 +15,7 @@ index.php に何か変更を加えていた場合、
 .. important:: You have to delete the old *system/* directory first and
 	then put the new one in its place. A simple copy-paste may cause
 	issues.
-	
+
 .. note:: もし独自に開発したファイルをこのフォルダに入れているなら、
 	新しいもので置き換える前にコピーを取ってください。
 
@@ -164,7 +164,7 @@ Step 6: セッションライブラリの使い方を更新する
 
   - セッションメタデータについて
 
-    これまでは 'session_id' 、'ip_address' 、'user_agent' 、'last_activity' 
+    これまでは 'session_id' 、'ip_address' 、'user_agent' 、'last_activity'
     といったメタデータに userdata としてアクセスできましたが、
     今後はできません。もしこれらのデータを利用しているなら、
     `セッションメタデータ <../libraries/sessions.html#accessing-session-metadata>`_
@@ -266,8 +266,7 @@ cause your 'Main' controller to be loaded.
 However, what happens if you have an *application/controllers/admin/*
 directory and the user visits ``http://example.com/admin/``?
 In CodeIgniter 3, the router will look for a 'Main' controller under the
-admin/ directory as well. If not found, it will fallback to the parent
-(*application/controllers/*) directory, like in version 2.x.
+admin/ directory as well. If not found, a Not Found (404) will be triggered.
 
 The same rule applies to the '404_override' setting.
 

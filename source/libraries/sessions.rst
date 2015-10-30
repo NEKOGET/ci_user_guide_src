@@ -17,7 +17,7 @@ kinds of storage, while still taking advantage of the features of the
 Session class.
 
 .. contents::
-:local:
+  :local:
 
 .. raw:: html
 
@@ -32,14 +32,14 @@ Session class.
 
 Sessions will typically run globally with each page load, so the Session
 class should either be initialized in your :doc:`controller
-	<../general/controllers>` constructors, or it can be :doc:`auto-loaded
-	<../general/autoloader>` by the system.
-	For the most part the session class will run unattended in the background,
-	so simply initializing the class will cause it to read, create, and update
-	sessions when necessary.
+<../general/controllers>` constructors, or it can be :doc:`auto-loaded
+<../general/autoloader>` by the system.
+For the most part the session class will run unattended in the background,
+so simply initializing the class will cause it to read, create, and update
+sessions when necessary.
 
-	To initialize the Session class manually in your controller constructor,
-	use the ``$this->load->library()`` method::
+To initialize the Session class manually in your controller constructor,
+use the ``$this->load->library()`` method::
 
 	$this->load->library('session');
 
@@ -598,7 +598,6 @@ For MySQL::
 		`ip_address` varchar(45) NOT NULL,
 		`timestamp` int(10) unsigned DEFAULT 0 NOT NULL,
 		`data` blob NOT NULL,
-		PRIMARY KEY (id),
 		KEY `ci_sessions_timestamp` (`timestamp`)
 	);
 
@@ -608,17 +607,23 @@ For PostgreSQL::
 		"id" varchar(40) NOT NULL,
 		"ip_address" varchar(45) NOT NULL,
 		"timestamp" bigint DEFAULT 0 NOT NULL,
-		"data" text DEFAULT '' NOT NULL,
-		PRIMARY KEY ("id")
+		"data" text DEFAULT '' NOT NULL
 	);
 
 	CREATE INDEX "ci_sessions_timestamp" ON "ci_sessions" ("timestamp");
 
-However, if you want to turn on the *sess_match_ip* setting, you should
-also do the following, after creating the table::
+You will also need to add a PRIMARY KEY **depending on your 'sess_match_ip'
+setting**. The examples below work both on MySQL and PostgreSQL::
 
-	// Works both on MySQL and PostgreSQL
-	ALTER TABLE ci_sessions ADD CONSTRAINT ci_sessions_id_ip UNIQUE (id, ip_address);
+	// When sess_match_ip = TRUE
+	ALTER TABLE ci_sessions ADD PRIMARY KEY (id, ip_address);
+
+	// When sess_match_ip = FALSE
+	ALTER TABLE ci_sessions ADD PRIMARY KEY (id);
+
+	// To drop a previously created primary key (use when changing the setting)
+	ALTER TABLE ci_sessions DROP PRIMARY KEY;
+
 
 .. important:: Only MySQL and PostgreSQL databases are officially
 	supported, due to lack of advisory locking mechanisms on other
@@ -752,7 +757,7 @@ when creating a session driver for CodeIgniter:
     <http://php.net/sessionhandlerinterface>`_ interface.
 
     .. note:: You may notice that ``SessionHandlerInterface`` is provided
-by PHP since version 5.4.0. CodeIgniter will automatically declare
+    	by PHP since version 5.4.0. CodeIgniter will automatically declare
     	the same interface if you're running an older PHP version.
 
     The link will explain why and how.
@@ -817,14 +822,14 @@ Class Reference
 	.. php:method:: userdata([$key = NULL])
 
 		:param	mixed	$key: Session item key or NULL
-			:returns:	Value of the specified item key, or an array of all userdata
-			:rtype:	mixed
+		:returns:	Value of the specified item key, or an array of all userdata
+		:rtype:	mixed
 
-			Gets the value for a specific ``$_SESSION`` item, or an
+		Gets the value for a specific ``$_SESSION`` item, or an
 		array of all "userdata" items if not key was specified.
 	
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications. You should
+			compatibility with older applications. You should
 			directly access ``$_SESSION`` instead.
 
 	.. php:method:: all_userdata()
@@ -835,7 +840,7 @@ compatibility with older applications. You should
 		Returns an array containing all "userdata" items.
 
 		.. note:: This method is DEPRECATED. Use ``userdata()``
-with no parameters instead.
+			with no parameters instead.
 
 	.. php:method:: &get_userdata()
 
@@ -845,7 +850,7 @@ with no parameters instead.
 		Returns a reference to the ``$_SESSION`` array.
 
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications.
+			compatibility with older applications.
 
 	.. php:method:: has_userdata($key)
 
@@ -856,20 +861,20 @@ compatibility with older applications.
 		Checks if an item exists in ``$_SESSION``.
 
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications. It is just
+			compatibility with older applications. It is just
 			an alias for ``isset($_SESSION[$key])`` - please
 			use that instead.
 
 	.. php:method:: set_userdata($data[, $value = NULL])
 
 		:param	mixed	$data: An array of key/value pairs to set as session data, or the key for a single item
-			:param	mixed	$value:	The value to set for a specific session item, if $data is a key
-			:rtype:	void
+		:param	mixed	$value:	The value to set for a specific session item, if $data is a key
+		:rtype:	void
 
-			Assigns data to the ``$_SESSION`` superglobal.
+		Assigns data to the ``$_SESSION`` superglobal.
 
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications.
+			compatibility with older applications.
 
 	.. php:method:: unset_userdata($key)
 
@@ -880,17 +885,17 @@ compatibility with older applications.
 		superglobal.
 
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications. It is just
+			compatibility with older applications. It is just
 			an alias for ``unset($_SESSION[$key])`` - please
 			use that instead.
 
 	.. php:method:: mark_as_flash($key)
 
 		:param	mixed	$key: Key to mark as flashdata, or an array of multiple keys
-			:returns:	TRUE on success, FALSE on failure
-			:rtype:	bool
+		:returns:	TRUE on success, FALSE on failure
+		:rtype:	bool
 
-			Marks a ``$_SESSION`` item key (or multiple ones) as
+		Marks a ``$_SESSION`` item key (or multiple ones) as
 		"flashdata".
 
 	.. php:method:: get_flash_keys()
@@ -904,58 +909,58 @@ compatibility with older applications. It is just
 	.. php:method:: umark_flash($key)
 
 		:param	mixed	$key: Key to be un-marked as flashdata, or an array of multiple keys
-			:rtype:	void
+		:rtype:	void
 
-			Unmarks a ``$_SESSION`` item key (or multiple ones) as
+		Unmarks a ``$_SESSION`` item key (or multiple ones) as
 		"flashdata".
 
 	.. php:method:: flashdata([$key = NULL])
 
 		:param	mixed	$key: Flashdata item key or NULL
-			:returns:	Value of the specified item key, or an array of all flashdata
-			:rtype:	mixed
+		:returns:	Value of the specified item key, or an array of all flashdata
+		:rtype:	mixed
 
-			Gets the value for a specific ``$_SESSION`` item that has
+		Gets the value for a specific ``$_SESSION`` item that has
 		been marked as "flashdata", or an array of all "flashdata"
 		items if no key was specified.
 	
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications. You should
+			compatibility with older applications. You should
 			directly access ``$_SESSION`` instead.
 
 	.. php:method:: keep_flashdata($key)
 
 		:param	mixed	$key: Flashdata key to keep, or an array of multiple keys
-			:returns:	TRUE on success, FALSE on failure
-			:rtype:	bool
+		:returns:	TRUE on success, FALSE on failure
+		:rtype:	bool
 
-			Retains the specified session data key(s) as "flashdata"
-			through the next request.
+		Retains the specified session data key(s) as "flashdata"
+		through the next request.
 
-			.. note:: This is a legacy method kept only for backwards
-compatibility with older applications. It is just
+		.. note:: This is a legacy method kept only for backwards
+			compatibility with older applications. It is just
 			an alias for the ``mark_as_flash()`` method.
 
 	.. php:method:: set_flashdata($data[, $value = NULL])
 
 		:param	mixed	$data: An array of key/value pairs to set as flashdata, or the key for a single item
-			:param	mixed	$value:	The value to set for a specific session item, if $data is a key
-			:rtype:	void
+		:param	mixed	$value:	The value to set for a specific session item, if $data is a key
+		:rtype:	void
 
-			Assigns data to the ``$_SESSION`` superglobal and marks it
+		Assigns data to the ``$_SESSION`` superglobal and marks it
 		as "flashdata".
 
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications.
+			compatibility with older applications.
 
 	.. php:method:: mark_as_temp($key[, $ttl = 300])
 
 		:param	mixed	$key: Key to mark as tempdata, or an array of multiple keys
 		:param	int	$ttl: Time-to-live value for the tempdata, in seconds
-			:returns:	TRUE on success, FALSE on failure
-			:rtype:	bool
+		:returns:	TRUE on success, FALSE on failure
+		:rtype:	bool
 
-			Marks a ``$_SESSION`` item key (or multiple ones) as
+		Marks a ``$_SESSION`` item key (or multiple ones) as
 		"tempdata".
 
 	.. php:method:: get_temp_keys()
@@ -969,37 +974,37 @@ compatibility with older applications.
 	.. php:method:: umark_temp($key)
 
 		:param	mixed	$key: Key to be un-marked as tempdata, or an array of multiple keys
-			:rtype:	void
+		:rtype:	void
 
-			Unmarks a ``$_SESSION`` item key (or multiple ones) as
+		Unmarks a ``$_SESSION`` item key (or multiple ones) as
 		"tempdata".
 
 	.. php:method:: tempdata([$key = NULL])
 
 		:param	mixed	$key: Tempdata item key or NULL
-			:returns:	Value of the specified item key, or an array of all tempdata
-			:rtype:	mixed
+		:returns:	Value of the specified item key, or an array of all tempdata
+		:rtype:	mixed
 
-			Gets the value for a specific ``$_SESSION`` item that has
+		Gets the value for a specific ``$_SESSION`` item that has
 		been marked as "tempdata", or an array of all "tempdata"
 		items if no key was specified.
 	
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications. You should
+			compatibility with older applications. You should
 			directly access ``$_SESSION`` instead.
 
 	.. php:method:: set_tempdata($data[, $value = NULL])
 
 		:param	mixed	$data: An array of key/value pairs to set as tempdata, or the key for a single item
-			:param	mixed	$value:	The value to set for a specific session item, if $data is a key
-			:param	int	$ttl: Time-to-live value for the tempdata item(s), in seconds
-			:rtype:	void
+		:param	mixed	$value:	The value to set for a specific session item, if $data is a key
+		:param	int	$ttl: Time-to-live value for the tempdata item(s), in seconds
+		:rtype:	void
 
-			Assigns data to the ``$_SESSION`` superglobal and marks it
+		Assigns data to the ``$_SESSION`` superglobal and marks it
 		as "tempdata".
 
 		.. note:: This is a legacy method kept only for backwards
-compatibility with older applications.
+			compatibility with older applications.
 
 	.. php:method:: sess_regenerate([$destroy = FALSE])
 
@@ -1010,8 +1015,8 @@ compatibility with older applications.
 		session's data.
 
 		.. note:: This method is just an alias for PHP's native
-`session_regenerate_id()
-<http://php.net/session_regenerate_id>`_ function.
+			`session_regenerate_id()
+			<http://php.net/session_regenerate_id>`_ function.
 
 	.. php:method:: sess_destroy()
 
@@ -1020,12 +1025,12 @@ compatibility with older applications.
 		Destroys the current session.
 
 		.. note:: This must be the *last* session-related function
-that you call. All session data will be lost after
+			that you call. All session data will be lost after
 			you do that.
 
 		.. note:: This method is just an alias for PHP's native
-`session_destroy()
-<http://php.net/session_destroy>`_ function.
+			`session_destroy()
+			<http://php.net/session_destroy>`_ function.
 
 	.. php:method:: __get($key)
 
@@ -1044,11 +1049,11 @@ that you call. All session data will be lost after
 	.. php:method:: __set($key, $value)
 
 		:param	string	$key: Session item key
-			:param	mixed	$value: Value to assign to the session item key
-			:returns:	void
+		:param	mixed	$value: Value to assign to the session item key
+		:returns:	void
 
-			A magic method that allows you to assign items to
-			``$_SESSION`` by accessing them as ``$this->session``
+		A magic method that allows you to assign items to
+		``$_SESSION`` by accessing them as ``$this->session``
 		properties::
 
 			$this->session->foo = 'bar';

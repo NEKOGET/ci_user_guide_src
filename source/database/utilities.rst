@@ -65,7 +65,7 @@ Returns a boolean TRUE/FALSE. Usage example::
 		// some code...
 	}
 
-.. note:: Replace *database_name* with the name of the table you are
+.. note:: Replace *database_name* with the name of the database you are
 	looking for. This method is case sensitive.
 
 Optimize a Table
@@ -111,7 +111,7 @@ FALSE on failure.
 		print_r($result);
 	}
 
-.. note:: Not all database platforms support table optimization. It
+.. note:: Not all database platforms support database optimization. It
 	it is mostly for use with MySQL.
 
 Export a Query Result as a CSV File
@@ -180,7 +180,7 @@ backup data can be compressed in either Zip or Gzip format.
 
 .. note:: For Interbase/Firebird databases, the backup file name is the only parameter.
 
-		Eg. $this->dbutil->backup('db_backup_filename');
+		$this->dbutil->backup('db_backup_filename');
 
 .. note:: Due to the limited execution time and memory available to PHP,
 	backing up very large databases may not be possible. If your database is
@@ -197,7 +197,7 @@ Usage Example
 	$this->load->dbutil();
 
 	// Backup your entire database and assign it to a variable
-	$backup =& $this->dbutil->backup();
+	$backup = $this->dbutil->backup();
 
 	// Load the file helper and write the file to your server
 	$this->load->helper('file');

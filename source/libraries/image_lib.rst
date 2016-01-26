@@ -471,4 +471,4 @@ of watermarking.
 		Returns all detected errors formatted as a string.
 		::
 
-			echo $this->image_lib->diplay_errors();
+			echo $this->image_lib->display_errors();

@@ -86,9 +86,9 @@ PHP Style
 =========
 
 All code must meet the `Style Guide
-<http://www.codeigniter.com/userguide3/general/styleguide.html>`_, which is
+<https://codeigniter.com/userguide3/general/styleguide.html>`_, which is
 essentially the `Allman indent style
-<http://en.wikipedia.org/wiki/Indent_style#Allman_style>`_, underscores and
+<https://en.wikipedia.org/wiki/Indent_style#Allman_style>`_, underscores and
 readable operators. This makes certain that all code is the same format as the
 existing code and means it will be as readable as possible.
 
@@ -103,7 +103,7 @@ must also be updated for every change. Also PHPDoc blocks must be maintained.
 Compatibility
 =============
 
-CodeIgniter recommends PHP 5.4 or newer to be used, but it should be
+CodeIgniter recommends PHP 5.5 or newer to be used, but it should be
 compatible with PHP 5.2.4 so all code supplied must stick to this
 requirement. If PHP 5.3 (and above) functions or features are used then
 there must be a fallback for PHP 5.2.4.

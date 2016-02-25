@@ -16,11 +16,11 @@ CodeIgniterは誰のためのものですか？
 
 CodeIgniter はこんな人のためにあります:
 
--  You want a framework with a small footprint.
--  You need exceptional performance.
--  You need broad compatibility with standard hosting accounts that run
-   a variety of PHP versions and configurations.
--  You want a framework that requires nearly zero configuration.
+-  あなたはちいさなフレームワークを好みます。
+-  あなたは並外れたパフォーマンスを必要としています。
+-  あなたは幅広い互換性を必要としています。
+   それはさまさまなPHPのバージョンであったり、標準的なホスティングサービスで動作実行できるものです。
+-  あなたはZero Configuration（ゼロ・コンフィギュレーション）なフレームワークを求めています。
 -  You want a framework that does not require you to use the command
    line.
 -  You want a framework that does not require you to adhere to

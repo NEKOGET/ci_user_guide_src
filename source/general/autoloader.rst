@@ -7,13 +7,13 @@ helpers, and models to be initialized automatically every time the
 system runs. If you need certain resources globally throughout your
 application you should consider auto-loading them for convenience.
 
-The following items can be loaded automatically:
+以下の項目をオートロードすることができます:
 
--  Classes found in the *libraries/* directory
--  Helper files found in the *helpers/* directory
--  Custom config files found in the *config/* directory
--  Language files found in the *system/language/* directory
--  Models found in the *models/* folder
+-  *libraries/* ディレクトリにあるclass
+-  *helpers/* ディレクトリにあるhelperファイル
+-  *config/* ディレクトリにあるconfigファイル
+-  *system/language/* ディレクトリにある言語ファイル
+-  *models/* フォルダにあるModel
 
 To autoload resources, open the **application/config/autoload.php**
 file and add the item you want loaded to the autoload array. You'll

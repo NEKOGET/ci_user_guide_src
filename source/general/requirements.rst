@@ -2,18 +2,18 @@
 サーバ要件
 ###################
 
-`PHP <http://php.net/>`_ version 5.5 or newer is recommended.
+`PHP <http://php.net/>`_ のバージョンは5.5以降が推奨されます。
 
 It should work on 5.2.4 as well, but we strongly advise you NOT to run
 such old versions of PHP, because of potential security and performance
 issues, as well as missing features.
 
-A database is required for most web application programming.
-Currently supported databases are:
+データベースはほとんどのWebアプリケーションプログラムで必要とされます。
+現在サポートしているデータベースは次の通りです:
 
-  - MySQL (5.1+) via the *mysql* (deprecated), *mysqli* and *pdo* drivers
-  - Oracle via the *oci8* and *pdo* drivers
-  - PostgreSQL via the *postgre* and *pdo* drivers
+  - *mysql* (非推奨) および *mysqli* と *pdo* ドライバを利用しての MySQL (5.1+)
+  - *oci8* と *pdo* ドライバを利用しての Oracle
+  - *postgre* と *pdo* ドライバを利用しての PostgreSQL
   - MS SQL via the *mssql*, *sqlsrv* (version 2005 and above only) and *pdo* drivers
   - SQLite via the *sqlite* (version 2), *sqlite3* (version 3) and *pdo* drivers
   - CUBRID via the *cubrid* and *pdo* drivers

@@ -18,4 +18,4 @@ issues, as well as missing features.
   - *sqlite* (version 2)、 *sqlite3* (version 3) と  *pdo* ドライバを利用しての SQLite
   - *cubrid* と *pdo* ドライバを利用しての CUBRID
   - *ibase* と *pdo* ドライバを利用しての Interbase/Firebird
-  - *odbc* と *pdo* ドライバを利用してのODBC  (you should know that ODBC is actually an abstraction layer)is actually an abstraction layer)
+  - *odbc* と *pdo* ドライバを利用してのODBC  (ODBCが抽象化層にあることを知っている必要があります)

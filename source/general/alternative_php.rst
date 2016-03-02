@@ -51,7 +51,7 @@ if、 for、foreachと while といった制御構造について簡略化した
 
 	</ul>
 
-Notice that there are no braces. Instead, the end brace is replaced with
+中括弧がないことに注意してください。 Instead, the end brace is replaced with
 ``endforeach``. Each of the control structures listed above has a similar
 closing syntax: ``endif``, ``endfor``, ``endforeach``, and ``endwhile``
 

@@ -38,8 +38,8 @@ echoのかわりになるもの
 代替の制御構造
 ==============================
 
-Controls structures, like if, for, foreach, and while can be written in
-a simplified format as well. Here is an example using ``foreach``::
+if、 for、foreachと while といった制御構造について簡略化した形式で記述することができます。
+これは ``foreach`` を使用した場合の例です::
 
 	<ul>
 
@@ -58,7 +58,7 @@ closing syntax: ``endif``, ``endfor``, ``endforeach``, and ``endwhile``
 Also notice that instead of using a semicolon after each structure
 (except the last one), there is a colon. This is important!
 
-Here is another example, using ``if``/``elseif``/``else``. Notice the colons::
+``if``/``elseif``/``else`` を使用した別の例です。コロンに注意してください::
 
 	<?php if ($username === 'sally'): ?>
 

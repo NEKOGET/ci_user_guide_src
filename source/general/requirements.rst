@@ -14,8 +14,8 @@ issues, as well as missing features.
   - *mysql* (非推奨) および *mysqli* と *pdo* ドライバを利用しての MySQL (5.1+)
   - *oci8* と *pdo* ドライバを利用しての Oracle
   - *postgre* と *pdo* ドライバを利用しての PostgreSQL
-  - MS SQL via the *mssql*, *sqlsrv* (version 2005 and above only) and *pdo* drivers
-  - SQLite via the *sqlite* (version 2), *sqlite3* (version 3) and *pdo* drivers
-  - CUBRID via the *cubrid* and *pdo* drivers
-  - Interbase/Firebird via the *ibase* and *pdo* drivers
-  - ODBC via the *odbc* and *pdo* drivers (you should know that ODBC is actually an abstraction layer)is actually an abstraction layer)
+  - *mssql* 、 *sqlsrv* (バージョン 2005 以上のみ ) と  *pdo* ドライバを利用しての MS SQL
+  - *sqlite* (version 2)、 *sqlite3* (version 3) と  *pdo* ドライバを利用しての SQLite
+  - *cubrid* と *pdo* ドライバを利用しての CUBRID
+  - *ibase* と *pdo* ドライバを利用しての Interbase/Firebird
+  - *odbc* と *pdo* ドライバを利用してのODBC  (you should know that ODBC is actually an abstraction layer)is actually an abstraction layer)

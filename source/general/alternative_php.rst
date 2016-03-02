@@ -27,11 +27,11 @@ will not be accurately shown. Instead, all errors will be shown as
 echoのかわりになるもの
 =================
 
-Normally to echo, or print out a variable you would do this::
+通常、変数をプリントアウトする場合はechoもしくはこの操作を行います::
 
 	<?php echo $variable; ?>
 
-With the alternative syntax you can instead do it this way::
+代替構文を使用すると、このように行うことができます::
 
 	<?=$variable?>
 

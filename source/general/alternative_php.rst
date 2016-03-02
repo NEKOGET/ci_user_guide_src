@@ -24,7 +24,7 @@ encountered in your **view files**, the error message and line number
 will not be accurately shown. Instead, all errors will be shown as
 ``eval()`` errors.
 
-echoのかわりになるもの
+echoのかわりとなるもの
 =================
 
 通常、変数をプリントアウトする場合はechoもしくはこの操作を行います::

@@ -55,8 +55,8 @@ if、 for、foreachと while といった制御構造について簡略化した
 ``endforeach``. Each of the control structures listed above has a similar
 closing syntax: ``endif``, ``endfor``, ``endforeach``, and ``endwhile``
 
-Also notice that instead of using a semicolon after each structure
-(except the last one), there is a colon. This is important!
+また、代わりに（最後のものを除く）の各構造の後にセミコロンを使用するのではなく、
+コロンがあることに注意してください。これは重要です！
 
 ``if``/``elseif``/``else`` を使用した別の例です。コロンに注意してください::
 

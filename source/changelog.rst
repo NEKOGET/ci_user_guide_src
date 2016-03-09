@@ -2205,7 +2205,7 @@ Bug fixes for 1.6.3
 Version 1.6.2
 =============
 
-リリース日: May 13, 2008
+リリース日: 2008年5月13日
 Hg Tag: 1.6.2
 
 -  Active Record

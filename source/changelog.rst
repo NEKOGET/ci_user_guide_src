@@ -25,13 +25,13 @@ Version 3.1.0
 Version 3.0.5
 =============
 
-Release Date: Not Released
+リリース日: リリースしていません
 
 
 Version 3.0.4
 =============
 
-Release Date: January 13, 2016
+リリース日: 2016年1月13日
 
 -  General Changes
 
@@ -71,7 +71,7 @@ Bug fixes for 3.0.4
 Version 3.0.3
 =============
 
-Release Date: October 31, 2015
+リリース日: 2015年10月31日
 
 -  **Security**
 
@@ -99,7 +99,7 @@ Bug fixes for 3.0.3
 Version 3.0.2
 =============
 
-Release Date: October 8, 2015
+リリース日: 2015年10月8日
 
 -  **Security**
 
@@ -137,7 +137,7 @@ Bug fixes for 3.0.2
 Version 3.0.1
 =============
 
-Release Date: August 7, 2015
+リリース日: 2015年8月7日
 
 -  Core
 
@@ -215,7 +215,7 @@ Bug fixes for 3.0.1
 Version 3.0.0
 =============
 
-Release Date: March 30, 2015
+リリース日: 2015年3月30日
 
 -  License
 
@@ -987,7 +987,7 @@ Bug fixes for 3.0
 Version 2.2.3
 =============
 
-Release Date: July 14, 2015
+リリース日: 2015年7月14日
 
 -  Security
 
@@ -996,7 +996,7 @@ Release Date: July 14, 2015
 Version 2.2.2
 =============
 
-Release Date: April 15, 2015
+リリース日:  2015年4月15日
 
 -  General Changes
 
@@ -1011,7 +1011,7 @@ Bug fixes for 2.2.2
 Version 2.2.1
 =============
 
-Release Date: January 22, 2015
+リリース日: 2015年1月22日
 
 -  General Changes
 
@@ -1036,7 +1036,7 @@ Bug fixes for 2.2.1
 Version 2.2.0
 =============
 
-Release Date: June 2, 2014
+リリース日: 2014年6月2日
 
 -  General Changes
 
@@ -1055,7 +1055,7 @@ Bug fixes for 2.2.0
 Version 2.1.4
 =============
 
-Release Date: July 8, 2013
+リリース日: 2013年7月8日
 
 -  General Changes
 
@@ -1072,7 +1072,7 @@ Bug fixes for 2.1.4
 Version 2.1.3
 =============
 
-Release Date: October 8, 2012
+リリース日: 2012年10月8日
 
 -  Core
 
@@ -1096,7 +1096,7 @@ Bug fixes for 2.1.3
 Version 2.1.2
 =============
 
-Release Date: June 29, 2012
+リリース日: 2012年6月29日
 
 -  General Changes
 
@@ -1105,7 +1105,7 @@ Release Date: June 29, 2012
 Version 2.1.1
 =============
 
-Release Date: June 12, 2012
+リリース日: 2012年6月12日
 
 -  General Changes
 
@@ -1137,7 +1137,7 @@ Bug fixes for 2.1.1
 Version 2.1.0
 =============
 
-Release Date: November 14, 2011
+リリース日: 2011年11月14日
 
 -  General Changes
 
@@ -1232,7 +1232,7 @@ Bug fixes for 2.1.0
 Version 2.0.3
 =============
 
-Release Date: August 20, 2011
+リリース日: 2011年8月20日
 
 -  Security
 
@@ -1327,7 +1327,7 @@ Bug fixes for 2.0.3
 Version 2.0.2
 =============
 
-Release Date: April 7, 2011
+リリース日: 2011年4月7日
 Hg Tag: v2.0.2
 
 -  General changes
@@ -1377,7 +1377,7 @@ Bug fixes for 2.0.2
 Version 2.0.1
 =============
 
-Release Date: March 15, 2011
+リリース日: 2011年3月15日
 Hg Tag: v2.0.1
 
 -  General changes
@@ -1431,7 +1431,7 @@ Bug fixes for 2.0.1
 Version 2.0.0
 =============
 
-Release Date: January 28, 2011
+リリース日: 2011年1月28日
 Hg Tag: v2.0.0
 
 -  General changes
@@ -1726,7 +1726,7 @@ Bug fixes for 2.0.0
 Version 1.7.2
 =============
 
-Release Date: September 11, 2009
+リリース日: 2009年9月11日
 Hg Tag: v1.7.2
 
 -  Libraries
@@ -1829,7 +1829,7 @@ Bug fixes for 1.7.2
 Version 1.7.1
 =============
 
-Release Date: February 10, 2009
+リリース日: 2009年2月10日
 Hg Tag: 1.7.1
 
 -  Libraries
@@ -1953,7 +1953,7 @@ Bug fixes for 1.7.1
 Version 1.7
 ===========
 
-Release Date: October 23, 2008
+リリース日: 2008年10月23日
 Hg Tag: 1.7.0
 
 -  Libraries
@@ -2130,7 +2130,7 @@ Bug fixes for 1.7.0
 Version 1.6.3
 =============
 
-Release Date: June 26, 2008
+リリース日: 2008年6月26日
 Hg Tag: v1.6.3
 
 Version 1.6.3 is a security and maintenance release and is recommended
@@ -2205,7 +2205,7 @@ Bug fixes for 1.6.3
 Version 1.6.2
 =============
 
-Release Date: May 13, 2008
+リリース日: May 13, 2008
 Hg Tag: 1.6.2
 
 -  Active Record
@@ -2360,7 +2360,7 @@ Bugfixes for 1.6.2
 Version 1.6.1
 =============
 
-Release Date: February 12, 2008
+リリース日: 2008年2月12日
 Hg Tag: 1.6.1
 
 -  Active Record
@@ -2421,7 +2421,7 @@ Bugfixes for 1.6.1
 Version 1.6.0
 =============
 
-Release Date: January 30, 2008
+リリース日: 2008年1月30日
 
 -  DBForge
 
@@ -2688,7 +2688,7 @@ Bug fixes for Version 1.6.0
 Version 1.5.4
 =============
 
-Release Date: July 12, 2007
+リリース日: 2007年7月12日
 
 -  Added :doc:`custom Language files <./libraries/language>` to the
    :doc:`autoload <./general/autoloader>` options.
@@ -2762,7 +2762,7 @@ Release Date: July 12, 2007
 Version 1.5.3
 =============
 
-Release Date: April 15, 2007
+リリース日: 2007年4月15日
 
 -  Added array to string into the profiler
 -  Code Igniter references updated to CodeIgniter
@@ -2783,7 +2783,7 @@ Release Date: April 15, 2007
 Version 1.5.2
 =============
 
-Release Date: February 13, 2007
+リリース日: 2007年2月13日
 
 -  Added subversion information
    to the :doc:`downloads <installation/downloads>` page.
@@ -2807,7 +2807,7 @@ Release Date: February 13, 2007
 Version 1.5.1
 =============
 
-Release Date: November 23, 2006
+リリース日: 2006年11月23日
 
 -  Added support for submitting arrays of libraries in the
    $this->load->library function.
@@ -2829,7 +2829,7 @@ Release Date: November 23, 2006
 Version 1.5.0.1
 ===============
 
-Release Date: October 31, 2006
+リリース日: October 31, 2006
 
 -  Fixed a problem in which duplicate attempts to load helpers and
    classes were not being stopped.
@@ -2840,7 +2840,7 @@ Release Date: October 31, 2006
 Version 1.5.0
 =============
 
-Release Date: October 30, 2006
+リリース日: October 30, 2006
 
 -  Added :doc:`DB utility class <./database/utilities>`, permitting DB
    backups, CVS or XML files from DB results, and various other
@@ -2932,7 +2932,7 @@ Release Date: October 30, 2006
 Version 1.4.1
 =============
 
-Release Date: September 21, 2006
+リリース日: September 21, 2006
 
 -  Added a new feature that passes URI segments directly to your
    function calls as parameters. See the
@@ -2992,7 +2992,7 @@ Release Date: September 21, 2006
 Version 1.4.0
 =============
 
-Release Date: September 17, 2006
+リリース日: September 17, 2006
 
 -  Added :doc:`Hooks <./general/hooks>` feature, enabling you to tap
    into and modify the inner workings of the framework without hacking
@@ -3081,7 +3081,7 @@ Release Date: September 17, 2006
 Version 1.3.3
 =============
 
-Release Date: June 1, 2006
+リリース日: June 1, 2006
 
 -  Models do **not** connect automatically to the database as of this
    version. :doc:`More info here <./general/models>`.
@@ -3109,7 +3109,7 @@ Release Date: June 1, 2006
 Version 1.3.2
 =============
 
-Release Date: April 17, 2006
+リリース日: April 17, 2006
 
 -  Changed the behavior of the validation class such that if a
    "required" rule is NOT explicitly stated for a field then all other
@@ -3126,7 +3126,7 @@ Release Date: April 17, 2006
 Version 1.3.1
 =============
 
-Release Date: April 11, 2006
+リリース日: April 11, 2006
 
 -  Added a :doc:`Unit Testing Library <./libraries/unit_testing>`.
 -  Added the ability to pass objects to the **insert()** and
@@ -3159,7 +3159,7 @@ Release Date: April 11, 2006
 Version 1.3
 ===========
 
-Release Date: April 3, 2006
+リリース日: April 3, 2006
 
 -  Added support for :doc:`Models <general/models>`.
 -  Redesigned the database libraries to support additional RDBMs
@@ -3211,7 +3211,7 @@ Release Date: April 3, 2006
 Version 1.2
 ===========
 
-Release Date: March 21, 2006
+リリース日: March 21, 2006
 
 -  Redesigned some internal aspects of the framework to resolve scoping
    problems that surfaced during the beta tests. The problem was most
@@ -3246,7 +3246,7 @@ Release Date: March 21, 2006
 Version Beta 1.1
 ================
 
-Release Date: March 10, 2006
+リリース日: March 10, 2006
 
 -  Added a :doc:`Calendaring class <./libraries/calendar>`.
 -  Added support for running :doc:`multiple
@@ -3280,6 +3280,6 @@ Release Date: March 10, 2006
 Version Beta 1.0
 ================
 
-Release Date: February 28, 2006
+リリース日: 2006年2月28日
 
-First publicly released version.
+一番最初の公開バージョンです。

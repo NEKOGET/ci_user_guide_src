@@ -7,17 +7,17 @@ Version 3.1.0
 
 リリース日：未リリース
 
--  Libraries
+- ライブラリー
 
    -  Added UNIX socket connection support to :doc:`Session Library <libraries/sessions>` 'redis' driver.
 
--  Database
+-  データベース
 
    -  Changed method ``initialize()`` to return void and instead throw a ``RuntimeException`` in case of failure.
    -  Changed method ``db_connect()`` to always set the connection character set (if supported by the driver) and to fail if it can't.
    -  Removed method ``db_set_charset()`` and the ability to change a connection character set at runtime.
 
--  Helpers
+-  ヘルパー
 
    -  Updated :doc:`HTML Helper <helpers/html_helper>` function :php:func:`meta()` with support for "charset" and "property" properties.
    -  Changed :doc:`HTML Helper <helpers/html_helper>` function :php:func:`doctype()` default document type to HTML 5.
@@ -33,7 +33,7 @@ Version 3.0.4
 
 リリース日: 2016年1月13日
 
--  General Changes
+-  大まかな変更点
 
    -  Updated :doc:`Security Library <libraries/security>` method ``get_random_bytes()`` to use PHP 7's ``random_bytes()`` function when possible.
    -  Updated :doc:`Encryption Library <libraries/security>` method ``create_key()`` to use PHP 7's ``random_bytes()`` function when possible.
@@ -105,7 +105,7 @@ Version 3.0.2
 
    -  Fixed a number of XSS attack vectors in :doc:`Security Library <libraries/security>` method ``xss_clean()``  (thanks to Frans Rosén from `Detectify <https://detectify.com/>`_).
 
--  General Changes
+-  大まかな変更点
 
    -  Updated the *application/config/constants.php* file to check if constants aren't already defined before doing that.
    -  Changed :doc:`Loader Library <libraries/loader>` method ``model()`` to only apply ``ucfirst()`` and not ``strtolower()`` to the requested class name.
@@ -139,16 +139,16 @@ Version 3.0.1
 
 リリース日: 2015年8月7日
 
--  Core
+-  コア
 
    -  Added DoS mitigation to :php:func:`hash_pbkdf2()` :doc:`compatibility function <general/compatibility_functions>`.
 
--  Database
+-  データベース
 
    -  Added ``list_fields()`` support for SQLite ('sqlite3' and 'pdo_sqlite' drivers).
    -  Added SSL connection support for the 'mysqli' and 'pdo_mysql' drivers.
 
--  Libraries
+- ライブラリー
 
    -  :doc:`File Uploading Library <libraries/file_uploading>` changes:
 
@@ -158,12 +158,12 @@ Version 3.0.1
 
    -  Added 'is_resource' to the available expectations in :doc:`Unit Testing Library <libraries/unit_testing>`.
 
--  Helpers
+-  ヘルパー
 
    -  Added Unicode support to :doc:`URL Helper <helpers/url_helper>` function :php:func:`url_title()`.
    -  Added support for passing the "extra" parameter as an array to all :doc:`Form Helper <helpers/form_helper>` functions that use it.
 
--  Core
+-  コア
 
    -  Added support for defining a list of specific query parameters in ``$config['cache_query_string']`` for the :doc:`Output Library <libraries/output>`.
    -  Added class existence and inheritance checks to ``CI_Loader::model()`` in order to ease debugging in case of name collisions.
@@ -270,7 +270,7 @@ Version 3.0.0
    -  Removed the automatic conversion of 'programmatic characters' to HTML entities from the :doc:`URI Library <libraries/uri>`.
    -  Changed log messages that say a class or file was loaded to "info" level instead of "debug", so that they don't pollute log files when ``$config['log_threshold']`` is set to 2 (debug).
 
--  Helpers
+-  ヘルパー
 
    -  :doc:`Date Helper <helpers/date_helper>` の変更点:
 
@@ -360,7 +360,7 @@ Version 3.0.0
    -  :doc:`Language Helper <helpers/language_helper>` :php:func:`lang()` now accepts an optional list of additional HTML attributes.
    -  Deprecated the :doc:`Email Helper <helpers/email_helper>` as its ``valid_email()``, ``send_email()`` functions are now only aliases for PHP native functions ``filter_var()`` and ``mail()`` respectively.
 
--  Database
+-  データベース
 
    -  DEPRECATED the 'mysql', 'sqlite', 'mssql' and 'pdo/dblib' (also known as 'pdo/mssql' or 'pdo/sybase') drivers.
    -  Added **dsn** configuration setting for drivers that support DSN strings (PDO, PostgreSQL, Oracle, ODBC, CUBRID).
@@ -485,7 +485,7 @@ Version 3.0.0
       - Overall improved support for all of the drivers.
       - Added *foreign_key_checks* option to MySQL/MySQLi backup, allowing statement to disable/re-enable foreign key checks to be inserted into the backup output.
 
--  Libraries
+- ライブラリー
 
    -  Added a new :doc:`Encryption Library <libraries/encryption>` to replace the old, largely insecure :doc:`Encrypt Library <libraries/encrypt>`.
 
@@ -618,7 +618,7 @@ Version 3.0.0
 
    -  :doc:`Profiler Library <general/profiling>` changes include:
 
-      -  Database object names are now being displayed.
+      -  データベース object names are now being displayed.
       -  The sum of all queries running times in seconds is now being displayed.
       -  Added support for displaying the HTTP DNT ("Do Not Track") header.
       -  Added support for displaying ``$_FILES``.
@@ -650,7 +650,7 @@ Version 3.0.0
 
    -  :doc:`Trackback Library <libraries/trackback>` method ``receive()`` will now utilize ``iconv()`` if it is available but ``mb_convert_encoding()`` is not.
 
--  Core
+-  コア
 
    -  :doc:`Routing <general/routing>` changes include:
 
@@ -998,7 +998,7 @@ Version 2.2.2
 
 リリース日:  2015年4月15日
 
--  General Changes
+-  大まかな変更点
 
    - Added HTTP "Host" header character validation to prevent cache poisoning attacks when *base_url* auto-detection is used.
    - Added *FSCommand* and *seekSegmentTime* to the "evil attributes" list in ``CI_Security::xss_clean()``.
@@ -1013,7 +1013,7 @@ Version 2.2.1
 
 リリース日: 2015年1月22日
 
--  General Changes
+-  大まかな変更点
 
    - Improved security in ``xss_clean()``.
    - Updated timezones in :doc:`Date Helper <helpers/date_helper>`.
@@ -1038,7 +1038,7 @@ Version 2.2.0
 
 リリース日: 2014年6月2日
 
--  General Changes
+-  大まかな変更点
 
    - Security: :doc:`Encrypt Library <libraries/encrypt>` method ``xor_encode()`` has been removed. The Encrypt Class now requires the Mcrypt extension to be installed.
    - Security: The :doc:`Session Library <libraries/sessions>` now uses HMAC authentication instead of a simple MD5 checksum.
@@ -1057,7 +1057,7 @@ Version 2.1.4
 
 リリース日: 2013年7月8日
 
--  General Changes
+-  大まかな変更点
 
    - Improved security in ``xss_clean()``.
 
@@ -1074,7 +1074,7 @@ Version 2.1.3
 
 リリース日: 2012年10月8日
 
--  Core
+-  コア
 
    - :doc:`Common function <general/common_functions>` ``is_loaded()`` now returns a reference.
 
@@ -1098,7 +1098,7 @@ Version 2.1.2
 
 リリース日: 2012年6月29日
 
--  General Changes
+-  大まかな変更点
 
    -  Improved security in ``xss_clean()``.
 
@@ -1107,17 +1107,17 @@ Version 2.1.1
 
 リリース日: 2012年6月12日
 
--  General Changes
+-  大まかな変更点
 
    -  Fixed support for docx, xlsx files in mimes.php.
 
--  Libraries
+- ライブラリー
 
    -  Further improved MIME type detection in the :doc:`File Uploading Library <libraries/file_uploading>`.
    -  Added support for IPv6 to the :doc:`Input Library <libraries/input>`.
    -  Added support for the IP format parameter to the :doc:`Form Validation Library <libraries/form_validation>`.
 
--  Helpers
+-  ヘルパー
 
    -  ``url_title()`` performance and output improved. You can now use any string as the word delimiter, but 'dash' and 'underscore' are still supported.
 
@@ -1139,7 +1139,7 @@ Version 2.1.0
 
 リリース日: 2011年11月14日
 
--  General Changes
+-  大まかな変更点
 
    -  Callback validation rules can now accept parameters like any other
       validation rule.
@@ -1147,7 +1147,7 @@ Version 2.1.0
       functions <general/common_functions>` to escape HTML output
       for preventing XSS.
 
--  Helpers
+-  ヘルパー
 
    -  Added increment_string() to :doc:`String
       Helper <helpers/string_helper>` to turn "foo" into "foo-1"
@@ -1157,7 +1157,7 @@ Version 2.1.0
    -  url_title() will now trim extra dashes from beginning and end.
    -  Improved speed of :doc:`String Helper <helpers/string_helper>`'s random_string() method
 
--  Database
+-  データベース
 
    -  Added a `CUBRID <http://www.cubrid.org/>`_ driver to the :doc:`Database
       Driver <database/index>`. Thanks to the CUBRID team for
@@ -1172,7 +1172,7 @@ Version 2.1.0
    -  Added $this->db->insert_batch() support to the OCI8 (Oracle) driver.
    -  Added failover if the main connections in the config should fail
 
--  Libraries
+- ライブラリー
 
    -  Changed ``$this->cart->insert()`` in the :doc:`Cart
       Library <libraries/cart>` to return the Row ID if a single
@@ -1188,7 +1188,7 @@ Version 2.1.0
    -  Added $config['use_page_numbers'] to the :doc:`Pagination library <libraries/pagination>`, which enables real page numbers in the URI.
    -  Added TLS and SSL Encryption for SMTP.
 
--  Core
+-  コア
 
    -  Changed private functions in CI_URI to protected so MY_URI can
       override them.
@@ -1234,7 +1234,7 @@ Version 2.0.3
 
 リリース日: 2011年8月20日
 
--  Security
+-  セキュリティ
 
    -  An improvement was made to the MySQL and MySQLi drivers to prevent
       exposing a potential vector for SQL injection on sites using
@@ -1250,7 +1250,7 @@ Version 2.0.3
       the server environment you are deploying on to ensure you are not
       vulnerable.
 
--  General Changes
+-  大まかな変更点
 
    -  Fixed a bug where there was a misspelling within a code comment in
       the index.php file.
@@ -1267,7 +1267,7 @@ Version 2.0.3
    -  Fixed a bug where :doc:`Email library <libraries/email>`
       attachments with a "." in the name would using invalid MIME-types.
 
--  Helpers
+-  ヘルパー
 
    -  Added an optional third parameter to heading() which allows adding
       html attributes to the rendered heading tag.
@@ -1278,7 +1278,7 @@ Version 2.0.3
       helper <helpers/inflector_helper>` to support considerably
       more words.
 
--  Libraries
+- ライブラリー
 
    -  Altered Session to use a longer match against the user_agent
       string. See upgrade notes if using database sessions.
@@ -1330,7 +1330,7 @@ Version 2.0.2
 リリース日: 2011年4月7日
 Hg Tag: v2.0.2
 
--  General changes
+-  大まかな変更点
 
    -  The :doc:`Security library <./libraries/security>` was moved to
       the core and is now loaded automatically. Please remove your
@@ -1346,7 +1346,7 @@ Hg Tag: v2.0.2
    -  Added CI\_ Prefix to the :doc:`Cache driver <libraries/caching>`.
    -  Added :doc:`CLI usage <./general/cli>` documentation.
 
--  Helpers
+-  ヘルパー
 
    -  Removed the previously deprecated dohash() from the :doc:`Security
       helper <./helpers/security_helper>`; use do_hash() instead.
@@ -1354,7 +1354,7 @@ Hg Tag: v2.0.2
       captalization of your string. It also take into consideration
       acronyms which are all caps.
 
--  Database
+-  データベース
 
    -  $this->db->count_all_results() will now return an integer
       instead of a string.
@@ -1380,7 +1380,7 @@ Version 2.0.1
 リリース日: 2011年3月15日
 Hg Tag: v2.0.1
 
--  General changes
+-  大まかな変更点
 
    -  Added $config['cookie_secure'] to the config file to allow
       requiring a secure (HTTPS) in order to set cookies.
@@ -1394,7 +1394,7 @@ Hg Tag: v2.0.1
       :ref:`environment-specific <config-environments>`
       configuration files.
 
--  Libraries
+- ライブラリー
 
    -  Added decimal, less_than and greater_than rules to the :doc:`Form
       validation Class <libraries/form_validation>`.
@@ -1409,7 +1409,7 @@ Hg Tag: v2.0.1
    -  :doc:`Output Class <libraries/output>` will now support method
       chaining.
 
--  Helpers
+-  ヘルパー
 
    -  Changed the logic for form_open() in :doc:`Form
       helper <helpers/form_helper>`. If no value is passed it will
@@ -1434,7 +1434,7 @@ Version 2.0.0
 リリース日: 2011年1月28日
 Hg Tag: v2.0.0
 
--  General changes
+-  大まかな変更点
 
    -  PHP 4 support is removed. CodeIgniter now requires PHP 5.1.6.
    -  Scaffolding, having been deprecated for a number of versions, has
@@ -1480,7 +1480,7 @@ Hg Tag: v2.0.0
    -  Enabled full Command Line Interface compatibility with
       config['uri_protocol'] = 'CLI';.
 
--  Libraries
+- ライブラリー
 
    -  Added a :doc:`Cache driver <libraries/caching>` with APC,
       memcached, and file-based support.
@@ -1560,7 +1560,7 @@ Hg Tag: v2.0.0
       get() will return all POST and GET items (respectively) if there
       are no parameters passed in.
 
--  Database
+-  データベース
 
    -  :doc:`database configuration <./database/configuration>`.
    -  Added autoinit value to :doc:`database
@@ -1585,7 +1585,7 @@ Hg Tag: v2.0.0
       functions from the db utility drivers.
    -  Improved dbforge create_table() function for the Postgres driver.
 
--  Helpers
+-  ヘルパー
 
    -  Added convert_accented_characters() function to :doc:`text
       helper <./helpers/text_helper>`.
@@ -1625,7 +1625,7 @@ Hg Tag: v2.0.0
    -  Added elements() to the :doc:`Array
       Helper <./helpers/array_helper>`
 
--  Other Changes
+- その他変更点
 
    -  Added an optional second parameter to show_404() to disable
       logging.
@@ -1729,7 +1729,7 @@ Version 1.7.2
 リリース日: 2009年9月11日
 Hg Tag: v1.7.2
 
--  Libraries
+- ライブラリー
 
    -  Added a new :doc:`Cart Class <libraries/cart>`.
    -  Added the ability to pass $config['file_name'] for the :doc:`File
@@ -1738,7 +1738,7 @@ Hg Tag: v1.7.2
    -  Changed order of listed user-agents so Safari would more
       accurately report itself. (#6844)
 
--  Database
+-  データベース
 
    -  Switched from using gettype() in escape() to is\_* methods, since
       future PHP versions might change its output.
@@ -1751,7 +1751,7 @@ Hg Tag: v1.7.2
    -  Modified MSSQL driver to use mssql_get_last_message() for error
       messages.
 
--  Helpers
+-  ヘルパー
 
    -  Added form_multiselect() to the :doc:`Form
       helper <helpers/form_helper>`.
@@ -1770,7 +1770,7 @@ Hg Tag: v1.7.2
       with multiple fields and insert the smiley at the last known
       cursor position.
 
--  General
+-  全般
 
    -  Compatible with PHP 5.3.0.
    -  Modified :doc:`show_error() <general/errors>` to allow sending
@@ -1832,7 +1832,7 @@ Version 1.7.1
 リリース日: 2009年2月10日
 Hg Tag: 1.7.1
 
--  Libraries
+- ライブラリー
 
    -  Fixed an arbitrary script execution security flaw (#6068) in the
       Form Validation library (thanks to hkk)
@@ -1854,12 +1854,12 @@ Hg Tag: 1.7.1
    -  Made modest improvements to efficiency and accuracy of
       explode_name() in the Image lib.
 
--  Database
+-  データベース
 
    -  Added where_in to the list of expected arguments received by
       delete().
 
--  Helpers
+-  ヘルパー
 
    -  Added the ability to have optgroups in form_dropdown() within the
       :doc:`form helper <helpers/form_helper>`.
@@ -1874,7 +1874,7 @@ Hg Tag: 1.7.1
    -  Updated get_cookie() to try to fetch the cookie using the global
       cookie prefix if the requested cookie name doesn't exist.
 
--  Other Changes
+- その他変更点
 
    -  Improved security in xss_clean() to help prevent attacks
       targeting Internet Explorer.
@@ -1888,7 +1888,7 @@ Hg Tag: 1.7.1
 Bug fixes for 1.7.1
 -------------------
 
--  Database
+-  データベース
 
    -  Fixed a bug when doing 'random' on order_by() (#5706).
    -  Fixed a bug where adding a primary key through Forge could fail
@@ -1956,7 +1956,7 @@ Version 1.7
 リリース日: 2008年10月23日
 Hg Tag: 1.7.0
 
--  Libraries
+- ライブラリー
 
    -  Added a new :doc:`Form Validation
       Class <libraries/form_validation>`. It simplifies setting
@@ -2000,7 +2000,7 @@ Hg Tag: 1.7.0
       Validation <libraries/form_validation>` class so that
       multi-byte languages will calculate string lengths properly.
 
--  Database
+-  データベース
 
    -  Improved Active Record class to allow full path column and table
       names: hostname.database.table.column. Also improved the alias
@@ -2017,7 +2017,7 @@ Hg Tag: 1.7.0
    -  Added driver name variable in each DB driver, based on bug report
       #4436.
 
--  Helpers
+-  ヘルパー
 
    -  Added several new "setting" functions to the :doc:`Form
       helper <helpers/form_helper>` that allow POST data to be
@@ -2048,7 +2048,7 @@ Hg Tag: 1.7.0
    -  Added support for arbitrary attributes in anchor_popup() of the
       :doc:`URL helper <helpers/url_helper>`.
 
--  Other Changes
+- その他変更点
 
    -  Added :doc:`PHP Style Guide <./general/styleguide>` to docs.
    -  Added sanitization in xss_clean() for a deprecated HTML tag that
@@ -2136,7 +2136,7 @@ Hg Tag: v1.6.3
 Version 1.6.3 is a security and maintenance release and is recommended
 for all users.
 
--  Database
+-  データベース
 
    -  Modified MySQL/MySQLi Forge class to give explicit names to keys
    -  Added ability to set multiple column non-primary keys to the
@@ -2144,7 +2144,7 @@ for all users.
    -  Added ability to set additional database config values in :doc:`DSN
       connections <database/connecting>` via the query string.
 
--  Libraries
+- ライブラリー
 
    -  Set the mime type check in the :doc:`Upload
       class <libraries/file_uploading>` to reference the global
@@ -2157,7 +2157,7 @@ for all users.
    -  Added the ability to automatically output language items as form
       labels in the :doc:`Language class <libraries/language>`.
 
--  Helpers
+-  ヘルパー
 
    -  Added a :doc:`Language helper <helpers/language_helper>`.
    -  Added a :doc:`Number helper <helpers/number_helper>`.
@@ -2217,7 +2217,7 @@ Hg Tag: 1.6.2
    -  DB Forge is now assigned to any models that exist after loading
       (#3457).
 
--  Database
+-  データベース
 
    -  Added :doc:`Strict Mode <./database/transactions>` to database
       transactions.
@@ -2233,7 +2233,7 @@ Hg Tag: 1.6.2
    -  Added the ability to set CRLF settings via config in the
       :doc:`Email <libraries/email>` class.
 
--  Libraries
+- ライブラリー
 
    -  Added increased security for filename handling in the Upload
       library.
@@ -2251,7 +2251,7 @@ Hg Tag: 1.6.2
       re-write for speed and clarity (thanks stanleyxu for the hard work
       and code contribution in bug report #3425!)
 
--  Helpers
+-  ヘルパー
 
    -  Added a Compatibility
       Helper for using some common
@@ -2282,7 +2282,7 @@ Hg Tag: 1.6.2
       imagecreatetruecolor, and fallback to imagecreate if it isn't
       available (#4226).
 
--  Other Changes
+- その他変更点
 
    -  Added ability for :doc:`xss_clean() <libraries/input>` to accept
       arrays.
@@ -2369,12 +2369,12 @@ Hg Tag: 1.6.1
       Caching <ar-caching>`.
    -  Made Active Record fully database-prefix aware.
 
--  Database drivers
+-  データベース drivers
 
    -  Added support for setting client character set and collation for
       MySQLi.
 
--  Core Changes
+-  コア Changes
 
    -  Modified xss_clean() to be more intelligent with its handling of
       URL encoded strings.
@@ -2390,7 +2390,7 @@ Hg Tag: 1.6.1
    -  Modified framework initiated 404s to log the controller and method
       for invalid requests.
 
--  Helpers
+-  ヘルパー
 
    -  Modified get_filenames() in the File Helper to return FALSE if
       the $source_dir is not readable.
@@ -2485,7 +2485,7 @@ Version 1.6.0
       global $active_record setting, which is more in harmony with the
       global nature of the behavior (#1834).
 
--  Core changes
+-  コア changes
 
    -  Added ability to load multiple views, whose content will be
       appended to the output in the order loaded.
@@ -2500,7 +2500,7 @@ Version 1.6.0
    -  Added is_really_writable() to Common.php to provide a
       cross-platform reliable method of testing file/folder writability.
 
--  Libraries
+- ライブラリー
 
    -  Changed the load protocol of Models to allow for extension.
    -  Strengthened the Encryption library to help protect against man in
@@ -2528,7 +2528,7 @@ Version 1.6.0
    -  Enabled the 'system' methods for the XML-RPC Server library,
       except for 'system.multicall' which is still disabled.
 
--  Helpers & Plugins
+-  ヘルパー & Plugins
 
    -  Added link_tag() to the :doc:`HTML
       helper. <./helpers/html_helper>`

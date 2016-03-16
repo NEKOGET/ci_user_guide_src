@@ -2,22 +2,22 @@
 Database Quick Start: Example Code
 ##################################
 
-The following page contains example code showing how the database class
-is used. For complete details please read the individual pages
-describing each function.
+ここでは、データベースクラスの使い方の
+例を示します。詳細は、個別に各機能を
+説明したページを見て下さい。
 
-Initializing the Database Class
-===============================
+データベースクラスの初期化
+========================
 
-The following code loads and initializes the database class based on
-your :doc:`configuration <configuration>` settings::
+以下のコードは、 :doc:`configuration <configuration>` の
+設定に従ってデータベースクラスを読み込んで初期化します。
 
 	$this->load->database();
 
-Once loaded the class is ready to be used as described below.
+読込み後、データベースクラスはこれ以降の例に書いている様に使えます。
 
-Note: If all your pages require database access you can connect
-automatically. See the :doc:`connecting <connecting>` page for details.
+note: もし、全ページでデータベースへのアクセスが必用なら、自動でデータベースに接続する様にもできます。
+詳細は :doc:`connecting <connecting>` を見て下さい。
 
 Standard Query With Multiple Results (Object Version)
 =====================================================

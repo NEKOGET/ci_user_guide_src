@@ -1,20 +1,20 @@
-##############
-セッションドライバー
-##############
+####################
+セッションライブラリ
+####################
 
-The Session class permits you maintain a user's "state" and track their
-activity while they browse your site.
+セッションクラスは、サイトを見ている間のユーザの「状態」を維持し、
+ユーザのアクティビティの追跡を可能にします。
 
-CodeIgniter comes with a few session storage drivers:
+CodeIgniter にはいくつかのセッションストレージドライバが付属しています:
 
-  - files (default; file-system based)
+  - files (デフォルト; ファイルシステムベース)
   - database
   - redis
   - memcached
 
-In addition, you may create your own, custom session drivers based on other
-kinds of storage, while still taking advantage of the features of the
-Session class.
+また、あなた自身のカスタムセッションドライバを作ることができます。
+セッションクラスの機能の良さを利用ながら、ほかの種類のストレージをベースにして、
+です。
 
 .. contents::
   :local:
@@ -23,87 +23,87 @@ Session class.
 
   <div class="custom-index container"></div>
 
-***********************
+************************
 セッションクラスの使い方
-***********************
+************************
 
 セッションの初期化
-======================
+==================
 
-Sessions will typically run globally with each page load, so the Session
-class should either be initialized in your :doc:`controller
-<../general/controllers>` constructors, or it can be :doc:`auto-loaded
-<../general/autoloader>` by the system.
-For the most part the session class will run unattended in the background,
-so simply initializing the class will cause it to read, create, and update
-sessions when necessary.
+セッションは通常、各ページをまたいでグローバルに実行されます。
+そのため、セッションクラスは次のどちらかによって初期化されるべきです、
+:doc:`コントローラ<../general/controllers>` のコンストラクタ、
+またはシステムによる :doc:`オートロード<../general/autoloader>` によってです。
+たいていの場合、セッションクラスはバックグラウンドで黙って実行されます。
+そして明示的なクラスの初期化は読み込み、作成、更新が必要な時にだけ
+行えばよいです。
 
-To initialize the Session class manually in your controller constructor,
-use the ``$this->load->library()`` method::
+セッションクラスの初期化をコントローラのコンストラクタで手動で
+行うには、 ``$this->load->library()`` メソッドを使用します::
 
 	$this->load->library('session');
 
-Once loaded, the Sessions library object will be available using::
+いちどロードされれば、セッションライブラリのオブジェクトは次のように利用することができます::
 
 	$this->session
 
-.. important:: Because the :doc:`Loader Class </libraries/loader>` is instantiated
-	by CodeIgniter's base controller, make sure to call
-	``parent::__construct()`` before trying to load a library from
-	inside a controller constructor.
+.. important:: 変数 ``$this->load`` の :doc:`ローダクラス</libraries/loader>` は CodeIgniter の基本となる
+	コントローラによってインスタンス化されるため、コントローラのコンストラクタでの
+	``parent::__construct()`` の呼び出しはライブラリをロードしようとする前に
+	行ってください。
 
-セッションはどのように動作しますか?
-=====================
+セッションはどのように動作しますか？
+====================================
 
-When a page is loaded, the session class will check to see if valid
-session cookie is sent by the user's browser. If a sessions cookie does
-**not** exist (or if it doesn't match one stored on the server or has
-expired) a new session will be created and saved.
+ページが読み込まれると、セッションクラスは有効なセッションクッキーが
+ユーザのブラウザから送信されたかどうかをチェックします。
+セッションクッキーが存在 **しない** 場合 (またはサーバに保存されているものと一致しないか、
+有効期限が切れている場合は) 、新しいセッションが作成され、保存されます。
 
-If a valid session does exist, its information will be updated. With each
-update, the session ID may be regenerated if configured to do so.
+有効なセッションが存在する場合、その情報が更新されます。
+更新するごとにセッション ID を再生成されるように設定することもできます。
 
-It's important for you to understand that once initialized, the Session
-class runs automatically. There is nothing you need to do to cause the
-above behavior to happen. You can, as you'll see below, work with session
-data, but the process of reading, writing, and updating a session is
-automatic.
+いちど初期化されたら、セッションクラスは自動的に実行されるということを
+理解することは重要なことです。上記の動作をさせるためにあなたが何かをする
+必要はありません。次に書かれているように、セッションデータを使いながら
+あなたのやりたい処理を書くことができますが、セッションの読み込み、書き込み、
+更新のプロセスは自動的に行われます。
 
-.. note:: Under CLI, the Session library will automatically halt itself,
-	as this is a concept based entirely on the HTTP protocol.
+.. note:: CLIにおいては、セッションライブラリは自動的に停止します。
+	セッションはもっぱら HTTP プロトコルにもとづく概念だからです。
 
-A note about concurrency
-------------------------
+並行性に関する注意
+------------------
 
-Unless you're developing a website with heavy AJAX usage, you can skip this
-section. If you are, however, and if you're experiencing performance
-issues, then this note is exactly what you're looking for.
+ものすごく AJAX を利用しているウェブサイトを開発しているわけではないかぎり、
+このセクションはスキップしてもよいです。しかしながらそうでない場合、さらには
+パフォーマンスの問題が発生している場合、この注意はまさにあなたが探しているものでしょう。
 
-Sessions in previous versions of CodeIgniter didn't implement locking,
-which meant that two HTTP requests using the same session could run exactly
-at the same time. To use a more appropriate technical term - requests were
-non-blocking.
+CodeIgniter の以前のバージョンのセッションはロックを実装していませんでした。
+すなわち、同一のセッションを利用するふたつの HTTP リクエストはまったく同時に
+実行できていました。より適切な専門用語で言うならば、
+リクエストは non-blocking でした
 
-However, non-blocking requests in the context of sessions also means
-unsafe, because modifications to session data (or session ID regeneration)
-in one request can interfere with the execution of a second, concurrent
-request. This detail was at the root of many issues and the main reason why
-CodeIgniter 3.0 has a completely re-written Session library.
+しかしながら、セッションを使う状況においての non-blocking なリクエストは安全ではないと
+いうことも意味しました。なぜなら片方のリクエストにおけるセッションデータの更新 (または
+セッション ID の再生成) はもう片方の、同時実行しているリクエストの妨げになりえるからです。
+このことはいろいろな問題の根っことなり、 CodeIgniter 3.0 でセッションライブラリを
+完全に書き直すおもな理由となりました。
 
-Why are we telling you this? Because it is likely that after trying to
-find the reason for your performance issues, you may conclude that locking
-is the issue and therefore look into how to remove the locks ...
+なぜ私たちはわざわざこんなことを言っているのですか？　それはこのあとあなたが
+パフォーマンス問題の原因を見つけ出そうとして、ロックが問題であると断定して
+それゆえロックをどうやって外そうかと調べ始めるだろうから……。
 
-DO NOT DO THAT! Removing locks would be **wrong** and it will cause you
-more problems!
+そ　ん　な　こ　と　は　し　な　い　で　！　ロックの削除は間違っているでしょう、
+そしてより多くの問題が発生します！
 
-Locking is not the issue, it is a solution. Your issue is that you still
-have the session open, while you've already processed it and therefore no
-longer need it. So, what you need is to close the session for the
-current request after you no longer need it.
+ロックは問題ではなく、それは解決になりません。あなたの問題は、あなたがもうすでに
+処理をし終わってもう不要になったにもかかわらず、ひらいたセッションを持ちっぱなしに
+していることです。なので必要なことは、現在のリクエストのためのセッションが
+もういらなくなったあと、セッションを閉じることです。
 
-Long story short - call ``session_write_close()`` once you no longer need
-anything to do with session variables.
+短く言えば、セッション変数を使い終えたら ``session_write_close()`` を
+呼び出してください。
 
 What is Session Data?
 =====================

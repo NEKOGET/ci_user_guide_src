@@ -9,7 +9,7 @@ Version 3.1.0
 
 - ライブラリー
 
-   -  Added UNIX socket connection support to :doc:`Session Library <libraries/sessions>` 'redis' driver.
+   -   :doc:`セッションライブラリ <libraries/sessions>` 'redis' ドライバへのUNIXソケット接続サポートを追加しました。 .
 
 -  データベース
 
@@ -73,7 +73,7 @@ Version 3.0.3
 
 リリース日: 2015年10月31日
 
--  **Security**
+-  **セキュリティ**
 
    -  Fixed an XSS attack vector in :doc:`Security Library <libraries/security>` method ``xss_clean()``.
    -  Changed :doc:`Config Library <libraries/config>` method ``base_url()`` to fallback to ``$_SERVER['SERVER_ADDR']`` when ``$config['base_url']`` is empty in order to avoid *Host* header injections.
@@ -101,7 +101,7 @@ Version 3.0.2
 
 リリース日: 2015年10月8日
 
--  **Security**
+-  **セキュリティ**
 
    -  Fixed a number of XSS attack vectors in :doc:`Security Library <libraries/security>` method ``xss_clean()``  (thanks to Frans Rosén from `Detectify <https://detectify.com/>`_).
 
@@ -989,7 +989,7 @@ Version 2.2.3
 
 リリース日: 2015年7月14日
 
--  Security
+-  セキュリティ
 
    - Removed a fallback to ``mysql_escape_string()`` in the 'mysql' database driver (``escape_str()`` method) when there's no active database connection.
 
@@ -1040,8 +1040,8 @@ Version 2.2.0
 
 -  大まかな変更点
 
-   - Security: :doc:`Encrypt Library <libraries/encrypt>` method ``xor_encode()`` has been removed. The Encrypt Class now requires the Mcrypt extension to be installed.
-   - Security: The :doc:`Session Library <libraries/sessions>` now uses HMAC authentication instead of a simple MD5 checksum.
+   - セキュリティ: :doc:`Encrypt Library <libraries/encrypt>` method ``xor_encode()`` has been removed. The Encrypt Class now requires the Mcrypt extension to be installed.
+   - セキュリティ: The :doc:`Session Library <libraries/sessions>` now uses HMAC authentication instead of a simple MD5 checksum.
 
 Bug fixes for 2.2.0
 -------------------

@@ -65,7 +65,7 @@ CodeIgniter にはいくつかのセッションストレージドライバが�
 
 いちど初期化されたら、セッションクラスは自動的に実行されるということを
 理解することは重要なことです。上記の動作をさせるためにあなたが何かをする
-必要はありません。次に書かれているように、セッションデータを使いながら
+必要はありません。以降に書かれているように、セッションデータを使いながら
 あなたのやりたい処理を書くことができますが、セッションの読み込み、書き込み、
 更新のプロセスは自動的に行われます。
 
@@ -75,14 +75,14 @@ CodeIgniter にはいくつかのセッションストレージドライバが�
 並行性に関する注意
 ------------------
 
-ものすごく AJAX を利用しているウェブサイトを開発しているわけではないかぎり、
+AJAX を多用しているウェブサイトを開発しているわけではないかぎり、
 このセクションはスキップしてもよいです。しかしながらそうでない場合、さらには
 パフォーマンスの問題が発生している場合、この注意はまさにあなたが探しているものでしょう。
 
 CodeIgniter の以前のバージョンのセッションはロックを実装していませんでした。
 すなわち、同一のセッションを利用するふたつの HTTP リクエストはまったく同時に
 実行できていました。より適切な専門用語で言うならば、
-リクエストは non-blocking でした
+リクエストは non-blocking でした。
 
 しかしながら、セッションを使う状況においての non-blocking なリクエストは安全ではないと
 いうことも意味しました。なぜなら片方のリクエストにおけるセッションデータの更新 (または
@@ -105,90 +105,90 @@ CodeIgniter の以前のバージョンのセッションはロックを実装�
 短く言えば、セッション変数を使い終えたら ``session_write_close()`` を
 呼び出してください。
 
-What is Session Data?
-=====================
+セッションデータとは何か？
+==========================
 
-Session data is simply an array associated with a particular session ID
-(cookie).
+セッションデータは、特定のセッション ID (クッキー) に結びつけられた
+単なる配列です。
 
-If you've used sessions in PHP before, you should be familiar with PHP's
-`$_SESSION superglobal <http://php.net/manual/en/reserved.variables.session.php>`_
-(if not, please read the content on that link).
+もし以前から PHP でセッションを利用しているなら、
+PHP の `$_SESSION スーパーグローバル変数 <http://php.net/manual/ja/reserved.variables.session.php>`_ に精通している
+ことでしょう (そうでない場合は、そのリンクのコンテンツをお読みください) 。
 
-CodeIgniter gives access to its session data through the same means, as it
-uses the session handlers' mechanism provided by PHP. Using session data is
-as simple as manipulating (read, set and unset values) the ``$_SESSION``
-array.
+CodeIgniter はセッションデータへのアクセス方法をそれと同じ手段で提供します。
+つまり、 PHP のセッションハンドラの仕組みを使っています。
+セッションデータの使い方は $ _SESSION 配列を操作 (読み込み、設定および削除) するのと同じくらい
+簡単です。
 
-In addition, CodeIgniter also provides 2 special types of session data
-that are further explained below: flashdata and tempdata.
+くわえて、CodeIgniterでは以下に説明されているさらに 2 種類の
+セッションデータを提供します: flashdata と tempdata です。
 
-.. note:: In previous versions, regular session data in CodeIgniter was
-	referred to as 'userdata'. Have this in mind if that term is used
-	elsewhere in the manual. Most of it is written to explain how
-	the custom 'userdata' methods work.
+.. note:: 以前のバージョンでは、CodeIgniter の標準的なセッションデータは
+	「 userdata 」と呼ばれていました。その用語がマニュアルの他の場所で使用されている場合は、
+	このことを気に留めておいてくださいそのほとんどがカスタム「 userdata 」メソッドが
+	どのように動作するかを説明するために書かれています。
 
-Retrieving Session Data
-=======================
+セッションデータの取得
+======================
 
-Any piece of information from the session array is available through the
-``$_SESSION`` superglobal::
+セッション配列のどんな情報でも、 ``$ _SESSION`` スーパーグローバル変数を通して
+利用できます::
 
 	$_SESSION['item']
 
-Or through the magic getter::
+もしくはマジックメソッドを通して::
 
 	$this->session->item
 
-And for backwards compatibility, through the ``userdata()`` method::
+そして後方互換性のために、 ``userdata()`` メソッドを通して::
 
 	$this->session->userdata('item');
 
-Where item is the array key corresponding to the item you wish to fetch.
-For example, to assign a previously stored 'name' item to the ``$name``
-variable, you will do this::
+item は、取得したい項目に対応する配列のキーです。
+たとえば ``$name`` 変数に以前に格納した「 name 」の項目を割り当てるには、
+こうします::
 
 	$name = $_SESSION['name'];
 
-	// or:
+	// または:
 
 	$name = $this->session->name
 
-	// or:
+	// または:
 
 	$name = $this->session->userdata('name');
 
-.. note:: The ``userdata()`` method returns NULL if the item you are trying
-	to access does not exist.
+.. note:: あなたがアクセスしようとしている項目が存在しない場合、 ``userdata()`` メソッドは NULL を
+	返します。
 
-If you want to retrieve all of the existing userdata, you can simply
-omit the item key (magic getter only works for properties)::
+存在するすべてのユーザーデータを取得したい場合は、
+単にキーを省略してください (マジックメソッドはプロパティとしてのみ動きます) ::
 
 	$_SESSION
 
-	// or:
+	// または:
 
 	$this->session->userdata();
 
-Adding Session Data
-===================
+セッションデータを追加する
+==========================
 
-Let's say a particular user logs into your site. Once authenticated, you
-could add their username and e-mail address to the session, making that
-data globally available to you without having to run a database query when
-you need it.
+それでは、あなたのサイトにあるユーザがログインしたとしましょう。
+認証されると、セッションにユーザー名とメールアドレスを追加することができます。
+あなたがそれを必要とするときに、どこでも、データベースクエリを実行することなく
+取得できるようにするためです。
 
-You can simply assign data to the ``$_SESSION`` array, as with any other
-variable. Or as a property of ``$this->session``.
+シンプルに ``$ _SESSION`` 配列にデータを割り当てることができます、ほかの変数と同じようにです。
+もしくは ``$this->session`` プロパティとして割り当てられます。
 
-Alternatively, the old method of assigning it as "userdata" is also
-available. That however passing an array containing your new data to the
-``set_userdata()`` method::
+あるいは、古い方法である「 userdata 」も使えます。
+とはいえそれは ``set_userdata()`` メソッドに新しいデータを含む配列を
+渡すだけです::
 
 	$this->session->set_userdata($array);
 
-Where ``$array`` is an associative array containing your new data. Here's
-an example::
+``$array`` はあなたの新しいデータを含む連想配列です。
+次に例を示します::
 
 	$newdata = array(
 		'username'  => 'johndoe',
@@ -198,53 +198,53 @@ an example::
 
 	$this->session->set_userdata($newdata);
 
-If you want to add userdata one value at a time, ``set_userdata()`` also
-supports this syntax::
+ユーザデータにひとつひとつ値を追加したい場合、 ``set_userdata()`` は
+次の構文もサポートしています::
 
 	$this->session->set_userdata('some_name', 'some_value');
 
-If you want to verify that a session value exists, simply check with
-``isset()``::
+セッション値が存在することを確認したい場合は、単に ``isset()`` で
+確認してください::
 
-	// returns FALSE if the 'some_name' item doesn't exist or is NULL,
-	// TRUE otherwise:
+	// 'some_name' の値が存在しない場合またはNULLである場合は FALSE を、
+	// それ以外の場合は TRUE を返します:
 	isset($_SESSION['some_name'])
 
-Or you can call ``has_userdata()``::
+もしくは ``has_userdata()`` を呼び出します::
 
 	$this->session->has_userdata('some_name');
 
-Removing Session Data
-=====================
+セッションデータを削除する
+==========================
 
-Just as with any other variable, unsetting a value in ``$_SESSION`` can be
-done through ``unset()``::
+他の変数とまったく同じように、 ``$_SESSION`` の値を
+削除するには ``unset()`` を使えます::
 
 	unset($_SESSION['some_name']);
 
-	// or multiple values:
+	// 複数の値を削除したい場合:
 
 	unset(
 		$_SESSION['some_name'],
 		$_SESSION['another_name']
 	);
 
-Also, just as ``set_userdata()`` can be used to add information to a
-session, ``unset_userdata()`` can be used to remove it, by passing the
-session key. For example, if you wanted to remove 'some_name' from your
-session data array::
+また、セッションに情報を追加するために ``set_userdata()`` が
+使えるように、 ``unset_userdata()`` にキーを渡すことで削除することができます。
+例として、セッションデータ配列から「 some_name 」を
+削除したい場合は::
 
 	$this->session->unset_userdata('some_name');
 
-This method also accepts an array of item keys to unset::
+このメソッドは削除したい項目のキーの配列を受けつけます::
 
 	$array_items = array('username', 'email');
 
 	$this->session->unset_userdata($array_items);
 
-.. note:: In previous versions, the ``unset_userdata()`` method used
-	to accept an associative array of ``key => 'dummy value'``
-	pairs. This is no longer supported.
+.. note:: 以前のバージョンでは ``unset_userdata()`` メソッド
+	は ``key => 'dummy value'`` の連想配列を受けつけていました。
+	これはもうサポートされなくなりました。
 
 Flashdata
 =========

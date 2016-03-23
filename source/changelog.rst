@@ -13,7 +13,7 @@ Version 3.1.0
 
 -  データベース
 
-   -  Changed method ``initialize()`` to return void and instead throw a ``RuntimeException`` in case of failure.
+   -  メソッドの変更  ``initialize()`` はvoidを返すようになりました。障害が発生した場合には ``RuntimeException`` を投げます。
    -  Changed method ``db_connect()`` to always set the connection character set (if supported by the driver) and to fail if it can't.
    -  Removed method ``db_set_charset()`` and the ability to change a connection character set at runtime.
 

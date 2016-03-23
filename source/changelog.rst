@@ -14,8 +14,8 @@ Version 3.1.0
 -  データベース
 
    -  メソッドの変更  ``initialize()`` はvoidを返すようになりました。障害が発生した場合には ``RuntimeException`` を投げます。
-   -  Changed method ``db_connect()`` to always set the connection character set (if supported by the driver) and to fail if it can't.
-   -  Removed method ``db_set_charset()`` and the ability to change a connection character set at runtime.
+   -  メソッドの変更  ``db_connect()`` は接続時常に(ドライバがサポートしている場合に)文字コードを設定します。できない場合は失敗します。
+   -  メソッドの削除  ``db_set_charset()`` は削除されました。文字コードの設定は接続時に行われます。
 
 -  ヘルパー
 

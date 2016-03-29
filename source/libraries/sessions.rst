@@ -246,165 +246,165 @@ item は、取得したい項目に対応する配列のキーです。
 	は ``key => 'dummy value'`` の連想配列を受けつけていました。
 	これはもうサポートされなくなりました。
 
-Flashdata
-=========
+フラッシュデータ
+================
 
-CodeIgniter supports "flashdata", or session data that will only be
-available for the next request, and is then automatically cleared.
+CodeIgniter では「 flashdata 」をサポートします。すなわち、次のリクエストのためだけに利用でき、
+その後自動的にクリアされるセッションデータです。
 
-This can be very useful, especially for one-time informational, error or
-status messages (for example: "Record 2 deleted").
+これは非常に便利で、特に1回だけの情報、エラーまたは
+ステータスメッセージに使えます (たとえば: 「レコード2を削除しました」) 。
 
-It should be noted that flashdata variables are regular session vars,
-only marked in a specific way under the '__ci_vars' key (please don't touch
-that one, you've been warned).
+flashdata 変数は通常のセッション変数であり、「 __ci_vars 」キーによりとある方法で
+マークされただけのものであることに注意してください
+(__ci_vars には触らないでくださいね、忠告しましたよ？) 。
 
-To mark an existing item as "flashdata"::
+「 flashdata 」としてすでに作ったアイテムをマークするにはこうします::
 
 	$this->session->mark_as_flash('item');
 
-If you want to mark multiple items as flashdata, simply pass the keys as an
-array::
+フラッシュデータとして複数の項目をマークしたい場合は、単に配列としてキーを
+渡します::
 
 	$this->session->mark_as_flash(array('item', 'item2'));
 
-To add flashdata::
+フラッシュデータを追加するにはこうします::
 
 	$_SESSION['item'] = 'value';
 	$this->session->mark_as_flash('item');
 
-Or alternatively, using the ``set_flashdata()`` method::
+または別法として、 ``set_flashdata()`` メソッドを使います::
 
 	$this->session->set_flashdata('item', 'value');
 
-You can also pass an array to ``set_flashdata()``, in the same manner as
-``set_userdata()``.
+また、 ``set_userdata()`` と同じ方法で ``set_flashdata()`` に配列を渡すことが
+できます。
 
-Reading flashdata variables is the same as reading regular session data
-through ``$_SESSION``::
+フラッシュデータ変数の読み取りは通常のセッションデータと同じく
+``$_SESSION`` を使います::
 
 	$_SESSION['item']
 
-.. important:: The ``userdata()`` method will NOT return flashdata items.
+.. important:: ``userdata()`` メソッドはフラッシュデータを返しません。
 
-However, if you want to be sure that you're reading "flashdata" (and not
-any other kind), you can also use the ``flashdata()`` method::
+「 flashdata 」だけを確実に読みたい場合 (ほかの種類のセッションを
+読みたくない場合) 、 ``flashdata()`` メソッドを使用することができます::
 
 	$this->session->flashdata('item');
 
-Or to get an array with all flashdata, simply omit the key parameter::
+フラッシュデータを全部取得するには、単にキーパラメータを省略します::
 
 	$this->session->flashdata();
 
-.. note:: The ``flashdata()`` method returns NULL if the item cannot be
-	found.
+.. note:: フラッシュデータがない場合、 ``flashdata()`` メソッドはNULLを
+	返します。
 
-If you find that you need to preserve a flashdata variable through an
-additional request, you can do so using the ``keep_flashdata()`` method.
-You can either pass a single item or an array of flashdata items to keep.
+もし次のリクエストでもフラシュデータ変数を保持する必要があるとわかった場合、
+``keep_flashdata()`` メソッドを使用して保持することができます。
+単一のフラッシュデータ、またはフラッシュデータの配列を渡せます。
 
 ::
 
 	$this->session->keep_flashdata('item');
 	$this->session->keep_flashdata(array('item1', 'item2', 'item3'));
 
-Tempdata
-========
+テンプデータ
+============
 
-CodeIgniter also supports "tempdata", or session data with a specific
-expiration time. After the value expires, or the session expires or is
-deleted, the value is automatically removed.
+CodeIgniter は「 tempdata 」をサポートします。特定の有効期限を持つセッションデータです。
+値の有効期限が切れた、またはセッションの有効期限が切れるか削除された後、
+値は自動的に削除されます。
 
-Similarly to flashdata, tempdata variables are regular session vars that
-are marked in a specific way under the '__ci_vars' key (again, don't touch
-that one).
+フラッシュデータと同様に、テンプデータ変数はとある方法で「 __ci_vars 」キーで
+マークされた通常のセッション変数です (もう一度言います。
+__ci_vars には触らないでください) 。
 
-To mark an existing item as "tempdata", simply pass its key and expiry time
-(in seconds!) to the ``mark_as_temp()`` method::
+すでにあるアイテムを「 tempdata 」としてマークするには、シンプルにそのキーと有効期限を
+(単位は秒で！) ``mark_as_temp()`` メソッドに渡してください::
 
-	// 'item' will be erased after 300 seconds
+	// 'item' は 300 秒後に消されます
 	$this->session->mark_as_temp('item', 300);
 
-You can mark multiple items as tempdata in two ways, depending on whether
-you want them all to have the same expiry time or not::
+複数のアイテムを tempdata としてマークできますが、
+有効期限が同じかどうかにより方法がふたつあります::
 
-	// Both 'item' and 'item2' will expire after 300 seconds
+	// 'item' と 'item2' の両方が 300 秒後に期限切れします
 	$this->session->mark_as_temp(array('item', 'item2'), 300);
 
-	// 'item' will be erased after 300 seconds, while 'item2'
-	// will do so after only 240 seconds
+	// 'item'  は 300 秒後に、
+	// そのあいだに 'item2' は240 秒後に消えます
 	$this->session->mark_as_temp(array(
 		'item'	=> 300,
 		'item2'	=> 240
 	));
 
-To add tempdata::
+テンプデータを追加するにはこうします::
 
 	$_SESSION['item'] = 'value';
-	$this->session->mark_as_temp('item', 300); // Expire in 5 minutes
+	$this->session->mark_as_temp('item', 300); // 5 分で期限切れ
 
-Or alternatively, using the ``set_tempdata()`` method::
+または別法として、 set_tempdata() メソッドを使用します::
 
 	$this->session->set_tempdata('item', 'value', 300);
 
-You can also pass an array to ``set_tempdata()``::
+また、 ``set_tempdata()`` には配列を渡すことができます::
 
 	$tempdata = array('newuser' => TRUE, 'message' => 'Thanks for joining!');
 
 	$this->session->set_tempdata($tempdata, NULL, $expire);
 
-.. note:: If the expiration is omitted or set to 0, the default
-	time-to-live value of 300 seconds (or 5 minutes) will be used.
+.. note:: 有効期限を省略するか 0 に設定した場合、
+	デフォルトの有効期限 300 秒 (5分) が使用されます。
 
-To read a tempdata variable, again you can just access it through the
-``$_SESSION`` superglobal array::
+テンプデータ変数を読み取るには、またですが、
+$_SESSION スーパーグローバル配列でアクセスすることができます::
 
 	$_SESSION['item']
 
-.. important:: The ``userdata()`` method will NOT return tempdata items.
+.. important:: ``userdata()`` メソッドはテンプデータを返しません。
 
-Or if you want to be sure that you're reading "tempdata" (and not any
-other kind), you can also use the ``tempdata()`` method::
+「 tempdata 」だけを確実に読みたい場合 (ほかの種類のセッションを読みたくない場合) 、
+``tempdata()`` メソッドを使用することができます::
 
 	$this->session->tempdata('item');
 
-And of course, if you want to retrieve all existing tempdata::
+そしてもちろん、すべてのテンプデータを取得する場合はこうします::
 
 	$this->session->tempdata();
 
-.. note:: The ``tempdata()`` method returns NULL if the item cannot be
-	found.
+.. note:: テンプデータが見つからない場合 ``tempdata()`` メソッドは
+	NULL を返します。
 
-If you need to remove a tempdata value before it expires, you can directly
-unset it from the ``$_SESSION`` array::
+有効期限が切れる前にテンプデータ値を削除する必要がある場合は
+``$_SESSION`` 配列を直接 unset してください::
 
 	unset($_SESSION['item']);
 
-However, this won't remove the marker that makes this specific item to be
-tempdata (it will be invalidated on the next HTTP request), so if you
-intend to reuse that same key in the same request, you'd want to use
-``unset_tempdata()``::
+しかしながら、この方法はアイテムをテンプデータとするマーカーを削除しません
+(次の HTTP リクエストで不正扱いになります) 。
+そのため同じリクエストで同じキーを再利用したい場合、
+``unset_tempdata()`` を使用すべきところでしょう::
 
 	$this->session->unset_tempdata('item');
 
-Destroying a Session
-====================
+セッションの破棄
+================
 
-To clear the current session (for example, during a logout), you may
-simply use either PHP's `session_destroy() <http://php.net/session_destroy>`_
-function, or the ``sess_destroy()`` method. Both will work in exactly the
-same way::
+現在のセッションをクリアするには (例えばログアウト時) 、
+単に PHP の `session_destroy()  <http://php.net/session_destroy>`_ 関数を使うか、
+``sess_destroy()`` メソッドを使います。
+どちらもまったく同じです::
 
 	session_destroy();
 
-	// or
+	// または
 
 	$this->session->sess_destroy();
 
-.. note:: This must be the last session-related operation that you do
-	during the same request. All session data (including flashdata and
-	tempdata) will be destroyed permanently and functions will be
-	unusable during the same request after you destroy the session.
+.. note:: これは同じリクエストで行うセッション関連の最後の操作でなければなりません。
+	すべてのセッションデータ (フラッシュデータとテンプデータを含む)
+	は永続的に破壊され、
+	その後は同じリクエスト内ではセッション機能は使えなくなります。
 
 Accessing session metadata
 ==========================

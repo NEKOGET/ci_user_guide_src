@@ -406,73 +406,73 @@ $_SESSION スーパーグローバル配列でアクセスすることができ�
 	は永続的に破壊され、
 	その後は同じリクエスト内ではセッション機能は使えなくなります。
 
-Accessing session metadata
-==========================
+セッションメタデータへのアクセス
+================================
 
-In previous CodeIgniter versions, the session data array included 4 items
-by default: 'session_id', 'ip_address', 'user_agent', 'last_activity'.
+CodeIgniter の以前のバージョンでは、セッションデータ配列はデフォルトで4つの項目を含んでいました:
+「session_id」「ip_address」「user_agent」「last_activity」です。
 
-This was due to the specifics of how sessions worked, but is now no longer
-necessary with our new implementation. However, it may happen that your
-application relied on these values, so here are alternative methods of
-accessing them:
+これはセッションを動かすために必要だった変数ですが、今の新しい実装には不要になりました。
+しかしながら、あなたのアプリケーションがこれらの値に依存しているということもあるでしょう。
+そこで、
+これらにアクセスするための代替手段を記します:
 
   - session_id: ``session_id()``
   - ip_address: ``$_SERVER['REMOTE_ADDR']``
-  - user_agent: ``$this->input->user_agent()`` (unused by sessions)
-  - last_activity: Depends on the storage, no straightforward way. Sorry!
+  - user_agent: ``$this->input->user_agent()`` (セッションでは使われません)
+  - last_activity: ストレージによります。ストレートな方法はありません。ごめんなさい！
 
-Session Preferences
-===================
+セッションの設定
+================
 
-CodeIgniter will usually make everything work out of the box. However,
-Sessions are a very sensitive component of any application, so some
-careful configuration must be done. Please take your time to consider
-all of the options and their effects.
+CodeIgniter は通常、セットアップしてすぐ動きます。
+しかしながらセッションはいろいろなアプリケーションで非常に敏感な部品であるため、
+いくらか慎重に設定を行われなければなりません。
+オプションとその影響のすべてを考慮するため、どうか時間を取って検討してください。
 
-You'll find the following Session related preferences in your
-**application/config/config.php** file:
+次のセッション関連の設定は 
+**application/config/config.php** ファイルにあります:
 
 ============================ =============== ======================================== ============================================================================================
-Preference                   Default         Options                                  Description
+設定                         デフォルト      オプション                               説明
 ============================ =============== ======================================== ============================================================================================
-**sess_driver**              files           files/database/redis/memcached/*custom*  The session storage driver to use.
-**sess_cookie_name**         ci_session      [A-Za-z\_-] characters only              The name used for the session cookie.
-**sess_expiration**          7200 (2 hours)  Time in seconds (integer)                The number of seconds you would like the session to last.
-                                                                                      If you would like a non-expiring session (until browser is closed) set the value to zero: 0
-**sess_save_path**           NULL            None                                     Specifies the storage location, depends on the driver being used.
-**sess_match_ip**            FALSE           TRUE/FALSE (boolean)                     Whether to validate the user's IP address when reading the session cookie.
-                                                                                      Note that some ISPs dynamically changes the IP, so if you want a non-expiring session you
-                                                                                      will likely set this to FALSE.
-**sess_time_to_update**      300             Time in seconds (integer)                This option controls how often the session class will regenerate itself and create a new
-                                                                                      session ID. Setting it to 0 will disable session ID regeneration.
-**sess_regenerate_destroy**  FALSE           TRUE/FALSE (boolean)                     Whether to destroy session data associated with the old session ID when auto-regenerating
-                                                                                      the session ID. When set to FALSE, the data will be later deleted by the garbage collector.
+**sess_driver**              files           files/database/redis/memcached/*custom*  使用するセッションストレージドライバ。
+**sess_cookie_name**         ci_session      [A-Za-z\_-] のみ                         セッションクッキーの名前。
+**sess_expiration**          7200 (2 時間)   秒数 (整数)                              セッションを保持したい秒数。
+                                                                                      有効期限のないセッション (ブラウザを閉じるまで) にしたい場合は値を 0 に設定します。
+**sess_save_path**           NULL            なし                                     ストレージの保存場所を指定しますが、使用するドライバに依存します。
+**sess_match_ip**            FALSE           TRUE/FALSE (真偽値)                      セッションクッキーを読み取る際に、ユーザーの IP アドレスを検証するかどうか。
+                                                                                      一部のインターネットサービスプロバイダが動的に IP アドレスを変更することに注意してください。
+                                                                                      そのため、有効期限のないセッションをしたい場合は FALSE に設定するのが適当でしょう。
+**sess_time_to_update**      300             秒数 (整数)                              このオプションは、セッションクラスが自分自身を再生成し、新しいセッション ID を作成する頻度を
+                                                                                      制御します。 0 に設定すると、セッション ID の再生成を無効にします。
+**sess_regenerate_destroy**  FALSE           TRUE/FALSE (真偽値)                      セッション ID の自動再生成をするときに古いセッション ID に関連付けられたセッションデータを
+                                                                                      破棄するかどうか。 FALSE に設定すると、データはガベージコレクタによってあとで削除されます。
 ============================ =============== ======================================== ============================================================================================
 
-.. note:: As a last resort, the Session library will try to fetch PHP's
-	session related INI settings, as well as legacy CI settings such as
-	'sess_expire_on_close' when any of the above is not configured.
-	However, you should never rely on this behavior as it can cause
-	unexpected results or be changed in the future. Please configure
-	everything properly.
+.. note:: 上記のいずれも設定されていない場合、セッションライブラリは最後の手段として PHP の
+	INI 設定を取得しようとします。古い CodeIgniter の
+	「 sess_expire_on_close 」と同様にです。
+	しかしながら、その振る舞いに依存してはなりません。
+	予期しない結果を引き起こすか、将来変更される可能性があります。
+	どうかすべてきちんと設定してください。
 
-In addition to the values above, the cookie and native drivers apply the
-following configuration values shared by the :doc:`Input <input>` and
-:doc:`Security <security>` classes:
+上記の値に加えて、クッキーとネイティブドライバは
+次の設定値が適用されます。この値は :doc:`入力 <input>` および
+:doc:`セキュリティ <security>` クラスと共有しています:
 
 ================== =============== ===========================================================================
-Preference         Default         Description
+設定               デフォルト      説明
 ================== =============== ===========================================================================
-**cookie_domain**  ''              The domain for which the session is applicable
-**cookie_path**    /               The path to which the session is applicable
-**cookie_secure**  FALSE           Whether to create the session cookie only on encrypted (HTTPS) connections
+**cookie_domain**  ''              セッションが適用されるドメイン
+**cookie_path**    /               セッションが適用されるパス
+**cookie_secure**  FALSE           暗号化接続 (HTTPS) でのみセッションクッキーを作成するかどうか
 ================== =============== ===========================================================================
 
-.. note:: The 'cookie_httponly' setting doesn't have an effect on sessions.
-	Instead the HttpOnly parameter is always enabled, for security
-	reasons. Additionaly, the 'cookie_prefix' setting is completely
-	ignored.
+.. note:: 「 cookie_httponly 」の設定はセッションには影響しません。
+	HttpOnly のパラメータはセキュリティ上の理由から常に有効になっています。
+	加えて、「 cookie_prefix 」の設定は完全に
+	無視されます。
 
 Session Drivers
 ===============

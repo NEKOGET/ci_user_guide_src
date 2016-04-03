@@ -474,88 +474,88 @@ CodeIgniter は通常、セットアップしてすぐ動きます。
 	加えて、「 cookie_prefix 」の設定は完全に
 	無視されます。
 
-Session Drivers
-===============
+セッションドライバ
+==================
 
-As already mentioned, the Session library comes with 4 drivers, or storage
-engines, that you can use:
+既に述べたように、セッションライブラリには 4 つのドライバ、
+つまりストレージエンジンが付属しています:
 
   - files
   - database
   - redis
   - memcached
 
-By default, the `Files Driver`_ will be used when a session is initialized,
-because it is the most safe choice and is expected to work everywhere
-(virtually every environment has a file system).
+デフォルトでは `ファイルドライバ`_ がセッションが初期化されるときに使用されます。
+それは最も安全な選択であり、どこでも動くと期待されるからです
+(実質的にあらゆる実行環境はファイルシステムを持っています) 。
 
-However, any other driver may be selected via the ``$config['sess_driver']``
-line in your **application/config/config.php** file, if you chose to do so.
-Have it in mind though, every driver has different caveats, so be sure to
-get yourself familiar with them (below) before you make that choice.
+一方、他のドライバは **application/config/config.php** ファイルの ``$config['sess_driver']``
+により選択することができます、あなたがそれを選ぶなら。
+しかし、それぞれのドライバには異なる注意点があり、それらを使う前にそれら
+(後述します) に熟知しておくべきということを頭にとどめておいてください。
 
-In addition, you may also create and use `Custom Drivers`_, if the ones
-provided by default don't satisfy your use case.
+また、デフォルトがあなたのユースケースを満たしていない場合、 `カスタムドライバ`_
+を作成して使うことができます。
 
-.. note:: In previous CodeIgniter versions, a different, "cookie driver"
-	was the only option and we have received negative feedback on not
-	providing that option. While we do listen to feedback from the
-	community, we want to warn you that it was dropped because it is
-	**unsafe** and we advise you NOT to try to replicate it via a
-	custom driver.
+.. note:: CodeIgniter の以前のバージョンでは状況が異なり、「クッキードライバ」が唯一の選択肢であり、
+	私たちは上記のオプションを提供していないことに対して
+	遺憾の意を受けていました。私たちはコミュニティからのフィードバックに耳を傾けていますが、
+	一方で私たちはクッキードライバが **安全ではない** ので機能落ちされたことを警告し、
+	カスタムドライバでそれを複製　し　な　い　よ　う　
+	おすすめします。
 
-Files Driver
-------------
+ファイルドライバ
+----------------
 
-The 'files' driver uses your file system for storing session data.
+「 files 」ドライバはセッションデータを格納するためにファイルシステムを使用しています。
 
-It can safely be said that it works exactly like PHP's own default session
-implementation, but in case this is an important detail for you, have it
-mind that it is in fact not the same code and it has some limitations
-(and advantages).
+それは正確に PHP そのもののデフォルトセッション実装のように動作するといって差し支えありませんが、
+しかし場合により重要な細部となりえることに、
+実際には同じコードではありません。それはいくつかの制限
+(と利点) を持っているということを気にかけておいてください。
 
-To be more specific, it doesn't support PHP's `directory level and mode
-formats used in session.save_path
-<http://php.net/manual/en/session.configuration.php#ini.session.save-path>`_,
-and it has most of the options hard-coded for safety. Instead, only
-absolute paths are supported for ``$config['sess_save_path']``.
+具体的には、
+PHP の session.save_path
+<http://php.net/manual/ja/session.configuration.php#ini.session.save-path>`_
+で使用されるディレクトリレベルとモードの形式を サポートしていません、そして、そのオプションのほとんどは、
+安全のためにハードコーディングされています。そのかわり、ただひとつ絶対パスだけは ``$config['sess_save_path']`` でサポートされています。
 
-Another important thing that you should know, is to make sure that you
-don't use a publicly-readable or shared directory for storing your session
-files. Make sure that *only you* have access to see the contents of your
-chosen *sess_save_path* directory. Otherwise, anybody who can do that, can
-also steal any of the current sessions (also known as "session fixation"
-attack).
+知っておくべきもう一つの重要なことは、
+セッションファイルを格納するティレクトリとして広範囲に読み込み可能なディレクトリ、
+または共有ディレクトリを使用していないことを確認することです。 *ただ一人あなただけが*
+アクセス可能であるディレクトリを *sess_save_path* ディレクトリに選んだことを確実にしてください。
+さもなくば、それを行うことができる誰もが、現在のセッションのどれでも盗むことができます
+(「セッション固定」攻撃として知られています) 。
 
-On UNIX-like operating systems, this is usually achieved by setting the
-0700 mode permissions on that directory via the `chmod` command, which
-allows only the directory's owner to perform read and write operations on
-it. But be careful because the system user *running* the script is usually
-not your own, but something like 'www-data' instead, so only setting those
-permissions will probable break your application.
+UNIX ライクなオペレーティングシステムでは、
+これは通常 `chmod` コマンドによって 0700 モードで設定して保存されます。
+そのモードはディレクトリの所有者だけが読み書き操作を実行することを可能にするものです。
+しかし気をつけるべきは、スクリプトを *実行* しているシステムのユーザは通常、
+あなた自身ではなく、かわりに「 www-data 」のようなものが使われるため、
+パーミッションの設定だけではたぶんアプリケーションは動かなくなります。
 
-Instead, you should do something like this, depending on your environment
+かわりに、ご使用の環境に応じて、次のようなものを行う必要があります
 ::
 
 	mkdir /<path to your application directory>/sessions/
 	chmod 0700 /<path to your application directory>/sessions/
 	chown www-data /<path to your application directory>/sessions/
 
-Bonus Tip
-^^^^^^^^^
+ボーナスヒント
+^^^^^^^^^^^^^^
 
-Some of you will probably opt to choose another session driver because
-file storage is usually slower. This is only half true.
+あなたがたの何人かは、ファイルストレージは通常遅いので、
+おそらく別のセッションのドライバを選択するでしょう。これは半分だけ真実です。
 
-A very basic test will probably trick you into believing that an SQL
-database is faster, but in 99% of the cases, this is only true while you
-only have a few current sessions. As the sessions count and server loads
-increase - which is the time when it matters - the file system will
-consistently outperform almost all relational database setups.
+非常に簡単なテストはおそらく、 SQL データベースがより高速であると信じ込ませるようにあなたをだましますが、
+しかし 99% のケースで、わずか数セッションだけ持っているあいだだけの真実です。
+セッションが積み重ねられサーバ負荷が増えるにしたがい
+――それが問題になったとき―― ほぼ一貫してファイルシステムのほうが
+リレーショナルデータベースで組み上げるよりパフォーマンスに優れるでしょう。
 
-In addition, if performance is your only concern, you may want to look
-into using `tmpfs <http://eddmann.com/posts/storing-php-sessions-file-caches-in-memory-using-tmpfs/>`_,
-(warning: external resource), which can make your sessions blazing fast.
+つけくわえると、パフォーマンスだけが関心事であるなら、 `tmpfs <http://eddmann.com/posts/storing-php-sessions-file-caches-in-memory-using-tmpfs/>`_ (警告: 外部リソースです)
+の使い方を調べるといいかもしれません 、
+それは燃えるがごとくセッションを速くします。
 
 Database Driver
 ---------------
@@ -712,8 +712,8 @@ separate the multiple server paths with commas::
 	// compared to 192.0.2.1 with a weight of 1.
 	$config['sess_save_path'] = 'localhost:11211:5,192.0.2.1:11211:1';
 
-Custom Drivers
---------------
+カスタムドライバ
+----------------
 
 You may also create your own, custom session drivers. However, have it in
 mind that this is typically not an easy task, as it takes a lot of

@@ -403,7 +403,7 @@ $_SESSION スーパーグローバル配列でアクセスすることができ�
 
 .. note:: これは同じリクエストで行うセッション関連の最後の操作でなければなりません。
 	すべてのセッションデータ (フラッシュデータとテンプデータを含む)
-	は永続的に破壊され、
+	は永続的に破棄され、
 	その後は同じリクエスト内ではセッション機能は使えなくなります。
 
 セッションメタデータへのアクセス
@@ -557,41 +557,41 @@ UNIX ライクなオペレーティングシステムでは、
 の使い方を調べるといいかもしれません 、
 それは燃えるがごとくセッションを速くします。
 
-Database Driver
----------------
+データベースドライバ
+--------------------
 
-The 'database' driver uses a relational database such as MySQL or
-PostgreSQL to store sessions. This is a popular choice among many users,
-because it allows the developer easy access to the session data within
-an application - it is just another table in your database.
+「 database 」ドライバは MySQL や PostgreSQL などのリレーショナルデータベースに
+セッションを保存するのに使います。これは多くのユーザーに人気のある選択肢です。
+開発者にとって容易にアプリケーションからアクセス可能になるからです――
+単にデータベースにテーブルを新しく作るだけです。
 
-However, there are some conditions that must be met:
+しかしながら、満たされなければならないいくつかの条件があります:
 
-  - Only your **default** database connection (or the one that you access
-    as ``$this->db`` from your controllers) can be used.
-  - You must have the :doc:`Query Builder </database/query_builder>`
-    enabled.
-  - You can NOT use a persistent connection.
-  - You can NOT use a connection with the *cache_on* setting enabled.
+  - **デフォルト** のデータベース接続 (つまりコントローラから
+    ``$this->db`` としてアクセスできるもの) だけを使えます。
+  - :doc:`クエリビルダ </database/query_builder>` を有効にしていることが
+    必要です。
+  - 持続的接続を使用することは　で　き　ま　せ　ん　。
+  - *cache_on* 設定が有効な接続では使用することは　で　き　ま　せ　ん　。
 
-In order to use the 'database' session driver, you must also create this
-table that we already mentioned and then set it as your
-``$config['sess_save_path']`` value.
-For example, if you would like to use 'ci_sessions' as your table name,
-you would do this::
+「 database 」セッションドライバを使用するためにはまた、すでに言及したように、
+テーブルをデータベース上に作成する必要があり、そして
+``$config['sess_save_path']`` にテーブル名を設定します。
+たとえばテーブル名として「 ci_sessions 」を使用する場合、
+こうします:
 
 	$config['sess_driver'] = 'database';
 	$config['sess_save_path'] = 'ci_sessions';
 
-.. note:: If you've upgraded from a previous version of CodeIgniter and
-	you don't have 'sess_save_path' configured, then the Session
-	library will look for the old 'sess_table_name' setting and use
-	it instead. Please don't rely on this behavior as it will get
-	removed in the future.
+.. note:: CodeIgniter の古いバージョンからアップグレードした際に
+	「 sess_save_path 」を設定していない場合は、
+	セッションライブラリは古い設定である「 sess_table_name 」をかわりに使います。
+	将来的に削除されますので、
+	この動作に頼らないようにしてください。
 
-And then of course, create the database table ...
+そしてもちろん、データベースにテーブルを作成します……
 
-For MySQL::
+MySQL の場合::
 
 	CREATE TABLE IF NOT EXISTS `ci_sessions` (
 		`id` varchar(40) NOT NULL,
@@ -601,7 +601,7 @@ For MySQL::
 		KEY `ci_sessions_timestamp` (`timestamp`)
 	);
 
-For PostgreSQL::
+PostgreSQL の場合::
 
 	CREATE TABLE "ci_sessions" (
 		"id" varchar(40) NOT NULL,
@@ -612,158 +612,158 @@ For PostgreSQL::
 
 	CREATE INDEX "ci_sessions_timestamp" ON "ci_sessions" ("timestamp");
 
-You will also need to add a PRIMARY KEY **depending on your 'sess_match_ip'
-setting**. The examples below work both on MySQL and PostgreSQL::
+また、**「 sess_match_ip 」の設定に応じて** PRIMARY KEY を追加する必要があります。
+次の例は MySQL と PostgreSQL の両方で動きます::
 
-	// When sess_match_ip = TRUE
+	// sess_match_ip = TRUE のとき
 	ALTER TABLE ci_sessions ADD PRIMARY KEY (id, ip_address);
 
-	// When sess_match_ip = FALSE
+	// sess_match_ip = FALSE のとき
 	ALTER TABLE ci_sessions ADD PRIMARY KEY (id);
 
-	// To drop a previously created primary key (use when changing the setting)
+	// 以前のプライマリキーを削除するとき (設定を変更するときに使います)
 	ALTER TABLE ci_sessions DROP PRIMARY KEY;
 
 
-.. important:: Only MySQL and PostgreSQL databases are officially
-	supported, due to lack of advisory locking mechanisms on other
-	platforms. Using sessions without locks can cause all sorts of
-	problems, especially with heavy usage of AJAX, and we will not
-	support such cases. Use ``session_write_close()`` after you've
-	done processing session data if you're having performance
-	issues.
+.. important:: MySQL と PostgreSQL のデータベースのみが
+	公式サポート対象です。ほかのデータベースでアドバイザリロック機構が
+	提供されていないためです。ロックなしにセッションを使うと、
+	特にAJAXを多用する場合において、あらゆる種類の問題を引き起こします。
+	私たちはそのようなものはサポートしません。パフォーマンス問題を抱えている場合は、
+	セッションデータを処理したあとに ``session_write_close()`` を
+	使用してください。
 
-Redis Driver
-------------
+Redis ドライバ
+--------------
 
-.. note:: Since Redis doesn't have a locking mechanism exposed, locks for
-	this driver are emulated by a separate value that is kept for up
-	to 300 seconds.
+.. note:: Redis はロック機構を提供していないので、
+	このドライバのロックは最大 300 秒間保持される別の値によって
+	エミュレートされています。
 
-Redis is a storage engine typically used for caching and popular because
-of its high performance, which is also probably your reason to use the
-'redis' session driver.
+Redis はそのハイパフォーマンスさからキャッシュにとてもよく使われるストレージエンジンで、
+あなたが「 Redis 」セッションドライバを使用するのもまた
+その性能の高さからでしょう。
 
-The downside is that it is not as ubiquitous as relational databases and
-requires the `phpredis <https://github.com/phpredis/phpredis>`_ PHP
-extension to be installed on your system, and that one doesn't come
-bundled with PHP.
-Chances are, you're only be using the 'redis' driver only if you're already
-both familiar with Redis and using it for other purposes.
+欠点としては、リレーショナルデータベースほどにはどこでも使えるわけではなく、
+`phpredis <https://github.com/phpredis/phpredis>`_ PHP拡張モジュールを
+インストールしなければなりません、しかしそれは PHP
+にはバンドルされていません。
+Redisとその使われ方に詳しくなければ「 Redis 」ドライバは
+使えないでしょう。
 
-Just as with the 'files' and 'database' drivers, you must also configure
-the storage location for your sessions via the
-``$config['sess_save_path']`` setting.
-The format here is a bit different and complicated at the same time. It is
-best explained by the *phpredis* extension's README file, so we'll simply
-link you to it:
+「 file 」と「 databse 」のドライバと同じように、
+セッションを保存するストレージの場所を
+``$config['sess_save_path']`` に設定する必要があります。
+そのフォーマットはすこしだけそれらと異なり、また複雑です。
+最高の説明が *phpredis* 拡張の README ファイルでなされているので、
+私たちはそれへのリンクを渡すにとどめましょう。
 
 	https://github.com/phpredis/phpredis#php-session-handler
 
-.. warning:: CodeIgniter's Session library does NOT use the actual 'redis'
-	``session.save_handler``. Take note **only** of the path format in
-	the link above.
+.. warning:: CodeIgniter のセッションライブラリは実際の「 Redis 」の
+	``session.save_handler`` を使用して　い　ま　せ　ん　。上記リンクのパス形式に **だけ**
+	注意してください。
 
-For the most common case however, a simple ``host:port`` pair should be
-sufficient::
+しかしながら、最も一般的なケースではシンプルな ``host:port`` のペアで
+十分でしょう::
 
 	$config['sess_driver'] = 'redis';
 	$config['sess_save_path'] = 'tcp://localhost:6379';
 
-Memcached Driver
-----------------
+Memcached ドライバ
+------------------
 
-.. note:: Since Memcache doesn't have a locking mechanism exposed, locks
-	for this driver are emulated by a separate value that is kept for
-	up to 300 seconds.
+.. note:: Memcache はロック機構を提供していないので、
+	このドライバのロックは最大 300 秒間保持される別の値によって
+	エミュレートされています。
 
-The 'memcached' driver is very similar to the 'redis' one in all of its
-properties, except perhaps for availability, because PHP's `Memcached
-<http://php.net/memcached>`_ extension is distributed via PECL and some
-Linux distrubutions make it available as an easy to install package.
+「 memcached 」ドライバはほぼすべての項目で「 redis 」と非常によく似ています、
+おそらくは用いやすさを除いては。 PHP の `Memcached
+<http://php.net/memcached>`_ 拡張は PECL により提供され、また、いくつかの
+Linux ディストリビューションはパッケージインストールで利用しやすくしています。
 
-Other than that, and without any intentional bias towards Redis, there's
-not much different to be said about Memcached - it is also a popular
-product that is usually used for caching and famed for its speed.
+それ以外には、とくに偏見もひいきもなく、 Memcached は Redis
+と変わるところはないと言えましょう――これもまたキャッシュによく使われ、
+その速度で名高い製品です。
 
-However, it is worth noting that the only guarantee given by Memcached
-is that setting value X to expire after Y seconds will result in it being
-deleted after Y seconds have passed (but not necessarily that it won't
-expire earlier than that time). This happens very rarely, but should be
-considered as it may result in loss of sessions.
+しかしながら重要な注意点として、 Memcached により保証されることは唯一、
+Y 秒の期限を定められた値 X が Y 秒経過後にそれが削除されていることだけです
+(その時間より前には削除されないということでは必ずしもありません) 。
+極めてまれではありますが、
+それによりセッションが失われる可能性があることを考慮するべきです。
 
-The ``$config['sess_save_path']`` format is fairly straightforward here,
-being just a ``host:port`` pair::
+``$config['sess_save_path']`` の形式は非常に簡便で、
+``host:port`` のペアだけです::
 
 	$config['sess_driver'] = 'memcached';
 	$config['sess_save_path'] = 'localhost:11211';
 
-Bonus Tip
-^^^^^^^^^
+ボーナスヒント
+^^^^^^^^^^^^^^
 
-Multi-server configuration with an optional *weight* parameter as the
-third colon-separated (``:weight``) value is also supported, but we have
-to note that we haven't tested if that is reliable.
+複数サーバを使ったコロン区切りの値 (``:weight``) の *重みづけ* パラメータも
+サポートされています。しかし、
+私たちはそれを信頼できるほどのテストはしていないことにご注意ください。
 
-If you want to experiment with this feature (on your own risk), simply
-separate the multiple server paths with commas::
+あなたが (あなた自身のリスクで) この機能を試してみたい場合、
+単にカンマ区切りで複数のサーバパスを並べます::
 
-	// localhost will be given higher priority (5) here,
-	// compared to 192.0.2.1 with a weight of 1.
+	// localhost はより高い優先度 (5) を与えられます、
+	// 192.0.2.1 の重みづけ 1 と比べ。
 	$config['sess_save_path'] = 'localhost:11211:5,192.0.2.1:11211:1';
 
 カスタムドライバ
 ----------------
 
-You may also create your own, custom session drivers. However, have it in
-mind that this is typically not an easy task, as it takes a lot of
-knowledge to do it properly.
+独自のカスタムセッションドライバを作成することもできます。
+しかしながら、それはたいていの場合かんたんな仕事ではありません、
+正しく動作させるにはたくさんの知識を必要とします。
 
-You need to know not only how sessions work in general, but also how they
-work specifically in PHP, how the underlying storage mechanism works, how
-to handle concurrency, avoid deadlocks (but NOT through lack of locks) and
-last but not least - how to handle the potential security issues, which
-is far from trivial.
+次のことを知っておく必要があります。セッションが一般的にどのように機能するかだけでなく、
+特に PHP でどのように機能するか、基礎となるストレージ機構がどのように機能するか、
+デッドロックを避け (しかしロックの　抜　け　を避けながら) 同時実行をどのように制御するか、
+そして最後に大事なこととして――潜在的セキュリティ問題をどのように制御するか、
+これは軽んずべきことではありません。
 
-Long story short - if you don't know how to do that already in raw PHP,
-you shouldn't be trying to do it within CodeIgniter either. You've been
-warned.
+かいつまんで言うと――素の PHP でどう実装すべきかを知らないなら、
+CodeIgniter においても実装しようとすべきではありません。
+忠告しましたよ。
 
-If you only want to add some extra functionality to your sessions, just
-extend the base Session class, which is a lot more easier. Read the
-:doc:`Creating Libraries <../general/creating_libraries>` article to
-learn how to do that.
+セッションにいくつか機能を追加したい場合は、ベースとなる Session
+クラスを継承してください、そのほうがはるかに簡単です。
+その方法を学ぶには :doc:`ライブラリの作成 <../general/creating_libraries>`
+の記事を読んでください。
 
-Now, to the point - there are three general rules that you must follow
-when creating a session driver for CodeIgniter:
+さて、話を戻しましょう―― CodeIgniter のセッションドライバを作成するとき、
+従わなければならない 3 つの原則があります:
 
-  - Put your driver's file under **application/libraries/Session/drivers/**
-    and follow the naming conventions used by the Session class.
+  - ドライバのファイルは **application/libraries/Session/drivers/**
+    の下に置いて、セッションクラスで使用される命名規則に従ってください。
 
-    For example, if you were to create a 'dummy' driver, you would have
-    a ``Session_dummy_driver`` class name, that is declared in
-    *application/libraries/Session/drivers/Session_dummy_driver.php*.
+    たとえば「 dummy 」ドライバを作成するとすれば、
+    ``Session_dummy_driver`` のクラス名で、
+    *application/libraries/Session/drivers/Session_dummy_driver.php* で定義する必要があります。
 
-  - Extend the ``CI_Session_driver`` class.
+  - ``CI_Session_driver`` クラスを継承します。
 
-    This is just a basic class with a few internal helper methods. It is
-    also extendable like any other library, if you really need to do that,
-    but we are not going to explain how ... if you're familiar with how
-    class extensions/overrides work in CI, then you already know how to do
-    it. If not, well, you shouldn't be doing it in the first place.
+    これはいくつかの内部向けヘルパーメソッドを持つ基礎的なクラスです。
+    それはほかのクラスと同様に拡張できます、あなたが本当にそれが必要なら。
+    しかし私たちはその方法を説明しようとは思いません……あなたがCIでの継承とオーバーライドに詳しいなら、
+    もうすでにやり方がわかるはずです。
+    そうでないなら、ええ、そもそもやるべきではありません。
 
 
-  - Implement the `SessionHandlerInterface
-    <http://php.net/sessionhandlerinterface>`_ interface.
+  - `SessionHandlerInterface
+    <http://php.net/sessionhandlerinterface>`_ インターフェースを実装します。
 
-    .. note:: You may notice that ``SessionHandlerInterface`` is provided
-    	by PHP since version 5.4.0. CodeIgniter will automatically declare
-    	the same interface if you're running an older PHP version.
+    .. note:: ``SessionHandlerInterface`` はPHP 5.4.0 以降からの提供であることに
+    	気づかれたかもしれません。古い PHP で実行している場合、 CodeIgniter は
+    	自動的に同じ内容のインターフェースを作ります。
 
-    The link will explain why and how.
+    リンク先はどうして、どのように実装するかを説明しています。
 
-So, based on our 'dummy' driver example above, you'd end up with something
-like this::
+そして、上記「 dummy 」ドライバの例をもとにすると、
+次のようなものでおしまいになります::
 
 	// application/libraries/Session/drivers/Session_dummy_driver.php:
 
@@ -772,291 +772,291 @@ like this::
 
 		public function __construct(&$params)
 		{
-			// DO NOT forget this
+			// これを忘れては　な　り　ま　せ　ん
 			parent::__construct($params);
 
-			// Configuration & other initializations
+			// 設定その他の初期化をします
 		}
 
 		public function open($save_path, $name)
 		{
-			// Initialize storage mechanism (connection)
+			// ストレージ機構 (接続) の初期化
 		}
 
 		public function read($session_id)
 		{
-			// Read session data (if exists), acquire locks
+			// (もしあれば) セッションデータの読み込み、ロックの獲得
 		}
 
 		public function write($session_id, $session_data)
 		{
-			// Create / update session data (it might not exist!)
+			// セッションデータの作成、更新 (データは存在しないかもしれません！)
 		}
 
 		public function close()
 		{
-			// Free locks, close connections / streams / etc.
+			// ロックの開放、接続の切断など
 		}
 
 		public function destroy($session_id)
 		{
-			// Call close() method & destroy data for current session (order may differ)
+			// close() メソッドの呼び出しと、現在のセッションデータの破棄 (順序は逆かもしれません)
 		}
 
 		public function gc($maxlifetime)
 		{
-			// Erase data for expired sessions
+			// 期限切れセッションの削除
 		}
 
 	}
 
-If you've done everything properly, you can now set your *sess_driver*
-configuration value to 'dummy' and use your own driver. Congratulations!
+すべてを適切にできたなら、ただいまから *sess_driver* 設定値に
+「 dummy 」を設定し、独自ドライバを使用することができます。おめでとうございます！
 
-***************
-Class Reference
-***************
+******************
+クラスリファレンス
+******************
 
 .. php:class:: CI_Session
 
 	.. php:method:: userdata([$key = NULL])
 
-		:param	mixed	$key: Session item key or NULL
-		:returns:	Value of the specified item key, or an array of all userdata
+		:param	mixed	$key: セッション値のキーまたは NULL
+		:returns:	指定のキーに対応する値、またはすべての userdata の配列
 		:rtype:	mixed
 
-		Gets the value for a specific ``$_SESSION`` item, or an
-		array of all "userdata" items if not key was specified.
+		Gets 特定の ``$_SESSION`` アイテムの値または、
+		キーを指定しない場合はすべての「 userdata 」アイテムの値を取得します。
 	
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications. You should
-			directly access ``$_SESSION`` instead.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
+			かわりに直接 ``$_SESSION`` を使うべきです。
 
 	.. php:method:: all_userdata()
 
-		:returns:	An array of all userdata
+		:returns:	すべての userdata の配列
 		:rtype:	array
 
-		Returns an array containing all "userdata" items.
+		すべての「 userdata 」を含む配列を返します。
 
-		.. note:: This method is DEPRECATED. Use ``userdata()``
-			with no parameters instead.
+		.. note:: このメソッドは廃止予定です。かわりに ``userdata()``
+			を引数なしで使ってください。
 
 	.. php:method:: &get_userdata()
 
-		:returns:	A reference to ``$_SESSION``
+		:returns:	``$_SESSION`` への参照
 		:rtype:	array
 
-		Returns a reference to the ``$_SESSION`` array.
+		``$_SESSION`` 配列への参照を返します。
 
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
 
 	.. php:method:: has_userdata($key)
 
-		:param	string	$key: Session item key
-		:returns:	TRUE if the specified key exists, FALSE if not
+		:param	string	$key: セッションアイテムのキー
+		:returns:	キーが存在すれば TRUE 、そうでなければ FALSE
 		:rtype:	bool
 
-		Checks if an item exists in ``$_SESSION``.
+		アイテムが ``$_SESSION`` に存在するかを確認します。
 
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications. It is just
-			an alias for ``isset($_SESSION[$key])`` - please
-			use that instead.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
+			これは ``isset($_SESSION[$key])`` のエイリアスにすぎません
+			――どうぞかわりに isset() を使ってください。
 
 	.. php:method:: set_userdata($data[, $value = NULL])
 
-		:param	mixed	$data: An array of key/value pairs to set as session data, or the key for a single item
-		:param	mixed	$value:	The value to set for a specific session item, if $data is a key
+		:param	mixed	$data: セッションに設定するキーと値のペアの配列、または単体のキー。
+		:param	mixed	$value:	引数 $data がキーなら、設定されたセッション値
 		:rtype:	void
 
-		Assigns data to the ``$_SESSION`` superglobal.
+		スーパーグローバル変数 ``$_SESSION`` にデータを設定します。
 
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
 
 	.. php:method:: unset_userdata($key)
 
-		:param	mixed	$key: Key for the session data item to unset, or an array of multiple keys
+		:param	mixed	$key: 削除するセッションデータのキー、またはキーの配列
 		:rtype:	void
 
-		Unsets the specified key(s) from the ``$_SESSION``
-		superglobal.
+		指定のキーをスーパーグローバル変数 ``$_SESSION``
+		から削除します。
 
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications. It is just
-			an alias for ``unset($_SESSION[$key])`` - please
-			use that instead.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
+			これは ``unset($_SESSION[$key])`` のエイリアスにすぎません
+			――どうぞかわりに unset() を使ってください。
 
 	.. php:method:: mark_as_flash($key)
 
-		:param	mixed	$key: Key to mark as flashdata, or an array of multiple keys
-		:returns:	TRUE on success, FALSE on failure
+		:param	mixed	$key: flashdata としてマークするキー、またはキーの配列
+		:returns:	成功すれば TRUE 、失敗したら FALSE
 		:rtype:	bool
 
-		Marks a ``$_SESSION`` item key (or multiple ones) as
-		"flashdata".
+		``$_SESSION`` アイテムのキー (または複数のキー) を
+		「 flashdata 」としてマークします。
 
 	.. php:method:: get_flash_keys()
 
-		:returns:	Array containing the keys of all "flashdata" items.
+		:returns:	すべての「 flashdata 」を含む配列.
 		:rtype:	array
 
-		Gets a list of all ``$_SESSION`` that have been marked as
-		"flashdata".
+		``$_SESSION`` のうち
+		「 flashdata 」としてマークされたすべての値の配列を取得します。
 
 	.. php:method:: umark_flash($key)
 
-		:param	mixed	$key: Key to be un-marked as flashdata, or an array of multiple keys
+		:param	mixed	$key: 「 flashdata 」のマークを外すキー、または複数のキーの配列
 		:rtype:	void
 
-		Unmarks a ``$_SESSION`` item key (or multiple ones) as
-		"flashdata".
+		``$_SESSION`` アイテムのキー (または複数のキー) の
+		「 flashdata 」としてのマークを外します。
 
 	.. php:method:: flashdata([$key = NULL])
 
-		:param	mixed	$key: Flashdata item key or NULL
-		:returns:	Value of the specified item key, or an array of all flashdata
+		:param	mixed	$key: Flashdata のキーまたは NULL
+		:returns:	指定したキーに対応する値、またはすべての flashdata の配列
 		:rtype:	mixed
 
-		Gets the value for a specific ``$_SESSION`` item that has
-		been marked as "flashdata", or an array of all "flashdata"
-		items if no key was specified.
+		``$_SESSION`` アイテムのうち
+		「 flashdata 」としてマークされた値、または引数が指定されない場合はすべての「 flashdata 」の配列
+		を取得します。
 	
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications. You should
-			directly access ``$_SESSION`` instead.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
+			かわりに直接 ``$_SESSION`` を使うべきです。
 
 	.. php:method:: keep_flashdata($key)
 
-		:param	mixed	$key: Flashdata key to keep, or an array of multiple keys
-		:returns:	TRUE on success, FALSE on failure
+		:param	mixed	$key: 保持したい Flashdata のキー、またはキーの配列
+		:returns:	成功すれば TRUE 、失敗したら FALSE
 		:rtype:	bool
 
-		Retains the specified session data key(s) as "flashdata"
-		through the next request.
+		指定の「 flashdata 」のキーを
+		次のリクエストでも保持します。
 
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications. It is just
-			an alias for the ``mark_as_flash()`` method.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
+			これは ``mark_as_flash()`` のエイリアスにすぎません。
 
 	.. php:method:: set_flashdata($data[, $value = NULL])
 
-		:param	mixed	$data: An array of key/value pairs to set as flashdata, or the key for a single item
-		:param	mixed	$value:	The value to set for a specific session item, if $data is a key
+		:param	mixed	$data: flashdata のキーと値のセットの配列、または単体のキー
+		:param	mixed	$value:	引数 $data がキーなら、設定されたセッション値
 		:rtype:	void
 
-		Assigns data to the ``$_SESSION`` superglobal and marks it
-		as "flashdata".
+		スーパーグローバル変数 ``$_SESSION`` にデータを設定し、
+		「 flashdata 」としてマークします。
 
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
 
 	.. php:method:: mark_as_temp($key[, $ttl = 300])
 
-		:param	mixed	$key: Key to mark as tempdata, or an array of multiple keys
-		:param	int	$ttl: Time-to-live value for the tempdata, in seconds
-		:returns:	TRUE on success, FALSE on failure
+		:param	mixed	$key: tempdata としてマークするキー、またはキーの配列
+		:param	int	$ttl: tempdata の生存秒数
+		:returns:	成功すれば TRUE 、失敗したら FALSE
 		:rtype:	bool
 
-		Marks a ``$_SESSION`` item key (or multiple ones) as
-		"tempdata".
+		``$_SESSION`` アイテムのキー (または複数のキー) を
+		「 tempdata 」としてマークします。
 
 	.. php:method:: get_temp_keys()
 
-		:returns:	Array containing the keys of all "tempdata" items.
+		:returns:	すべての「 tempdata 」を含む配列.
 		:rtype:	array
 
-		Gets a list of all ``$_SESSION`` that have been marked as
-		"tempdata".
+		``$_SESSION`` のうち
+		「 tempdata 」としてマークされたすべての値の配列を取得します。
 
 	.. php:method:: umark_temp($key)
 
-		:param	mixed	$key: Key to be un-marked as tempdata, or an array of multiple keys
+		:param	mixed	$key: 「 tempdata 」のマークを外すキー、または複数のキーの配列
 		:rtype:	void
 
-		Unmarks a ``$_SESSION`` item key (or multiple ones) as
-		"tempdata".
+		``$_SESSION`` アイテムのキー (または複数のキー) の
+		「 tempdata 」としてのマークを外します。
 
 	.. php:method:: tempdata([$key = NULL])
 
-		:param	mixed	$key: Tempdata item key or NULL
-		:returns:	Value of the specified item key, or an array of all tempdata
+		:param	mixed	$key: Tempdata のキーまたは NULL
+		:returns:	指定したキーに対応する値、またはすべての tempdata の配列
 		:rtype:	mixed
 
-		Gets the value for a specific ``$_SESSION`` item that has
-		been marked as "tempdata", or an array of all "tempdata"
-		items if no key was specified.
+		``$_SESSION`` アイテムのうち
+		「 tempdata 」としてマークされた値、または引数が指定されない場合はすべての「 flashdata 」の配列
+		を取得します。
 	
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications. You should
-			directly access ``$_SESSION`` instead.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
+			かわりに直接 ``$_SESSION`` を使うべきです。
 
 	.. php:method:: set_tempdata($data[, $value = NULL])
 
-		:param	mixed	$data: An array of key/value pairs to set as tempdata, or the key for a single item
-		:param	mixed	$value:	The value to set for a specific session item, if $data is a key
-		:param	int	$ttl: Time-to-live value for the tempdata item(s), in seconds
+		:param	mixed	$data: tempdata のキーと値のセットの配列、または単体のキー
+		:param	mixed	$value:	引数 $data がキーなら、設定されたセッション値
+		:param	int	$ttl: tempdata の生存秒数
 		:rtype:	void
 
-		Assigns data to the ``$_SESSION`` superglobal and marks it
-		as "tempdata".
+		スーパーグローバル変数 ``$_SESSION`` にデータを設定し、
+		「 tempdata 」としてマークします。
 
-		.. note:: This is a legacy method kept only for backwards
-			compatibility with older applications.
+		.. note:: これは古いアプリケーションの
+			後方互換性のためだけに残されたメソッドです。
 
 	.. php:method:: sess_regenerate([$destroy = FALSE])
 
-		:param	bool	$destroy: Whether to destroy session data
+		:param	bool	$destroy: セッションを破棄するかどうか
 		:rtype:	void
 
-		Regenerate session ID, optionally destroying the current
-		session's data.
+		セッション ID を再生成します。
+		オプションで現在のセッションを破棄します。
 
-		.. note:: This method is just an alias for PHP's native
+		.. note:: このメソッドは素の PHP の
 			`session_regenerate_id()
-			<http://php.net/session_regenerate_id>`_ function.
+			<http://php.net/session_regenerate_id>`_ 関数のエイリアスにすぎません。
 
 	.. php:method:: sess_destroy()
 
 		:rtype:	void
 
-		Destroys the current session.
+		現在のセッションを破棄します。
 
-		.. note:: This must be the *last* session-related function
-			that you call. All session data will be lost after
-			you do that.
+		.. note:: これはセッション関連機能の *最後に* 呼ばれる必要があります。
+			すべてのセッションデータはこれのあとには
+			失われます。
 
-		.. note:: This method is just an alias for PHP's native
+		.. note:: このメソッドは素の PHP の
 			`session_destroy()
-			<http://php.net/session_destroy>`_ function.
+			<http://php.net/session_destroy>`_ 関数のエイリアスにすぎません。
 
 	.. php:method:: __get($key)
 
-		:param	string	$key: Session item key
-		:returns:	The requested session data item, or NULL if it doesn't exist
+		:param	string	$key: セッションアイテムのキー
+		:returns:	要求されたセッションアイテム、または存在しない場合は NULL
 		:rtype:	mixed
 
-		A magic method that allows you to use
-		``$this->session->item`` instead of ``$_SESSION['item']``,
-		if that's what you prefer.
+		これはマジックメソッドで、
+		``$_SESSION['item']`` のかわりに ``$this->session->item`` で使えるようにするものです、
+		もしあなたがお好みなら。
 
-		It will also return the session ID by calling
-		``session_id()`` if you try to access
-		``$this->session->session_id``.
+		``$this->session->session_id``にアクセスした場合、
+		これは ``session_id()`` によって取得されるセッション ID を
+		返します。
 
 	.. php:method:: __set($key, $value)
 
-		:param	string	$key: Session item key
-		:param	mixed	$value: Value to assign to the session item key
+		:param	string	$key: セッションアイテムのキー
+		:param	mixed	$value: セッションアイテムのキーに設定する値
 		:returns:	void
 
-		A magic method that allows you to assign items to
-		``$_SESSION`` by accessing them as ``$this->session``
-		properties::
+		これはマジックメソッドで、
+		``$this->session`` プロパティで ``$_SESSION`` に 
+		アクセスできるようにするものです::
 
 			$this->session->foo = 'bar';
 
-			// Results in:
+			// 結果として:
 			// $_SESSION['foo'] = 'bar';

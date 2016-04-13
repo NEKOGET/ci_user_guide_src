@@ -1042,7 +1042,7 @@ CodeIgniter においても実装しようとすべきではありません。
 		``$_SESSION['item']`` のかわりに ``$this->session->item`` で使えるようにするものです、
 		もしあなたがお好みなら。
 
-		``$this->session->session_id``にアクセスした場合、
+		``$this->session->session_id`` にアクセスした場合、
 		これは ``session_id()`` によって取得されるセッション ID を
 		返します。
 

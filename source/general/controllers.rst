@@ -1,34 +1,34 @@
-###########
-Controllers
-###########
+############
+コントローラ
+############
 
-Controllers are the heart of your application, as they determine how
-HTTP requests should be handled.
+コントローラはアプリケーションの心臓部です、
+HTTP リクエストをどのように処理するかを決定します。
 
-.. contents:: Page Contents
+.. contents:: ページの目次
 
-What is a Controller?
-=====================
+コントローラとは何ですか？
+==========================
 
-**A Controller is simply a class file that is named in a way that can be
-associated with a URI.**
+**コントローラは、 URI と関連づけることができるように命名されている
+単純なクラスファイルです。**
 
-Consider this URI::
+つぎの URI を見てみましょう::
 
 	example.com/index.php/blog/
 
-In the above example, CodeIgniter would attempt to find a controller
-named Blog.php and load it.
+上記の例では、 CodeIgniter は Blog.php という名前のコントローラを見つけだし、
+それをロードしようとします。
 
-**When a controller's name matches the first segment of a URI, it will
-be loaded.**
+**コントローラの名前が URI の最初のセグメントに一致した場合、
+それがロードされます。**
 
-Let's try it: Hello World!
-==========================
+やってみましょう: Hello World!
+==============================
 
-Let's create a simple controller so you can see it in action. Using your
-text editor, create a file called Blog.php, and put the following code
-in it::
+簡単なコントローラを作成してみて、その動きを見てみましょう。
+テキストエディタを使って Blog.php というファイルを作成し、
+その中に次のコードを配置します::
 
 	<?php
 	class Blog extends CI_Controller {
@@ -39,50 +39,50 @@ in it::
 		}
 	}
 
-Then save the file to your *application/controllers/* directory.
+次に、そのファイルを *application/controllers/* ディレクトリに保存します。
 
-.. important:: The file must be called 'Blog.php', with a capital 'B'.
+.. important:: このファイルは「 Blog.php 」、大文字の B で始まる必要があります。
 
-Now visit the your site using a URL similar to this::
+さて、次のような URL でサイトを表示してください::
 
 	example.com/index.php/blog/
 
-If you did it right, you should see:
+正しく作業できたなら、次のように表示されます:
 
 	Hello World!
 
-.. important:: Class names must start with an uppercase letter.
+.. important:: クラス名は大文字で始まる必要があります。
 
-This is valid::
+次のものは有効です::
 
 	<?php
 	class Blog extends CI_Controller {
 
 	}
 	
-This is **not** valid::
+次のものは有効では **ありません** ::
 
 	<?php
 	class blog extends CI_Controller {
 
 	}
 
-Also, always make sure your controller extends the parent controller
-class so that it can inherit all its methods.
+また、コントローラは常に親コントローラクラスを継承し、
+すべてのメソッドを受け継げるようにしてください。
 
-Methods
-=======
+メソッド
+========
 
-In the above example the method name is ``index()``. The "index" method
-is always loaded by default if the **second segment** of the URI is
-empty. Another way to show your "Hello World" message would be this::
+上記の例では、メソッド名は ``index()`` です。「 index 」メソッドは
+URI の **第 2 セグメント** が空の場合、常にデフォルトでロードされます。
+「 Hello World 」のメッセージを表示する別の方法は、次のようになります::
 
 	example.com/index.php/blog/index/
 
-**The second segment of the URI determines which method in the
-controller gets called.**
+**URI の第 2 セグメントはコントローラのどのメソッドを呼び出すかを
+決定します。**
 
-Let's try it. Add a new method to your controller::
+試してみましょう。コントローラに新しいメソッドを追加します::
 
 	<?php
 	class Blog extends CI_Controller {
@@ -98,23 +98,23 @@ Let's try it. Add a new method to your controller::
 		}
 	}
 
-Now load the following URL to see the comment method::
+さあ、次の URL で comment メソッドを表示してみましょう::
 
 	example.com/index.php/blog/comments/
 
-You should see your new message.
+新しいメッセージが表示されるはずです。
 
-Passing URI Segments to your methods
-====================================
+メソッドに URI セグメントを渡す
+===============================
 
-If your URI contains more than two segments they will be passed to your
-method as parameters.
+URI に 2 つより多くのセグメントが含まれている場合、
+それらはパラメータとしてメソッドに渡されます。
 
-For example, let's say you have a URI like this::
+たとえば、次のような URI をがあるとしましょう::
 
 	example.com/index.php/products/shoes/sandals/123
 
-Your method will be passed URI segments 3 and 4 ("sandals" and "123")::
+メソッドには URI セグメント 3 と 4 (「 sandals 」と「 123 」) が渡されます::
 
 	<?php
 	class Products extends CI_Controller {
@@ -126,46 +126,46 @@ Your method will be passed URI segments 3 and 4 ("sandals" and "123")::
 		}
 	}
 
-.. important:: If you are using the :doc:`URI Routing <routing>`
-	feature, the segments passed to your method will be the re-routed
-	ones.
+.. important:: :doc:`URI ルーティング <routing>` 機能を使用している場合、
+	メソッドに渡されるセグメントは
+	再ルーティングされたものになります。
 
-Defining a Default Controller
-=============================
+デフォルトコントローラの定義
+============================
 
-CodeIgniter can be told to load a default controller when a URI is not
-present, as will be the case when only your site root URL is requested.
-To specify a default controller, open your **application/config/routes.php**
-file and set this variable::
+CodeIgniter は URI が提供されない場合にデフォルトのコントローラを
+ロードするように指定することができます。ルート URL だけが要求されたような場合です。
+デフォルトのコントローラを指定するには、 **application/config/routes.php** ファイルを開き、
+次の変数を設定します::
 
 	$route['default_controller'] = 'blog';
 
-Where 'blog' is the name of the controller class you want used. If you now
-load your main index.php file without specifying any URI segments you'll
-see your "Hello World" message by default.
+「 blog 」が書かれている箇所が使用したいコントローラクラスの名前を書くところです。
+いま URI セグメントになにもを指定せずにメインの index.php ファイルをロードすれば、
+デフォルトとして「 Hello World 」のメッセージが表示されます。
 
-For more information, please refer to the "Reserved Routes" section of the
-:doc:`URI Routing <routing>` documentation.
+詳細については :doc:`URI ルーティング <routing>` ドキュメントの「予約済みルート」セクションを
+参照してください。
 
-Remapping Method Calls
-======================
+メソッド呼び出しの再マッピング
+==============================
 
-As noted above, the second segment of the URI typically determines which
-method in the controller gets called. CodeIgniter permits you to override
-this behavior through the use of the ``_remap()`` method::
+上述のように、 URI の第 2 セグメントは通常、
+コントローラのどのメソッドを呼び出すかを決定します。CodeIgniter では
+``_remap()`` メソッドを使用してこの動作をオーバーライドすることができます::
 
 	public function _remap()
 	{
 		// Some code here...
 	}
 
-.. important:: If your controller contains a method named _remap(),
-	it will **always** get called regardless of what your URI contains. It
-	overrides the normal behavior in which the URI determines which method
-	is called, allowing you to define your own method routing rules.
+.. important:: コントローラに _remap() という名前のメソッドが含まれている場合、
+	URI がどうであるかに関係なく **常に** 呼び出されます。これは
+	URI により呼び出されるメソッドを決定する通常の動作をオーバーライドし、
+	独自のメソッドルーティングルールを定義することができます。
 
-The overridden method call (typically the second segment of the URI) will
-be passed as a parameter to the ``_remap()`` method::
+オーバーライドされるメソッド名 (典型的には URI の第 2 セグメント) が
+``_remap()`` メソッドにパラメータとして渡されます::
 
 	public function _remap($method)
 	{
@@ -179,12 +179,12 @@ be passed as a parameter to the ``_remap()`` method::
 		}
 	}
 
-Any extra segments after the method name are passed into ``_remap()`` as an
-optional second parameter. This array can be used in combination with
-PHP's `call_user_func_array() <http://php.net/call_user_func_array>`_
-to emulate CodeIgniter's default behavior.
+メソッド名の後の追加のセグメントは、オプションの 2 番目のパラメータとして ``_remap()`` に
+渡されます。この配列は
+PHP の `call_user_func_array() <http://php.net/call_user_func_array>`_ と組み合わせて使用することで、
+CodeIgniterのデフォルト動作をエミュレートできます。
 
-Example::
+例::
 
 	public function _remap($method, $params = array())
 	{
@@ -196,23 +196,23 @@ Example::
 		show_404();
 	}
 
-Processing Output
-=================
+出力処理
+========
 
-CodeIgniter has an output class that takes care of sending your final
-rendered data to the web browser automatically. More information on this
-can be found in the :doc:`Views <views>` and :doc:`Output Class
-<../libraries/output>` pages. In some cases, however, you might want to
-post-process the finalized data in some way and send it to the browser
-yourself. CodeIgniter permits you to add a method named ``_output()``
-to your controller that will receive the finalized output data.
+CodeIgniter には出力クラスがあり、Webブラウザにレンダリングされる
+最終的なデータを送信する面倒を自動的にみてくれます。詳細な情報は
+:doc:`ビュー <views>` と :doc:`出力クラス
+<../libraries/output>` ページで見つけることができます。しかしながらいくつかのケースにおいて、
+最終データをいくらか後処理をして自分自身でブラウザに送信したいこともあるでしょう。
+CodeIgniter では ``_output()`` メソッドをコントローラに追加することで、
+確定した出力データを受け取ることができます。
 
-.. important:: If your controller contains a method named ``_output()``,
-	it will **always** be called by the output class instead of
-	echoing the finalized data directly. The first parameter of the
-	method will contain the finalized output.
+.. important:: コントローラに ``_output()`` という名前のメソッドが含まれている場合、
+	最終データを直接出力するかわりとして、出力クラスから **常に** 呼び出されます。
+	メソッドの最初のパラメータに
+	最終出力が含まれます。
 
-Here is an example::
+例を示します::
 
 	public function _output($output)
 	{
@@ -221,89 +221,89 @@ Here is an example::
 
 .. note::
 
-	Please note that your ``_output()`` method will receive the
-	data in its finalized state. Benchmark and memory usage data
-	will be rendered, cache files written (if you have caching
-	enabled), and headers will be sent (if you use that
-	:doc:`feature <../libraries/output>`) before it is handed off
-	to the ``_output()`` method.
-	To have your controller's output cached properly, its
-	``_output()`` method can use::
+	``_output()`` メソッドは、確定状態でデータを受信することに注意してください。
+	``_output()`` メソッドに渡される前に、
+	ベンチマークとメモリ使用量データはレンダリングされ、
+	(キャッシュを有効にしている場合) キャッシュファイルは書き込まれており、
+	(その :doc:`機能 <../libraries/output>` を使っていれば)
+	ヘッダは送信されています。
+	コントローラの出力を適切にキャッシュするため、
+	``_output()`` メソッドで次のようにできます::
 
 		if ($this->output->cache_expiration > 0)
 		{
 			$this->output->_write_cache($output);
 		}
 
-	If you are using this feature the page execution timer and
-	memory usage stats might not be perfectly accurate since they
-	will not take into account any further processing you do.
-	For an alternate way to control output *before* any of the
-	final processing is done, please see the available methods
-	in the :doc:`Output Library <../libraries/output>`.
+	この機能を使用している場合、ページの実行タイマおよび
+	メモリ使用量の統計は完全な正確さを保てないでしょう、
+	それらはあなたの追加処理を取得できないからです。
+	最終処理のいずれかが行われる *前に* 出力を制御する
+	別の方法については、
+	:doc:`出力ライブラリ <../libraries/output>` で利用可能なメソッドを参照してください 。
 
-Private methods
-===============
+プライベートメソッド
+====================
 
-In some cases you may want certain methods hidden from public access.
-In order to achieve this, simply declare the method as being private
-or protected and it will not be served via a URL request. For example,
-if you were to have a method like this::
+いくつかのケースでは、特定のメソッドをパブリックアクセスから隠したいことがあります。
+そうするためには、単に private または protected としてメソッドを宣言すれば、
+URL リクエストとしては提供されません。たとえば、
+次のようなメソッドがあるとします::
 
 	private function _utility()
 	{
 		// some code
 	}
 
-Trying to access it via the URL, like this, will not work::
+つぎのように URL からアクセスしようとしても、動作しません::
 
 	example.com/index.php/blog/_utility/
 
-.. note:: Prefixing method names with an underscore will also prevent
-	them from being called. This is a legacy feature that is left
-	for backwards-compatibility.
+.. note:: メソッド名の前にアンダースコアを付けることによっても
+	呼び出しを防ぐことができます。
+	これは後方互換のために残されている古い機能です。
 
-Organizing Your Controllers into Sub-directories
-================================================
+サブディレクトリにコントローラを整理する
+========================================
 
-If you are building a large application you might want to hierarchically
-organize or structure your controllers into sub-directories. CodeIgniter
-permits you to do this.
+大規模なアプリケーションを構築している場合、
+階層的に整理したりサブディレクトリにコントローラを構築したいことでしょう。
+CodeIgniter はできます。
 
-Simply create sub-directories under the main *application/controllers/*
-one and place your controller classes within them.
+単純にメインの *application/controllers/* の下にサブディレクトリを作成し、
+その中にコントローラクラスを配置します。
 
-.. note:: When using this feature the first segment of your URI must
-	specify the folder. For example, let's say you have a controller located
-	here::
+.. note:: この機能を使用する場合、 URI の最初のセグメントには
+	そのフォルダを指定する必要があります。たとえば、
+	次のようにコントローラを持っているとしましょう::
 
 		application/controllers/products/Shoes.php
 
-	To call the above controller your URI will look something like this::
+	上記のコントローラを呼び出すには、 URI は次のようになります::
 
 		example.com/index.php/products/shoes/show/123
 
-Each of your sub-directories may contain a default controller which will be
-called if the URL contains *only* the sub-directory. Simply put a controller
-in there that matches the name of your 'default_controller' as specified in
-your *application/config/routes.php* file.
+それぞれのサブディレクトリには、
+URL にサブディレクトリ *のみ* が含まれている場合に呼び出される
+デフォルトのコントローラを持っていたいでしょう。シンプルに「 default_controller 」の設定を
+*application/config/routes.php* ファイルで行い、名前が一致するようにコントローラを置いてください。
 
-CodeIgniter also permits you to remap your URIs using its :doc:`URI
-Routing <routing>` feature.
+CodeIgniter はまた、 :doc:`URI
+ルーティング <routing>` 機能により URI を再マッピングすることもできます。
 
-Class Constructors
-==================
+クラスのコンストラクタ
+======================
 
-If you intend to use a constructor in any of your Controllers, you
-**MUST** place the following line of code in it::
+コントローラのいずれかでコンストラクタを使用する場合、
+**必ず** その中に次のコード行を配置してください::
 
 	parent::__construct();
 
-The reason this line is necessary is because your local constructor will
-be overriding the one in the parent controller class so we need to
-manually call it.
+この行が必要な理由は、
+そのクラスのコンストラクタが親コントローラクラスのコンストラクタを上書きしてしまうので、
+手動で呼び出す必要があります。
 
-Example::
+例::
 
 	<?php
 	class Blog extends CI_Controller {
@@ -315,26 +315,26 @@ Example::
 		}
 	}
 
-Constructors are useful if you need to set some default values, or run a
-default process when your class is instantiated. Constructors can't
-return a value, but they can do some default work.
+コンストラクタはいくつかのデフォルト値を設定したりする必要があるときに便利です、
+クラスがインスタンス化されるときにデフォルトで処理が走るからです。
+コンストラクタは値を返すことはできませんが、いくつかのデフォルト作業を行うことができます。
 
-Reserved method names
-=====================
+予約済みのメソッド名
+====================
 
-Since your controller classes will extend the main application
-controller you must be careful not to name your methods identically to
-the ones used by that class, otherwise your local functions will
-override them. See :doc:`Reserved Names <reserved_names>` for a full
-list.
+あなたのコントローラクラスはメインのアプリケーションコントローラを継承しますので、
+親クラスで使っているメソッド名と同一の名前をつけないように注意する必要があります。
+さもなくばあなたの関数がそれらをオーバーライドしてしまいます。
+:doc:`予約名 <reserved_names>`
+の全リストを参照してください。
 
-.. important:: You should also never have a method named identically
-	to its class name. If you do, and there is no ``__construct()``
-	method in the same class, then your e.g. ``Index::index()``
-	method will be executed as a class constructor! This is a PHP4
-	backwards-compatibility feature.
+.. important:: また、そのクラス名と同じ名前のメソッドを作ってもいけません。
+	そうしてしまうと、クラス内に ``__construct()`` メソッドがない場合、
+	たとえば ``index:::index()`` メソッドが
+	クラスのコンストラクタとして実行されます！　これは PHP4
+	の後方互換機能です。
 
-That's it!
-==========
+これでおしまいです！
+====================
 
-That, in a nutshell, is all there is to know about controllers.
+これが、つまり、コントローラについて知っておくべきすべてです。

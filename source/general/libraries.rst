@@ -1,32 +1,32 @@
-###########################
-Using CodeIgniter Libraries
-###########################
+##############################
+CodeIgniter のライブラリの利用
+##############################
 
-All of the available libraries are located in your *system/libraries/*
-directory. In most cases, to use one of these classes involves initializing
-it within a :doc:`controller <controllers>` using the following
-initialization method::
+使用可能なライブラリはすべて *system/libraries/*
+ディレクトリに保存されています。ほとんどの場合、
+:doc:`コントローラ <controllers>` 内でつぎの初期化方法を使い、
+これらのクラスのいずれかを初期化することが必要になります::
 
 	$this->load->library('class_name');
 
-Where 'class_name' is the name of the class you want to invoke. For
-example, to load the :doc:`Form Validation Library
-<../libraries/form_validation>` you would do this::
+「 class_name 」の箇所が呼び出したいクラスの名前です。
+たとえば、 :doc:`フォームバリデーションライブラリ<../libraries/form_validation>`
+をロードするためには次のようにします::
 
 	$this->load->library('form_validation');
 
-Once initialized you can use it as indicated in the user guide page
-corresponding to that class.
+いちど初期化されると、そのクラスに対応するユーザガイドページに示されているように、
+それを使用することができます。
 
-Additionally, multiple libraries can be loaded at the same time by
-passing an array of libraries to the load method.
+さらに、ライブラリの配列をロードメソッドに渡すことによって、
+いちどに複数のロードをすることができます。
 
-Example::
+例::
 
 	$this->load->library(array('email', 'table'));
 
-Creating Your Own Libraries
-===========================
+独自ライブラリを作成する
+========================
 
-Please read the section of the user guide that discusses how to
-:doc:`create your own libraries <creating_libraries>`.
+どうぞユーザーガイドの該当セクションをお読みください、
+:doc:`独自ライブラリの作成 <creating_libraries>` 方法が論じられています。

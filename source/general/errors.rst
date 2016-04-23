@@ -1,121 +1,121 @@
-##############
-Error Handling
-##############
+##########
+エラー処理
+##########
 
-CodeIgniter lets you build error reporting into your applications using
-the functions described below. In addition, it has an error logging
-class that permits error and debugging messages to be saved as text
-files.
+CodeIgniter では以下に説明する機能を利用して、
+アプリケーションにエラーレポーティングを組み込むことができます。
+また、そのなかにはエラーロギングクラスがあり、
+エラーおよびデバッグメッセージをテキストファイルとして保存できます。
 
-.. note:: By default, CodeIgniter displays all PHP errors. You might
-	wish to change this behavior once your development is complete. You'll
-	find the error_reporting() function located at the top of your main
-	index.php file. Disabling error reporting will NOT prevent log files
-	from being written if there are errors.
+.. note:: デフォルトでは、 CodeIgniter はすべての PHP エラーを表示します。
+	開発が完了すれば、この動作を変更したくなることでしょう。
+	error_reporting() 関数を
+	メインの index.php ファイルの上のほうに見つけ出すことでしょうが、
+	エラーレポーティングを無効にしても、エラーがあればログファイルへの書き出しを防ぐことは　で　き　ま　せ　ん　。
 
-Unlike most systems in CodeIgniter, the error functions are simple
-procedural interfaces that are available globally throughout the
-application. This approach permits error messages to get triggered
-without having to worry about class/function scoping.
+CodeIgniter の中のほとんどの仕組みとは異なり、
+エラー関数は単純な手続き型インターフェイスで、
+アプリケーション全体でグローバルに使用することができます。
+このアプローチは、エラーメッセージがクラス/関数のスコープを気にすることなくトリガーすることを可能にします。
 
-CodeIgniter also returns a status code whenever a portion of the core
-calls ``exit()``. This exit status code is separate from the HTTP status
-code, and serves as a notice to other processes that may be watching of
-whether the script completed successfully, or if not, what kind of
-problem it encountered that caused it to abort. These values are
-defined in *application/config/constants.php*. While exit status codes
-are most useful in CLI settings, returning the proper code helps server
-software keep track of your scripts and the health of your application.
+CodeIgniter はまた、コアのどこかが
+``exit()`` をいつ呼び出そうともステータスコードを返します。この終了ステータスコードは HTTP
+ステータスコードから分離されており、他のプロセスへの通知として機能します。
+そのプロセスはスクリプトが正常に完了したかどうか、正常終了しなかった場合、
+どのような問題により異常終了したかを監視していることでしょう。
+これらの値は *application/config/constants.php* で定義されています。
+終了ステータスコードは CLI 設定において最も有用であるとともに、
+適切なコードを返すことはサーバーソフトウェアがスクリプトとアプリケーションの状態を追跡しつづけることに役立つでしょう。
 
-The following functions let you generate errors:
+以下の機能によりエラーを生成できます:
 
 .. php:function:: show_error($message, $status_code, $heading = 'An Error Was Encountered')
 
-	:param	mixed	$message: Error message
-	:param	int	$status_code: HTTP Response status code
-	:param	string	$heading: Error page heading
+	:param	mixed	$message: エラーメッセージ
+	:param	int	$status_code: HTTP 応答ステータスコード
+	:param	string	$heading: エラーページの見出し
 	:rtype:	void
 
-	This function will display the error message supplied to it using
-	the error template appropriate to your execution::
+	この関数は渡されたエラーメッセージを表示しますが、
+	実行状態に合わせたエラーテンプレートを使用します::
 
 		application/views/errors/html/error_general.php
 
-	or:
+	または:
 
 		application/views/errors/cli/error_general.php
 
-	The optional parameter ``$status_code`` determines what HTTP status
-	code should be sent with the error. If ``$status_code`` is less
-	than 100, the HTTP status code will be set to 500, and the exit
-	status code will be set to ``$status_code + EXIT__AUTO_MIN``.
-	If that value is larger than ``EXIT__AUTO_MAX``, or if
-	``$status_code`` is 100 or higher, the exit status code will be set
-	to ``EXIT_ERROR``.
-	You can check in *application/config/constants.php* for more detail.
+	引数 ``$status_code`` は HTTP
+	ステータスコードがエラーとして送信されるべきかを決定します。 ``$status_code`` が
+	100 未満である場合、 HTTP ステータスコードは 500 に設定され、
+	終了ステータスコードは ``$status_code + EXIT__AUTO_MIN`` に設定されます。
+	その値が ``EXIT__AUTO_MAX`` より大きい場合、
+	または ``$status_code`` が 100 以上である場合、終了状態コードは
+	``EXIT_ERROR`` に設定されます。
+	詳細については *application/config/constants.php* で確認することができます。
 
 .. php:function:: show_404($page = '', $log_error = TRUE)
 
-	:param	string	$page: URI string
-	:param	bool	$log_error: Whether to log the error
+	:param	string	$page: URI 文字列
+	:param	bool	$log_error: エラーをログに記録するかどうか
 	:rtype:	void
 
-	This function will display the 404 error message supplied to it
-	using the error template appropriate to your execution::
+	この関数は 404 エラーメッセージを表示しますが、
+	実行状態に合わせたエラーテンプレートを使用します::
 
 		application/views/errors/html/error_404.php
 
-	or:
+	または:
 
 		application/views/errors/cli/error_404.php
 
-	The function expects the string passed to it to be the file path to
-	the page that isn't found. The exit status code will be set to
-	``EXIT_UNKNOWN_FILE``.
-	Note that CodeIgniter automatically shows 404 messages if
-	controllers are not found.
+	この関数は、ファイルパスのページが見つからなかったことを示す文字列が渡されることを期待しています。
+	終了ステータスコードは
+	``EXIT_UNKNOWN_FILE`` に設定されます。コントローラが見つからない場合、
+	CodeIgniter は自動的に 404
+	メッセージを表示することに注意してください。
 
-	CodeIgniter automatically logs any ``show_404()`` calls. Setting the
-	optional second parameter to FALSE will skip logging.
+	CodeIgniterは自動的にあらゆる ``show_404()`` 呼び出しをログに記録します。
+	オプションの第 2 パラメータを FALSE に設定すると、ログをスキップします。
 
 .. php:function:: log_message($level, $message, $php_error = FALSE)
 
-	:param	string	$level: Log level: 'error', 'debug' or 'info'
-	:param	string	$message: Message to log
-	:param	bool	$php_error: Whether we're logging a native PHP error message
+	:param	string	$level: ログレベル: 「 error 」「 debug 」または「 info 」
+	:param	string	$message: ログのメッセージ
+	:param	bool	$php_error: ネイティブの PHP エラーメッセージをログに記録するかどうか
 	:rtype:	void
 
-	This function lets you write messages to your log files. You must
-	supply one of three "levels" in the first parameter, indicating what
-	type of message it is (debug, error, info), with the message itself
-	in the second parameter.
+	この関数によりログファイルにメッセージを書き込むことができます。
+	第 1 引数で 3 つの「レベル」のいずれかを指定する必要があります、
+	どの種類のメッセージか (デバッグ、エラー、情報) を示すためです。
+	第 2 引数はメッセージそのものです。
 
-	Example::
+	例::
 
 		if ($some_var == '')
 		{
-			log_message('error', 'Some variable did not contain a value.');
+			log_message('error', '何々の変数に値がありません。');
 		}
 		else
 		{
-			log_message('debug', 'Some variable was correctly set');
+			log_message('debug', '何々の変数は正しく設定されました。');
 		}
 
-		log_message('info', 'The purpose of some variable is to provide some value.');
+		log_message('info', '何々の変数の目的は何々の値を提供することです。');
 
-	There are three message types:
+	メッセージタイプは 3 つあります:
 
-	#. Error Messages. These are actual errors, such as PHP errors or
-	   user errors.
-	#. Debug Messages. These are messages that assist in debugging. For
-	   example, if a class has been initialized, you could log this as
-	   debugging info.
-	#. Informational Messages. These are the lowest priority messages,
-	   simply giving information regarding some process.
+	#. エラーメッセージ。これらは PHP のエラーやユーザのエラーなど、
+	   実際のエラーです。
+	#. デバッグメッセージを表示します。これらはデバッグに役立たせるメッセージです。
+	   たとえばクラスが初期化された場合など、
+	   デバッグ情報としてログに記録することができます。
+	#. 情報メッセージ。最も低い優先度のメッセージで、
+	   単にいくつかのプロセスに関する情報を提供します。
 
-	.. note:: In order for the log file to actually be written, the
-		*logs/* directory must be writable. In addition, you must
-		set the "threshold" for logging in
-		*application/config/config.php*. You might, for example,
-		only want error messages to be logged, and not the other
-		two types. If you set it to zero logging will be disabled.
+	.. note:: ログファイルが実際に書き込まれるには、
+		*logs/* ディレクトリが書き込み可能でなければなりません。
+		また、ロギングの「しきい値」を
+		*application/config/config.php* に設定する必要があります。
+		たとえば、エラーメッセージだけログに記録され、
+		他の 2 つのタイプはいらないかもしれません。0 に設定するとロギングは無効になります。

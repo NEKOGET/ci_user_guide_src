@@ -35,13 +35,13 @@ Version 3.0.4
 
 -  大まかな変更点
 
-   -  Updated :doc:`Security Library <libraries/security>` method ``get_random_bytes()`` to use PHP 7's ``random_bytes()`` function when possible.
-   -  Updated :doc:`Encryption Library <libraries/security>` method ``create_key()`` to use PHP 7's ``random_bytes()`` function when possible.
+   -  更新 :doc:`Security Library <libraries/security>` method ``get_random_bytes()`` to use PHP 7's ``random_bytes()`` function when possible.
+   -  更新 :doc:`Encryption Library <libraries/security>` method ``create_key()`` to use PHP 7's ``random_bytes()`` function when possible.
 
 -  :doc:`Database <database/index>`
 
-   -  Added support for ``OFFSET-FETCH`` with Oracle 12c for the 'oci8' and 'pdo/oci' drivers.
-   -  Added support for the new ``MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT`` constant from `PHP 5.6.16 <https://secure.php.net/ChangeLog-5.php#5.6.16>`_ for the 'mysqli' driver.
+   -  追加 support for ``OFFSET-FETCH`` with Oracle 12c for the 'oci8' and 'pdo/oci' drivers.
+   -  追加 support for the new ``MYSQLI_CLIENT_SSL_DONT_VERIFY_SERVER_CERT`` constant from `PHP 5.6.16 <https://secure.php.net/ChangeLog-5.php#5.6.16>`_ for the 'mysqli' driver.
 
 Bug fixes for 3.0.4
 -------------------
@@ -82,7 +82,7 @@ Version 3.0.3
 -  :doc:`Database <database/index>`
 
    -  Optimized :doc:`Database Utility <database/utilities>` method ``csv_from_result()`` for speed with larger result sets.
-   -  Added proper return values to :doc:`Database Transactions <database/transactions>` method ``trans_start()``.
+   -  追加 proper return values to :doc:`Database Transactions <database/transactions>` method ``trans_start()``.
 
 Bug fixes for 3.0.3
 -------------------
@@ -107,7 +107,7 @@ Version 3.0.2
 
 -  大まかな変更点
 
-   -  Updated the *application/config/constants.php* file to check if constants aren't already defined before doing that.
+   -  更新 the *application/config/constants.php* file to check if constants aren't already defined before doing that.
    -  Changed :doc:`Loader Library <libraries/loader>` method ``model()`` to only apply ``ucfirst()`` and not ``strtolower()`` to the requested class name.
    -  Changed :doc:`Config Library <libraries/config>` methods ``base_url()``, ``site_url()`` to allow protocol-relative URLs by passing an empty string as the protocol.
 
@@ -141,12 +141,12 @@ Version 3.0.1
 
 -  コア
 
-   -  Added DoS mitigation to :php:func:`hash_pbkdf2()` :doc:`compatibility function <general/compatibility_functions>`.
+   -  追加 DoS mitigation to :php:func:`hash_pbkdf2()` :doc:`compatibility function <general/compatibility_functions>`.
 
 -  データベース
 
-   -  Added ``list_fields()`` support for SQLite ('sqlite3' and 'pdo_sqlite' drivers).
-   -  Added SSL connection support for the 'mysqli' and 'pdo_mysql' drivers.
+   -  追加 ``list_fields()`` support for SQLite ('sqlite3' and 'pdo_sqlite' drivers).
+   -  追加 SSL connection support for the 'mysqli' and 'pdo_mysql' drivers.
 
 - ライブラリー
 
@@ -156,17 +156,17 @@ Version 3.0.1
       - Errors "no_file_selected", "file_partial", "stopped_by_extension", "no_file_types", "invalid_filetype", "bad_filename" are now logged at the 'debug' level.
       - Errors "file_exceeds_limit", "file_exceeds_form_limit", "invalid_filesize", "invalid_dimensions" are now logged at the 'info' level.
 
-   -  Added 'is_resource' to the available expectations in :doc:`Unit Testing Library <libraries/unit_testing>`.
+   -  追加 'is_resource' to the available expectations in :doc:`Unit Testing Library <libraries/unit_testing>`.
 
 -  ヘルパー
 
-   -  Added Unicode support to :doc:`URL Helper <helpers/url_helper>` function :php:func:`url_title()`.
-   -  Added support for passing the "extra" parameter as an array to all :doc:`Form Helper <helpers/form_helper>` functions that use it.
+   -  追加 Unicode support to :doc:`URL Helper <helpers/url_helper>` function :php:func:`url_title()`.
+   -  追加 support for passing the "extra" parameter as an array to all :doc:`Form Helper <helpers/form_helper>` functions that use it.
 
 -  コア
 
-   -  Added support for defining a list of specific query parameters in ``$config['cache_query_string']`` for the :doc:`Output Library <libraries/output>`.
-   -  Added class existence and inheritance checks to ``CI_Loader::model()`` in order to ease debugging in case of name collisions.
+   -  追加 support for defining a list of specific query parameters in ``$config['cache_query_string']`` for the :doc:`Output Library <libraries/output>`.
+   -  追加 class existence and inheritance checks to ``CI_Loader::model()`` in order to ease debugging in case of name collisions.
 
 Bug fixes for 3.0.1
 -------------------
@@ -265,8 +265,8 @@ Version 3.0.0
    -  ドキュメンテーションから、 *cheatsheets* と *quick_reference* の記述を削除。
    -  PHPの危険な関数である ``eval()`` と ``exec()`　は可用性をチェックする機能として取り扱われます。
    -  ログファイルの拡張子を ``$config['log_file_extension']`` を用いて変更できるようになりました。
-   -  Added support for turning newline standardization on/off via ``$config['standardize_newlines']`` and set it to FALSE by default.
-   -  Added configuration setting ``$config['composer_autoload']`` to enable loading of a `Composer <https://getcomposer.org>`_ auto-loader.
+   -  追加 support for turning newline standardization on/off via ``$config['standardize_newlines']`` and set it to FALSE by default.
+   -  追加 configuration setting ``$config['composer_autoload']`` to enable loading of a `Composer <https://getcomposer.org>`_ auto-loader.
    -  Removed the automatic conversion of 'programmatic characters' to HTML entities from the :doc:`URI Library <libraries/uri>`.
    -  Changed log messages that say a class or file was loaded to "info" level instead of "debug", so that they don't pollute log files when ``$config['log_threshold']`` is set to 2 (debug).
 
@@ -346,7 +346,7 @@ Version 3.0.0
       - Added *word_length* and *pool* options to allow customization of the generated word.
       - Added *colors* configuration to allow customization for the *background*, *border*, *text* and *grid* colors.
       - Added *filename* to the returned array elements.
-      - Updated to use `imagepng()` in case that `imagejpeg()` isn't available.
+      - 更新 to use `imagepng()` in case that `imagejpeg()` isn't available.
       - Added **font_size** option to allow customization of font size.
       - Added **img_id** option to set id attribute of captcha image.
 
@@ -363,29 +363,29 @@ Version 3.0.0
 -  データベース
 
    -  DEPRECATED the 'mysql', 'sqlite', 'mssql' and 'pdo/dblib' (also known as 'pdo/mssql' or 'pdo/sybase') drivers.
-   -  Added **dsn** configuration setting for drivers that support DSN strings (PDO, PostgreSQL, Oracle, ODBC, CUBRID).
-   -  Added **schema** configuration setting (defaults to *public*) for drivers that might need it (currently used by PostgreSQL and ODBC).
-   -  Added **save_queries** configuration setting to *application/config/database.php* (defaults to ``TRUE``).
+   -  追加 **dsn** configuration setting for drivers that support DSN strings (PDO, PostgreSQL, Oracle, ODBC, CUBRID).
+   -  追加 **schema** configuration setting (defaults to *public*) for drivers that might need it (currently used by PostgreSQL and ODBC).
+   -  追加 **save_queries** configuration setting to *application/config/database.php* (defaults to ``TRUE``).
    -  Removed **autoinit** configuration setting as it doesn't make sense to instantiate the database class but not connect to the database.
-   -  Added subdrivers support (currently only used by PDO).
-   -  Added an optional database name parameter to ``db_select()``.
+   -  追加 subdrivers support (currently only used by PDO).
+   -  追加 an optional database name parameter to ``db_select()``.
    -  Removed ``protect_identifiers()`` and renamed internal method ``_protect_identifiers()`` to it instead - it was just an alias.
    -  Renamed internal method ``_escape_identifiers()`` to ``escape_identifiers()``.
-   -  Updated ``escape_identifiers()`` to accept an array of fields as well as strings.
+   -  更新 ``escape_identifiers()`` to accept an array of fields as well as strings.
    -  MySQL and MySQLi drivers now require at least MySQL version 5.1.
-   -  Added a ``$persistent`` parameter to ``db_connect()`` and changed ``db_pconnect()`` to be an alias for ``db_connect(TRUE)``.
+   -  追加 a ``$persistent`` parameter to ``db_connect()`` and changed ``db_pconnect()`` to be an alias for ``db_connect(TRUE)``.
    -  ``db_set_charset()`` now only requires one parameter (collation was only needed due to legacy support for MySQL versions prior to 5.1).
    -  ``db_select()`` will now always (if required by the driver) be called by ``db_connect()`` instead of only when initializing.
    -  Replaced the ``_error_message()`` and ``_error_number()`` methods with ``error()``, which returns an array containing the last database error code and message.
    -  Improved ``version()`` implementation so that drivers that have a native function to get the version number don't have to be defined in the core ``DB_driver`` class.
-   -  Added capability for packages to hold *config/database.php* config files.
-   -  Added MySQL client compression support.
-   -  Added encrypted connections support (for *mysql*, *sqlsrv* and PDO with *sqlsrv*).
+   -  追加 capability for packages to hold *config/database.php* config files.
+   -  追加 MySQL client compression support.
+   -  追加 encrypted connections support (for *mysql*, *sqlsrv* and PDO with *sqlsrv*).
    -  Removed :doc:`Loader Class <libraries/loader>` from Database error tracing to better find the likely culprit.
-   -  Added support for SQLite3 database driver.
-   -  Added Interbase/Firebird database support via the *ibase* driver.
-   -  Added ODBC support for ``create_database()``, ``drop_database()`` and ``drop_table()`` in :doc:`Database Forge <database/forge>`.
-   -  Added support to binding arrays as ``IN()`` sets in ``query()``.
+   -  追加 support for SQLite3 database driver.
+   -  追加 Interbase/Firebird database support via the *ibase* driver.
+   -  追加 ODBC support for ``create_database()``, ``drop_database()`` and ``drop_table()`` in :doc:`Database Forge <database/forge>`.
+   -  追加 support to binding arrays as ``IN()`` sets in ``query()``.
 
    -  :doc:`Query Builder <database/query_builder>` changes include:
 
@@ -487,151 +487,151 @@ Version 3.0.0
 
 - ライブラリー
 
-   -  Added a new :doc:`Encryption Library <libraries/encryption>` to replace the old, largely insecure :doc:`Encrypt Library <libraries/encrypt>`.
+   -  追加 a new :doc:`Encryption Library <libraries/encryption>` to replace the old, largely insecure :doc:`Encrypt Library <libraries/encrypt>`.
 
    -  :doc:`Encrypt Library <libraries/encrypt>` changes include:
 
       -  Deprecated the library in favor of the new :doc:`Encryption Library <libraries/encryption>`.
-      -  Added support for hashing algorithms other than SHA1 and MD5.
-      -  Removed previously deprecated ``sha1()`` method.
+      -  追加 support for hashing algorithms other than SHA1 and MD5.
+      -  削除 previously deprecated ``sha1()`` method.
 
    -  :doc:`Session Library <libraries/sessions>` changes include:
 
       -  Completely re-written the library to use self-contained drivers via ``$config['sess_driver']``.
-      -  Added 'files', 'database', 'redis' and 'memcached' drivers (using 'files' by default).
-      -  Added ``$config['sess_save_path']`` setting to specify where the session data is stored, depending on the driver.
+      -  追加 'files', 'database', 'redis' and 'memcached' drivers (using 'files' by default).
+      -  追加 ``$config['sess_save_path']`` setting to specify where the session data is stored, depending on the driver.
       -  Dropped support for storing session data in cookies (which renders ``$config['sess_encrypt_cookie']`` useless and is therefore also removed).
       -  Dropped official  support for storing session data in databases other than MySQL and PostgreSQL.
       -  Changed table structure for the 'database' driver.
-      -  Added a new **tempdata** feature that allows setting userdata items with expiration time (``mark_as_temp()``, ``tempdata()``, ``set_tempdata()``, ``unset_tempdata()``).
+      -  追加 a new **tempdata** feature that allows setting userdata items with expiration time (``mark_as_temp()``, ``tempdata()``, ``set_tempdata()``, ``unset_tempdata()``).
       -  Changed method ``keep_flashdata()`` to also accept an array of keys.
       -  Changed methods ``userdata()``, ``flashdata()`` to return an array of all userdata/flashdata when no parameter is passed.
       -  Deprecated method ``all_userdata()`` - it is now just an alias for ``userdata()`` with no parameters.
-      -  Added method ``has_userdata()`` that verifies the existence of a userdata item.
-      -  Added *debug* level log messages for key events in the session validation process.
+      -  追加 method ``has_userdata()`` that verifies the existence of a userdata item.
+      -  追加 *debug* level log messages for key events in the session validation process.
       -  Dropped support for the *sess_match_useragent* option.
 
    -  :doc:`File Uploading Library <libraries/file_uploading>` changes include:
 
-      -  Added method chaining support.
-      -  Added support for using array notation in file field names.
-      -  Added **max_filename_increment** and **file_ext_tolower** configuration settings.
-      -  Added **min_width** and **min_height** configuration settings for images.
-      -  Added **mod_mime_fix** configuration setting to disable suffixing multiple file extensions with an underscore.
-      -  Added the possibility pass **allowed_types** as an array.
-      -  Added an ``$index`` parameter to the method ``data()``.
-      -  Added a ``$reset`` parameter to method ``initialize()``.
-      -  Removed method ``clean_file_name()`` and its usage in favor of :doc:`Security Library <libraries/security>`'s ``sanitize_filename()``.
-      -  Removed method ``mimes_types()``.
+      -  追加 method chaining support.
+      -  追加 support for using array notation in file field names.
+      -  追加 **max_filename_increment** and **file_ext_tolower** configuration settings.
+      -  追加 **min_width** and **min_height** configuration settings for images.
+      -  追加 **mod_mime_fix** configuration setting to disable suffixing multiple file extensions with an underscore.
+      -  追加 the possibility pass **allowed_types** as an array.
+      -  追加 an ``$index`` parameter to the method ``data()``.
+      -  追加 a ``$reset`` parameter to method ``initialize()``.
+      -  削除 method ``clean_file_name()`` and its usage in favor of :doc:`Security Library <libraries/security>`'s ``sanitize_filename()``.
+      -  削除 method ``mimes_types()``.
       -  Changed ``CI_Upload::_prep_filename()`` to simply replace all (but the last) dots in the filename with underscores, instead of suffixing them.
 
    -  :doc:`Calendar Library <libraries/calendar>` changes include:
 
-      -  Added method chaining support.
-      -  Added configuration to generate days of other months instead of blank cells.
-      -  Added auto-configuration for *next_prev_url* if it is empty and *show_prev_next* is set to TRUE.
-      -  Added support for templating via an array in addition to the encoded string.
+      -  追加 method chaining support.
+      -  追加 configuration to generate days of other months instead of blank cells.
+      -  追加 auto-configuration for *next_prev_url* if it is empty and *show_prev_next* is set to TRUE.
+      -  追加 support for templating via an array in addition to the encoded string.
       -  Changed method ``get_total_days()`` to be an alias for :doc:`Date Helper <helpers/date_helper>` :php:func:`days_in_month()`.
 
    -  :doc:`Cart Library <libraries/cart>` changes include:
 
       -  Deprecated the library as too specific for CodeIgniter.
-      -  Added method ``remove()`` to remove a cart item, updating with quantity of 0 seemed like a hack but has remained to retain compatibility.
-      -  Added method ``get_item()`` to enable retrieving data for a single cart item.
-      -  Added unicode support for product names.
-      -  Added support for disabling product name strictness via the ``$product_name_safe`` property.
+      -  追加 method ``remove()`` to remove a cart item, updating with quantity of 0 seemed like a hack but has remained to retain compatibility.
+      -  追加 method ``get_item()`` to enable retrieving data for a single cart item.
+      -  追加 unicode support for product names.
+      -  追加 support for disabling product name strictness via the ``$product_name_safe`` property.
       -  Changed ``insert()`` method to auto-increment quantity for an item when inserted twice instead of resetting it.
       -	 Changed ``update()`` method to support updating all properties attached to an item and not to require 'qty'.
 
    -  :doc:`Image Manipulation Library <libraries/image_lib>` changes include:
 
       -  The ``initialize()`` method now only sets existing class properties.
-      -  Added support for 3-length hex color values for *wm_font_color* and *wm_shadow_color* properties, as well as validation for them.
+      -  追加 support for 3-length hex color values for *wm_font_color* and *wm_shadow_color* properties, as well as validation for them.
       -  Class properties *wm_font_color*, *wm_shadow_color* and *wm_use_drop_shadow* are now protected, to avoid breaking the ``text_watermark()`` method if they are set manually after initialization.
       -  If property *maintain_ratio* is set to TRUE, ``image_reproportion()`` now doesn't need both width and height to be specified.
       -  Property *maintain_ratio* is now taken into account when resizing images using ImageMagick library.
-      -  Added support for maintaining transparency for PNG images when watermarking.
-      -  Added a **file_permissions** setting.
+      -  追加 support for maintaining transparency for PNG images when watermarking.
+      -  追加 a **file_permissions** setting.
 
    -  :doc:`Form Validation Library <libraries/form_validation>` changes include:
 
-      -  Added method ``error_array()`` to return all error messages as an array.
-      -  Added method ``set_data()`` to set an alternative data array to be validated instead of the default ``$_POST``.
-      -  Added method ``reset_validation()`` which resets internal validation variables in case of multiple validation routines.
-      -  Added support for setting error delimiters in the config file via ``$config['error_prefix']`` and ``$config['error_suffix']``.
+      -  追加 method ``error_array()`` to return all error messages as an array.
+      -  追加 method ``set_data()`` to set an alternative data array to be validated instead of the default ``$_POST``.
+      -  追加 method ``reset_validation()`` which resets internal validation variables in case of multiple validation routines.
+      -  追加 support for setting error delimiters in the config file via ``$config['error_prefix']`` and ``$config['error_suffix']``.
       -  Internal method ``_execute()`` now considers input data to be invalid if a specified rule is not found.
-      -  Removed method ``is_numeric()`` as it exists as a native PHP function and ``_execute()`` will find and use that (the **is_numeric** rule itself is deprecated since 1.6.1).
+      -  削除 method ``is_numeric()`` as it exists as a native PHP function and ``_execute()`` will find and use that (the **is_numeric** rule itself is deprecated since 1.6.1).
       -  Native PHP functions used as rules can now accept an additional parameter, other than the data itself.
-      -  Updated method ``set_rules()`` to accept an array of rules as well as a string.
+      -  更新 method ``set_rules()`` to accept an array of rules as well as a string.
       -  Fields that have empty rules set no longer run through validation (and therefore are not considered erroneous).
-      -  Added rule **differs** to check if the value of a field differs from the value of another field.
-      -  Added rule **valid_url**.
-      -  Added rule **in_list** to check if the value of a field is within a given list.
-      -  Added support for named parameters in error messages.
+      -  追加 rule **differs** to check if the value of a field differs from the value of another field.
+      -  追加 rule **valid_url**.
+      -  追加 rule **in_list** to check if the value of a field is within a given list.
+      -  追加 support for named parameters in error messages.
       -  :doc:`Language <libraries/language>` line keys must now be prefixed with **form_validation_**.
-      -  Added rule **alpha_numeric_spaces**.
-      -  Added support for custom error messages per field rule.
-      -  Added support for callable rules when they are passed as an array.
-      -  Added support for non-ASCII domains in **valid_email** rule, depending on the Intl extension.
+      -  追加 rule **alpha_numeric_spaces**.
+      -  追加 support for custom error messages per field rule.
+      -  追加 support for callable rules when they are passed as an array.
+      -  追加 support for non-ASCII domains in **valid_email** rule, depending on the Intl extension.
       -  Changed the debug message about an error message not being set to include the rule name it is about.
 
    -  :doc:`Caching Library <libraries/caching>` changes include:
 
-      -  Added Wincache driver.
-      -  Added Redis driver.
-      -  Added a *key_prefix* option for cache IDs.
-      -  Updated driver ``is_supported()`` methods to log at the "debug" level.
-      -  Added option to store raw values instead of CI-formatted ones (APC, Memcache).
-      -  Added atomic increment/decrement feature via ``increment()``, ``decrement()``.
+      -  追加 Wincache driver.
+      -  追加 Redis driver.
+      -  追加 a *key_prefix* option for cache IDs.
+      -  更新 driver ``is_supported()`` methods to log at the "debug" level.
+      -  追加 option to store raw values instead of CI-formatted ones (APC, Memcache).
+      -  追加 atomic increment/decrement feature via ``increment()``, ``decrement()``.
 
    -  :doc:`E-mail Library <libraries/email>` changes include:
 
-      -  Added a custom filename parameter to ``attach()`` as ``$this->email->attach($filename, $disposition, $newname)``.
-      -  Added possibility to send attachment as buffer string in ``attach()`` as ``$this->email->attach($buffer, $disposition, $newname, $mime)``.
-      -  Added possibility to attach remote files by passing a URL.
-      -  Added method ``attachment_cid()`` to enable embedding inline attachments into HTML.
-      -  Added dsn (delivery status notification) option.
+      -  追加 a custom filename parameter to ``attach()`` as ``$this->email->attach($filename, $disposition, $newname)``.
+      -  追加 possibility to send attachment as buffer string in ``attach()`` as ``$this->email->attach($buffer, $disposition, $newname, $mime)``.
+      -  追加 possibility to attach remote files by passing a URL.
+      -  追加 method ``attachment_cid()`` to enable embedding inline attachments into HTML.
+      -  追加 dsn (delivery status notification) option.
       -  Renamed method ``_set_header()`` to ``set_header()`` and made it public to enable adding custom headers.
       -  Successfully sent emails will automatically clear the parameters.
-      -  Added a *return_path* parameter to the ``from()`` method.
-      -  Removed the second parameter (character limit) from internal method ``_prep_quoted_printable()`` as it is never used.
+      -  追加 a *return_path* parameter to the ``from()`` method.
+      -  削除 the second parameter (character limit) from internal method ``_prep_quoted_printable()`` as it is never used.
       -  Internal method ``_prep_quoted_printable()`` will now utilize the native ``quoted_printable_encode()``, ``imap_8bit()`` functions (if available) when CRLF is set to "\r\n".
       -  Default charset now relies on the global ``$config['charset']`` setting.
-      -  Removed unused protected method ``_get_ip()`` (:doc:`Input Library <libraries/input>`'s ``ip_address()`` should be used anyway).
+      -  削除 unused protected method ``_get_ip()`` (:doc:`Input Library <libraries/input>`'s ``ip_address()`` should be used anyway).
       -  Internal method ``_prep_q_encoding()`` now utilizes PHP's *mbstring* and *iconv* extensions (when available) and no longer has a second (``$from``) argument.
-      -  Added an optional parameter to ``print_debugger()`` to allow specifying which parts of the message should be printed ('headers', 'subject', 'body').
-      -  Added SMTP keepalive option to avoid opening the connection for each ``send()`` call. Accessible as ``$smtp_keepalive``.
+      -  追加 an optional parameter to ``print_debugger()`` to allow specifying which parts of the message should be printed ('headers', 'subject', 'body').
+      -  追加 SMTP keepalive option to avoid opening the connection for each ``send()`` call. Accessible as ``$smtp_keepalive``.
       -  Public method ``set_header()`` now filters the input by removing all "\\r" and "\\n" characters.
-      -  Added support for non-ASCII domains in ``valid_email()``, depending on the Intl extension.
+      -  追加 support for non-ASCII domains in ``valid_email()``, depending on the Intl extension.
 
    -  :doc:`Pagination Library <libraries/pagination>` changes include:
 
       -  Deprecated usage of the "anchor_class" setting (use the new "attributes" setting instead).
-      -  Added method chaining support to ``initialize()`` method.
-      -  Added support for the anchor "rel" attribute.
-      -  Added support for setting custom attributes.
-      -  Added support for language translations of the *first_link*, *next_link*, *prev_link* and *last_link* values.
-      -  Added support for ``$config['num_links'] = 0`` configuration.
-      -  Added ``$config['reuse_query_string']`` to allow automatic repopulation of query string arguments, combined with normal URI segments.
-      -  Added ``$config['use_global_url_suffix']`` to allow overriding the library 'suffix' value with that of the global ``$config['url_suffix']`` setting.
-      -  Removed the default ``&nbsp;`` from a number of the configuration variables.
+      -  追加 method chaining support to ``initialize()`` method.
+      -  追加 support for the anchor "rel" attribute.
+      -  追加 support for setting custom attributes.
+      -  追加 support for language translations of the *first_link*, *next_link*, *prev_link* and *last_link* values.
+      -  追加 support for ``$config['num_links'] = 0`` configuration.
+      -  追加 ``$config['reuse_query_string']`` to allow automatic repopulation of query string arguments, combined with normal URI segments.
+      -  追加 ``$config['use_global_url_suffix']`` to allow overriding the library 'suffix' value with that of the global ``$config['url_suffix']`` setting.
+      -  削除 the default ``&nbsp;`` from a number of the configuration variables.
 
    -  :doc:`Profiler Library <general/profiling>` changes include:
 
       -  データベース object names are now being displayed.
       -  The sum of all queries running times in seconds is now being displayed.
-      -  Added support for displaying the HTTP DNT ("Do Not Track") header.
-      -  Added support for displaying ``$_FILES``.
+      -  追加 support for displaying the HTTP DNT ("Do Not Track") header.
+      -  追加 support for displaying ``$_FILES``.
 
    -  :doc:`Migration Library <libraries/migration>` changes include:
 
-      -  Added support for timestamp-based migrations (enabled by default).
-      -  Added ``$config['migration_type']`` to allow switching between *sequential* and *timestamp* migrations.
+      -  追加 support for timestamp-based migrations (enabled by default).
+      -  追加 ``$config['migration_type']`` to allow switching between *sequential* and *timestamp* migrations.
 
    -  :doc:`XML-RPC Library <libraries/xmlrpc>` changes include:
 
-      -  Added the ability to use a proxy.
-      -  Added Basic HTTP authentication support.
+      -  追加 the ability to use a proxy.
+      -  追加 Basic HTTP authentication support.
 
    -  :doc:`User Agent Library <libraries/user_agent>` changes include:
 
@@ -654,99 +654,99 @@ Version 3.0.0
 
    -  :doc:`Routing <general/routing>` changes include:
 
-      -  Added support for multiple levels of controller directories.
-      -  Added support for per-directory *default_controller* and *404_override* classes.
-      -  Added possibility to route requests using HTTP verbs.
-      -  Added possibility to route requests using callbacks.
-      -  Added a new reserved route (*translate_uri_dashes*) to allow usage of dashes in the controller and method URI segments.
+      -  追加 support for multiple levels of controller directories.
+      -  追加 support for per-directory *default_controller* and *404_override* classes.
+      -  追加 possibility to route requests using HTTP verbs.
+      -  追加 possibility to route requests using callbacks.
+      -  追加 a new reserved route (*translate_uri_dashes*) to allow usage of dashes in the controller and method URI segments.
       -  Deprecated methods ``fetch_directory()``, ``fetch_class()`` and ``fetch_method()`` in favor of their respective public properties.
-      -  Removed method ``_set_overrides()`` and moved its logic to the class constructor.
+      -  削除 method ``_set_overrides()`` and moved its logic to the class constructor.
 
    -  :doc:`URI Library <libraries/uri>` changes include:
 
-      -  Added conditional PCRE UTF-8 support to the "invalid URI characters" check and removed the ``preg_quote()`` call from it to allow more flexibility.
+      -  追加 conditional PCRE UTF-8 support to the "invalid URI characters" check and removed the ``preg_quote()`` call from it to allow more flexibility.
       -  Renamed method ``_filter_uri()`` to ``filter_uri()``.
       -  Changed method ``filter_uri()`` to accept by reference and removed its return value.
       -  Changed private methods to protected so that MY_URI can override them.
       -  Renamed internal method ``_parse_cli_args()`` to ``_parse_argv()``.
       -  Renamed internal method ``_detect_uri()`` to ``_parse_request_uri()``.
       -  Changed ``_parse_request_uri()`` to accept absolute URIs for compatibility with HTTP/1.1 as per `RFC2616 <http://www.ietf.org/rfc/rfc2616.txt>`.
-      -  Added protected method ``_parse_query_string()`` to URI paths in the the **QUERY_STRING** value, like ``_parse_request_uri()`` does.
+      -  追加 protected method ``_parse_query_string()`` to URI paths in the the **QUERY_STRING** value, like ``_parse_request_uri()`` does.
       -  Changed URI string detection logic to always default to **REQUEST_URI** unless configured otherwise or under CLI.
-      -  Removed methods ``_remove_url_suffix()``, ``_explode_segments()`` and moved their logic into ``_set_uri_string()``.
-      -  Removed method ``_fetch_uri_string()`` and moved its logic into the class constructor.
-      -  Removed method ``_reindex_segments()``.
+      -  削除 methods ``_remove_url_suffix()``, ``_explode_segments()`` and moved their logic into ``_set_uri_string()``.
+      -  削除 method ``_fetch_uri_string()`` and moved its logic into the class constructor.
+      -  削除 method ``_reindex_segments()``.
 
    -  :doc:`Loader Library <libraries/loader>` changes include:
 
-      -  Added method chaining support.
-      -  Added method ``get_vars()`` to the Loader to retrieve all variables loaded with ``$this->load->vars()``.
+      -  追加 method chaining support.
+      -  追加 method ``get_vars()`` to the Loader to retrieve all variables loaded with ``$this->load->vars()``.
       -  ``_ci_autoloader()`` is now a protected method.
-      -  Added autoloading of drivers with ``$autoload['drivers']``.
+      -  追加 autoloading of drivers with ``$autoload['drivers']``.
       -  ``$config['rewrite_short_tags']`` now has no effect when using PHP 5.4 as ``<?=`` will always be available.
       -  Changed method ``config()`` to return whatever ``CI_Config::load()`` returns instead of always being void.
-      -  Added support for library and model aliasing on autoload.
+      -  追加 support for library and model aliasing on autoload.
       -  Changed method ``is_loaded()`` to ask for the (case sensitive) library name instead of its instance name.
-      -  Removed ``$_base_classes`` property and unified all class data in ``$_ci_classes`` instead.
-      -  Added method ``clear_vars()`` to allow clearing the cached variables for views.
+      -  削除 ``$_base_classes`` property and unified all class data in ``$_ci_classes`` instead.
+      -  追加 method ``clear_vars()`` to allow clearing the cached variables for views.
 
    -  :doc:`Input Library <libraries/input>` changes include:
 
       -  Deprecated the ``$config['global_xss_filtering']`` setting.
-      -  Added ``method()`` to retrieve ``$_SERVER['REQUEST_METHOD']``.
-      -  Added support for arrays and network addresses (e.g. 192.168.1.1/24) for use with the *proxy_ips* setting.
-      -  Added method ``input_stream()`` to aid in using **php://input** stream data such as one passed via PUT, DELETE and PATCH requests.
+      -  追加 ``method()`` to retrieve ``$_SERVER['REQUEST_METHOD']``.
+      -  追加 support for arrays and network addresses (e.g. 192.168.1.1/24) for use with the *proxy_ips* setting.
+      -  追加 method ``input_stream()`` to aid in using **php://input** stream data such as one passed via PUT, DELETE and PATCH requests.
       -  Changed method ``valid_ip()`` to use PHP's native ``filter_var()`` function.
       -  Changed internal method ``_sanitize_globals()`` to skip enforcing reversal of *register_globals* in PHP 5.4+, where this functionality no longer exists.
       -  Changed methods ``get()``, ``post()``, ``get_post()``, ``cookie()``, ``server()``, ``user_agent()`` to return NULL instead of FALSE when no value is found.
       -  Changed default value of the ``$xss_clean`` parameter to NULL for all methods that utilize it, the default value is now determined by the ``$config['global_xss_filtering']`` setting.
-      -  Added method ``post_get()`` and changed ``get_post()`` to search in GET data first. Both methods' names now properly match their GET/POST data search priorities.
+      -  追加 method ``post_get()`` and changed ``get_post()`` to search in GET data first. Both methods' names now properly match their GET/POST data search priorities.
       -  Changed method ``_fetch_from_array()`` to parse array notation in field name.
       -  Changed method ``_fetch_from_array()`` to allow retrieving multiple fields at once.
-      -  Added an option for ``_clean_input_keys()`` to return FALSE instead of terminating the whole script.
+      -  追加 an option for ``_clean_input_keys()`` to return FALSE instead of terminating the whole script.
       -  Deprecated the ``is_cli_request()`` method, it is now an alias for the new :php:func:`is_cli()` common function.
-      -  Added an ``$xss_clean`` parameter to method ``user_agent()`` and removed the ``$user_agent`` property.
-      -  Added property ``$raw_input_stream`` to access **php://input** data.
+      -  追加 an ``$xss_clean`` parameter to method ``user_agent()`` and removed the ``$user_agent`` property.
+      -  追加 property ``$raw_input_stream`` to access **php://input** data.
 
    -  :doc:`Common functions <general/common_functions>` changes include:
 
-      -  Added function :php:func:`get_mimes()` to return the *application/config/mimes.php* array.
-      -  Added support for HTTP code 303 ("See Other") in :php:func:`set_status_header()`.
-      -  Removed redundant conditional to determine HTTP server protocol in :php:func:`set_status_header()`.
+      -  追加 function :php:func:`get_mimes()` to return the *application/config/mimes.php* array.
+      -  追加 support for HTTP code 303 ("See Other") in :php:func:`set_status_header()`.
+      -  削除 redundant conditional to determine HTTP server protocol in :php:func:`set_status_header()`.
       -  Renamed ``_exception_handler()`` to ``_error_handler()`` and replaced it with a real exception handler.
       -  Changed ``_error_handler()`` to respect php.ini *display_errors* setting.
-      -  Added function :php:func:`is_https()` to check if a secure connection is used.
-      -  Added function :php:func:`is_cli()` to replace the ``CI_Input::is_cli_request()`` method.
-      -  Added function :php:func:`function_usable()` to work around a bug in `Suhosin <http://www.hardened-php.net/suhosin/>`.
-      -  Removed the third (`$php_error`) argument from function :php:func:`log_message()`.
+      -  追加 function :php:func:`is_https()` to check if a secure connection is used.
+      -  追加 function :php:func:`is_cli()` to replace the ``CI_Input::is_cli_request()`` method.
+      -  追加 function :php:func:`function_usable()` to work around a bug in `Suhosin <http://www.hardened-php.net/suhosin/>`.
+      -  削除 the third (`$php_error`) argument from function :php:func:`log_message()`.
       -  Changed internal function ``load_class()`` to accept a constructor parameter instead of (previously unused) class name prefix.
-      -  Removed default parameter value of :php:func:`is_php()`.
-      -  Added a second argument ``$double_encode`` to :php:func:`html_escape()`.
+      -  削除 default parameter value of :php:func:`is_php()`.
+      -  追加 a second argument ``$double_encode`` to :php:func:`html_escape()`.
       -  Changed function :php:func:`config_item()` to return NULL instead of FALSE when no value is found.
       -  Changed function :php:func:`set_status_header()` to return immediately when run under CLI.
 
    -  :doc:`Output Library <libraries/output>` changes include:
 
-      -  Added a second argument to method ``set_content_type()`` that allows setting the document charset as well.
-      -  Added methods ``get_content_type()`` and ``get_header()``.
-      -  Added method ``delete_cache()``.
-      -  Added configuration option ``$config['cache_query_string']`` to enable taking the query string into account when caching.
+      -  追加 a second argument to method ``set_content_type()`` that allows setting the document charset as well.
+      -  追加 methods ``get_content_type()`` and ``get_header()``.
+      -  追加 method ``delete_cache()``.
+      -  追加 configuration option ``$config['cache_query_string']`` to enable taking the query string into account when caching.
       -  Changed caching behavior to compress the output before storing it, if ``$config['compress_output']`` is enabled.
 
    -  :doc:`Config Library <libraries/config>` changes include:
 
       -  Changed ``site_url()`` method  to accept an array as well.
-      -  Removed internal method ``_assign_to_config()`` and moved its implementation to *CodeIgniter.php* instead.
+      -  削除 internal method ``_assign_to_config()`` and moved its implementation to *CodeIgniter.php* instead.
       -  ``item()`` now returns NULL instead of FALSE when the required config item doesn't exist.
-      -  Added an optional second parameter to both ``base_url()`` and ``site_url()`` that allows enforcing of a protocol different than the one in the *base_url* configuration setting.
-      -  Added HTTP "Host" header character validation to prevent cache poisoning attacks when ``base_url`` auto-detection is used.
+      -  追加 an optional second parameter to both ``base_url()`` and ``site_url()`` that allows enforcing of a protocol different than the one in the *base_url* configuration setting.
+      -  追加 HTTP "Host" header character validation to prevent cache poisoning attacks when ``base_url`` auto-detection is used.
 
    -  :doc:`Security Library <libraries/security>` changes include:
 
-      -  Added ``$config['csrf_regeneration']``, which makes CSRF token regeneration optional.
-      -  Added ``$config['csrf_exclude_uris']``, allowing for exclusion of URIs from the CSRF protection (regular expressions are supported).
-      -  Added method ``strip_image_tags()``.
-      -  Added method ``get_random_bytes()`` and switched CSRF & XSS token generation to use it.
+      -  追加 ``$config['csrf_regeneration']``, which makes CSRF token regeneration optional.
+      -  追加 ``$config['csrf_exclude_uris']``, allowing for exclusion of URIs from the CSRF protection (regular expressions are supported).
+      -  追加 method ``strip_image_tags()``.
+      -  追加 method ``get_random_bytes()`` and switched CSRF & XSS token generation to use it.
       -  Modified method ``sanitize_filename()`` to read a public ``$filename_bad_chars`` property for getting the invalid characters list.
       -  Return status code of 403 instead of a 500 if CSRF protection is enabled but a token is missing from a request.
 
@@ -754,12 +754,12 @@ Version 3.0.0
 
       -  Changed method ``load()`` to filter the language name with ``ctype_alpha()``.
       -  Changed method ``load()`` to also accept an array of language files.
-      -  Added an optional second parameter to method ``line()`` to disable error logging for line keys that were not found.
+      -  追加 an optional second parameter to method ``line()`` to disable error logging for line keys that were not found.
       -  Language files are now loaded in a cascading style with the one in **system/** always loaded and overridden afterwards, if another one is found.
 
    -  :doc:`Hooks Library <general/hooks>` changes include:
 
-      -  Added support for closure hooks (or anything that ``is_callable()`` returns TRUE for).
+      -  追加 support for closure hooks (or anything that ``is_callable()`` returns TRUE for).
       -  Renamed method ``_call_hook()`` to ``call_hook()``.
       -  Class instances are now stored in order to maintain their state.
 
@@ -771,19 +771,19 @@ Version 3.0.0
 
    -  Log Library changes include:
 
-      -  Added a ``$config['log_file_permissions']`` setting.
+      -  追加 a ``$config['log_file_permissions']`` setting.
       -  Changed the library constructor to try to create the **log_path** directory if it doesn't exist.
-      -  Added support for microseconds ("u" date format character) in ``$config['log_date_format']``.
+      -  追加 support for microseconds ("u" date format character) in ``$config['log_date_format']``.
 
-   -  Added :doc:`compatibility layers <general/compatibility_functions>` for:
+   -  追加 :doc:`compatibility layers <general/compatibility_functions>` for:
 
       - `Multibyte String <http://php.net/mbstring>`_ (limited support).
       - `Hash <http://php.net/hash>`_ (``hash_equals()``, ``hash_pbkdf2()``).
       - `Password Hashing <http://php.net/password>`_.
       - `Standard Functions ``array_column()``, ``array_replace()``, ``array_replace_recursive()``, ``hex2bin()``, ``quoted_printable_encode()``.
 
-   -  Removed ``CI_CORE`` boolean constant from *CodeIgniter.php* (no longer Reactor and Core versions).
-   -  Added support for HTTP-Only cookies with new config option *cookie_httponly* (default FALSE).
+   -  削除 ``CI_CORE`` boolean constant from *CodeIgniter.php* (no longer Reactor and Core versions).
+   -  追加 support for HTTP-Only cookies with new config option *cookie_httponly* (default FALSE).
    -  ``$config['time_reference']`` now supports all timezone strings supported by PHP.
    -  Fatal PHP errors are now also passed to ``_error_handler()``, so they can be logged.
 
@@ -1114,8 +1114,8 @@ Version 2.1.1
 - ライブラリー
 
    -  Further improved MIME type detection in the :doc:`File Uploading Library <libraries/file_uploading>`.
-   -  Added support for IPv6 to the :doc:`Input Library <libraries/input>`.
-   -  Added support for the IP format parameter to the :doc:`Form Validation Library <libraries/form_validation>`.
+   -  追加 support for IPv6 to the :doc:`Input Library <libraries/input>`.
+   -  追加 support for the IP format parameter to the :doc:`Form Validation Library <libraries/form_validation>`.
 
 -  ヘルパー
 
@@ -1143,13 +1143,13 @@ Version 2.1.0
 
    -  Callback validation rules can now accept parameters like any other
       validation rule.
-   -  Added html_escape() to :doc:`Common
+   -  追加 html_escape() to :doc:`Common
       functions <general/common_functions>` to escape HTML output
       for preventing XSS.
 
 -  ヘルパー
 
-   -  Added increment_string() to :doc:`String
+   -  追加 increment_string() to :doc:`String
       Helper <helpers/string_helper>` to turn "foo" into "foo-1"
       or "foo-1" into "foo-2".
    -  Altered form helper - made action on form_open_multipart helper
@@ -1159,40 +1159,40 @@ Version 2.1.0
 
 -  データベース
 
-   -  Added a `CUBRID <http://www.cubrid.org/>`_ driver to the :doc:`Database
+   -  追加 a `CUBRID <http://www.cubrid.org/>`_ driver to the :doc:`Database
       Driver <database/index>`. Thanks to the CUBRID team for
       supplying this patch.
-   -  Added a PDO driver to the :doc:`Database Driver <database/index>`.
+   -  追加 a PDO driver to the :doc:`Database Driver <database/index>`.
    -  Typecast limit and offset in the :doc:`Database
       Driver <database/queries>` to integers to avoid possible
       injection.
-   -  Added additional option 'none' for the optional third argument for
+   -  追加 additional option 'none' for the optional third argument for
       $this->db->like() in the :doc:`Database
       Driver <database/query_builder>`.
-   -  Added $this->db->insert_batch() support to the OCI8 (Oracle) driver.
-   -  Added failover if the main connections in the config should fail
+   -  追加 $this->db->insert_batch() support to the OCI8 (Oracle) driver.
+   -  追加 failover if the main connections in the config should fail
 
 - ライブラリー
 
    -  Changed ``$this->cart->insert()`` in the :doc:`Cart
       Library <libraries/cart>` to return the Row ID if a single
       item was inserted successfully.
-   -  Added support to set an optional parameter in your callback rules
+   -  追加 support to set an optional parameter in your callback rules
       of validation using the :doc:`Form Validation
       Library <libraries/form_validation>`.
-   -  Added a :doc:`Migration library <libraries/migration>` to assist with applying
+   -  追加 a :doc:`Migration library <libraries/migration>` to assist with applying
       incremental updates to your database schema.
    -  Driver children can be located in any package path.
-   -  Added max_filename_increment config setting for Upload library.
-   -  Added ``is_unique`` to the :doc:`Form Validation library <libraries/form_validation>`.
-   -  Added $config['use_page_numbers'] to the :doc:`Pagination library <libraries/pagination>`, which enables real page numbers in the URI.
-   -  Added TLS and SSL Encryption for SMTP.
+   -  追加 max_filename_increment config setting for Upload library.
+   -  追加 ``is_unique`` to the :doc:`Form Validation library <libraries/form_validation>`.
+   -  追加 $config['use_page_numbers'] to the :doc:`Pagination library <libraries/pagination>`, which enables real page numbers in the URI.
+   -  追加 TLS and SSL Encryption for SMTP.
 
 -  コア
 
    -  Changed private functions in CI_URI to protected so MY_URI can
       override them.
-   -  Removed CI_CORE boolean constant from CodeIgniter.php (no longer Reactor and Core versions).
+   -  削除 CI_CORE boolean constant from CodeIgniter.php (no longer Reactor and Core versions).
 
 Bug fixes for 2.1.0
 -------------------
@@ -1254,22 +1254,22 @@ Version 2.0.3
 
    -  Fixed a bug where there was a misspelling within a code comment in
       the index.php file.
-   -  Added Session Class userdata to the output profiler. Additionally,
+   -  追加 Session Class userdata to the output profiler. Additionally,
       added a show/hide toggle on HTTP Headers, Session Data and Config
       Variables.
-   -  Removed internal usage of the EXT constant.
+   -  削除 internal usage of the EXT constant.
    -  Visual updates to the welcome_message view file and default error
       templates. Thanks to `danijelb <https://bitbucket.org/danijelb>`_
       for the pull request.
-   -  Added insert_batch() function to the PostgreSQL database driver.
+   -  追加 insert_batch() function to the PostgreSQL database driver.
       Thanks to epallerols for the patch.
-   -  Added "application/x-csv" to mimes.php.
+   -  追加 "application/x-csv" to mimes.php.
    -  Fixed a bug where :doc:`Email library <libraries/email>`
       attachments with a "." in the name would using invalid MIME-types.
 
 -  ヘルパー
 
-   -  Added an optional third parameter to heading() which allows adding
+   -  追加 an optional third parameter to heading() which allows adding
       html attributes to the rendered heading tag.
    -  form_open() now only adds a hidden (Cross-site Reference Forgery)
       protection field when the form's action is internal and is set to
@@ -1282,12 +1282,12 @@ Version 2.0.3
 
    -  Altered Session to use a longer match against the user_agent
       string. See upgrade notes if using database sessions.
-   -  Added $this->db->set_dbprefix() to the :doc:`Database
+   -  追加 $this->db->set_dbprefix() to the :doc:`Database
       Driver <database/queries>`.
    -  Changed $this->cart->insert() in the :doc:`Cart
       Library <libraries/cart>` to return the Row ID if a single
       item was inserted successfully.
-   -  Added $this->load->get_var() to the :doc:`Loader
+   -  追加 $this->load->get_var() to the :doc:`Loader
       library <libraries/loader>` to retrieve global vars set with
       $this->load->view() and $this->load->vars().
    -  Changed $this->db->having() to insert quotes using escape() rather
@@ -1296,9 +1296,9 @@ Version 2.0.3
 Bug fixes for 2.0.3
 -------------------
 
--  Added ENVIRONMENT to reserved constants. (Reactor #196)
+-  追加 ENVIRONMENT to reserved constants. (Reactor #196)
 -  Changed server check to ensure SCRIPT_NAME is defined. (Reactor #57)
--  Removed APPPATH.'third_party' from the packages autoloader to negate
+-  削除 APPPATH.'third_party' from the packages autoloader to negate
    needless file stats if no packages exist or if the developer does not
    load any other packages by default.
 -  Fixed a bug (Reactor #231) where Sessions Library database table
@@ -1339,16 +1339,16 @@ Hg Tag: v2.0.2
       provide a sha1() function.
    -  constants.php will now be loaded from the environment folder if
       available.
-   -  Added language key error logging
+   -  追加 language key error logging
    -  Made Environment Support optional. Comment out or delete the
       constant to stop environment checks.
-   -  Added Environment Support for Hooks.
-   -  Added CI\_ Prefix to the :doc:`Cache driver <libraries/caching>`.
-   -  Added :doc:`CLI usage <./general/cli>` documentation.
+   -  追加 Environment Support for Hooks.
+   -  追加 CI\_ Prefix to the :doc:`Cache driver <libraries/caching>`.
+   -  追加 :doc:`CLI usage <./general/cli>` documentation.
 
 -  ヘルパー
 
-   -  Removed the previously deprecated dohash() from the :doc:`Security
+   -  削除 the previously deprecated dohash() from the :doc:`Security
       helper <./helpers/security_helper>`; use do_hash() instead.
    -  Changed the 'plural' function so that it doesn't ruin the
       captalization of your string. It also take into consideration
@@ -1367,9 +1367,9 @@ Bug fixes for 2.0.2
 -  Fixed a bug (Reactor #80) where is_really_writable would create an
    empty file when on Windows or with safe_mode enabled.
 -  Fixed various bugs with User Guide.
--  Added is_cli_request() method to documentation for :doc:`Input
+-  追加 is_cli_request() method to documentation for :doc:`Input
    class <libraries/input>`.
--  Added form_validation_lang entries for decimal, less_than and
+-  追加 form_validation_lang entries for decimal, less_than and
    greater_than.
 -  Fixed issue #153 Escape Str Bug in MSSQL driver.
 -  Fixed issue #172 Google Chrome 11 posts incorrectly when action is empty.
@@ -1382,28 +1382,28 @@ Hg Tag: v2.0.1
 
 -  大まかな変更点
 
-   -  Added $config['cookie_secure'] to the config file to allow
+   -  追加 $config['cookie_secure'] to the config file to allow
       requiring a secure (HTTPS) in order to set cookies.
-   -  Added the constant CI_CORE to help differentiate between Core:
+   -  追加 the constant CI_CORE to help differentiate between Core:
       TRUE and Reactor: FALSE.
-   -  Added an ENVIRONMENT constant in index.php, which affects PHP
+   -  追加 an ENVIRONMENT constant in index.php, which affects PHP
       error reporting settings, and optionally, which configuration
       files are loaded (see below). Read more on the :doc:`Handling
       Environments <general/environments>` page.
-   -  Added support for
+   -  追加 support for
       :ref:`environment-specific <config-environments>`
       configuration files.
 
 - ライブラリー
 
-   -  Added decimal, less_than and greater_than rules to the :doc:`Form
+   -  追加 decimal, less_than and greater_than rules to the :doc:`Form
       validation Class <libraries/form_validation>`.
    -  :doc:`Input Class <libraries/input>` methods post() and get()
       will now return a full array if the first argument is not
       provided.
    -  Secure cookies can now be made with the set_cookie() helper and
       :doc:`Input Class <libraries/input>` method.
-   -  Added set_content_type() to :doc:`Output
+   -  追加 set_content_type() to :doc:`Output
       Class <libraries/output>` to set the output Content-Type
       HTTP header based on a MIME Type or a config/mimes.php array key.
    -  :doc:`Output Class <libraries/output>` will now support method
@@ -1444,30 +1444,30 @@ Hg Tag: v2.0.0
       :doc:`documented <./helpers/captcha_helper>`. The JavaScript
       calendar plugin was removed due to the ready availability of great
       JavaScript calendars, particularly with jQuery.
-   -  Added new special Library type:
+   -  追加 new special Library type:
       :doc:`Drivers <./general/drivers>`.
-   -  Added full query-string support. See the config file for details.
+   -  追加 full query-string support. See the config file for details.
    -  Moved the application folder outside of the system folder.
    -  Moved system/cache and system/logs directories to the application
       directory.
-   -  Added routing overrides to the main index.php file, enabling the
+   -  追加 routing overrides to the main index.php file, enabling the
       normal routing to be overridden on a per "index" file basis.
-   -  Added the ability to set config values (or override config values)
+   -  追加 the ability to set config values (or override config values)
       directly from data set in the main index.php file. This allows a
       single application to be used with multiple front controllers,
       each having its own config values.
-   -  Added $config['directory_trigger'] to the config file so that a
+   -  追加 $config['directory_trigger'] to the config file so that a
       controller sub-directory can be specified when running _GET
       strings instead of URI segments.
-   -  Added ability to set "Package" paths - specific paths where the
+   -  追加 ability to set "Package" paths - specific paths where the
       Loader and Config classes should try to look first for a requested
       file. This allows distribution of sub-applications with their own
       libraries, models, config files, etc. in a single "package"
       directory. See the :doc:`Loader class <libraries/loader>`
       documentation for more details.
    -  In-development code is now hosted at BitBucket .
-   -  Removed the deprecated Validation Class.
-   -  Added CI\_ Prefix to all core classes.
+   -  削除 the deprecated Validation Class.
+   -  追加 CI\_ Prefix to all core classes.
    -  Package paths can now be set in application/config/autoload.php.
    -  :doc:`Upload library <libraries/file_uploading>` file_name can
       now be set without an extension, the extension will be taken from
@@ -1482,68 +1482,68 @@ Hg Tag: v2.0.0
 
 - ライブラリー
 
-   -  Added a :doc:`Cache driver <libraries/caching>` with APC,
+   -  追加 a :doc:`Cache driver <libraries/caching>` with APC,
       memcached, and file-based support.
-   -  Added $prefix, $suffix and $first_url properties to :doc:`Pagination
+   -  追加 $prefix, $suffix and $first_url properties to :doc:`Pagination
       library <./libraries/pagination>`.
-   -  Added the ability to suppress first, previous, next, last, and
+   -  追加 the ability to suppress first, previous, next, last, and
       page links by setting their values to FALSE in the :doc:`Pagination
       library <./libraries/pagination>`.
-   -  Added :doc:`Security library <./libraries/security>`, which now
+   -  追加 :doc:`Security library <./libraries/security>`, which now
       contains the xss_clean function, filename_security function and
       other security related functions.
-   -  Added CSRF (Cross-site Reference Forgery) protection to the
+   -  追加 CSRF (Cross-site Reference Forgery) protection to the
       :doc:`Security library <./libraries/security>`.
-   -  Added $parse_exec_vars property to Output library.
-   -  Added ability to enable / disable individual sections of the
+   -  追加 $parse_exec_vars property to Output library.
+   -  追加 ability to enable / disable individual sections of the
       :doc:`Profiler <general/profiling>`
-   -  Added a wildcard option $config['allowed_types'] = '\*' to the
+   -  追加 a wildcard option $config['allowed_types'] = '\*' to the
       :doc:`File Uploading Class <./libraries/file_uploading>`.
-   -  Added an 'object' config variable to the XML-RPC Server library so
+   -  追加 an 'object' config variable to the XML-RPC Server library so
       that one can specify the object to look for requested methods,
       instead of assuming it is in the $CI superobject.
-   -  Added "is_object" into the list of unit tests capable of being
+   -  追加 "is_object" into the list of unit tests capable of being
       run.
    -  Table library will generate an empty cell with a blank string, or
       NULL value.
-   -  Added ability to set tag attributes for individual cells in the
+   -  追加 ability to set tag attributes for individual cells in the
       Table library
-   -  Added a parse_string() method to the :doc:`Parser
+   -  追加 a parse_string() method to the :doc:`Parser
       Class <libraries/parser>`.
-   -  Added HTTP headers and Config information to the
+   -  追加 HTTP headers and Config information to the
       :doc:`Profiler <general/profiling>` output.
-   -  Added Chrome and Flock to the list of detectable browsers by
+   -  追加 Chrome and Flock to the list of detectable browsers by
       browser() in the :doc:`User Agent Class <libraries/user_agent>`.
    -  The :doc:`Unit Test Class <libraries/unit_testing>` now has an
       optional "notes" field available to it, and allows for discrete
       display of test result items using
       $this->unit->set_test_items().
-   -  Added a $xss_clean class variable to the XMLRPC library, enabling
+   -  追加 a $xss_clean class variable to the XMLRPC library, enabling
       control over the use of the Security library's xss_clean()
       method.
-   -  Added a download() method to the :doc:`FTP
+   -  追加 a download() method to the :doc:`FTP
       library <libraries/ftp>`
    -  Changed do_xss_clean() to return FALSE if the uploaded file
       fails XSS checks.
-   -  Added stripslashes() and trim()ing of double quotes from $_FILES
+   -  追加 stripslashes() and trim()ing of double quotes from $_FILES
       type value to standardize input in Upload library.
-   -  Added a second parameter (boolean) to
+   -  追加 a second parameter (boolean) to
       $this->zip->read_dir('/path/to/directory', FALSE) to remove the
       preceding trail of empty folders when creating a Zip archive. This
       example would contain a zip with "directory" and all of its
       contents.
-   -  Added ability in the Image Library to handle PNG transparency for
+   -  追加 ability in the Image Library to handle PNG transparency for
       resize operations when using the GD lib.
    -  Modified the Session class to prevent use if no encryption key is
       set in the config file.
-   -  Added a new config item to the Session class
+   -  追加 a new config item to the Session class
       sess_expire_on_close to allow sessions to auto-expire when the
       browser window is closed.
    -  Improved performance of the Encryption library on servers where
       Mcrypt is available.
    -  Changed the default encryption mode in the Encryption library to
       CBC.
-   -  Added an encode_from_legacy() method to provide a way to
+   -  追加 an encode_from_legacy() method to provide a way to
       transition encrypted data from CodeIgniter 1.x to CodeIgniter 2.x.
       Please see the :doc:`upgrade
       instructions <./installation/upgrade_200>` for details.
@@ -1551,7 +1551,7 @@ Hg Tag: v2.0.0
       set_rules(), set_message() and set_error_delimiters()
       functions.
    -  Altered Email Library to allow for method chaining.
-   -  Added request_headers(), get_request_header() and
+   -  追加 request_headers(), get_request_header() and
       is_ajax_request() to the input class.
    -  Altered :doc:`User agent library <libraries/user_agent>` so that
       is_browser(), is_mobile() and is_robot() can optionally check
@@ -1563,11 +1563,11 @@ Hg Tag: v2.0.0
 -  データベース
 
    -  :doc:`database configuration <./database/configuration>`.
-   -  Added autoinit value to :doc:`database
+   -  追加 autoinit value to :doc:`database
       configuration <./database/configuration>`.
-   -  Added stricton value to :doc:`database
+   -  追加 stricton value to :doc:`database
       configuration <./database/configuration>`.
-   -  Added database_exists() to the :doc:`Database Utilities
+   -  追加 database_exists() to the :doc:`Database Utilities
       Class <database/utilities>`.
    -  Semantic change to db->version() function to allow a list of
       exceptions for databases with functions to return version string
@@ -1579,17 +1579,17 @@ Hg Tag: v2.0.0
       database drivers.
    -  Modified the database errors to show the filename and line number
       of the problematic query.
-   -  Removed the following deprecated functions: orwhere, orlike,
+   -  削除 the following deprecated functions: orwhere, orlike,
       groupby, orhaving, orderby, getwhere.
-   -  Removed deprecated _drop_database() and _create_database()
+   -  削除 deprecated _drop_database() and _create_database()
       functions from the db utility drivers.
    -  Improved dbforge create_table() function for the Postgres driver.
 
 -  ヘルパー
 
-   -  Added convert_accented_characters() function to :doc:`text
+   -  追加 convert_accented_characters() function to :doc:`text
       helper <./helpers/text_helper>`.
-   -  Added accept-charset to the list of inserted attributes of
+   -  追加 accept-charset to the list of inserted attributes of
       form_open() in the :doc:`Form Helper <helpers/form_helper>`.
    -  Deprecated the dohash() function in favour of do_hash() for
       naming consistency.
@@ -1602,10 +1602,10 @@ Hg Tag: v2.0.0
       integer to specify recursion depth.
    -  Modified delete_files() in the :doc:`File
       Helper <helpers/file_helper>` to return FALSE on failure.
-   -  Added an optional second parameter to byte_format() in the
+   -  追加 an optional second parameter to byte_format() in the
       :doc:`Number Helper <helpers/number_helper>` to allow for decimal
       precision.
-   -  Added alpha, and sha1 string types to random_string() in the
+   -  追加 alpha, and sha1 string types to random_string() in the
       :doc:`String Helper <helpers/string_helper>`.
    -  Modified prep_url() so as to not prepend http&#58;// if the supplied
       string already has a scheme.
@@ -1618,16 +1618,16 @@ Hg Tag: v2.0.0
       string as an alt attribute if one is not provided.
    -  If CSRF is enabled in the application config file, form_open()
       will automatically insert it as a hidden field.
-   -  Added sanitize_filename() into the :doc:`Security
+   -  追加 sanitize_filename() into the :doc:`Security
       helper <./helpers/security_helper>`.
-   -  Added ellipsize() to the :doc:`Text
+   -  追加 ellipsize() to the :doc:`Text
       Helper <./helpers/text_helper>`
-   -  Added elements() to the :doc:`Array
+   -  追加 elements() to the :doc:`Array
       Helper <./helpers/array_helper>`
 
 - その他変更点
 
-   -  Added an optional second parameter to show_404() to disable
+   -  追加 an optional second parameter to show_404() to disable
       logging.
    -  Updated loader to automatically apply the sub-class prefix as an
       option when loading classes. Class names can be prefixed with the
@@ -1638,9 +1638,9 @@ Hg Tag: v2.0.0
    -  Switched some DIR_WRITE_MODE constant uses to FILE_WRITE_MODE
       where files and not directories are being operated on.
    -  get_mime_by_extension() is now case insensitive.
-   -  Added "default" to the list :doc:`Reserved
+   -  追加 "default" to the list :doc:`Reserved
       Names <general/reserved_names>`.
-   -  Added 'application/x-msdownload' for .exe files and
+   -  追加 'application/x-msdownload' for .exe files and
       'application/x-gzip-compressed' for .tgz files to
       config/mimes.php.
    -  Updated the output library to no longer compress output or send
@@ -1653,12 +1653,12 @@ Hg Tag: v2.0.0
    -  Documented a second argument in the decode() function for the
       :doc:`Encrypt Class <libraries/encrypt>`.
    -  Documented db->close().
-   -  Updated the router to support a default route with any number of
+   -  更新 the router to support a default route with any number of
       segments.
    -  Moved _remove_invisible_characters() function from the
       :doc:`Security Library <libraries/security>` to :doc:`common
       functions. <general/common_functions>`
-   -  Added audio/mpeg3 as a valid mime type for MP3.
+   -  追加 audio/mpeg3 as a valid mime type for MP3.
 
 Bug fixes for 2.0.0
 -------------------
@@ -1713,7 +1713,7 @@ Bug fixes for 2.0.0
    reset when using the clear() method (#109).
 -  Fixed a bug in the URL Helper where prep_url() could cause a PHP
    error on PHP versions < 5.1.2.
--  Added a log message in core/output if the cache directory config
+-  追加 a log message in core/output if the cache directory config
    value was not found.
 -  Fixed a bug where multiple libraries could not be loaded by passing
    an array to load->library()
@@ -1731,8 +1731,8 @@ Hg Tag: v1.7.2
 
 - ライブラリー
 
-   -  Added a new :doc:`Cart Class <libraries/cart>`.
-   -  Added the ability to pass $config['file_name'] for the :doc:`File
+   -  追加 a new :doc:`Cart Class <libraries/cart>`.
+   -  追加 the ability to pass $config['file_name'] for the :doc:`File
       Uploading Class <libraries/file_uploading>` and rename the
       uploaded file.
    -  Changed order of listed user-agents so Safari would more
@@ -1742,18 +1742,18 @@ Hg Tag: v1.7.2
 
    -  Switched from using gettype() in escape() to is\_* methods, since
       future PHP versions might change its output.
-   -  Updated all database drivers to handle arrays in escape_str()
-   -  Added escape_like_str() method for escaping strings to be used
+   -  更新 all database drivers to handle arrays in escape_str()
+   -  追加 escape_like_str() method for escaping strings to be used
       in LIKE conditions
-   -  Updated Active Record to utilize the new LIKE escaping mechanism.
-   -  Added reconnect() method to DB drivers to try to keep alive /
+   -  更新 Active Record to utilize the new LIKE escaping mechanism.
+   -  追加 reconnect() method to DB drivers to try to keep alive /
       reestablish a connection after a long idle.
    -  Modified MSSQL driver to use mssql_get_last_message() for error
       messages.
 
 -  ヘルパー
 
-   -  Added form_multiselect() to the :doc:`Form
+   -  追加 form_multiselect() to the :doc:`Form
       helper <helpers/form_helper>`.
    -  Modified form_hidden() in the :doc:`Form
       helper <helpers/form_helper>` to accept multi-dimensional
@@ -1778,13 +1778,13 @@ Hg Tag: v1.7.2
    -  Modified :doc:`show_404() <general/errors>` to send 404 status
       code, removing non-CGI compatible header() statement from
       error_404.php template.
-   -  Added set_status_header() to the :doc:`Common
+   -  追加 set_status_header() to the :doc:`Common
       functions <general/common_functions>` to allow use when the
       Output class is unavailable.
-   -  Added is_php() to :doc:`Common
+   -  追加 is_php() to :doc:`Common
       functions <general/common_functions>` to facilitate PHP
       version comparisons.
-   -  Added 2 CodeIgniter "cheatsheets" (thanks to DesignFellow.com for
+   -  追加 2 CodeIgniter "cheatsheets" (thanks to DesignFellow.com for
       this contribution).
 
 Bug fixes for 1.7.2
@@ -1840,15 +1840,15 @@ Hg Tag: 1.7.1
       to use <strong> instead of <b>
    -  A "HTTP/1.1 400 Bad Request" header is now sent when disallowed
       characters are encountered.
-   -  Added <big>, <small>, <q>, and <tt> to the Typography parser's
+   -  追加 <big>, <small>, <q>, and <tt> to the Typography parser's
       inline elements.
-   -  Added more accurate error reporting for the Email library when
+   -  追加 more accurate error reporting for the Email library when
       using sendmail.
-   -  Removed a strict type check from the rotate() function of the
+   -  削除 a strict type check from the rotate() function of the
       :doc:`Image Manipulation Class <libraries/image_lib>`.
-   -  Added enhanced error checking in file saving in the Image library
+   -  追加 enhanced error checking in file saving in the Image library
       when using the GD lib.
-   -  Added an additional newline between multipart email headers and
+   -  追加 an additional newline between multipart email headers and
       the MIME message text for better compatibility with a variety of
       MUAs.
    -  Made modest improvements to efficiency and accuracy of
@@ -1856,30 +1856,30 @@ Hg Tag: 1.7.1
 
 -  データベース
 
-   -  Added where_in to the list of expected arguments received by
+   -  追加 where_in to the list of expected arguments received by
       delete().
 
 -  ヘルパー
 
-   -  Added the ability to have optgroups in form_dropdown() within the
+   -  追加 the ability to have optgroups in form_dropdown() within the
       :doc:`form helper <helpers/form_helper>`.
-   -  Added a doctype() function to the :doc:`HTML
+   -  追加 a doctype() function to the :doc:`HTML
       helper <helpers/html_helper>`.
-   -  Added ability to force lowercase for url_title() in the :doc:`URL
+   -  追加 ability to force lowercase for url_title() in the :doc:`URL
       helper <helpers/url_helper>`.
    -  Changed the default "type" of form_button() to "button" from
       "submit" in the :doc:`form helper <helpers/form_helper>`.
    -  Changed redirect() in the URL helper to allow redirections to URLs
       outside of the CI site.
-   -  Updated get_cookie() to try to fetch the cookie using the global
+   -  更新 get_cookie() to try to fetch the cookie using the global
       cookie prefix if the requested cookie name doesn't exist.
 
 - その他変更点
 
    -  Improved security in xss_clean() to help prevent attacks
       targeting Internet Explorer.
-   -  Added 'application/msexcel' to config/mimes.php for .xls files.
-   -  Added 'proxy_ips' config item to whitelist reverse proxy servers
+   -  追加 'application/msexcel' to config/mimes.php for .xls files.
+   -  追加 'proxy_ips' config item to whitelist reverse proxy servers
       from which to trust the HTTP_X_FORWARDED_FOR header to to
       determine the visitor's IP address.
    -  Improved accuracy of Upload::is_allowed_filetype() for images
@@ -1958,7 +1958,7 @@ Hg Tag: 1.7.0
 
 - ライブラリー
 
-   -  Added a new :doc:`Form Validation
+   -  追加 a new :doc:`Form Validation
       Class <libraries/form_validation>`. It simplifies setting
       rules and field names, supports arrays as field names, allows
       groups of validation rules to be saved in a config file, and adds
@@ -1967,18 +1967,18 @@ Hg Tag: 1.7.0
       the library folder for some time so that existing applications
       that use it will not break, but you are encouraged to migrate to
       the new version.
-   -  Updated the :doc:`Sessions class <libraries/sessions>` so that
+   -  更新 the :doc:`Sessions class <libraries/sessions>` so that
       any custom data being saved gets stored to a database rather than
       the session cookie (assuming you are using a database to store
       session data), permitting much more data to be saved.
-   -  Added the ability to store libraries in subdirectories within
+   -  追加 the ability to store libraries in subdirectories within
       either the main "libraries" or the local application "libraries"
       folder. Please see the :doc:`Loader class <libraries/loader>` for
       more info.
-   -  Added the ability to assign library objects to your own variable
+   -  追加 the ability to assign library objects to your own variable
       names when you use $this->load->library(). Please see the :doc:`Loader
       class <libraries/loader>` for more info.
-   -  Added controller class/method info to :doc:`Profiler
+   -  追加 controller class/method info to :doc:`Profiler
       class <general/profiling>` and support for multiple database
       connections.
    -  Improved the "auto typography" feature and moved it out of the
@@ -1989,14 +1989,14 @@ Hg Tag: 1.7.0
    -  Improved :doc:`Parser class <./libraries/parser>` to allow
       multiple calls to the parse() function. The output of each is
       appended in the output.
-   -  Added max_filename option to set a file name length limit in the
+   -  追加 max_filename option to set a file name length limit in the
       :doc:`File Upload Class <libraries/file_uploading>`.
-   -  Added set_status_header() function to :doc:`Output
+   -  追加 set_status_header() function to :doc:`Output
       class <libraries/output>`.
    -  Modified :doc:`Pagination <libraries/pagination>` class to only
       output the "First" link when the link for page one would not be
       shown.
-   -  Added support for mb_strlen in the :doc:`Form
+   -  追加 support for mb_strlen in the :doc:`Form
       Validation <libraries/form_validation>` class so that
       multi-byte languages will calculate string lengths properly.
 
@@ -2007,55 +2007,55 @@ Hg Tag: 1.7.0
       handling.
    -  Improved how table and column names are escaped and prefixed. It
       now honors full path names when adding prefixes and escaping.
-   -  Added Active Record caching feature to "update" and "delete"
+   -  追加 Active Record caching feature to "update" and "delete"
       functions.
-   -  Added removal of non-printing control characters in escape_str()
+   -  追加 removal of non-printing control characters in escape_str()
       of DB drivers that do not have native PHP escaping mechanisms
       (mssql, oci8, odbc), to avoid potential SQL errors, and possible
       sources of SQL injection.
-   -  Added port support to MySQL, MySQLi, and MS SQL database drivers.
-   -  Added driver name variable in each DB driver, based on bug report
+   -  追加 port support to MySQL, MySQLi, and MS SQL database drivers.
+   -  追加 driver name variable in each DB driver, based on bug report
       #4436.
 
 -  ヘルパー
 
-   -  Added several new "setting" functions to the :doc:`Form
+   -  追加 several new "setting" functions to the :doc:`Form
       helper <helpers/form_helper>` that allow POST data to be
       retrieved and set into forms. These are intended to be used on
       their own, or with the new :doc:`Form Validation
       Class <libraries/form_validation>`.
-   -  Added current_url() and uri_segments() to :doc:`URL
+   -  追加 current_url() and uri_segments() to :doc:`URL
       helper <helpers/url_helper>`.
    -  Altered auto_link() in the :doc:`URL
       helper <helpers/url_helper>` so that email addresses with
       "+" included will be linked.
-   -  Added meta() function to :doc:`HTML
+   -  追加 meta() function to :doc:`HTML
       helper <helpers/html_helper>`.
    -  Improved accuracy of calculations in :doc:`Number
       helper <helpers/number_helper>`.
-   -  Removed added newlines ("\\n") from most form and html helper
+   -  削除 added newlines ("\\n") from most form and html helper
       functions.
    -  Tightened up validation in the :doc:`Date
       helper <helpers/date_helper>` function human_to_unix(),
       and eliminated the POSIX regex.
-   -  Updated :doc:`Date helper <helpers/date_helper>` to match the
+   -  更新 :doc:`Date helper <helpers/date_helper>` to match the
       world's current time zones and offsets.
    -  Modified url_title() in the :doc:`URL
       helper <helpers/url_helper>` to remove characters and digits
       that are part of character entities, to allow dashes, underscores,
       and periods regardless of the $separator, and to allow uppercase
       characters.
-   -  Added support for arbitrary attributes in anchor_popup() of the
+   -  追加 support for arbitrary attributes in anchor_popup() of the
       :doc:`URL helper <helpers/url_helper>`.
 
 - その他変更点
 
-   -  Added :doc:`PHP Style Guide <./general/styleguide>` to docs.
-   -  Added sanitization in xss_clean() for a deprecated HTML tag that
+   -  追加 :doc:`PHP Style Guide <./general/styleguide>` to docs.
+   -  追加 sanitization in xss_clean() for a deprecated HTML tag that
       could be abused in user input in Internet Explorer.
-   -  Added a few openxml document mime types, and an additional mobile
+   -  追加 a few openxml document mime types, and an additional mobile
       agent to mimes.php and user_agents.php respectively.
-   -  Added a file lock check during caching, before trying to write to
+   -  追加 a file lock check during caching, before trying to write to
       the file.
    -  Modified Cookie key cleaning to unset a few troublesome key names
       that can be present in certain environments, preventing CI from
@@ -2139,9 +2139,9 @@ for all users.
 -  データベース
 
    -  Modified MySQL/MySQLi Forge class to give explicit names to keys
-   -  Added ability to set multiple column non-primary keys to the
+   -  追加 ability to set multiple column non-primary keys to the
       :doc:`Forge class <database/forge>`
-   -  Added ability to set additional database config values in :doc:`DSN
+   -  追加 ability to set additional database config values in :doc:`DSN
       connections <database/connecting>` via the query string.
 
 - ライブラリー
@@ -2149,18 +2149,18 @@ for all users.
    -  Set the mime type check in the :doc:`Upload
       class <libraries/file_uploading>` to reference the global
       mimes variable.
-   -  Added support for query strings to the :doc:`Pagination
+   -  追加 support for query strings to the :doc:`Pagination
       class <libraries/pagination>`, automatically detected or
       explicitly declared.
-   -  Added get_post() to the :doc:`Input class <libraries/input>`.
+   -  追加 get_post() to the :doc:`Input class <libraries/input>`.
    -  Documented get() in the :doc:`Input class <libraries/input>`.
-   -  Added the ability to automatically output language items as form
+   -  追加 the ability to automatically output language items as form
       labels in the :doc:`Language class <libraries/language>`.
 
 -  ヘルパー
 
-   -  Added a :doc:`Language helper <helpers/language_helper>`.
-   -  Added a :doc:`Number helper <helpers/number_helper>`.
+   -  追加 a :doc:`Language helper <helpers/language_helper>`.
+   -  追加 a :doc:`Number helper <helpers/number_helper>`.
    -  :doc:`Form helper <helpers/form_helper>` refactored to allow
       form_open() and form_fieldset() to accept arrays or strings as
       arguments.
@@ -2168,17 +2168,17 @@ for all users.
 -  Other changes
 
    -  Improved security in xss_clean().
-   -  Removed an unused Router reference in _display_cache().
-   -  Added ability to :doc:`use xss_clean() to test
+   -  削除 an unused Router reference in _display_cache().
+   -  追加 ability to :doc:`use xss_clean() to test
       images <libraries/input>` for XSS, useful for upload
       security.
    -  Considerably expanded list of mobile user-agents in
       config/user_agents.php.
    -  Charset information in the userguide has been moved above title
       for internationalization purposes (#4614).
-   -  Added "Using Associative Arrays In a Request Parameter" example to
+   -  追加 "Using Associative Arrays In a Request Parameter" example to
       the :doc:`XMLRPC userguide page <libraries/xmlrpc>`.
-   -  Removed maxlength and size as automatically added attributes of
+   -  削除 maxlength and size as automatically added attributes of
       form_input() in the :doc:`form helper <helpers/form_helper>`.
    -  Documented the language file use of byte_format() in the :doc:`number
       helper <helpers/number_helper>`.
@@ -2186,18 +2186,18 @@ for all users.
 Bug fixes for 1.6.3
 -------------------
 
--  Added a language key for valid_emails in validation_lang.php.
+-  追加 a language key for valid_emails in validation_lang.php.
 -  Amended fixes for bug (#3419) with parsing DSN database connections.
 -  Moved the _has_operator() function (#4535) into DB_driver from
    DB_active_rec.
 -  Fixed a syntax error in upload_lang.php.
 -  Fixed a bug (#4542) with a regular expression in the Image library.
 -  Fixed a bug (#4561) where orhaving() wasn't properly passing values.
--  Removed some unused variables from the code (#4563).
+-  削除 some unused variables from the code (#4563).
 -  Fixed a bug where having() was not adding an = into the statement
    (#4568).
 -  Fixed assorted user guide typos or examples (#4574, #4706).
--  Added quoted-printable headers to Email class when the multi-part
+-  追加 quoted-printable headers to Email class when the multi-part
    override is used.
 -  Fixed a double opening <p> tag in the index pages of each system
    directory.
@@ -2210,8 +2210,8 @@ Hg Tag: 1.6.2
 
 -  Active Record
 
-   -  Added the ability to prevent escaping in having() clauses.
-   -  Added rename_table() into :doc:`DBForge <./database/forge>`.
+   -  追加 the ability to prevent escaping in having() clauses.
+   -  追加 rename_table() into :doc:`DBForge <./database/forge>`.
    -  Fixed a bug that wasn't allowing escaping to be turned off if the
       value of a query was NULL.
    -  DB Forge is now assigned to any models that exist after loading
@@ -2219,33 +2219,33 @@ Hg Tag: 1.6.2
 
 -  データベース
 
-   -  Added :doc:`Strict Mode <./database/transactions>` to database
+   -  追加 :doc:`Strict Mode <./database/transactions>` to database
       transactions.
    -  Escape behaviour in where() clauses has changed; values in those
       with the "FALSE" argument are no longer escaped (ie: quoted).
 
 -  Config
 
-   -  Added 'application/vnd.ms-powerpoint' to list of mime types.
-   -  Added 'audio/mpg' to list of mime types.
-   -  Added new user-modifiable file constants.php containing file mode
+   -  追加 'application/vnd.ms-powerpoint' to list of mime types.
+   -  追加 'audio/mpg' to list of mime types.
+   -  追加 new user-modifiable file constants.php containing file mode
       and fopen constants.
-   -  Added the ability to set CRLF settings via config in the
+   -  追加 the ability to set CRLF settings via config in the
       :doc:`Email <libraries/email>` class.
 
 - ライブラリー
 
-   -  Added increased security for filename handling in the Upload
+   -  追加 increased security for filename handling in the Upload
       library.
-   -  Added increased security for sessions for client-side data
+   -  追加 increased security for sessions for client-side data
       tampering.
    -  The MySQLi forge class is now in sync with MySQL forge.
-   -  Added the ability to set CRLF settings via config in the
+   -  追加 the ability to set CRLF settings via config in the
       :doc:`Email <libraries/email>` class.
    -  :doc:`Unit Testing <libraries/unit_testing>` results are now
       colour coded, and a change was made to the default template of
       results.
-   -  Added a valid_emails rule to the Validation class.
+   -  追加 a valid_emails rule to the Validation class.
    -  The :doc:`Zip class <libraries/zip>` now exits within download().
    -  The :doc:`Zip class <libraries/zip>` has undergone a substantial
       re-write for speed and clarity (thanks stanleyxu for the hard work
@@ -2253,15 +2253,15 @@ Hg Tag: 1.6.2
 
 -  ヘルパー
 
-   -  Added a Compatibility
+   -  追加 a Compatibility
       Helper for using some common
       PHP 5 functions safely in applications that might run on PHP 4
       servers (thanks Seppo for the hard work and code contribution!)
-   -  Added form_button() in the :doc:`Form
+   -  追加 form_button() in the :doc:`Form
       helper <helpers/form_helper>`.
    -  Changed the radio() and checkbox() functions to default to not
       checked by default.
-   -  Added the ability to include an optional HTTP Response Code in the
+   -  追加 the ability to include an optional HTTP Response Code in the
       redirect() function of the :doc:`URL
       Helper <helpers/url_helper>`.
    -  Modified img() in the :doc:`HTML Helper <helpers/html_helper>` to
@@ -2270,10 +2270,10 @@ Hg Tag: 1.6.2
       to no longer add a default title= attribute (#4209).
    -  The :doc:`Download helper <helpers/download_helper>` now exits
       within force_download().
-   -  Added get_dir_file_info(), get_file_info(), and
+   -  追加 get_dir_file_info(), get_file_info(), and
       get_mime_by_extension() to the :doc:`File
       Helper <helpers/file_helper>`.
-   -  Added symbolic_permissions() and octal_permissions() to the
+   -  追加 symbolic_permissions() and octal_permissions() to the
       :doc:`File helper <helpers/file_helper>`.
 
 -  Plugins
@@ -2284,17 +2284,17 @@ Hg Tag: 1.6.2
 
 - その他変更点
 
-   -  Added ability for :doc:`xss_clean() <libraries/input>` to accept
+   -  追加 ability for :doc:`xss_clean() <libraries/input>` to accept
       arrays.
-   -  Removed closing PHP tags from all PHP files to avoid accidental
+   -  削除 closing PHP tags from all PHP files to avoid accidental
       output and potential 'cannot modify headers' errors.
-   -  Removed "scripts" from the auto-load search path. Scripts were
+   -  削除 "scripts" from the auto-load search path. Scripts were
       deprecated in Version 1.4.1 (September 21, 2006). If you still
       need to use them for legacy reasons, they must now be manually
       loaded in each Controller.
-   -  Added a :doc:`Reserved Names <general/reserved_names>` page to
+   -  追加 a :doc:`Reserved Names <general/reserved_names>` page to
       the userguide, and migrated reserved controller names into it.
-   -  Added a :doc:`Common Functions <general/common_functions>` page
+   -  追加 a :doc:`Common Functions <general/common_functions>` page
       to the userguide for globally available functions.
    -  Improved security and performance of xss_clean().
 
@@ -2365,22 +2365,22 @@ Hg Tag: 1.6.1
 
 -  Active Record
 
-   -  Added :ref:`Active Record
+   -  追加 :ref:`Active Record
       Caching <ar-caching>`.
    -  Made Active Record fully database-prefix aware.
 
 -  データベース drivers
 
-   -  Added support for setting client character set and collation for
+   -  追加 support for setting client character set and collation for
       MySQLi.
 
 -  コア Changes
 
    -  Modified xss_clean() to be more intelligent with its handling of
       URL encoded strings.
-   -  Added $_SERVER, $_FILES, $_ENV, and $_SESSION to sanitization
+   -  追加 $_SERVER, $_FILES, $_ENV, and $_SESSION to sanitization
       of globals.
-   -  Added a :doc:`Path Helper <./helpers/path_helper>`.
+   -  追加 a :doc:`Path Helper <./helpers/path_helper>`.
    -  Simplified _reindex_segments() in the URI class.
    -  Escaped the '-' in the default 'permitted_uri_chars' config
       item, to prevent errors if developers just try to add additional
@@ -2425,36 +2425,36 @@ Version 1.6.0
 
 -  DBForge
 
-   -  Added :doc:`DBForge <./database/forge>` to the database tools.
+   -  追加 :doc:`DBForge <./database/forge>` to the database tools.
    -  Moved create_database() and drop_database() into
       :doc:`DBForge <./database/forge>`.
-   -  Added add_field(), add_key(), create_table(), drop_table(),
+   -  追加 add_field(), add_key(), create_table(), drop_table(),
       add_column(), drop_column(), modify_column() into
       :doc:`DBForge <./database/forge>`.
 
 -  Active Record
 
-   -  Added protect_identifiers() in :doc:`Active
+   -  追加 protect_identifiers() in :doc:`Active
       Record <./database/query_builder>`.
    -  All AR queries are backticked if appropriate to the database.
-   -  Added where_in(), or_where_in(), where_not_in(),
+   -  追加 where_in(), or_where_in(), where_not_in(),
       or_where_not_in(), not_like() and or_not_like() to :doc:`Active
       Record <./database/query_builder>`.
-   -  Added support for limit() into update() and delete() statements in
+   -  追加 support for limit() into update() and delete() statements in
       :doc:`Active Record <./database/query_builder>`.
-   -  Added empty_table() and truncate_table() to :doc:`Active
+   -  追加 empty_table() and truncate_table() to :doc:`Active
       Record <./database/query_builder>`.
-   -  Added the ability to pass an array of tables to the delete()
+   -  追加 the ability to pass an array of tables to the delete()
       statement in :doc:`Active Record <./database/query_builder>`.
-   -  Added count_all_results() function to :doc:`Active
+   -  追加 count_all_results() function to :doc:`Active
       Record <./database/query_builder>`.
-   -  Added select_max(), select_min(), select_avg() and
+   -  追加 select_max(), select_min(), select_avg() and
       select_sum() to :doc:`Active Record <./database/query_builder>`.
-   -  Added the ability to use aliases with joins in :doc:`Active
+   -  追加 the ability to use aliases with joins in :doc:`Active
       Record <./database/query_builder>`.
-   -  Added a third parameter to Active Record's like() clause to
+   -  追加 a third parameter to Active Record's like() clause to
       control where the wildcard goes.
-   -  Added a third parameter to set() in :doc:`Active
+   -  追加 a third parameter to set() in :doc:`Active
       Record <./database/query_builder>` that withholds escaping
       data.
    -  Changed the behaviour of variables submitted to the where() clause
@@ -2463,14 +2463,14 @@ Version 1.6.0
 -  Other Database Related
 
    -  MySQL driver now requires MySQL 4.1+
-   -  Added $this->DB->save_queries variable to DB driver, enabling
+   -  追加 $this->DB->save_queries variable to DB driver, enabling
       queries to get saved or not. Previously they were always saved.
-   -  Added $this->db->dbprefix() to manually add database prefixes.
-   -  Added 'random' as an order_by() option , and removed "rand()" as
+   -  追加 $this->db->dbprefix() to manually add database prefixes.
+   -  追加 'random' as an order_by() option , and removed "rand()" as
       a listed option as it was MySQL only.
-   -  Added a check for NULL fields in the MySQL database backup
+   -  追加 a check for NULL fields in the MySQL database backup
       utility.
-   -  Added "constrain_by_prefix" parameter to db->list_table()
+   -  追加 "constrain_by_prefix" parameter to db->list_table()
       function. If set to TRUE it will limit the result to only table
       names with the current prefix.
    -  Deprecated from Active Record; getwhere() for get_where();
@@ -2479,25 +2479,25 @@ Version 1.6.0
       or_like().
    -  Modified csv_from_result() to output CSV data more in the spirit
       of basic rules of RFC 4180.
-   -  Added 'char_set' and 'dbcollat' database configuration settings,
+   -  追加 'char_set' and 'dbcollat' database configuration settings,
       to explicitly set the client communication properly.
-   -  Removed 'active_r' configuration setting and replaced with a
+   -  削除 'active_r' configuration setting and replaced with a
       global $active_record setting, which is more in harmony with the
       global nature of the behavior (#1834).
 
 -  コア changes
 
-   -  Added ability to load multiple views, whose content will be
+   -  追加 ability to load multiple views, whose content will be
       appended to the output in the order loaded.
-   -  Added the ability to :doc:`auto-load <./general/autoloader>`
+   -  追加 the ability to :doc:`auto-load <./general/autoloader>`
       :doc:`Models <./general/models>`.
    -  Reorganized the URI and Routes classes for better clarity.
-   -  Added Compat.php to allow function overrides for older versions of
+   -  追加 Compat.php to allow function overrides for older versions of
       PHP or PHP environments missing certain extensions / libraries
-   -  Added memory usage, GET, URI string data, and individual query
+   -  追加 memory usage, GET, URI string data, and individual query
       execution time to Profiler output.
    -  Deprecated Scaffolding.
-   -  Added is_really_writable() to Common.php to provide a
+   -  追加 is_really_writable() to Common.php to provide a
       cross-platform reliable method of testing file/folder writability.
 
 - ライブラリー
@@ -2505,16 +2505,16 @@ Version 1.6.0
    -  Changed the load protocol of Models to allow for extension.
    -  Strengthened the Encryption library to help protect against man in
       the middle attacks when MCRYPT_MODE_CBC mode is used.
-   -  Added Flashdata variables, session_id regeneration and
+   -  追加 Flashdata variables, session_id regeneration and
       configurable session update times to the :doc:`Session
       class. <./libraries/sessions>`
-   -  Removed 'last_visit' from the Session class.
-   -  Added a language entry for valid_ip validation error.
+   -  削除 'last_visit' from the Session class.
+   -  追加 a language entry for valid_ip validation error.
    -  Modified prep_for_form() in the Validation class to accept
       arrays, adding support for POST array validation (via callbacks
       only)
-   -  Added an "integer" rule into the Validation library.
-   -  Added valid_base64() to the Validation library.
+   -  追加 an "integer" rule into the Validation library.
+   -  追加 valid_base64() to the Validation library.
    -  Documented clear() in the :doc:`Image
       Processing <./libraries/image_lib>` library.
    -  Changed the behaviour of custom callbacks so that they no longer
@@ -2524,29 +2524,29 @@ Version 1.6.0
       constructor.
    -  Modified variable names in _ci_load() method of Loader class to
       avoid conflicts with view variables.
-   -  Added a few additional mime type variations for CSV.
+   -  追加 a few additional mime type variations for CSV.
    -  Enabled the 'system' methods for the XML-RPC Server library,
       except for 'system.multicall' which is still disabled.
 
 -  ヘルパー & Plugins
 
-   -  Added link_tag() to the :doc:`HTML
+   -  追加 link_tag() to the :doc:`HTML
       helper. <./helpers/html_helper>`
-   -  Added img() to the :doc:`HTML helper. <./helpers/html_helper>`
-   -  Added ability to :doc:`"extend" Helpers <./general/helpers>`.
-   -  Added an :doc:`email helper <./helpers/email_helper>` into core
+   -  追加 img() to the :doc:`HTML helper. <./helpers/html_helper>`
+   -  追加 ability to :doc:`"extend" Helpers <./general/helpers>`.
+   -  追加 an :doc:`email helper <./helpers/email_helper>` into core
       helpers.
-   -  Added strip_quotes() function to :doc:`string
+   -  追加 strip_quotes() function to :doc:`string
       helper <./helpers/string_helper>`.
-   -  Added reduce_multiples() function to :doc:`string
+   -  追加 reduce_multiples() function to :doc:`string
       helper <./helpers/string_helper>`.
-   -  Added quotes_to_entities() function to :doc:`string
+   -  追加 quotes_to_entities() function to :doc:`string
       helper <./helpers/string_helper>`.
-   -  Added form_fieldset(), form_fieldset_close(), form_label(),
+   -  追加 form_fieldset(), form_fieldset_close(), form_label(),
       and form_reset() function to :doc:`form
       helper <./helpers/form_helper>`.
-   -  Added support for external urls in form_open().
-   -  Removed support for db_backup in MySQLi due to incompatible
+   -  追加 support for external urls in form_open().
+   -  削除 support for db_backup in MySQLi due to incompatible
       functions.
    -  Javascript Calendar plugin now uses the months and days from the
       calendar language file, instead of hard-coded values,
@@ -2554,11 +2554,11 @@ Version 1.6.0
 
 -  Documentation Changes
 
-   -  Added Writing Documentation section
+   -  追加 Writing Documentation section
       for the community to use in writing their own documentation.
-   -  Added titles to all user manual pages.
-   -  Added attributes into <html> of userguide for valid html.
-   -  Added :doc:`Zip Encoding Class <libraries/zip>`
+   -  追加 titles to all user manual pages.
+   -  追加 attributes into <html> of userguide for valid html.
+   -  追加 :doc:`Zip Encoding Class <libraries/zip>`
       to the table of contents of the userguide.
    -  Moved part of the userguide menu javascript to an external file.
    -  Documented distinct() in :doc:`Active
@@ -2635,9 +2635,9 @@ Bug fixes for Version 1.6.0
 -  Fixed a bug (#3284) where the rsegment array would not be set
    properly if the requested URI contained more segments than the routed
    URI.
--  Removed extraneous load of $CFG in _display_cache() of the Output
+-  削除 extraneous load of $CFG in _display_cache() of the Output
    class (#3285).
--  Removed an extraneous call to loading models (#3286).
+-  削除 an extraneous call to loading models (#3286).
 -  Fixed a bug (#3310) with sanitization of globals in the Input class
    that could unset CI's global variables.
 -  Fixed a bug (#3314) which would cause the top level path to be
@@ -2646,7 +2646,7 @@ Bug fixes for Version 1.6.0
    variable.
 -  Fixed a bug (#3330) in the FTP class where a comparison wasn't
    getting made.
--  Removed an unused parameter from Profiler (#3332).
+-  削除 an unused parameter from Profiler (#3332).
 -  Fixed a bug in database driver where num_rows property wasn't
    getting updated.
 -  Fixed a bug in the :doc:`upload
@@ -2680,7 +2680,7 @@ Bug fixes for Version 1.6.0
 -  Fixed typos in the email Language class
    (email_attachment_unredable, email_filed_smtp_login), and FTP
    Class (ftp_unable_to_remame).
--  Added a stripslashes() into the Upload Library.
+-  追加 a stripslashes() into the Upload Library.
 -  Fixed a series of grammatical and spelling errors in the language
    files.
 -  Fixed assorted user guide typos.
@@ -2690,19 +2690,19 @@ Version 1.5.4
 
 リリース日: 2007年7月12日
 
--  Added :doc:`custom Language files <./libraries/language>` to the
+-  追加 :doc:`custom Language files <./libraries/language>` to the
    :doc:`autoload <./general/autoloader>` options.
--  Added stripslashes() to the _clean_input_data() function in the
+-  追加 stripslashes() to the _clean_input_data() function in the
    :doc:`Input class <./libraries/input>` when magic quotes is on so
    that data will always be un-slashed within the framework.
--  Added array to string into the :doc:`profiler <general/profiling>`.
--  Added some additional mime types in application/config/mimes.php.
--  Added filename_security() method to :doc:`Input
+-  追加 array to string into the :doc:`profiler <general/profiling>`.
+-  追加 some additional mime types in application/config/mimes.php.
+-  追加 filename_security() method to :doc:`Input
    library <./libraries/input>`.
--  Added some additional arguments to the :doc:`Inflection
+-  追加 some additional arguments to the :doc:`Inflection
    helper <./helpers/inflector_helper>` singular() to compensate
    for words ending in "s". Also added a force parameter to pluralize().
--  Added $config['charset'] to the config file. Default value is
+-  追加 $config['charset'] to the config file. Default value is
    'UTF-8', used in some string handling functions.
 -  Fixed MSSQL insert_id().
 -  Fixed a logic error in the DB trans_status() function. It was
@@ -2738,7 +2738,7 @@ Version 1.5.4
    helper <./helpers/string_helper>` that were missing from the
    user guide: trim_slashes() and reduce_double_slashes().
 -  Docs now validate to XHTML 1 transitional
--  Updated the XSS Filtering to take into account the IE expression()
+-  更新 the XSS Filtering to take into account the IE expression()
    ability and improved certain deletions to prevent possible exploits
 -  Modified the Router so that when Query Strings are Enabled, the
    controller trigger and function trigger values are sanitized for
@@ -2764,7 +2764,7 @@ Version 1.5.3
 
 リリース日: 2007年4月15日
 
--  Added array to string into the profiler
+-  追加 array to string into the profiler
 -  Code Igniter references updated to CodeIgniter
 -  pMachine references updated to EllisLab
 -  Fixed a bug in the repeater function of :doc:`string
@@ -2785,16 +2785,16 @@ Version 1.5.2
 
 リリース日: 2007年2月13日
 
--  Added subversion information
+-  追加 subversion information
    to the :doc:`downloads <installation/downloads>` page.
--  Added support for captions in the :doc:`Table
+-  追加 support for captions in the :doc:`Table
    Library <./libraries/table>`
 -  Fixed a bug in the
    :doc:`download_helper <helpers/download_helper>` that was causing
    Internet Explorer to load rather than download
 -  Fixed a bug in the Active Record Join function that was not taking
    table prefixes into consideration.
--  Removed unescaped variables in error messages of Input and Router
+-  削除 unescaped variables in error messages of Input and Router
    classes
 -  Fixed a bug in the Loader that was causing errors on Libraries loaded
    twice. A debug message is now silently made in the log.
@@ -2809,9 +2809,9 @@ Version 1.5.1
 
 リリース日: 2006年11月23日
 
--  Added support for submitting arrays of libraries in the
+-  追加 support for submitting arrays of libraries in the
    $this->load->library function.
--  Added support for naming custom library files in lower or uppercase.
+-  追加 support for naming custom library files in lower or uppercase.
 -  Fixed a bug related to output buffering.
 -  Fixed a bug in the active record class that was not resetting query
    data after a completed query.
@@ -2842,61 +2842,61 @@ Version 1.5.0
 
 リリース日: October 30, 2006
 
--  Added :doc:`DB utility class <./database/utilities>`, permitting DB
+-  追加 :doc:`DB utility class <./database/utilities>`, permitting DB
    backups, CVS or XML files from DB results, and various other
    functions.
--  Added :doc:`Database Caching Class <./database/caching>`.
--  Added :doc:`transaction support <./database/transactions>` to the
+-  追加 :doc:`Database Caching Class <./database/caching>`.
+-  追加 :doc:`transaction support <./database/transactions>` to the
    database classes.
--  Added :doc:`Profiler Class <./general/profiling>` which generates a
+-  追加 :doc:`Profiler Class <./general/profiling>` which generates a
    report of Benchmark execution times, queries, and POST data at the
    bottom of your pages.
--  Added :doc:`User Agent Library <./libraries/user_agent>` which
+-  追加 :doc:`User Agent Library <./libraries/user_agent>` which
    allows browsers, robots, and mobile devises to be identified.
--  Added :doc:`HTML Table Class <./libraries/table>` , enabling tables
+-  追加 :doc:`HTML Table Class <./libraries/table>` , enabling tables
    to be generated from arrays or database results.
--  Added :doc:`Zip Encoding Library <./libraries/zip>`.
--  Added :doc:`FTP Library <./libraries/ftp>`.
--  Added the ability to :doc:`extend
+-  追加 :doc:`Zip Encoding Library <./libraries/zip>`.
+-  追加 :doc:`FTP Library <./libraries/ftp>`.
+-  追加 the ability to :doc:`extend
    libraries <./general/creating_libraries>` and :doc:`extend core
    classes <./general/core_classes>`, in addition to being able to
    replace them.
--  Added support for storing :doc:`models within
+-  追加 support for storing :doc:`models within
    sub-folders <./general/models>`.
--  Added :doc:`Download Helper <./helpers/download_helper>`.
--  Added :doc:`simple_query() <./database/queries>` function to the
+-  追加 :doc:`Download Helper <./helpers/download_helper>`.
+-  追加 :doc:`simple_query() <./database/queries>` function to the
    database classes
--  Added :doc:`standard_date() <./helpers/date_helper>` function to
+-  追加 :doc:`standard_date() <./helpers/date_helper>` function to
    the Date Helper.
--  Added :doc:`$query->free_result() <./database/results>` to database
+-  追加 :doc:`$query->free_result() <./database/results>` to database
    class.
--  Added :doc:`$query->list_fields() <./database/metadata>` function to
+-  追加 :doc:`$query->list_fields() <./database/metadata>` function to
    database class
--  Added :doc:`$this->db->platform() <./database/helpers>` function
--  Added new :doc:`File Helper <./helpers/file_helper>`:
+-  追加 :doc:`$this->db->platform() <./database/helpers>` function
+-  追加 new :doc:`File Helper <./helpers/file_helper>`:
    get_filenames()
--  Added new helper: :doc:`Smiley Helper <./helpers/smiley_helper>`
--  Added support for <ul> and <ol> lists in the :doc:`HTML
+-  追加 new helper: :doc:`Smiley Helper <./helpers/smiley_helper>`
+-  追加 support for <ul> and <ol> lists in the :doc:`HTML
    Helper <./helpers/html_helper>`
--  Added the ability to rewrite :doc:`short
+-  追加 the ability to rewrite :doc:`short
    tags <./general/alternative_php>` on-the-fly, converting them
    to standard PHP statements, for those servers that do not support
    short tags. This allows the cleaner syntax to be used regardless of
    whether it's supported by the server.
--  Added the ability to :doc:`rename or relocate the "application"
+-  追加 the ability to :doc:`rename or relocate the "application"
    folder <./general/managing_apps>`.
--  Added more thorough initialization in the upload class so that all
+-  追加 more thorough initialization in the upload class so that all
    class variables are reset.
--  Added "is_numeric" to validation, which uses the native PHP
+-  追加 "is_numeric" to validation, which uses the native PHP
    is_numeric function.
 -  Improved the URI handler to make it more reliable when the
    $config['uri_protocol'] item is set to AUTO.
 -  Moved most of the functions in the Controller class into the Loader
    class, allowing fewer reserved function names for controllers when
    running under PHP 5.
--  Updated the DB Result class to return an empty array when
+-  更新 the DB Result class to return an empty array when
    $query->result() doesn't produce a result.
--  Updated the input->cookie() and input->post() functions in :doc:`Input
+-  更新 the input->cookie() and input->post() functions in :doc:`Input
    Class <./libraries/input>` to permit arrays contained cookies
    that are arrays to be run through the XSS filter.
 -  Documented three functions from the Validation
@@ -2934,38 +2934,38 @@ Version 1.4.1
 
 リリース日: September 21, 2006
 
--  Added a new feature that passes URI segments directly to your
+-  追加 a new feature that passes URI segments directly to your
    function calls as parameters. See the
    :doc:`Controllers <general/controllers>` page for more info.
--  Added support for a function named _output(), which when used in
+-  追加 support for a function named _output(), which when used in
    your controllers will received the final rendered output from the
    output class. More info in the :doc:`Controllers <general/controllers>`
    page.
--  Added several new functions in the :doc:`URI
+-  追加 several new functions in the :doc:`URI
    Class <./libraries/uri>` to let you retrieve and manipulate URI
    segments that have been re-routed using the :doc:`URI
    Routing <general/routing>` feature. Previously, the URI class did not
    permit you to access any re-routed URI segments, but now it does.
--  Added :doc:`$this->output->set_header() <./libraries/output>`
+-  追加 :doc:`$this->output->set_header() <./libraries/output>`
    function, which allows you to set server headers.
--  Updated plugins, helpers, and language classes to allow your
+-  更新 plugins, helpers, and language classes to allow your
    application folder to contain its own plugins, helpers, and language
    folders. Previously they were always treated as global for your
    entire installation. If your application folder contains any of these
    resources they will be used *instead* the global ones.
--  Added :doc:`Inflector helper <./helpers/inflector_helper>`.
--  Added element() function in the :doc:`array
+-  追加 :doc:`Inflector helper <./helpers/inflector_helper>`.
+-  追加 element() function in the :doc:`array
    helper <./helpers/array_helper>`.
--  Added RAND() to active record orderby() function.
--  Added delete_cookie() and get_cookie() to :doc:`Cookie
+-  追加 RAND() to active record orderby() function.
+-  追加 delete_cookie() and get_cookie() to :doc:`Cookie
    helper <./helpers/cookie_helper>`, even though the input class
    has a cookie fetching function.
--  Added Oracle database driver (still undergoing testing so it might
+-  追加 Oracle database driver (still undergoing testing so it might
    have some bugs).
--  Added the ability to combine pseudo-variables and php variables in
+-  追加 the ability to combine pseudo-variables and php variables in
    the template parser class.
--  Added output compression option to the config file.
--  Removed the is_numeric test from the db->escape() function.
+-  追加 output compression option to the config file.
+-  削除 the is_numeric test from the db->escape() function.
 -  Fixed a MySQLi bug that was causing error messages not to contain
    proper error data.
 -  Fixed a bug in the email class which was causing it to ignore
@@ -2977,7 +2977,7 @@ Version 1.4.1
    cookie settings were not being honored.
 -  Fixed an oversight in the upload class. An item mentioned in the 1.4
    changelog was missing.
--  Added some code to allow email attachments to be reset when sending
+-  追加 some code to allow email attachments to be reset when sending
    batches of email.
 -  Deprecated the application/scripts folder. It will continue to work
    for legacy users, but it is recommended that you create your own
@@ -2994,52 +2994,52 @@ Version 1.4.0
 
 リリース日: September 17, 2006
 
--  Added :doc:`Hooks <./general/hooks>` feature, enabling you to tap
+-  追加 :doc:`Hooks <./general/hooks>` feature, enabling you to tap
    into and modify the inner workings of the framework without hacking
    the core files.
--  Added the ability to organize controller files :doc:`into
+-  追加 the ability to organize controller files :doc:`into
    sub-folders <general/controllers>`. Kudos to Marco for
    suggesting this (and the next two) feature.
--  Added regular expressions support for :doc:`routing
+-  追加 regular expressions support for :doc:`routing
    rules <./general/routing>`.
--  Added the ability to :doc:`remap function
+-  追加 the ability to :doc:`remap function
    calls <./general/controllers>` within your controllers.
--  Added the ability to :doc:`replace core system
+-  追加 the ability to :doc:`replace core system
    classes <./general/core_classes>` with your own classes.
--  Added support for % character in URL.
--  Added the ability to supply full URLs using the
+-  追加 support for % character in URL.
+-  追加 the ability to supply full URLs using the
    :doc:`anchor() <./helpers/url_helper>` helper function.
--  Added mode parameter to :doc:`file_write() <./helpers/file_helper>`
+-  追加 mode parameter to :doc:`file_write() <./helpers/file_helper>`
    helper.
--  Added support for changing the port number in the :doc:`Postgres
+-  追加 support for changing the port number in the :doc:`Postgres
    driver <./database/configuration>`.
 -  Moved the list of "allowed URI characters" out of the Router class
    and into the config file.
 -  Moved the MIME type array out of the Upload class and into its own
    file in the application/config/ folder.
--  Updated the Upload class to allow the upload field name to be set
+-  更新 the Upload class to allow the upload field name to be set
    when calling :doc:`do_upload() <./libraries/file_uploading>`.
--  Updated the :doc:`Config Library <./libraries/config>` to be able to
+-  更新 the :doc:`Config Library <./libraries/config>` to be able to
    load config files silently, and to be able to assign config files to
    their own index (to avoid collisions if you use multiple config
    files).
--  Updated the URI Protocol code to allow more options so that URLs will
+-  更新 the URI Protocol code to allow more options so that URLs will
    work more reliably in different environments.
--  Updated the form_open() helper to allow the GET method to be used.
--  Updated the MySQLi execute() function with some code to help prevent
+-  更新 the form_open() helper to allow the GET method to be used.
+-  更新 the MySQLi execute() function with some code to help prevent
    lost connection errors.
--  Updated the SQLite Driver to check for object support before
+-  更新 the SQLite Driver to check for object support before
    attempting to return results as objects. If unsupported it returns an
    array.
--  Updated the Models loader function to allow multiple loads of the
+-  更新 the Models loader function to allow multiple loads of the
    same model.
--  Updated the MS SQL driver so that single quotes are escaped.
--  Updated the Postgres and ODBC drivers for better compatibility.
--  Removed a strtolower() call that was changing URL segments to lower
+-  更新 the MS SQL driver so that single quotes are escaped.
+-  更新 the Postgres and ODBC drivers for better compatibility.
+-  削除 a strtolower() call that was changing URL segments to lower
    case.
--  Removed some references that were interfering with PHP 4.4.1
+-  削除 some references that were interfering with PHP 4.4.1
    compatibility.
--  Removed backticks from Postgres class since these are not needed.
+-  削除 backticks from Postgres class since these are not needed.
 -  Renamed display() to _display() in the Output class to make it clear
    that it's a private function.
 -  Deprecated the hash() function due to a naming conflict with a native
@@ -3085,10 +3085,10 @@ Version 1.3.3
 
 -  Models do **not** connect automatically to the database as of this
    version. :doc:`More info here <./general/models>`.
--  Updated the Sessions class to utilize the active record class when
+-  更新 the Sessions class to utilize the active record class when
    running session related queries. Previously the queries assumed MySQL
    syntax.
--  Updated alternator() function to re-initialize when called with no
+-  更新 alternator() function to re-initialize when called with no
    arguments, allowing multiple calls.
 -  Fixed a bug in the active record "having" function.
 -  Fixed a problem in the validation class which was making checkboxes
@@ -3128,23 +3128,23 @@ Version 1.3.1
 
 リリース日: April 11, 2006
 
--  Added a :doc:`Unit Testing Library <./libraries/unit_testing>`.
--  Added the ability to pass objects to the **insert()** and
+-  追加 a :doc:`Unit Testing Library <./libraries/unit_testing>`.
+-  追加 the ability to pass objects to the **insert()** and
    **update()** database functions. This feature enables you to (among
    other things) use your :doc:`Model class <./general/models>`
    variables to run queries with. See the Models page for details.
--  Added the ability to pass objects to the :doc:`view loading
+-  追加 the ability to pass objects to the :doc:`view loading
    function <./general/views>`: $this->load->view('my_view',
    $object);
--  Added getwhere function to :doc:`Active Record
+-  追加 getwhere function to :doc:`Active Record
    class <./database/query_builder>`.
--  Added count_all function to :doc:`Active Record
+-  追加 count_all function to :doc:`Active Record
    class <./database/query_builder>`.
--  Added language file for scaffolding and fixed a scaffolding bug that
+-  追加 language file for scaffolding and fixed a scaffolding bug that
    occurs when there are no rows in the specified table.
--  Added :doc:`$this->db->last_query() <./database/queries>`, which
+-  追加 :doc:`$this->db->last_query() <./database/queries>`, which
    allows you to view your last query that was run.
--  Added a new mime type to the upload class for better compatibility.
+-  追加 a new mime type to the upload class for better compatibility.
 -  Changed how cache files are read to prevent PHP errors if the cache
    file contains an XML tag, which PHP wants to interpret as a short
    tag.
@@ -3161,34 +3161,34 @@ Version 1.3
 
 リリース日: April 3, 2006
 
--  Added support for :doc:`Models <general/models>`.
+-  追加 support for :doc:`Models <general/models>`.
 -  Redesigned the database libraries to support additional RDBMs
    (Postgres, MySQLi, etc.).
 -  Redesigned the :doc:`Active Record class <./database/query_builder>`
    to enable more varied types of queries with simpler syntax, and
    advanced features like JOINs.
--  Added a feature to the database class that lets you run :doc:`custom
+-  追加 a feature to the database class that lets you run :doc:`custom
    function calls <./database/call_function>`.
--  Added support for :doc:`private functions <general/controllers>` in your
+-  追加 support for :doc:`private functions <general/controllers>` in your
    controllers. Any controller function name that starts with an
    underscore will not be served by a URI request.
--  Added the ability to pass your own initialization parameters to your
+-  追加 the ability to pass your own initialization parameters to your
    :doc:`custom core libraries <general/creating_libraries>` when using
    $this->load->library()
--  Added support for running standard :doc:`query string URLs <general/urls>`.
+-  追加 support for running standard :doc:`query string URLs <general/urls>`.
    These can be optionally enabled in your config file.
--  Added the ability to :doc:`specify a "suffix" <general/urls>`, which will be
+-  追加 the ability to :doc:`specify a "suffix" <general/urls>`, which will be
    appended to your URLs. For example, you could add .html to your URLs,
    making them appear static. This feature is enabled in your config
    file.
--  Added a new error template for use with native PHP errors.
--  Added "alternator" function in the :doc:`string
+-  追加 a new error template for use with native PHP errors.
+-  追加 "alternator" function in the :doc:`string
    helpers <./helpers/string_helper>`.
--  Removed slashing from the input class. After much debate we decided
+-  削除 slashing from the input class. After much debate we decided
    to kill this feature.
 -  Change the commenting style in the scripts to the PEAR standard so
    that IDEs and tools like phpDocumenter can harvest the comments.
--  Added better class and function name-spacing to avoid collisions with
+-  追加 better class and function name-spacing to avoid collisions with
    user developed classes. All CodeIgniter classes are now prefixed with
    CI\_ and all controller methods are prefixed with _ci to avoid
    controller collisions. A list of reserved function names can be
@@ -3217,24 +3217,24 @@ Version 1.2
    problems that surfaced during the beta tests. The problem was most
    notable when instantiating classes in your constructors, particularly
    if those classes in turn did work in their constructors.
--  Added a global function named
+-  追加 a global function named
    :doc:`get_instance() <general/ancillary_classes>` allowing the main
    CodeIgniter object to be accessible throughout your own classes.
--  Added new :doc:`File Helper <./helpers/file_helper>`:
+-  追加 new :doc:`File Helper <./helpers/file_helper>`:
    delete_files()
--  Added new :doc:`URL Helpers <./helpers/url_helper>`: base_url(),
+-  追加 new :doc:`URL Helpers <./helpers/url_helper>`: base_url(),
    index_page()
--  Added the ability to create your own :doc:`core
+-  追加 the ability to create your own :doc:`core
    libraries <general/creating_libraries>` and store them in your local
    application directory.
--  Added an overwrite option to the :doc:`Upload
+-  追加 an overwrite option to the :doc:`Upload
    class <./libraries/file_uploading>`, enabling files to be
    overwritten rather than having the file name appended.
--  Added Javascript Calendar plugin.
--  Added search feature to user guide. Note: This is done using Google,
+-  追加 Javascript Calendar plugin.
+-  追加 search feature to user guide. Note: This is done using Google,
    which at the time of this writing has not crawled all the pages of
    the docs.
--  Updated the parser class so that it allows tag pars within other tag
+-  更新 the parser class so that it allows tag pars within other tag
    pairs.
 -  Fixed a bug in the DB "where" function.
 -  Fixed a bug that was preventing custom config files to be
@@ -3248,8 +3248,8 @@ Version Beta 1.1
 
 リリース日: March 10, 2006
 
--  Added a :doc:`Calendaring class <./libraries/calendar>`.
--  Added support for running :doc:`multiple
+-  追加 a :doc:`Calendaring class <./libraries/calendar>`.
+-  追加 support for running :doc:`multiple
    applications <general/managing_apps>` that share a common CodeIgniter
    backend.
 -  Moved the "uri protocol" variable from the index.php file into the
@@ -3273,8 +3273,8 @@ Version Beta 1.1
 -  Fixed a bug in the br() function in the HTML helper
 -  Fixed a syntax mistake in the form_dropdown function in the Form
    Helper.
--  Removed the "style" attributes form the form helpers.
--  Updated the documentation. Added "next/previous" links to each page
+-  削除 the "style" attributes form the form helpers.
+-  更新 the documentation. Added "next/previous" links to each page
    and fixed various typos.
 
 Version Beta 1.0

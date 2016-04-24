@@ -19,8 +19,8 @@ Version 3.1.0
 
 -  ヘルパー
 
-   -  Updated :doc:`HTML Helper <helpers/html_helper>` function :php:func:`meta()` with support for "charset" and "property" properties.
-   -  Changed :doc:`HTML Helper <helpers/html_helper>` function :php:func:`doctype()` default document type to HTML 5.
+   -  更新 :doc:`HTML ヘルパー <helpers/html_helper>` :php:func:`meta()` では "charset" と "property" プロパティをサポートしました。
+   -  変更 :doc:`HTML ヘルパー <helpers/html_helper>` :php:func:`doctype()` は 標準となるドキュメントタイプをHTML5にしました。
 
 Version 3.0.5
 =============

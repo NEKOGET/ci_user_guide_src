@@ -1,25 +1,25 @@
-##################
-Database Reference
-##################
+########################
+データベースリファレンス
+########################
 
-CodeIgniter comes with a full-featured and very fast abstracted database
-class that supports both traditional structures and Query Builder
-patterns. The database functions offer clear, simple syntax.
+CodeIgniter にはフル機能かつ非常に高速な抽象データベースクラスが付属しています。
+これは伝統的構造とクエリビルダパターンの両方をサポートします。
+データベース機能は明快かつ単純な構文を提供します。
 
 .. toctree::
 	:titlesonly:
 	
-	Quick Start: Usage Examples <examples>
-	Database Configuration <configuration>
-	Connecting to a Database <connecting>
-	Running Queries <queries>
-	Generating Query Results <results>
-	Query Helper Functions <helpers>
-	Query Builder Class <query_builder>
-	Transactions <transactions>
-	Getting MetaData <metadata>
-	Custom Function Calls <call_function>
-	Query Caching <caching>
-	Database Manipulation with Database Forge <forge>
-	Database Utilities Class <utilities>
-	Database Driver Reference <db_driver_reference>
+	クイックスタート: 使用例 <examples>
+	データベース設定 <configuration>
+	データベースへの接続 <connecting>
+	クエリを実行します <queries>
+	クエリ結果の生成 <results>
+	クエリヘルパー関数 <helpers>
+	クエリビルダクラス <query_builder>
+	トランザクション <transactions>
+	メタデータの取得 <metadata>
+	カスタム関数呼び出し <call_function>
+	クエリキャッシュ <caching>
+	データベースフォージを使用したデータベース操作 <forge>
+	データベースユーティリティクラス <utilities>
+	データベースドライバリファレンス <db_driver_reference>

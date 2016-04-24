@@ -12,7 +12,7 @@ CodeIgniter にはフル機能かつ非常に高速な抽象データベース�
 	クイックスタート: 使用例 <examples>
 	データベース設定 <configuration>
 	データベースへの接続 <connecting>
-	クエリを実行します <queries>
+	クエリの実行 <queries>
 	クエリ結果の生成 <results>
 	クエリヘルパー関数 <helpers>
 	クエリビルダクラス <query_builder>

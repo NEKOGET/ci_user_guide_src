@@ -1,210 +1,210 @@
-###########
-URI Routing
-###########
+###############
+URIルーティング
+###############
 
-Typically there is a one-to-one relationship between a URL string and
-its corresponding controller class/method. The segments in a URI
-normally follow this pattern::
+一般的に、 URL 文字列とそれに対応する
+コントローラクラス/メソッドは 1 対 1 の関係にあります。URI
+のセグメントは通常、つぎのパターンに従います::
 
 	example.com/class/function/id/
 
-In some instances, however, you may want to remap this relationship so
-that a different class/method can be called instead of the one
-corresponding to the URL.
+しかしながらいくつかのケースでは、この関係を再マッピングしてたいことでしょう、
+そのため
+URL に対応するものではなく別のクラス/メソッドが呼び出されるようにすることができます。
 
-For example, let's say you want your URLs to have this prototype::
+たとえば、 URL がつぎのプロトタイプを持つようにしたいとしましょう::
 
 	example.com/product/1/
 	example.com/product/2/
 	example.com/product/3/
 	example.com/product/4/
 
-Normally the second segment of the URL is reserved for the method
-name, but in the example above it instead has a product ID. To
-overcome this, CodeIgniter allows you to remap the URI handler.
+通常、 URL の第 2 セグメントはメソッド名となっていますが、
+上記の例では代わりにプロダクト ID を持っています。
+これをクリアするために、 CodeIgniter は URI ハンドラを再マップすることができます。
 
-Setting your own routing rules
-==============================
+独自のルーティングルールを設定する
+==================================
 
-Routing rules are defined in your *application/config/routes.php* file.
-In it you'll see an array called ``$route`` that permits you to specify
-your own routing criteria. Routes can either be specified using wildcards
-or Regular Expressions.
+ルーティングルールは *application/config/routes.php* ファイルで定義されています。
+その中で、独自のルーティング基準を指定することを可能にする ``$route`` という配列があります。
+ルートはワイルドカードや正規表現を使用して
+指定することができます。
 
-Wildcards
-=========
+ワイルドカード
+==============
 
-A typical wildcard route might look something like this::
+典型的なワイルドカードのルートは次のようになります::
 
 	$route['product/:num'] = 'catalog/product_lookup';
 
-In a route, the array key contains the URI to be matched, while the
-array value contains the destination it should be re-routed to. In the
-above example, if the literal word "product" is found in the first
-segment of the URL, and a number is found in the second segment, the
-"catalog" class and the "product_lookup" method are instead used.
+ルートには、配列のキーには URI が一致するもの、
+配列の値は再ルーティングすべき先が含まれています。
+上記の例では、リテラル文字「 product 」が URL の最初のセグメントにあり、
+第 2 セグメントに数値がある場合、
+「 catalog 」クラスと「 product_lookup 」メソッドが代わりに使用されます。
 
-You can match literal values or you can use two wildcard types:
+リテラル値の一致または 2 つのワイルドカードの種類を使用することができます:
 
-**(:num)** will match a segment containing only numbers.
-**(:any)** will match a segment containing any character (except for '/', which is the segment delimiter).
+**(:num)** は数字のみを含むセグメントと一致します。
+**(:any)** は任意の文字を含むセグメントと一致します (セグメント区切り文字である「 / 」を除く) 。
 
-.. note:: Wildcards are actually aliases for regular expressions, with
-	**:any** being translated to **[^/]+** and **:num** to **[0-9]+**,
-	respectively.
+.. note:: ワイルドカードは実際には正規表現の別名です、
+	それぞれ **:any** は **[^/]+** に、 **:num** は **[0-9]+**
+	に変換されます。
 
-.. note:: Routes will run in the order they are defined. Higher routes
-	will always take precedence over lower ones.
+.. note:: ルートは、それらの定義順で実行されます。
+	上のルートは常に下のものよりも優先されます。
 
-.. note:: Route rules are not filters! Setting a rule of e.g.
-	'foo/bar/(:num)' will not prevent controller *Foo* and method
-	*bar* to be called with a non-numeric value if that is a valid
-	route.
+.. note:: ルートルールはフィルターではありません！　例えばルール
+	「 foo/bar/(:num) 」はそれが正しいルートである場合、コントローラ *Foo* とメソッド
+	*bar* が数値以外の値とともに呼ばれるのを防ぐことは
+	できません。
 
-Examples
-========
+例
+==
 
-Here are a few routing examples::
+ここではいくつかのルーティング例を示します::
 
 	$route['journals'] = 'blogs';
 
-A URL containing the word "journals" in the first segment will be
-remapped to the "blogs" class.
+最初のセグメントで単語「 journals 」を含む URL は
+「 blogs 」クラスに再マッピングされます。
 
 ::
 
 	$route['blog/joe'] = 'blogs/users/34';
 
-A URL containing the segments blog/joe will be remapped to the "blogs"
-class and the "users" method. The ID will be set to "34".
+blog/joe セグメントを含むURLは、「 blogs 」
+クラスと「 users 」メソッドに再マッピングされます。 ID は「 34 」に設定されます。
 
 ::
 
 	$route['product/(:any)'] = 'catalog/product_lookup';
 
-A URL with "product" as the first segment, and anything in the second
-will be remapped to the "catalog" class and the "product_lookup"
-method.
+最初のセグメントに「 product 」と第 2 セグメントに何かがある URL は、
+「 catalog 」クラスと「 product_lookup 」メソッドに
+再マッピングされます。
 
 ::
 
 	$route['product/(:num)'] = 'catalog/product_lookup_by_id/$1';
 
-A URL with "product" as the first segment, and a number in the second
-will be remapped to the "catalog" class and the
-"product_lookup_by_id" method passing in the match as a variable to
-the method.
+最初のセグメントに「 product 」と第 2 セグメントに数字がある URL は
+「 catalog 」クラスと
+「 product_lookup_by_id 」メソッドに再マッピングされ
+変数が渡されます。
 
-.. important:: Do not use leading/trailing slashes.
+.. important:: 最初と最後のスラッシュは付けないでください。
 
-Regular Expressions
-===================
+正規表現
+========
 
-If you prefer you can use regular expressions to define your routing
-rules. Any valid regular expression is allowed, as are back-references.
+ご希望の場合、自分のルーティングルールを定義するために正規表現を使用することができます。
+任意の正しい正規表現と後方参照が許可されています。
 
-.. note:: If you use back-references you must use the dollar syntax
-	rather than the double backslash syntax.
+.. note:: 後方参照を使用する場合は、二重バックスラッシュの構文ではなく
+	ドルの構文を使用する必要があります。
 
-A typical RegEx route might look something like this::
+典型的なルートの正規表現は次のようになります::
 
 	$route['products/([a-z]+)/(\d+)'] = '$1/id_$2';
 
-In the above example, a URI similar to products/shirts/123 would instead
-call the "shirts" controller class and the "id_123" method.
+上記の例では、 product/shirts/123 の URI は
+「 shirts 」コントローラクラスと「 id_123 」メソッドを代わりに呼び出します。
 
-With regular expressions, you can also catch multiple segments at once.
-For example, if a user accesses a password protected area of your web
-application and you wish to be able to redirect them back to the same
-page after they log in, you may find this example useful::
+正規表現を使用すると、複数のセグメントをひとつとしてキャッチすることができます。
+たとえば、ユーザがウェブアプリケーションのパスワード保護された領域にアクセスし、
+彼らがログインした後に同じページに戻るようリダイレクトしたい場合、
+この例が役に立つでしょう::
 
 	$route['login/(.+)'] = 'auth/login/$1';
 
-.. note:: In the above example, if the ``$1`` placeholder contains a
-	slash, it will still be split into multiple parameters when
-	passed to ``Auth::login()``.
+.. note:: 上記の例では、 ``$1`` プレースホルダに
+	スラッシュが含まれている場合、
+	``Auth::login()`` に渡される際にまた複数のパラメータに分割されます。
 
-For those of you who don't know regular expressions and want to learn
-more about them, `regular-expressions.info <http://www.regular-expressions.info/>`_
-might be a good starting point.
+正規表現を知らず詳細を学びたい人には、
+`regular-expressions.info <http://www.regular-expressions.info/>`_
+は良い手掛かりになるでしょう。
 
-.. note:: You can also mix and match wildcards with regular expressions.
+.. note:: 正規表現とワイルドカードは混ぜて使うことができます。
 
-Callbacks
-=========
+コールバック
+============
 
-If you are using PHP >= 5.3 you can use callbacks in place of the normal
-routing rules to process the back-references. Example::
+PHP 5.3 以上を使用している場合、後方参照を処理するために、
+通常のルーティングルールの代わりにコールバックを使用することができます。例::
 
 	$route['products/([a-zA-Z]+)/edit/(\d+)'] = function ($product_type, $id)
 	{
 		return 'catalog/product_edit/' . strtolower($product_type) . '/' . $id;
 	};
 
-Using HTTP verbs in routes
+ルートでの HTTP 動詞の利用
 ==========================
 
-It is possible to use HTTP verbs (request method) to define your routing rules.
-This is particularly useful when building RESTful applications. You can use standard HTTP
-verbs (GET, PUT, POST, DELETE, PATCH) or a custom one such (e.g. PURGE). HTTP verb rules
-are case-insensitive. All you need to do is to add the verb as an array key to your route.
-Example::
+HTTP 動詞 (リクエストメソッド) をルーティングルール定義に使用することができます。
+RESTful なアプリケーションを構築する際に特に便利です。標準の HTTP
+動詞 ( GET 、 PUT 、 POST 、 DELETE 、 PATCH ) またはカスタムしたもの (例えば PURGE )を使用することができます。 HTTP 動詞のルールは
+大文字小文字を区別しません。必要なことは、ルート配列のキーとして動詞を追加することです。
+例::
 
 	$route['products']['put'] = 'product/insert';
 
-In the above example, a PUT request to URI "products" would call the ``Product::insert()``
-controller method.
+上記の例では、 URI 「 products 」への PUT リクエストは ``Product::insert()``
+コントローラメソッドを呼び出します。
 
 ::
 
 	$route['products/(:num)']['DELETE'] = 'product/delete/$1';
 
-A DELETE request to URL with "products" as first the segment and a number in the second will be
-mapped to the ``Product::delete()`` method, passing the numeric value as the first parameter.
+最初のセグメントとして「 product 」と第 2 セグメントに数値を持つ URL への DELETE リクエストは
+``Product::delete()`` にマッピングされ、数値は第 1 引数として渡されます。
 
-Using HTTP verbs is of course, optional.
+HTTP動詞の利用はもちろん、任意です。
 
-Reserved Routes
-===============
+予約済みルート
+==============
 
-There are three reserved routes::
+予約済みのルートが 3 つあります::
 
 	$route['default_controller'] = 'welcome';
 
-This route points to the action that should be executed if the URI contains
-no data, which will be the case when people load your root URL.
-The setting accepts a **controller/method** value and ``index()`` would be
-the default method if you don't specify one. In the above example, it is
-``Welcome::index()`` that would be called.
+このルートポイントは URI になにもデータがない場合に呼び出されるべきアクションです、
+これはルート URL を読み込んだ時のケースになります。
+この設定は **controller/method** の値を指定できますが、指定しない場合は ``index()``
+がデフォルトになります。上記の例では
+``Welcome::index()`` が呼び出されることになります。
 
-.. note:: You can NOT use a directory as a part of this setting!
+.. note:: この設定の一部としてディレクトリを使用することはできません！
 
-You are encouraged to always have a default route as otherwise a 404 page
-will appear by default.
+常にデフォルトルートを持つことが推奨されます、さもなくば 404
+ページがデフォルトになります。
 
 ::
 
 	$route['404_override'] = '';
 
-This route indicates which controller class should be loaded if the
-requested controller is not found. It will override the default 404
-error page. Same per-directory rules as with 'default_controller'
-apply here as well.
+このルートには、要求されたコントローラが見つからない場合にロードされるべき
+コントローラクラスを指定します。これはデフォルトの 404 エラーページを
+オーバーライドします。「 default_controller 」と同じディレクトリごとのルールは
+ここにも適用されます。
 
-It won't affect to the ``show_404()`` function, which will
-continue loading the default *error_404.php* file at
-*application/views/errors/error_404.php*.
+これは ``show_404()`` 関数には影響しません。
+それは引き続き *application/views/errors/error_404.php* にあるデフォルトの *error_404.php*
+ファイルをロードします。
 
 ::
 
 	$route['translate_uri_dashes'] = FALSE;
 
-As evident by the boolean value, this is not exactly a route. This
-option enables you to automatically replace dashes ('-') with
-underscores in the controller and method URI segments, thus saving you
-additional route entries if you need to do that.
-This is required, because the dash isn't a valid class or method name
-character and would cause a fatal error if you try to use it.
+真偽値なので明らかですが、これは正確にルートではありません。
+このオプションはコントローラとメソッドの URI セグメントにおいて自動的にダッシュ「 - 」を
+アンダースコアに置換するもので、
+そうすることが必要な時にルートに設定追加する必要をなくすものです。
+これは必要なものです。なぜならダッシュはクラスやメソッド名の文字としては有効ではなく、
+それを使用しようとした場合に fatal error の原因となるからです。
 
-.. important:: The reserved routes must come before any wildcard or
-	regular expression routes.
+.. important:: 予約済みのルートは、あらゆるワイルドカードや正規表現のルートの
+	前に来なければなりません。

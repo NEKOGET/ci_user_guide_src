@@ -1,59 +1,59 @@
-##########################
-Profiling Your Application
-##########################
+##################################
+アプリケーションのプロファイリング
+##################################
 
-The Profiler Class will display benchmark results, queries you have run,
-and ``$_POST`` data at the bottom of your pages. This information can be
-useful during development in order to help with debugging and
-optimization.
+プロファイラクラスはベンチマーク結果を表示します、実行したクエリと
+``$_POST`` データを、ページの下部に。
+この情報は開発時にデバッグや最適化を支援するために
+役立ちます。
 
-Initializing the Class
-======================
+クラスの初期化
+==============
 
-.. important:: This class does NOT need to be initialized. It is loaded
-	automatically by the :doc:`Output Library <../libraries/output>`
-	if profiling is enabled as shown below.
+.. important:: このクラスは初期化する必要は　あ　り　ま　せ　ん　。
+	以下の説明のようにプロファイリングが有効になっている場合に、 :doc:`出力ライブラリ <../libraries/output>`
+	により自動的にロードされます。
 
-Enabling the Profiler
-=====================
+プロファイラを有効にする
+========================
 
-To enable the profiler place the following line anywhere within your
-:doc:`Controller <controllers>` methods::
+プロファイラを有効にするには、
+:doc:`コントローラ <controllers>` メソッド内の任意の場所につぎの行を追加します::
 
 	$this->output->enable_profiler(TRUE);
 
-When enabled a report will be generated and inserted at the bottom of
-your pages.
+有効にするとレポートが生成され、
+ページの下部に挿入されます。
 
-To disable the profiler you will use::
+プロファイラを無効にするには::
 
 	$this->output->enable_profiler(FALSE);
 
-Setting Benchmark Points
-========================
+ベンチマークポイントを設定する
+==============================
 
-In order for the Profiler to compile and display your benchmark data you
-must name your mark points using specific syntax.
+プロファイラでベンチマークデータを処理し表示させるするためには、
+特定の構文を使用して測定点をマークする必要があります。
 
-Please read the information on setting Benchmark points in the
-:doc:`Benchmark Library <../libraries/benchmark>` page.
+ベンチマークポイントの設定については
+:doc:`ベンチマークライブラリ <../libraries/benchmark>` ページをお読みください。
 
-Enabling and Disabling Profiler Sections
-========================================
+プロファイラセクションの有効化と無効化
+======================================
 
-Each section of Profiler data can be enabled or disabled by setting a
-corresponding config variable to TRUE or FALSE. This can be done one of
-two ways. First, you can set application wide defaults with the
-*application/config/profiler.php* config file.
+プロファイラデータの各セクションは、対応するコンフィギュレーション変数を
+TRUE または FALSE に設定することで有効または無効にすることができます。
+これは、 2 つの方法のいずれかで行うことができます。まず、アプリケーション全体のデフォルトを
+*application/config/profiler.php* ファイルで設定することができます。
 
-Example::
+例::
 
 	$config['config']          = FALSE;
 	$config['queries']         = FALSE;
 
-In your controllers, you can override the defaults and config file
-values by calling the ``set_profiler_sections()`` method of the
-:doc:`Output Library <../libraries/output>`::
+コントローラではデフォルトと
+設定ファイル値を上書きすることができます、
+:doc:`出力ライブラリ <../libraries/output>` の ``set_profiler_sections()`` メソッドの呼び出しです::
 
 	$sections = array(
 		'config'  => TRUE,
@@ -62,29 +62,29 @@ values by calling the ``set_profiler_sections()`` method of the
 
 	$this->output->set_profiler_sections($sections);
 
-Available sections and the array key used to access them are described
-in the table below.
+使用可能なセクションと、それらにアクセスするために使用される配列のキーは、
+つぎの表に記載されています。
 
-======================= =================================================================== ========
-Key                     Description                                                         Default
-======================= =================================================================== ========
-**benchmarks**          Elapsed time of Benchmark points and total execution time           TRUE
-**config**              CodeIgniter Config variables                                        TRUE
-**controller_info**     The Controller class and method requested                           TRUE
-**get**                 Any GET data passed in the request                                  TRUE
-**http_headers**        The HTTP headers for the current request                            TRUE
-**memory_usage**        Amount of memory consumed by the current request, in bytes          TRUE
-**post**                Any POST data passed in the request                                 TRUE
-**queries**             Listing of all database queries executed, including execution time  TRUE
-**uri_string**          The URI of the current request                                      TRUE
-**session_data**        Data stored in the current session                                  TRUE
-**query_toggle_count**  The number of queries after which the query block will default to   25
-                        hidden.
-======================= =================================================================== ========
+======================= ============================================================= ==========
+キー                    説明                                                          デフォルト
+======================= ============================================================= ==========
+**benchmarks**          ベンチマークのポイントの経過時間と合計実行時間                TRUE
+**config**              CodeIgniter の設定変数                                        TRUE
+**controller_info**     リクエストされたコントローラクラスとメソッド                  TRUE
+**get**                 リクエストで渡された GET データ                               TRUE
+**http_headers**        現在のリクエストの HTTP ヘッダ                                TRUE
+**memory_usage**        現在のリクエストによって消費されるメモリの量 (byteで)         TRUE
+**post**                リクエストで渡されたあらゆる POST データ                      TRUE
+**queries**             実行されたすべてのデータベースクエリのリスト、実行時間を含む  TRUE
+**uri_string**          現在のリクエストの URI                                        TRUE
+**session_data**        現在のセッションに保存されたデータ                            TRUE
+**query_toggle_count**  クエリブロックでデフォルトで非表示にされはじめる              25
+                        クエリの数
+======================= ============================================================= ==========
 
-.. note:: Disabling the :doc:`save_queries </database/configuration>` setting in
-	your database configuration will also effectively disable profiling for
-	database queries and render the 'queries' setting above useless. You can
-	optionally override this setting with ``$this->db->save_queries = TRUE;``.
-	Without this setting you won't be able to view the queries or the
-	`last_query <database/helpers>`.
+.. note:: データベース設定での :doc:`save_queries </database/configuration>`
+	設定の無効化はデータベースクエリのプロファイリングにも影響し、
+	上記の「 queries 」設定も使えなくします。
+	必要に応じて、``$this->db->save_queries = TRUE:`` でこの設定を上書きすることができます。
+	この設定抜きにしてはクエリまたは
+	`last_query <database/helpers>` を表示することはできません。

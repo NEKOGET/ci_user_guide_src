@@ -1,41 +1,41 @@
-##########################
-Managing your Applications
-##########################
+######################
+アプリケーションの管理
+######################
 
-By default it is assumed that you only intend to use CodeIgniter to
-manage one application, which you will build in your *application/*
-directory. It is possible, however, to have multiple sets of
-applications that share a single CodeIgniter installation, or even to
-rename or relocate your application directory.
+デフォルトでは CodeIgniter はアプリケーションを 1 つだけ作りたいものと仮定し、
+*application/* ディレクトリに作るものとします。
+これはこれで十分そうですが、しかしながら、
+複数のアプリケーションセットを持ちたいときは、
+アプリケーションディレクトリの名前を変更、再配置することができます。
 
-Renaming the Application Directory
-==================================
+アプリケーションディレクトリの名前を変更する
+============================================
 
-If you would like to rename your application directory you may do so
-as long as you open your main index.php file and set its name using
-the ``$application_folder`` variable::
+アプリケーションディレクトリの名前を変更したい場合、実際に変更をして、
+メインの index.php ファイルを開いて
+``$application_folder`` 変数にその名前を設定します::
 
 	$application_folder = 'application';
 
-Relocating your Application Directory
-=====================================
+アプリケーションディレクトリの再配置
+====================================
 
-It is possible to move your application directory to a different
-location on your server than your web root. To do so open
-your main index.php and set a *full server path* in the
-``$application_folder`` variable::
+サーバ上の別の場所にアプリケーションディレクトリを移動させ、
+ドキュメントルートから外すことが可能です。
+これを行うため、メインの index.php を開き、 *サーバのフルパス* を
+``$application_folder`` 変数に設定します::
 
 	$application_folder = '/path/to/your/application';
 
-Running Multiple Applications with one CodeIgniter Installation
-===============================================================
+ひとつの CodeIgniter のインストールで複数のアプリケーションを実行する
+=====================================================================
 
-If you would like to share a common CodeIgniter installation to manage
-several different applications simply put all of the directories located
-inside your application directory into their own sub-directory.
+共通の CodeIgniter のインストールを共有していくつかの異なるアプリケーションを管理したい場合、
+単純にアプリケーションディレクトリ内に
+それそのものをサブディレクトリとしてすべて並べます。
 
-For example, let's say you want to create two applications, named "foo"
-and "bar". You could structure your application directories like this::
+たとえば、「 foo 」と
+「 bar 」という名前の 2 つのアプリケーションを作成するとしましょう。つぎのようにアプリケーションのディレクトリを構築できます::
 
 	applications/foo/
 	applications/foo/config/
@@ -50,12 +50,12 @@ and "bar". You could structure your application directories like this::
 	applications/bar/models/
 	applications/bar/views/
 
-To select a particular application for use requires that you open your
-main index.php file and set the ``$application_folder`` variable. For
-example, to select the "foo" application for use you would do this::
+どのアプリケーションを使うかを選択するために、メインの
+index.php ファイルを開き ``$application_folder`` 変数を設定する必要があります。
+たとえば、「 foo 」というアプリケーションを使うためには::
 
 	$application_folder = 'applications/foo';
 
-.. note:: Each of your applications will need its own index.php file
-	which calls the desired application. The index.php file can be named
-	anything you want.
+.. note:: アプリケーションにはそれぞれ、必要なアプリケーションを呼び出す独自の index.php
+	ファイルが必要になります。 index.php ファイルには、
+	お望みの名前を自由につけることができます。

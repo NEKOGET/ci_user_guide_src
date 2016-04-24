@@ -1,109 +1,109 @@
-################
-Helper Functions
-################
+############
+ヘルパー関数
+############
 
-Helpers, as the name suggests, help you with tasks. Each helper file is
-simply a collection of functions in a particular category. There are **URL
-Helpers**, that assist in creating links, there are Form Helpers that help
-you create form elements, **Text Helpers** perform various text formatting
-routines, **Cookie Helpers** set and read cookies, File Helpers help you
-deal with files, etc.
+ヘルパーは、名前が示すように、作業に役立ちます。各ヘルパーファイルは、
+単に特定カテゴリの関数の集まりです。 **URL
+ヘルパー** はリンクを作成するのに役立ちます。
+フォームヘルパーはフォーム要素を作成するのに役立ちます。 **テキストヘルパー**
+はさまざまなテキストの書式ルーチンを実行します。 **クッキーヘルパー** はクッキーを読み書きします。
+ファイルヘルパーはファイル操作に役立ちます。など。
 
-Unlike most other systems in CodeIgniter, Helpers are not written in an
-Object Oriented format. They are simple, procedural functions. Each
-helper function performs one specific task, with no dependence on other
-functions.
+CodeIgniter の他のほとんどの仕組みとは異なり、
+ヘルパーはオブジェクト指向の形式で書かれていません。
+これらは単純な手続き型関数です。
+各ヘルパー関数は、他の機能に依存することなく、ある特定の作業を実行します。
 
-CodeIgniter does not load Helper Files by default, so the first step in
-using a Helper is to load it. Once loaded, it becomes globally available
-in your :doc:`controller <../general/controllers>` and
-:doc:`views <../general/views>`.
+CodeIgniter はデフォルトではヘルパーファイルをロードしないので、
+ヘルパー使用の最初のステップはそれをロードすることです。一度読み込まれると、
+それは :doc:`コントローラ <../general/controllers>` と
+:doc:`ビュー <../general/views>` でグローバルに利用できるようになります。
 
-Helpers are typically stored in your **system/helpers**, or
-**application/helpers directory**. CodeIgniter will look first in your
-**application/helpers directory**. If the directory does not exist or the
-specified helper is not located there CI will instead look in your
-global *system/helpers/* directory.
+ヘルパーはたいてい **system/helpers**
+、または **application/helpers ディレクトリ** にあります。CodeIgniter は最初に
+** application/helpers ディレクトリ** を検索します。
+ディレクトリが存在しないか指定したヘルパーが配置されていない場合、 CI
+は代わりにグローバルな *system/helpers/* ディレクトリを探します。
 
-Loading a Helper
+ヘルパーのロード
 ================
 
-Loading a helper file is quite simple using the following method::
+ヘルパーファイルのロードはつぎの方法を使用すると非常に簡単です::
 
 	$this->load->helper('name');
 
-Where **name** is the file name of the helper, without the .php file
-extension or the "helper" part.
+**name** の箇所はヘルパーのファイル名で、 .php のファイル拡張子も
+「 helper 」の名前もありません。
 
-For example, to load the **URL Helper** file, which is named
-**url_helper.php**, you would do this::
+たとえば、 **url_helper.php** という名前の **URL ヘルパー** ファイルをロードするには、
+この操作を行います::
 
 	$this->load->helper('url');
 
-A helper can be loaded anywhere within your controller methods (or
-even within your View files, although that's not a good practice), as
-long as you load it before you use it. You can load your helpers in your
-controller constructor so that they become available automatically in
-any function, or you can load a helper in a specific function that needs
-it.
+使用する前にロードすれば、ヘルパーはコントローラのメソッド内の任意の場所でロードされた状態になっています
+(ビューファイル内でもロードされた状態です。良い習慣ではありませんが) 。
+ヘルパーはコントローラのコンストラクタでもすることができ、
+それらは自動的にどこでも利用可能になることになります。
+または、あなたがそれを必要とする特定の関数内でヘルパーをロードすることも
+できます。
 
-.. note:: The Helper loading method above does not return a value, so
-	don't try to assign it to a variable. Just use it as shown.
+.. note:: 上記のヘルパーのロードメソッドは値を返さないので、変数に代入しようとしないでください。
+	例示したように、使用するだけにしてください。
 
-Loading Multiple Helpers
-========================
+複数のヘルパーのロード
+======================
 
-If you need to load more than one helper you can specify them in an
-array, like this::
+2 つ以上のヘルパーをロードする必要がある場合、配列で指定することができます。
+次のように::
 
 	$this->load->helper(
 		array('helper1', 'helper2', 'helper3')
 	);
 
-Auto-loading Helpers
-====================
+ヘルパーのオートローディング
+============================
 
-If you find that you need a particular helper globally throughout your
-application, you can tell CodeIgniter to auto-load it during system
-initialization. This is done by opening the **application/config/autoload.php**
-file and adding the helper to the autoload array.
+アプリケーション全体でグローバルに特定のヘルパーが必要となった場合、
+システムの初期化時に自動的にロードするように CodeIgniter に設定することができます。
+**application/config/autoload.php** ファイルを開き、
+オートロード配列にヘルパーを追加するだけでおわります。
 
-Using a Helper
-==============
+ヘルパーの使いかた
+==================
 
-Once you've loaded the Helper File containing the function you intend to
-use, you'll call it the way you would a standard PHP function.
+使いたい関数を含むヘルパーファイルを一度ロードすれば、
+標準の PHP 関数のような方法でそれを呼び出せます。
 
-For example, to create a link using the ``anchor()`` function in one of
-your view files you would do this::
+たとえば、ビューファイルのいずれかで ``anchor()`` 関数を使用してリンクを作成するには、
+次のようにします::
 
 	<?php echo anchor('blog/comments', 'Click Here');?>
 
-Where "Click Here" is the name of the link, and "blog/comments" is the
-URI to the controller/method you wish to link to.
+「 Click Here 」の箇所はリンクの名前で、「 blog/comments 」は
+リンクしたいコントローラ/メソッドの URI です。
 
-"Extending" Helpers
-===================
+ヘルパーを「継承」する
+======================
 
-To "extend" Helpers, create a file in your **application/helpers/** folder
-with an identical name to the existing Helper, but prefixed with **MY\_**
-(this item is configurable. See below.).
+ヘルパーを「継承」するには、 **application/helpers/** フォルダ内にファイルを作成しますが、
+既存のヘルパーと同じ名前に加えて **MY\_** プレフィックスをつけます
+(この項目は設定変更可能です。後述参照) 。
 
-If all you need to do is add some functionality to an existing helper -
-perhaps add a function or two, or change how a particular helper
-function operates - then it's overkill to replace the entire helper with
-your version. In this case it's better to simply "extend" the Helper.
+やりたいことがいくらかの機能を既存のヘルパーに加えたいだけ――
+ひょっとすると関数をひとつふたつ追加したり、
+特定のヘルパーの動作を変えたいとか――の場合、ヘルパー全体をあなたのバージョンに置き換えるのはやりすぎです。
+この場合、シンプルにヘルパーを「継承」するのが良いでしょう。
 
-.. note:: The term "extend" is used loosely since Helper functions are
-	procedural and discrete and cannot be extended in the traditional
-	programmatic sense. Under the hood, this gives you the ability to
-	add to or or to replace the functions a Helper provides.
+.. note:: ここでの用語「継承」はテキトーな使いかたをしています。
+	ヘルパー関数は手続き的かつ固まってもなく、
+	伝統的なプログラムの意味において継承することはできません。
+	ヘルパーが提供する機能を追加、交換する方法をどうやっているか、詳しく解剖してみてください。
 
-For example, to extend the native **Array Helper** you'll create a file
-named **application/helpers/MY_array_helper.php**, and add or override
-functions::
+たとえば、標準の **配列ヘルパー** を継承するためには、
+**application/helpers/MY_array_helper.php** という名前のファイルを作成し、
+機能を追加または上書きします::
 
-	// any_in_array() is not in the Array Helper, so it defines a new function
+	// any_in_array() は配列ヘルパーにはありません、なのでこれは新しい関数を定義します
 	function any_in_array($needle, $haystack)
 	{
 		$needle = is_array($needle) ? $needle : array($needle);
@@ -119,27 +119,27 @@ functions::
 		return FALSE;
 	}
 
-	// random_element() is included in Array Helper, so it overrides the native function
+	// random_element() は配列ヘルパーに含まれます、なのでこれは標準関数をオーバーライドします
 	function random_element($array)
 	{
 		shuffle($array);
 		return array_pop($array);
 	}
 
-Setting Your Own Prefix
------------------------
+独自のプレフィックスを設定する
+------------------------------
 
-The filename prefix for "extending" Helpers is the same used to extend
-libraries and core classes. To set your own prefix, open your
-**application/config/config.php** file and look for this item::
+「継承」するヘルパーのファイル名のプレフィックスは、
+ライブラリやコアクラスを継承するために使用されるものと同じです。独自のプレフィックスを設定するには
+**application/config/config.php** ファイルを開いて、次の項目を探してください::
 
 	$config['subclass_prefix'] = 'MY_';
 
-Please note that all native CodeIgniter libraries are prefixed with **CI\_**
-so DO NOT use that as your prefix.
+すべての標準の CodeIgniter のライブラリはプレフィックスに **CI\_** がついていますので、
+これは　使　わ　な　い　よ　う　ご注意ください。
 
-Now What?
-=========
+それで？
+========
 
-In the Table of Contents you'll find a list of all the available Helper
-Files. Browse each one to see what they do.
+利用可能なすべてのヘルパーファイルのリストが目次に書いてあります。
+それらが何をするかはひとつひとつ見ていってください。

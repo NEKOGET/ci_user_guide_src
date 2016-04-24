@@ -1,52 +1,52 @@
-##############################
-Handling Multiple Environments
-##############################
+################
+複数環境への対応
+################
 
-Developers often desire different system behavior depending on whether
-an application is running in a development or production environment.
-For example, verbose error output is something that would be useful
-while developing an application, but it may also pose a security issue
-when "live".
+開発者は多くの場合、開発または本番環境で実行されているかどうかに応じて、
+アプリケーションに異なるシステムの振る舞いを望みます。
+たとえば、詳細なエラー出力はアプリケーションの開発中は有用であろうものですが、
+それは「稼働中」にはセキュリティ上の問題を引き起こす可能性が
+あります。
 
-The ENVIRONMENT Constant
-========================
+ENVIRONMENT 定数
+================
 
-By default, CodeIgniter comes with the environment constant set to use
-the value provided in ``$_SERVER['CI_ENV']``, otherwise defaults to
-'development'. At the top of index.php, you will see::
+デフォルトでは CodeIgniter には環境定数セットがついてきます、
+``$_SERVER['CI_ENV']`` で提供された値か、なければデフォルトでは
+「 development 」です。index.php の上のほうにつぎのものがあるでしょう::
 
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
-This server variable can be set in your .htaccess file, or Apache 
-config using `SetEnv <https://httpd.apache.org/docs/2.2/mod/mod_env.html#setenv>`_. 
-Alternative methods are available for nginx and other servers, or you can 
-remove this logic entirely and set the constant based on the server's IP address.
+このサーバ変数は、 .htaccess ファイル、つまり Apache の
+`SetEnv <https://httpd.apache.org/docs/2.2/mod/mod_env.html#setenv>`_. で設定することができます。
+別の方法で nginx や他のサーバでも利用可能ですし、もしくはこのロジックを完全に取り除いてサーバの
+IP アドレスに基づいて定数を設定することもできます。
 
-In addition to affecting some basic framework behavior (see the next
-section), you may use this constant in your own development to
-differentiate between which environment you are running in.
+これはいくつかの基本的なフレームワークの動作に影響を与えることに加え (次のセクションを参照) 、
+実行している環境を区別するために
+あなた独自の制作物のなかでこの定数を使用することができます。
 
-Effects On Default Framework Behavior
-=====================================
+デフォルトのフレームワーク動作への影響
+======================================
 
-There are some places in the CodeIgniter system where the ENVIRONMENT
-constant is used. This section describes how default framework behavior
-is affected.
+CodeIgniter のシステム内にはいくつか ENVIRONMENT
+定数が使用されている場所があります。このセクションではデフォルトのフレームワークの動作が
+どのように影響を受けるかについて説明します。
 
-Error Reporting
----------------
+エラーレポーティング
+--------------------
 
-Setting the ENVIRONMENT constant to a value of 'development' will cause
-all PHP errors to be rendered to the browser when they occur.
-Conversely, setting the constant to 'production' will disable all error
-output. Disabling error reporting in production is a :doc:`good security
-practice <security>`.
+ENVIRONMENT 定数を「 development 」に設定すると、
+発生するすべての PHP エラーがブラウザにレンダリングされます。
+逆に、定数を「 production 」に設定すると、すべてのエラー出力が無効になります。
+本番環境でにエラー報告を無効にすることは :doc:`良いセキュリティプラクティス
+<security>` です。
 
-Configuration Files
--------------------
+設定ファイル
+------------
 
-Optionally, you can have CodeIgniter load environment-specific
-configuration files. This may be useful for managing things like
-differing API keys across multiple environments. This is described in
-more detail in the environment section of the :doc:`Config Class
-<../libraries/config>` documentation.
+オプションで、 CodeIgniter
+に環境固有の設定ファイルをロードさせることができます。
+これはAPIキーのような、複数の環境間で異なるものを管理するために便利です。
+:doc:`設定クラス
+<../libraries/config>` ドキュメントの環境セクションで詳細に説明されています。

@@ -1,30 +1,30 @@
-####################################
-Hooks - Extending the Framework Core
-####################################
+##################################
+フック――フレームワークコアの拡張
+##################################
 
-CodeIgniter's Hooks feature provides a means to tap into and modify the
-inner workings of the framework without hacking the core files. When
-CodeIgniter runs it follows a specific execution process, diagramed in
-the :doc:`Application Flow <../overview/appflow>` page. There may be
-instances, however, where you'd like to cause some action to take place
-at a particular stage in the execution process. For example, you might
-want to run a script right before your controllers get loaded, or right
-after, or you might want to trigger one of your own scripts in some
-other location.
+CodeIgniter のフック機能は、コアファイルをハッキングすることなく、
+フレームワークの内部に入り込んで動作を変更するための手段を提供します。
+CodeIgniter が実行するとき、つぎの
+:doc:`アプリケーションフロー <../overview/appflow>` ページに図解される特定の実行プロセスに従います。
+手元にはインスタンスがあるかもしれませんが、
+実行プロセスの特定の段階でいくつかのアクションを起こしたいかもしれません。たとえば、
+コントローラがロードされ得る直前、
+または直後にスクリプトを実行させたくはないでしょうか、
+つまり、他の場所に置いてある独自スクリプトのいずれかを実行したくないでしょうか。
 
-Enabling Hooks
+フックの有効化
 ==============
 
-The hooks feature can be globally enabled/disabled by setting the
-following item in the **application/config/config.php** file::
+フック機能は
+** application/config/config.php** ファイルのつぎの項目を設定することでグローバルに有効/無効にできます::
 
 	$config['enable_hooks'] = TRUE;
 
-Defining a Hook
-===============
+フックの定義
+============
 
-Hooks are defined in the **application/config/hooks.php** file.
-Each hook is specified as an array with this prototype::
+フックは **application/config/hooks.php** ファイルで定義されています。
+各フックはつぎのプロトタイプを持つ配列として指定されます::
 
 	$hook['pre_controller'] = array(
 		'class'    => 'MyClass',
@@ -36,39 +36,39 @@ Each hook is specified as an array with this prototype::
 
 **Notes:**
 
-The array index correlates to the name of the particular hook point you
-want to use. In the above example the hook point is pre_controller. A
-list of hook points is found below. The following items should be
-defined in your associative hook array:
+配列のインデックスは、使用する特定のフックポイントの名前に関連します。
+上記の例では、フックポイントは pre_controller です。
+フックポイントのリストは後述のとおりです。
+つぎの項目は、フックの連想配列で定義する必要があります:
 
--  **class** The name of the class you wish to invoke. If you prefer to
-   use a procedural function instead of a class, leave this item blank.
--  **function** The function (or method) name you wish to call.
--  **filename** The file name containing your class/function.
--  **filepath** The name of the directory containing your script.
+-  **class** 呼び出したいクラスの名前です。
+   クラスの代わりに手続き型の機能を使用する場合は、この項目は空欄のままにします。
+-  **function** 呼び出したい関数 (またはメソッド) の名前です。
+-  **filename** クラス/関数を含むファイル名です。
+-  **filepath** スクリプトを含むディレクトリの名前です。
    Note:
-   Your script must be located in a directory INSIDE your *application/*
-   directory, so the file path is relative to that directory. For example,
-   if your script is located in *application/hooks/*, you will simply use
-   'hooks' as your filepath. If your script is located in
-   *application/hooks/utilities/* you will use 'hooks/utilities' as your
-   filepath. No trailing slash.
--  **params** Any parameters you wish to pass to your script. This item
-   is optional.
+   スクリプトは application/ ディレクトリの　な　か　の　ディレクトリに配置するべきで、
+   そのためファイルパスはそのディレクトリへの相対パスです。たとえば、
+   スクリプトが *application/hooks/* に配置されている場合、
+   filepath として単に「 hooks 」を使用します。スクリプトが
+   *application/hooks/utilities/* にある場合は、「 hooks/utilities 」を
+   filepath として使用します。末尾にスラッシュは不要です。
+-  **params** スクリプトに渡したい任意のパラメータです。
+   この項目はオプションです。
 
-If you're running PHP 5.3+, you can also use lambda/anoymous functions
-(or closures) as hooks, with a simpler syntax::
+PHP 5.3以上で実行している場合は、ラムダ/無名関数
+(またはクロージャ) を使用することができます。簡単な構文です::
 
 	$hook['post_controller'] = function()
 	{
-		/* do something here */
+		/* ここで何かします */
 	};
 
-Multiple Calls to the Same Hook
-===============================
+同じフックでの複数の呼び出し
+============================
 
-If want to use the same hook point with more than one script, simply
-make your array declaration multi-dimensional, like this::
+複数のスクリプトを同じフックポイントで使用したい場合、
+単に多次元配列として宣言します、このように::
 
 	$hook['pre_controller'][] = array(
 		'class'    => 'MyClass',
@@ -86,42 +86,42 @@ make your array declaration multi-dimensional, like this::
 		'params'   => array('red', 'yellow', 'blue')
 	);
 
-Notice the brackets after each array index::
+各配列インデックスの後の括弧に注意してください::
 
 	$hook['pre_controller'][]
 
-This permits you to have the same hook point with multiple scripts. The
-order you define your array will be the execution order.
+これにより複数のスクリプトで同じフックポイントを持つことができます。
+配列の定義順が実行順序になります。
 
-Hook Points
-===========
+フックポイント
+==============
 
-The following is a list of available hook points.
+以下は利用可能なフックポイントのリストです。
 
 -  **pre_system**
-   Called very early during system execution. Only the benchmark and
-   hooks class have been loaded at this point. No routing or other
-   processes have happened.
+   システム実行中の非常に早い段階で呼び出されます。ベンチマーククラスと
+   フッククラスだけがこの時点でロードされています。ルーティングや
+   他のプロセスは実行されていません。
 -  **pre_controller**
-   Called immediately prior to any of your controllers being called.
-   All base classes, routing, and security checks have been done.
+   いずれかのコントローラが呼び出される直前に呼び出されます。
+   すべての基本クラス、ルーティング、およびセキュリティチェックは実行済みです。
 -  **post_controller_constructor**
-   Called immediately after your controller is instantiated, but prior
-   to any method calls happening.
+   コントローラがインスタンス化された直後に、
+   しかしメソッド呼び出しをする前に呼び出されます。
 -  **post_controller**
-   Called immediately after your controller is fully executed.
+   コントローラの実行が完全に終わった直後に呼び出されます。
 -  **display_override**
-   Overrides the ``_display()`` method, used to send the finalized page
-   to the web browser at the end of system execution. This permits you
-   to use your own display methodology. Note that you will need to
-   reference the CI superobject with ``$this->CI =& get_instance()`` and
-   then the finalized data will be available by calling
-   ``$this->CI->output->get_output()``.
+   ``_display()`` メソッドをオーバーライドします。システム実行の最後で
+   ウェブブラウザに確定ページを送信するために使用されるものです。これにより
+   独自の方法による表示が可能になります。
+   CI スーパーオブジェクトへの参照が ``$this->CI =& get_instance()`` により必要となること、
+   そして確定データは
+   ``$this->CI->output->get_output()`` を呼び出すことによって利用できるようになることを覚えておいてください。
 -  **cache_override**
-   Enables you to call your own method instead of the ``_display_cache()``
-   method in the :doc:`Output Library <../libraries/output>`. This permits
-   you to use your own cache display mechanism.
+   :doc:`出力ライブラリ <../libraries/output>` の ``_display_cache()``
+   メソッドのかわりに独自のメソッドを呼び出すことができます。これにより、
+   独自のキャッシュ表示機構を使用できるようになります。
 -  **post_system**
-   Called after the final rendered page is sent to the browser, at the
-   end of system execution after the finalized data is sent to the
-   browser.
+   最終的にレンダリングされるページがブラウザに送られた後、
+   つまりブラウザに確定データが送信されシステム実行が終了する時に
+   呼び出されます。

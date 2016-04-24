@@ -35,8 +35,8 @@ Version 3.0.4
 
 -  大まかな変更点
 
-   -  更新 :doc:`Security Library <libraries/security>` method ``get_random_bytes()`` to use PHP 7's ``random_bytes()`` function when possible.
-   -  更新 :doc:`Encryption Library <libraries/security>` method ``create_key()`` to use PHP 7's ``random_bytes()`` function when possible.
+   -  更新 :doc:`セキュリティクラス  <libraries/security>` の ``get_random_bytes()`` メソッドについて、PHP 7の ``random_bytes()`` が使用可能な場合はそれを使うようにしました。
+   -  更新 :doc:`暗号化クラス <libraries/security>` の  ``create_key()`` メソッドについて PHP 7の  ``random_bytes()`` が利用可能な場合はそれを使うようにしました。
 
 -  :doc:`Database <database/index>`
 

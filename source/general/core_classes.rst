@@ -1,24 +1,24 @@
-############################
-Creating Core System Classes
-############################
+########################
+コアシステムクラスの作成
+########################
 
-Every time CodeIgniter runs there are several base classes that are
-initialized automatically as part of the core framework. It is possible,
-however, to swap any of the core system classes with your own versions
-or even extend the core versions.
+CodeIgniter の実行のたび、いくつかの基本クラスは
+フレームワークのコアの一部として自動的に初期化されます。
+しかしながら、コアシステムクラスをあなた自身のバージョンのものに差し替え、
+または継承することが可能です。
 
-**Most users will never have any need to do this, but the option to
-replace or extend them does exist for those who would like to
-significantly alter the CodeIgniter core.**
+**ほとんどのユーザはそのようなことをする必要性はありませんが、
+交換または拡張するための選択肢として、
+CodeIgniter のコアを大幅に変更したい人のために存在します。**
 
-.. note:: Messing with a core system class has a lot of implications, so
-	make sure you know what you are doing before attempting it.
+.. note:: コアシステムクラスをいじると影響範囲が大きいので、
+	そうする前に、何をしようとしているかを十分に理解してください。
 
-System Class List
-=================
+システムクラス一覧
+==================
 
-The following is a list of the core system files that are invoked every
-time CodeIgniter runs:
+以下は
+CodeIgniter が実行されるたびに呼び出されるコアシステムファイルのリストです::
 
 -  Benchmark
 -  Config
@@ -35,48 +35,48 @@ time CodeIgniter runs:
 -  URI
 -  Utf8
 
-Replacing Core Classes
-======================
+コアクラスの置き換え
+====================
 
-To use one of your own system classes instead of a default one simply
-place your version inside your local *application/core/* directory::
+デフォルトのかわりに独自システムクラスを使うには、
+シンプルに手元の *application/core/* ディレクトリ内にそれを置いてください::
 
 	application/core/some_class.php
 
-If this directory does not exist you can create it.
+このディレクトリが存在しない場合は、作ってください。
 
-Any file named identically to one from the list above will be used
-instead of the one normally used.
+上記のリストにあるいずれのファイルも、
+通常使用されるものの代わりに使用されます。
 
-Please note that your class must use CI as a prefix. For example, if
-your file is named Input.php the class will be named::
+クラスがプレフィックスとして CI を使用しなければならないことに注意してください。
+たとえば、ファイル Input.php のクラスはつぎのように名付けられます::
 
 	class CI_Input {
 
 	}
 
-Extending Core Class
-====================
+コアクラスの継承
+================
 
-If all you need to do is add some functionality to an existing library -
-perhaps add a method or two - then it's overkill to replace the entire
-library with your version. In this case it's better to simply extend the
-class. Extending a class is nearly identical to replacing a class with a
-couple exceptions:
+やりたいことがいくらかの機能を既存のライブラリに加えたいだけ
+――ひょっとするとメソッドをひとつふたつ追加する場合――、ライブラリ全体をあなたのバージョンに置き換えるのはやりすぎです。
+この場合、シンプルにクラスを継承するのが良いでしょう。
+クラスを継承するのは 2 つの例外を除いて、
+クラスを置き換えるとほぼ同じです:
 
--  The class declaration must extend the parent class.
--  Your new class name and filename must be prefixed with MY\_ (this
-   item is configurable. See below.).
+-  クラスは、親クラスを継承する必要があります。
+-  新しいクラス名とファイル名は、プレフィックスに MY\_ を付ける必要があります
+   (これは設定で変更可能です。後述します) 。
 
-For example, to extend the native Input class you'll create a file named
-application/core/MY_Input.php, and declare your class with::
+たとえば、標準の入力クラスを継承するためには、
+application/core/MY_Input.php という名前のファイルを作成し、つぎのようにクラスを宣言します::
 
 	class MY_Input extends CI_Input {
 
 	}
 
-.. note:: If you need to use a constructor in your class make sure you
-	extend the parent constructor::
+.. note:: クラスのコンストラクタを使用する必要がある場合、
+	親クラスのコンストラクタを呼び出していることを確認してください::
 
 		class MY_Input extends CI_Input {
 
@@ -86,13 +86,13 @@ application/core/MY_Input.php, and declare your class with::
 			}
 		}
 
-**Tip:** Any functions in your class that are named identically to the
-methods in the parent class will be used instead of the native ones
-(this is known as "method overriding"). This allows you to substantially
-alter the CodeIgniter core.
+**ヒント:** 親クラスのメソッドとまったく同じ名前が付けられたあらゆる関数は、
+親クラスのそれの代わりとして使われます
+(これは「メソッドのオーバーライド」として知られています) 。
+これにより、実質的に CodeIgniter のコアを変更することができます。
 
-If you are extending the Controller core class, then be sure to extend
-your new class in your application controller's constructors.
+コントローラのコアクラスを継承している場合、
+アプリケーションのコントローラのコンストラクタが使われていることを確かめてください。
 
 ::
 
@@ -109,13 +109,13 @@ your new class in your application controller's constructors.
 		}
 	}
 
-Setting Your Own Prefix
------------------------
+独自のプレフィックスを設定する
+------------------------------
 
-To set your own sub-class prefix, open your
-*application/config/config.php* file and look for this item::
+独自のプレフィックスを設定するには
+*application/config/config.php* ファイルを開いて、つぎの項目を探してください::
 
 	$config['subclass_prefix'] = 'MY_';
 
-Please note that all native CodeIgniter libraries are prefixed
-with CI\_ so DO NOT use that as your prefix.
+すべての標準の CodeIgniter のライブラリはプレフィックスに
+CI\_ がついていますので、これは　使　わ　な　い　よ　う　ご注意ください。

@@ -1,20 +1,20 @@
 ######
-Models
+モデル
 ######
 
-Models are **optionally** available for those who want to use a more
-traditional MVC approach.
+モデルはより伝統的な MVC アプローチを使用したい人のために、 **必要に応じて**
+ご利用いただけます。
 
-.. contents:: Page Contents
+.. contents:: ページの目次
 
-What is a Model?
-================
+モデルとは何ですか？
+====================
 
-Models are PHP classes that are designed to work with information in
-your database. For example, let's say you use CodeIgniter to manage a
-blog. You might have a model class that contains functions to insert,
-update, and retrieve your blog data. Here is an example of what such a
-model class might look like::
+モデルとは PHP クラスであり、データベースの情報とともに動作するように設計されるものです。
+たとえば、 CodeIgniter でブログを管理するとしましょう。
+モデルクラスはブログのデータを挿入、更新、
+および取得するための関数を含むモデルクラスが必要でしょう。
+これはこのようなモデルクラスの例です::
 
 	class Blog_model extends CI_Model {
 
@@ -24,7 +24,7 @@ model class might look like::
 
 		public function __construct()
 		{
-			// Call the CI_Model constructor
+			// CI_Model constructor の呼び出し
 			parent::__construct();
 		}
 
@@ -36,7 +36,7 @@ model class might look like::
 
 		public function insert_entry()
 		{
-			$this->title	= $_POST['title']; // please read the below note
+			$this->title	= $_POST['title']; // 後述の注意書き参照
 			$this->content	= $_POST['content'];
 			$this->date	= time();
 
@@ -54,22 +54,22 @@ model class might look like::
 
 	}
 
-.. note:: The methods in the above example use the :doc:`Query Builder
-	<../database/query_builder>` database methods.
+.. note:: 上記の例では :doc:`クエリビルダ
+	<../database/query_builder>` データベースメソッドを使っています。
 
-.. note:: For the sake of simplicity in this example we're using ``$_POST``
-	directly. This is generally bad practice, and a more common approach
-	would be to use the :doc:`Input Library <../libraries/input>`
-	``$this->input->post('title')``.
+.. note:: この例では簡潔に書くため、直接 ``$_POST`` を使用しています。
+	これは一般には悪いプラクティスであり、より一般的なアプローチはとしては
+	:doc:`入力ライブラリ <../libraries/input>` の
+	``$this->input->post('title')`` を使用してください。
 
-Anatomy of a Model
-==================
+モデルの作りを調べる
+====================
 
-Model classes are stored in your **application/models/** directory.
-They can be nested within sub-directories if you want this type of
-organization.
+モデルクラスは **application/models/** ディレクトリに格納されています。
+分類分けをしたいなら、サブディレクトリ内にネストすることが
+できます。
 
-The basic prototype for a model class is this::
+モデルクラスの基本的なプロトタイプはこのようになります::
 
 	class Model_name extends CI_Model {
 
@@ -80,11 +80,11 @@ The basic prototype for a model class is this::
 
 	}
 
-Where **Model_name** is the name of your class. Class names **must** have
-the first letter capitalized with the rest of the name lowercase. Make
-sure your class extends the base Model class.
+**Model_name** の箇所はクラス名です。クラス名は頭文字は大文字で、残りは小文字である **必要があります**。
+クラスは、
+基本モデルクラスを継承してください。
 
-The file name must match the class name. For example, if this is your class::
+ファイル名はクラス名と一致する必要があります。たとえば、このクラスの場合::
 
 	class User_model extends CI_Model {
 
@@ -95,41 +95,41 @@ The file name must match the class name. For example, if this is your class::
 
 	}
 
-Your file will be this::
+ファイルはこのようになります::
 
 	application/models/User_model.php
 
-Loading a Model
-===============
+モデルのロード
+==============
 
-Your models will typically be loaded and called from within your
-:doc:`controller <controllers>` methods. To load a model you will use
-the following method::
+モデルは一般的に
+:doc:`コントローラ <controllers>` メソッドでロードされ、呼び出されます。
+モデルをロードするにはつぎのメソッドを使います::
 
 	$this->load->model('model_name');
 
-If your model is located in a sub-directory, include the relative path
-from your models directory. For example, if you have a model located at
-*application/models/blog/Queries.php* you'll load it using::
+モデルがサブディレクトリに配置されている場合、
+models ディレクトリからの相対パスを含めます。たとえば、
+*application/models/blog/Queries.php* にモデルがある場合、次のようにロードします::
 
 	$this->load->model('blog/queries');
 
-Once loaded, you will access your model methods using an object with the
-same name as your class::
+いちどロードされたら、クラスと同じ名前を持つオブジェクトを使用して、
+モデルのメソッドにアクセスします::
 
 	$this->load->model('model_name');
 
 	$this->model_name->method();
 
-If you would like your model assigned to a different object name you can
-specify it via the second parameter of the loading method::
+モデルに別のオブジェクト名を割り当てたい場合は、
+ロードメソッドの 第 2 引数により指定することができます::
 
 	$this->load->model('model_name', 'foobar');
 
 	$this->foobar->method();
 
-Here is an example of a controller, that loads a model, then serves a
-view::
+つぎのコントローラの一例は、モデルをロードし、
+ビューを提供しています::
 
 	class Blog_controller extends CI_Controller {
 
@@ -144,32 +144,32 @@ view::
 	}
 	
 
-Auto-loading Models
-===================
+モデルのオートローディング
+==========================
 
-If you find that you need a particular model globally throughout your
-application, you can tell CodeIgniter to auto-load it during system
-initialization. This is done by opening the
-**application/config/autoload.php** file and adding the model to the
-autoload array.
+アプリケーション全体でグローバルに特定のモデルが必要となった場合、
+システムの初期化時に自動的にロードするように CodeIgniter
+に設定することができます。
+**application/config/autoload.php** ファイルを開き、
+オートロード配列にモデルを追加するだけでおわります。
 
-Connecting to your Database
-===========================
+データベースへの接続
+====================
 
-When a model is loaded it does **NOT** connect automatically to your
-database. The following options for connecting are available to you:
+モデルがロードされても、自動的にはデータベースに接続 **しません** 。
+接続するための以下のオプションが利用できます:
 
--  You can connect using the standard database methods :doc:`described
-   here <../database/connecting>`, either from within your
-   Controller class or your Model class.
--  You can tell the model loading method to auto-connect by passing
-   TRUE (boolean) via the third parameter, and connectivity settings,
-   as defined in your database config file will be used::
+-  標準的なデータベース方法を用いて接続することができます、 :doc:`ここで説明しているものです
+   <../database/connecting>`、コントローラクラスとモデルクラスの
+   どちらからでもできます。
+-  第 3 引数に
+   TRUE (真偽値) を渡すことでロード時に自動接続させることができます。
+   接続設定はデータベースの設定ファイルで定義されているものを使用します::
 
 	$this->load->model('model_name', '', TRUE);
 
--  You can manually pass database connectivity settings via the third
-   parameter::
+-  第 3 引数に手動でデータベース接続設定を渡すことが
+   できます::
 
 	$config['hostname'] = 'localhost';
 	$config['username'] = 'myusername';

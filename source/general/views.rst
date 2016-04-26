@@ -1,52 +1,52 @@
-#####
+######
 ビュー
-#####
+######
 
-A view is simply a web page, or a page fragment, like a header, footer,
-sidebar, etc. In fact, views can flexibly be embedded within other views
-(within other views, etc., etc.) if you need this type of hierarchy.
+ビューは簡単にウェブページ、またはヘッダー、フッター、
+サイドバーなどのようなページフラグメントです。実際、ビューは柔軟にほかのビューの中に埋め込むことができます
+(さらにそのビューもほかの中に、中に、中に……) そのような階層が必要なら、です。
 
-Views are never called directly, they must be loaded by a
-:doc:`controller <controllers>`. Remember that in an MVC framework, the
-Controller acts as the traffic cop, so it is responsible for fetching a
-particular view. If you have not read the
-:doc:`Controllers <controllers>` page you should do so before
-continuing.
+ビューは直接呼び出されることはなく、 :doc:`コントローラ <controllers>` によってロードされる必要があります。
+MVC フレームワークを使っていることを忘れないでください、
+コントローラは交通整理役として振る舞うので、
+特定のビューを取得する責任があるのです。
+:doc:`コントローラ <controllers>` ページを読んでいない場合、
+先にそちらを読んでください。
 
-Using the example controller you created in the
-:doc:`controller <controllers>` page, let's add a view to it.
+:doc:` <controllers>` コントローラページで作成したコントローラの例を使って、
+ビューを追加してみましょう。
 
 ビューの作成
-===============
+============
 
-Using your text editor, create a file called blogview.php, and put this
-in it::
+テキストエディタを使って blogview.php というファイルを作り、
+それに次の内容を書きます::
 
 	<html>
 	<head>
-		<title>My Blog</title>
+		<title>わたしのブログ</title>
 	</head>
 	<body>
-		<h1>Welcome to my Blog!</h1>
+		<h1>わたしのブログにようこそ！</h1>
 	</body>
 	</html>
 	
-Then save the file in your *application/views/* directory.
+このファイルは *application/views/* ディレクトリに保存します。
 
-ビューの読み込む
-==============
+ビューの読み込み
+================
 
-To load a particular view file you will use the following method::
+特定のビューファイルをロードするには、次のメソッドを使用します::
 
 	$this->load->view('name');
 
-Where name is the name of your view file.
+name の箇所は、ビューファイルの名前です。
 
-.. note:: The .php file extension does not need to be specified
-	unless you use something other than .php.
+.. note:: .php の以外のものを使用しない限り、
+	.php ファイル拡張子を指定する必要はありません。
 
-Now, open the controller file you made earlier called Blog.php, and
-replace the echo statement with the view loading method::
+さて、前章で作ったコントローラ Blog.php を開き、
+echo 文をビュー読み込みメソッドで置き換えます::
 
 	<?php
 	class Blog extends CI_Controller {
@@ -57,19 +57,19 @@ replace the echo statement with the view loading method::
 		}
 	}
 
-If you visit your site using the URL you did earlier you should see your
-new view. The URL was similar to this::
+前章で使った URL を使用してサイトを開けば、新しいビューが表示されるはずです。
+URL は次のようなものです::
 
 	example.com/index.php/blog/
 
 複数のビューを読み込む
 ======================
 
-CodeIgniter will intelligently handle multiple calls to
-``$this->load->view()`` from within a controller. If more than one call
-happens they will be appended together. For example, you may wish to
-have a header view, a menu view, a content view, and a footer view. That
-might look something like this::
+CodeIgniter はコントローラでの
+``$this->load->view()`` の複数回呼び出しをうまく処理します。複数回の呼び出しがあった場合、
+それらはまとめて追加されます。たとえば、
+ヘッダビュー、メニュービュー、内容ビュー、およびフッタビューを使いたいとします。
+次のようになります::
 
 	<?php
 
@@ -77,7 +77,7 @@ might look something like this::
 
 		public function index()
 		{
-			$data['page_title'] = 'Your title';
+			$data['page_title'] = 'あなたのタイトル';
 			$this->load->view('header');
 			$this->load->view('menu');
 			$this->load->view('content', $data);
@@ -86,42 +86,43 @@ might look something like this::
 
 	}
 
-In the example above, we are using "dynamically added data", which you
-will see below.
+上記の例では、後述の「動的データをビューに追加する」
+を使用しています。
 
-サブディレクトリ内へビューを保存する
-====================================
+サブディレクトリにビューを保存する
+==================================
 
-Your view files can also be stored within sub-directories if you prefer
-that type of organization. When doing so you will need to include the
-directory name loading the view. Example::
+お好みに応じて、ビューファイルはサブディレクトリ内に格納することができます。
+その場合、ビューをロードする際にディレクトリ名を含める必要があります。
+例::
 
 	$this->load->view('directory_name/file_name');
 
-ビューに動的データを追加する
-===============================
+動的データをビューに追加する
+============================
 
-Data is passed from the controller to the view by way of an **array** or
-an **object** in the second parameter of the view loading method. Here
-is an example using an array::
+データは、ビュー読み込みメソッドの第 2 引数に **配列** や
+**オブジェクト** として、コントローラからビューに渡されます。
+つぎのものは配列を使用した例です::
 
 	$data = array(
-		'title' => 'My Title',
-		'heading' => 'My Heading',
-		'message' => 'My Message'
+		'title' => 'わたしのタイトル',
+		'heading' => 'わたしのヘッダ',
+		'message' => 'わたしのメッセージ'
 	);
 
 	$this->load->view('blogview', $data);
 
-And here's an example using an object::
+そして、つぎはオブジェクトを使用した例です::
 
 	$data = new Someclass();
 	$this->load->view('blogview', $data);
 
-.. note:: If you use an object, the class variables will be turned
-	into array elements.
+.. note:: オブジェクトを使用する場合、
+	クラス変数は配列に型変換されます。
 
-Let's try it with your controller file. Open it add this code::
+それでは、コントローラファイルで試してみましょう。
+ファイルを開いてこのコードを追加します::
 
 	<?php
 	class Blog extends CI_Controller {
@@ -135,8 +136,8 @@ Let's try it with your controller file. Open it add this code::
 		}
 	}
 
-Now open your view file and change the text to variables that correspond
-to the array keys in your data::
+さて、ビューファイルを開いて、
+配列のキーに対応する変数にテキストを変更します::
 
 	<html>
 	<head>
@@ -147,34 +148,34 @@ to the array keys in your data::
 	</body>
 	</html>
 
-Then load the page at the URL you've been using and you should see the
-variables replaced.
+これで、いままでの URL のページを読み込めば、
+置き換えた変数が表示されることでしょう。
 
-ループを作成する
-==============
+繰り返し処理を作成する
+======================
 
-The data array you pass to your view files is not limited to simple
-variables. You can pass multi dimensional arrays, which can be looped to
-generate multiple rows. For example, if you pull data from your database
-it will typically be in the form of a multi-dimensional array.
+ビューファイルに渡すデータ配列は、単純な変数に限定されるものではありません。
+複数行を繰り返し生成するために、多次元配列を渡すことができます。
+たとえば、データベースからデータを取り出す場合、
+たいてい多次元配列の形を取るでしょう。
 
-Here's a simple example. Add this to your controller::
+つぎのものは簡単な例です。コントローラにこれを追加します::
 
 	<?php
 	class Blog extends CI_Controller {
 
 		public function index()
 		{
-			$data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
+			$data['todo_list'] = array('掃除する', 'ママに電話', 'お使いに行く');
 
-			$data['title'] = "My Real Title";
-			$data['heading'] = "My Real Heading";
+			$data['title'] = "わたしの本当のタイトル";
+			$data['heading'] = "わたしの本当のヘッダ";
 
 			$this->load->view('blogview', $data);
 		}
 	}
 
-Now open your view file and create a loop::
+では、ビューを開き、ループを作成します::
 
 	<html>
 	<head>
@@ -183,7 +184,7 @@ Now open your view file and create a loop::
 	<body>
 		<h1><?php echo $heading;?></h1>
 	
-		<h3>My Todo List</h3>
+		<h3>わたしのTodoリスト</h3>
 
 		<ul>
 		<?php foreach ($todo_list as $item):?>
@@ -196,18 +197,18 @@ Now open your view file and create a loop::
 	</body>
 	</html>
 
-.. note:: You'll notice that in the example above we are using PHP's
-	alternative syntax. If you are not familiar with it you can read about
-	it :doc:`here <alternative_php>`.
+.. note:: 上記の例では、 PHP の別の構文を使用していることに気がついたでしょう。
+	詳しくないのであれば、
+	:doc:`これ <alternative_php>` を読むと良いです。
 
 データとしてビューを返す
-=======================
+========================
 
-There is a third **optional** parameter lets you change the behavior of
-the method so that it returns data as a string rather than sending it
-to your browser. This can be useful if you want to process the data in
-some way. If you set the parameter to TRUE (boolean) it will return
-data. The default behavior is false, which sends it to your browser.
-Remember to assign it to a variable if you want the data returned::
+**省略可能な** 第 3 引数はメソッドの動作を変更することができます、
+ブラウザに送信するのではなく、文字列としてデータを返すようにです。
+これは、なにがしかデータを処理したい場合に便利です。
+このパラメータを TRUE (真偽値) に設定すると、データが返されます。
+デフォルトの動作は false で、これはブラウザにデータを送信します。
+データを返すようにしたときは変数に代入するのを忘れないでください::
 
 	$string = $this->load->view('myfile', '', TRUE);

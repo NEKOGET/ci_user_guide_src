@@ -1,71 +1,71 @@
-################
-Webページのキャッシュ
-################
+########################
+ウェブページのキャッシュ
+########################
 
-CodeIgniter lets you cache your pages in order to achieve maximum
-performance.
+CodeIgniterではパフォーマンスを最大化するために、
+ページをキャッシュさせることができます。
 
-Although CodeIgniter is quite fast, the amount of dynamic information
-you display in your pages will correlate directly to the server
-resources, memory, and processing cycles utilized, which affect your
-page load speeds. By caching your pages, since they are saved in their
-fully rendered state, you can achieve performance that nears that of
-static web pages.
+CodeIgniterは非常に高速ですが、動的な情報の表示回数はサーバリソース、
+メモリ、およびCPU利用率に直接的に連動し
+、ページ読み込み速度に影響します。
+ページをキャッシュすることで、
+それらは完全にレンダリングされた状態で保存されているので、
+性能を静的なウェブページのそれに近づけることができます。
 
 キャッシュはどのように動作しますか？
-======================
+====================================
 
-Caching can be enabled on a per-page basis, and you can set the length
-of time that a page should remain cached before being refreshed. When a
-page is loaded for the first time, the cache file will be written to
-your application/cache folder. On subsequent page loads the cache file
-will be retrieved and sent to the requesting user's browser. If it has
-expired, it will be deleted and refreshed before being sent to the
-browser.
+キャッシュはページごとに有効にすることができ、
+ページのキャッシュがリフレッシュされるまでの時間を設定することができます。
+最初にページがロードされると、キャッシュファイルは
+application/cache フォルダに書き込まれます。
+後続処理において、ページ読み込みはキャッシュファイルから行われます。
+キャッシュファイルは検索されて要求元ユーザのブラウザに送信されるためのものです。
+有効期限が切れている場合、それは削除され、ブラウザに送信される前に更新されます。
 
-.. note: The Benchmark tag is not cached so you can still view your page
-	load speed when caching is enabled.
+.. note: ベンチマークのタグはキャッシュされません、それにより
+	キャッシュが有効な時の読み込みスピードも表示することができます。
 
 キャッシュを有効にする
-================
+======================
 
-To enable caching, put the following tag in any of your controller
-methods::
+キャッシュを有効にするには、コントローラメソッドのどこかに
+次のタグを書きます::
 
 	$this->output->cache($n);
 
-Where ``$n`` is the number of **minutes** you wish the page to remain
-cached between refreshes.
+``$n`` の箇所は 、リフレッシュされる間隔、ページのキャッシュを残したい **分** 数
+です。
 
-The above tag can go anywhere within a method. It is not affected by
-the order that it appears, so place it wherever it seems most logical to
-you. Once the tag is in place, your pages will begin being cached.
+上記のタグはメソッド内のどこにでも置くことができます。
+どんな順番で書くかによる影響を受けませんので、あなたにとって最も理にかなっていると思う場所に配置してください。
+一度コードが配置されれば、ページはキャッシュされ始めます。
 
-.. important:: Because of the way CodeIgniter stores content for output,
-	caching will only work if you are generating display for your
-	controller with a :doc:`view <./views>`.
+.. important:: CodeIgniter の出力用コンテンツの保存方法のため、
+	キャッシュは
+	:doc:`ビュー <./views>` で出力した場合のみ動作します。
 
-.. important:: If you change configuration options that might affect
-	your output, you have to manually delete your cache files.
+.. important:: 出力に影響を与える可能性のある設定オプションを変更する場合は、
+	手動でキャッシュファイルを削除する必要があります。
 
-.. note:: Before the cache files can be written you must set the file
-	permissions on your *application/cache/* directory such that
-	it is writable.
+.. note:: キャッシュファイルを書き込めるようにする前に、
+	*application/cache/* ディレクトリのパーミッションを
+	書き込み可に設定する必要があります。
 
 キャッシュの削除
-===============
+================
 
-If you no longer wish to cache a file you can remove the caching tag and
-it will no longer be refreshed when it expires.
+ファイルをキャッシュしたくなくなった場合は、
+キャッシュのタグを削除すれば期限切れになったときにリフレッシュされなくなります。
 
-.. note:: Removing the tag will not delete the cache immediately. It will
-	have to expire normally.
+.. note:: タグを削除しても、すぐにはキャッシュは削除されません。
+	通常のように期限切れを待つ必要があります。
 
-If you need to manually delete the cache, you can use the ``delete_cache()``
-method::
+手動でキャッシュを削除する必要がある場合、 ``delete_cache()``
+メソッドを使用することができます::
 
-	// Deletes cache for the currently requested URI
+	// 現在リクエストされている URI のキャッシュを削除する
 	$this->output->delete_cache();
 
-	// Deletes cache for /foo/bar
+	// /foo/bar のキャッシュを削除する
 	$this->output->delete_cache('/foo/bar');

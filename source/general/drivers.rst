@@ -1,40 +1,40 @@
-#########################
-CodeIgniterのドライバを使う
-#########################
+############################
+CodeIgniter のドライバを使う
+############################
 
-Drivers are a special type of Library that has a parent class and any
-number of potential child classes. Child classes have access to the
-parent class, but not their siblings. Drivers provide an elegant syntax
-in your :doc:`controllers <controllers>` for libraries that benefit
-from or require being broken down into discrete classes.
+ドライバは特殊なタイプのライブラリで、親クラスと、
+潜在的にいくつもの子クラスを持ちます。子クラスは親クラスへのアクセスを持ちますが、
+自分の兄弟へはアクセスできません。ドライバは、
+:doc:`コントローラ <controllers>` においてエレガントな構文をライブラリに提供します。
+そのライブラリは別々にクラス分けするメリットがある、または分ける必要があるものです。
 
-Drivers are found in the *system/libraries/* directory, in their own
-sub-directory which is identically named to the parent library class.
-Also inside that directory is a subdirectory named drivers, which
-contains all of the possible child class files.
+ドライバは *system/libraries/* ディレクトリの中にあり、
+親ライブラリクラス名と同一名称のサブディレクトリ内にあります。
+また、そのサブディレクトリ内には driver という名前のディレクトリがあり、
+利用可能なすべての子クラスファイルを含みます。
 
-To use a driver you will initialize it within a controller using the
-following initialization method::
+ドライバを使用するためには、コントローラの中で初期化しますが、
+つぎの初期化メソッドを使用します::
 
 	$this->load->driver('class_name');
 
-Where class name is the name of the driver class you want to invoke. For
-example, to load a driver named "Some_parent" you would do this::
+「 class_name 」の箇所が呼び出したいドライバの名前です。
+たとえば、「 Some_parent 」という名前のドライバをロードするためにはこうします::
 
 	$this->load->driver('some_parent');
 
-Methods of that class can then be invoked with::
+そのクラスのメソッドは、こう呼び出すことができます::
 
 	$this->some_parent->some_method();
 
-The child classes, the drivers themselves, can then be called directly
-through the parent class, without initializing them::
+子クラス、つまりドライバそれ自体は、
+初期化することなしに親クラスを通じて直接呼び出すことができます::
 
 	$this->some_parent->child_one->some_method();
 	$this->some_parent->child_two->another_method();
 
 独自のドライバを作成する
-=========================
+========================
 
-Please read the section of the user guide that discusses how to :doc:`create
-your own drivers <creating_drivers>`.
+どうぞユーザーガイドの該当セクションをお読みください、:doc:`独自ライブラリの作成方法
+<creating_drivers>` が論じられています。

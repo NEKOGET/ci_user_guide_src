@@ -1,205 +1,205 @@
-########
-Security
-########
+############
+セキュリティ
+############
 
-This page describes some "best practices" regarding web security, and
-details CodeIgniter's internal security features.
+このページでは、ウェブセキュリティに関するいくつかの「ベストプラクティス」と、
+CodeIgniter の内部のセキュリティ機能の詳細について説明します。
 
-.. note:: If you came here looking for a security contact, please refer to
-	our `Contribution Guide <../contributing/index>`.
+.. note:: セキュリティ上の問い合わせ先を探してここに来た場合は、
+	`Contribution Guide <../contributing/index>` をご参照ください。
 
-URI Security
-============
-
-CodeIgniter is fairly restrictive regarding which characters it allows
-in your URI strings in order to help minimize the possibility that
-malicious data can be passed to your application. URIs may only contain
-the following:
-
--  Alpha-numeric text (latin characters only)
--  Tilde: ~
--  Percent sign: %
--  Period: .
--  Colon: :
--  Underscore: \_
--  Dash: -
--  Space
-
-Register_globals
+URI セキュリティ
 ================
 
-During system initialization all global variables that are found to exist
-in the ``$_GET``, ``$_POST``, ``$_REQUEST`` and ``$_COOKIE`` are unset.
+CodeIgniter では悪意のあるデータがアプリケーションに渡る可能性を最小限にするために、
+URI 文字列に使用できる文字に関してかなり限定しています。
+URI は以下のもののみ
+含むことができます:
 
-The unsetting routine is effectively the same as *register_globals = off*.
+-  英数字テキスト (ラテン文字のみ)
+-  チルダ: ~
+-  パーセント記号: %
+-  ピリオド: .
+-  コロン: :
+-  アンダースコア: \_
+-  ダッシュ: -
+-  スペース
+
+register_globals
+================
+
+システムの初期化時、
+``$_GET`` 、 ``$_POST`` 、 ``$_REQUEST`` と ``$ _COOKIE`` 内に見つけられる変数でグローバル変数のものはすべて unset されます。
+
+この unset ルーチンは *register_globals = off* と同じ効果です。
 
 display_errors
 ==============
 
-In production environments, it is typically desirable to "disable" PHP's
-error reporting by setting the internal *display_errors* flag to a value
-of 0. This disables native PHP errors from being rendered as output,
-which may potentially contain sensitive information.
+本番環境では一般的に PHP のエラー報告を「無効」にすることが望ましいです、
+内部の *display_errors* フラグを 0 に設定することにより行われます。
+これは素の PHP エラーを出力として書き出されることを無効にします。
+機密情報が潜在的に含まれているかもしれないからです。
 
-Setting CodeIgniter's **ENVIRONMENT** constant in index.php to a value of
-**\'production\'** will turn off these errors. In development mode, it is
-recommended that a value of 'development' is used. More information
-about differentiating between environments can be found on the
-:doc:`Handling Environments <environments>` page.
+CodeIgniter の **ENVIRONMENT** 定数をindex.php で
+「 **production** 」の値に設定すると、これらのエラーをオフにします。
+開発モードでは「 development 」の値を使用することをおすすめします。
+環境の区別についての詳しい情報は
+:doc:`複数環境への対応 <environments>` ページにあります。
 
 magic_quotes_runtime
 ====================
 
-The *magic_quotes_runtime* directive is turned off during system
-initialization so that you don't have to remove slashes when retrieving
-data from your database.
+*magic_quotes_runtime* ディレクティブはシステムの初期化中にオフにされます。
+そのため、データベースからデータを取得するときに
+スラッシュを除去する必要はありません。
 
-**************
-Best Practices
-**************
+******************
+ベストプラクティス
+******************
 
-Before accepting any data into your application, whether it be POST data
-from a form submission, COOKIE data, URI data, XML-RPC data, or even
-data from the SERVER array, you are encouraged to practice this three
-step approach:
+あらゆるデータについてアプリケーションに受け入れる前に、それがフォーム送信からの POST データであれ、
+COOKIE データであれ、 URI データであれ、 XML-RPC データであれ、
+または SERVER 配列でさえも、つぎの 3 段階のアプローチを
+実践することが推奨されます:
 
-#. Validate the data to ensure it conforms to the correct type, length,
-   size, etc.
-#. Filter the data as if it were tainted.
-#. Escape the data before submitting it into your database or outputting
-   it to a browser.
+#. 正しい型、長さ、大きさ等に一致していることを確認するために、
+   データを検証する
+#. それが汚染されているかのように、データをフィルタリングする
+#. データベースにそれをサブミットするか、
+   それをブラウザに出力する前にデータをエスケープする
 
-CodeIgniter provides the following functions and tips to assist you
-in this process:
+CodeIgniter はこのプロセスを支援する以下の機能とヒントを
+提供します:
 
-XSS Filtering
-=============
+XSS フィルタリング
+==================
 
-CodeIgniter comes with a Cross Site Scripting filter. This filter
-looks for commonly used techniques to embed malicious JavaScript into
-your data, or other types of code that attempt to hijack cookies or
-do other malicious things. The XSS Filter is described
-:doc:`here <../libraries/security>`.
+CodeIgniter にはクロスサイトスクリプティングフィルターが付属しています。
+このフィルタは、データに悪意のある JavaScript を埋め込むために一般的に使用される技術、
+またはクッキーをハイジャックしようとするなど、
+悪さしようとするコードを探し出します。 XSS フィルターは
+:doc:`ここ <../libraries/security>` で説明されています。
 
-.. note:: XSS filtering should *only be performed on output*. Filtering
-	input data may modify the data in undesirable ways, including
-	stripping special characters from passwords, which reduces
-	security instead of improving it.
+.. note:: XSS フィルタリングは *出力でのみ実行* するべきです。
+	入力データをフィルタリングすると望ましくない方法でデータを変更することになるかもしれません。
+	パスワードから特殊文字を取り除いてしまったりなど、
+	セキュリティを向上させるどころか低下させます。
 
-CSRF protection
-===============
+CSRF 保護
+=========
 
-CSRF stands for Cross-Site Request Forgery, which is the process of an
-attacker tricking their victim into unknowingly submitting a request.
+CSRF は クロスサイトリクエストフォージェリの略で、
+無意識のうちに犠牲者にリクエストを送信させる攻撃方法です。
 
-CodeIgniter provides CSRF protection out of the box, which will get
-automatically triggered for every non-GET HTTP request, but also needs
-you to create your submit forms in a certain way. This is explained in
-the :doc:`Security Library <../libraries/security>` documentation.
+CodeIgniter では CSRF の保護をすぐにお使いいただけます、
+自動的にすべての非 GET HTTP リクエストをトリガーとしますが、
+サブミットフォームを正しい方法で作成することが必要になります。
+これは :doc:`セキュリティライブラリ <../libraries/security>` ドキュメントで説明されています。
 
-Password handling
-=================
+パスワードの取り扱い
+====================
 
-It is *critical* that you handle passwords in your application properly.
+アプリケーションで適切にパスワードを扱うことは *重要事項* です。
 
-Unfortunately, many developers don't know how to do that, and the web is
-full of outdated or otherwise wrongful advices, which doesn't help.
+残念ながら、多くの開発者はどう取り扱えばよいかを知らず、
+そしてウェブは賞味期限切れないし間違ったアドバイスであふれており、助けになりません。
 
-We would like to give you a list of combined do's and don'ts to help you
-with that. Please read below.
+私たちはあなたの助けとするため、やるべきこと、避けるべきことを合わせたリストを提供したいと思います。
+どうぞ下記をお読みください。
 
--  DO NOT store passwords in plain-text format.
+-  プレーンテキスト形式でパスワードを保存　し　な　い　で　ください。
 
-   Always **hash** your passwords.
+   必ずパスワードを **ハッシュ** してください。
 
--  DO NOT use Base64 or similar encoding for storing passwords.
+-  パスワードを格納するためにBase64または類似のエンコーディングを使用　し　な　い　で　ください。
 
-   This is as good as storing them in plain-text. Really. Do **hashing**,
-   not *encoding*.
+   これはプレーンテキストとして保存すると同程度のものです。本当に。
+   *エンコーディング* ではなく **ハッシュ** してください。
 
-   Encoding, and encryption too, are two-way processes. Passwords are
-   secrets that must only be known to their owner, and thus must work
-   only in one direction. Hashing does that - there's *no* un-hashing or
-   de-hashing, but there is decoding and decryption.
+   符号化と、そして暗号化も、双方向の処理です。
+   パスワードはその所有者だけが知るべき秘密であり、
+   そのため処理は一方向にだけ行われるものでなければなりません。ハッシュがそれです――
+   未ハッシュまたは逆ハッシュというものは *存在せず* 、しかし復号化や暗号解除は存在します。
 
--  DO NOT use weak or broken hashing algorithms like MD5 or SHA1.
+-  MD5またはSHA1のような、弱いまたは壊れたハッシュアルゴリズムを使用　し　な　い　で　ください。
 
-   These algorithms are old, proven to be flawed, and not designed for
-   password hashing in the first place.
+   これらのアルゴリズムは古く、欠陥があることが証明され、
+   そもそもがパスワードハッシュのためには設計されていません。
 
-   Also, DON'T invent your own algorithms.
+   また、独自のアルゴリズムを考案　し　な　い　で　ください。
 
-   Only use strong password hashing algorithms like BCrypt, which is used
-   in PHP's own `Password Hashing <http://php.net/password>`_ functions.
+   BCrypt のような強力なパスワードハッシュアルゴリズムのみを使用してください、
+   これは PHP の `パスワードハッシュ <http://php.net/password>`_ 関数で使用されています。
 
-   Please use them, even if you're not running PHP 5.5+, CodeIgniter
-   provides them for you as long as you're running at least PHP version
-   5.3.7 (and if you don't meet that requirement - please, upgrade).
+   PHP 5.5 以降でない場合でもこれらを使ってください、
+   CodeIgniter は PHP 5.3.7 以上でそれらの関数を提供しています
+   (その要件を満たしていない場合は――どうかアップグレードしてください) 。
 
-   If you're one of the really unlucky people who can't even upgrade to a
-   more recent PHP version, use `hash_pbkdf() <http://php.net/hash_pbkdf2>`,
-   which we also provide in our compatibility layer.
+   もしあなたが本当に不運な人たちの一人で PHP のバージョンを十分新しいものにできないなら、
+   `hash_pbkdf() <http://php.net/hash_pbkdf2>` を使用してください、
+   これは互換性レイヤで提供しています。
 
--  DO NOT ever display or send a password in plain-text format!
+-  プレーンテキスト形式でのパスワード表示、送信は絶対に　し　な　い　で　ください！
 
-   Even to the password's owner, if you need a "Forgotten password"
-   feature, just randomly generate a new, one-time (this is also important)
-   password and send that instead.
+   パスワードの所有者に対してでも、たとえ「パスワードを忘れたとき」機能を必要とする場合であっても、
+   かわりにランダムな新しい、ワンタイム (これも重要です) パスワードを生成し、
+   それを送信するだけにしてください。
 
--  DO NOT put unnecessary limits on your users' passwords.
+-  ユーザのパスワードに不必要な制限を設定　し　な　い　で　ください。
 
-   If you're using a hashing algorithm other than BCrypt (which has a limit
-   of 72 characters), you should set a relatively high limit on password
-   lengths in order to mitigate DoS attacks - say, 1024 characters.
+   BCrypt (72 文字の制限があります) の以外のハッシュアルゴリズムを使用している場合、
+   DoS 攻撃を軽減するため、パスワードの長さに比較的高めの上限を設定する必要があります
+   ――1024文字、としましょう。
 
-   Other than that however, there's no point in forcing a rule that a
-   password can only be up to a number of characters, or that it can't
-   contain a certain set of special characters.
+   それ以外ではなんであれ、
+   パスワードにルールを強制するのは的を外しています。
+   文字数の下限や、または特殊文字セットを含むことができないようにするものです。
 
-   Not only does this **reduce** security instead of improving it, but
-   there's literally no reason to do it. No technical limitations and
-   no (practical) storage constraints apply once you've hashed them, none!
+   これはセキュリティが改善するのではなく **低下** するばかりか、
+   それを行う理由が文字通りありません。ハッシュするのに技術的な制限や
+   (実際的な) ストレージの制約はなにもありません、なにも！
 
-Validate input data
-===================
+入力データを検証する
+====================
 
-CodeIgniter has a :doc:`Form Validation Library
-<../libraries/form_validation>` that assists you in
-validating, filtering, and prepping your data.
+CodeIgniter には :doc:`フォームバリデーションライブラリ
+<../libraries/form_validation>` があり、
+検証、フィルタリング、およびデータの準備を支援します。
 
-Even if that doesn't work for your use case however, be sure to always
-validate and sanitize all input data. For example, if you expect a numeric
-string for an input variable, you can check for that with ``is_numeric()``
-or ``ctype_digit()``. Always try to narrow down your checks to a certain
-pattern.
+しかしそれがあなたのユースケースでは機能しない場合でも、
+常にすべての入力データを検証し、サニタイズしてください。
+たとえば、数値文字列を入力として期待する場合、 ``is_numeric()``
+または ``ctype_digit()`` を使ってチェックすることができます。
+常にチェックを一定のパターンに絞り込むよう取り組んでください。
 
-Have it in mind that this includes not only ``$_POST`` and ``$_GET``
-variables, but also cookies, the user-agent string and basically
-*all data that is not created directly by your own code*.
+心得ておいてください、 ``$_POST`` や ``$_GET`` 変数に限らず、
+クッキー、ユーザーエージェント文字列および基本的に
+*みずからのコードで直接作成されていないすべてのデータ* が対象であることを。
 
 
-Escape all data before database insertion
-=========================================
+データベースへの挿入前にすべてのデータをエスケープする
+======================================================
 
-Never insert information into your database without escaping it.
-Please see the section that discusses :doc:`database queries
-<../database/queries>` for more information.
+エスケープなしにデータベースに情報を挿入しないでください。
+詳細については :doc:`データベースクエリ
+<../database/queries>` で説明されているセクションを参照してください。
 
-Hide your files
-===============
+ファイルを隠す
+==============
 
-Another good security practice is to only leave your *index.php*
-and "assets" (e.g. .js, css and image files) under your server's
-*webroot* directory (most commonly named "htdocs/"). These are
-the only files that you would need to be accessible from the web.
+もう一つの良いセキュリティプラクティスは、 *index.php*
+とサーバーの「 assets 」 (例えば .js ファイル、CSSと画像ファイル) 
+だけをサーバの *ウェブルート* ディレクトリ (最も一般的には「 htdocs/ 」という名前)
+の下に置くことです。ウェブからアクセスできるようにする必要があるファイルはこれらだけです。
 
-Allowing your visitors to see anything else would potentially
-allow them to access sensitive data, execute scripts, etc.
+それら以外の何かを訪問者から見えるようにすると、
+スクリプトを実行するなど、潜在的に機密データにアクセスできるようになることを許すことになります。
 
-If you're not allowed to do that, you can try using a .htaccess
-file to restrict access to those resources.
+その設定が許可されていない場合、それらのリソースへのアクセスを制限する .htaccess
+ファイルの利用を試みてください。
 
-CodeIgniter will have an index.html file in all of its
-directories in an attempt to hide some of this data, but have
-it in mind that this is not enough to prevent a serious
-attacker.
+CodeIgniter ではディレクトリのすべてに index.html
+ファイルを置くことでこれらのデータを保護しようとしていますが、
+これは本気の攻撃者に対しては不十分であることを
+気に留めておいてください。

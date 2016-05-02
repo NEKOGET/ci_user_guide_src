@@ -1,48 +1,48 @@
-##################
-Creating Libraries
-##################
+################
+ライブラリの作成
+################
 
-When we use the term "Libraries" we are normally referring to the
-classes that are located in the libraries directory and described in the
-Class Reference of this user guide. In this case, however, we will
-instead describe how you can create your own libraries within your
-application/libraries directory in order to maintain separation between
-your local resources and the global framework resources.
+私たちが用語「ライブラリ」を使用するとき、
+基本的にライブラリディレクトリにあるクラス、
+このユーザガイドのクラスリファレンスで説明されているクラスを指しています。
+しかしながらここにおいてはそれではなく、
+application/libraries ディレクトリ内に独自のライブラリを作成する方法について説明します。
+ローカルリソースとグローバルなフレームワークリソースを分離、維持するためにの方法です。
 
-As an added bonus, CodeIgniter permits your libraries to extend native
-classes if you simply need to add some functionality to an existing
-library. Or you can even replace native libraries just by placing
-identically named versions in your *application/libraries* directory.
+おまけとして、 CodeIgniter はあなたのライブラリでネイティブクラスを継承することを可能にします。
+既存のライブラリに単純にいくつかの機能を追加する必要がある場合です。
+さらには
+*application/libraries* に同じ名前の独自バージョンを置くことによって、ネイティブライブラリを置き換えることさえできます。
 
-In summary:
+要約すれば:
 
--  You can create entirely new libraries.
--  You can extend native libraries.
--  You can replace native libraries.
+-  あなたは完全に新しいライブラリを作成することができます。
+-  あなたはネイティブライブラリを継承することができます。
+-  あなたはネイティブライブラリを置き換えることができます。
 
-The page below explains these three concepts in detail.
+このページでは、以下にこれら 3 つの概念について詳細に説明します。
 
-.. note:: The Database classes can not be extended or replaced with your
-	own classes. All other classes are able to be replaced/extended.
+.. note:: データベースクラスを継承したり、独自のクラスに置き換えることはできません。
+	他のすべてのクラスは継承/交換することができます。
 
-Storage
-=======
+保存場所
+========
 
-Your library classes should be placed within your *application/libraries*
-directory, as this is where CodeIgniter will look for them when they are
-initialized.
+あなたのライブラリクラスは *application/libraries*
+ディレクトリ内に配置する必要があります、 それらが初期化されるときに CodeIgniter
+が検索する場所だからです。
 
-Naming Conventions
-==================
+命名規則
+========
 
--  File names must be capitalized. For example: Myclass.php
--  Class declarations must be capitalized. For example: class Myclass
--  Class names and file names must match.
+-  ファイル名の 1 文字目は大文字でなければなりません。たとえば: Myclass.php
+-  クラス宣言の 1 文字目は大文字でなければなりません。たとえば: class Myclass
+-  クラス名とファイル名が一致している必要があります。
 
-The Class File
+クラスファイル
 ==============
 
-Classes should have this basic prototype::
+クラスにはこの基本的なプロトタイプが必要です::
 
 	<?php
 	defined('BASEPATH') OR exit('No direct script access allowed'); 
@@ -54,37 +54,37 @@ Classes should have this basic prototype::
 		}
 	}
 
-.. note:: We are using the name Someclass purely as an example.
+.. note:: ここでは純粋に例として Someclass という名前を使用しています。
 
-Using Your Class
-================
+あなたのクラスの利用
+====================
 
-From within any of your :doc:`Controller <controllers>` methods you
-can initialize your class using the standard::
+:doc:`コントローラ <controllers>` メソッドのどこででも、
+標準の方法を使用してクラスを初期化することができます::
 
 	$this->load->library('someclass');
 
-Where *someclass* is the file name, without the ".php" file extension.
-You can submit the file name capitalized or lower case. CodeIgniter
-doesn't care.
+*someclass* の箇所はファイル名で、「 .php 」のファイル拡張子は不要です。
+ファイル名の 1 文字目は大文字でも小文字でも使えます。CodeIgniter
+は気にしません。
 
-Once loaded you can access your class using the lower case version::
+一度ロードすれば、1文字目を小文字にしたものであなたのクラスにアクセスすることができます::
 
-	$this->someclass->some_method();  // Object instances will always be lower case
+	$this->someclass->some_method();  // Object インスタンスは常に小文字になります
 
-Passing Parameters When Initializing Your Class
-===============================================
+クラスの初期化時にパラメータを渡す
+==================================
 
-In the library loading method you can dynamically pass data as an
-array via the second parameter and it will be passed to your class
-constructor::
+ライブラリのロードメソッドでは動的にデータを配列として
+第 2 引数で渡すことができ、
+それはクラスのコンストラクタで渡されます::
 
 	$params = array('type' => 'large', 'color' => 'red');
 
 	$this->load->library('someclass', $params);
 
-If you use this feature you must set up your class constructor to expect
-data::
+この機能を使用する場合は、クラスのコンストラクタでデータを要求するよう
+セットアップする必要があります::
 
 	<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
@@ -92,71 +92,71 @@ data::
 
 		public function __construct($params)
 		{
-			// Do something with $params
+			// $params で何かをする
 		}
 	}
 
-You can also pass parameters stored in a config file. Simply create a
-config file named identically to the class file name and store it in
-your *application/config/* directory. Note that if you dynamically pass
-parameters as described above, the config file option will not be
-available.
+また、設定ファイルに保存されたパラメータを渡すこともできます。
+単純にクラスファイル名と同じ名前の設定ファイルを作成し、
+*application/config/* ディレクトリに保存します。
+前述の方法で動的にパラメータを渡す場合、
+設定ファイルのオプションは使用できませんので注意してください。
 
-Utilizing CodeIgniter Resources within Your Library
-===================================================
+ライブラリ内で CodeIgniter のリソースを利用する
+===============================================
 
-To access CodeIgniter's native resources within your library use the
-``get_instance()`` method. This method returns the CodeIgniter super
-object.
+あなたのライブラリ内で CodeIgniter のネイティブリソースにアクセスするには
+``get_instance()`` メソッドを使用します。このメソッドは CodeIgniter
+のスーパーオブジェクトを返します。
 
-Normally from within your controller methods you will call any of the
-available CodeIgniter methods using the ``$this`` construct::
+通常、コントローラメソッド内では
+``$this`` 構造を使用して、 CodeIgniter メソッドの利用可能なうちのいずれかを呼び出しています::
 
 	$this->load->helper('url');
 	$this->load->library('session');
 	$this->config->item('base_url');
-	// etc.
+	// など。
 
-``$this``, however, only works directly within your controllers, your
-models, or your views. If you would like to use CodeIgniter's classes
-from within your own custom classes you can do so as follows:
+しかしながら ``$this`` はこれはコントローラ内、
+モデル内、ビュー内で直接使用する場合にだけ動作します。独自のカスタムクラス内から CodeIgniter
+のクラスを使用したい場合は、以下のようにできます:
 
-First, assign the CodeIgniter object to a variable::
+まず、変数に CodeIgniter のオブジェクトを割り当てます::
 
 	$CI =& get_instance();
 
-Once you've assigned the object to a variable, you'll use that variable
-*instead* of ``$this``::
+オブジェクトを変数に割り当てたなら、
+``$this`` の *かわりに* その変数を使用します::
 
 	$CI =& get_instance();
 
 	$CI->load->helper('url');
 	$CI->load->library('session');
 	$CI->config->item('base_url');
-	// etc.
+	// など。
 
-.. note:: You'll notice that the above ``get_instance()`` function is being
-	passed by reference::
+.. note:: 上記 ``get_instance()`` 関数は、
+	参照によって渡されていることがわかるでしょう::
 	
 		$CI =& get_instance();
 
-	This is very important. Assigning by reference allows you to use the
-	original CodeIgniter object rather than creating a copy of it.
+	これは非常に重要です。参照による割り当てにより、そのコピーを作成するのではなく、
+	オリジナルの CodeIgniter オブジェクトを使用することができます。
 
-However, since a library is a class, it would be better if you
-take full advantage of the OOP principles. So, in order to
-be able to use the CodeIgniter super-object in all of the class
-methods, you're encouraged to assign it to a property instead::
+しかしながら、ライブラリはクラスであるので、 OOP の原則を十分に活用したいなら、
+そうするのが良いでしょう。つまり、クラスメソッドのすべてで
+CodeIgniter のスーパーオブジェクトを使用できるようにするために、
+上記例のかわりにプロパティに割り当てることをおすすめします::
 
 	class Example_library {
 
 		protected $CI;
 
-		// We'll use a constructor, as you can't directly call a function
-		// from a property definition.
+        // コンストラクタを使いましょう、プロパティの定義部では
+        // 直接関数を呼ぶことはできませんので。
 		public function __construct()
 		{
-			// Assign the CodeIgniter super-object
+			// CodeIgniter のスーパーオブジェクトを割り当てる
 			$this->CI =& get_instance();
 		}
 
@@ -173,51 +173,51 @@ methods, you're encouraged to assign it to a property instead::
 
 	}
 
-Replacing Native Libraries with Your Versions
-=============================================
+独自バージョンでネイティブライブラリを置き換える
+================================================
 
-Simply by naming your class files identically to a native library will
-cause CodeIgniter to use it instead of the native one. To use this
-feature you must name the file and the class declaration exactly the
-same as the native library. For example, to replace the native Email
-library you'll create a file named *application/libraries/Email.php*,
-and declare your class with::
+単純に、ネイティブライブラリと同一のクラスファイル名をつけることにより、
+CodeIgniter はネイティブライブラリのかわりにそれを使用するようになります。
+この機能を使用するには、ファイル名とクラス名を
+ネイティブライブラリのものと正確に同じにする必要があります。たとえば、ネイティブのメール Email
+ライブラリを置き換えるためには、 *application/libraries/Email.php* という名前のファイルを作成し、
+つぎのようにクラスを宣言します::
 
 	class CI_Email {
 	
 	}
 
-Note that most native classes are prefixed with CI\_.
+ほとんどのネイティブクラスはプレフィックス CI\_ がついていることに注意してください。
 
-To load your library you'll see the standard loading method::
+独自のライブラリをロードするには、標準の読み込み方法でできます::
 
 	$this->load->library('email');
 
-.. note:: At this time the Database classes can not be replaced with
-	your own versions.
+.. note:: この方法では、データベースクラスは
+	独自のバージョンに置き換えることはできません。
 
-Extending Native Libraries
-==========================
+ネイティブライブラリを継承する
+==============================
 
-If all you need to do is add some functionality to an existing library -
-perhaps add a method or two - then it's overkill to replace the entire
-library with your version. In this case it's better to simply extend the
-class. Extending a class is nearly identical to replacing a class with a
-couple exceptions:
+やりたいことがいくらかの機能を既存のライブラリに加えたいだけ――
+ひょっとするとメソッドをひとつふたつ追加する場合――、ライブラリ全体を
+あなたのバージョンに置き換えるのはやりすぎです。この場合、
+シンプルにクラスを継承するのが良いでしょう。クラスを継承するのは 2 つの例外を除いて、
+クラスを置き換えるとほぼ同じです:
 
--  The class declaration must extend the parent class.
--  Your new class name and filename must be prefixed with MY\_ (this
-   item is configurable. See below.).
+-  クラスは、親クラスを継承する必要があります。
+-  新しいクラス名とファイル名は、プレフィックスに MY\_ を付ける必要があります (これは
+   設定で変更可能です。後述します) 。
 
-For example, to extend the native Email class you'll create a file named
-*application/libraries/MY_Email.php*, and declare your class with::
+たとえば、ネイティブのEmailクラスを拡張するためには、
+*application/libraries/MY_Email.php* という名前のファイルを作成し、つぎのようにクラスを宣言します::
 
 	class MY_Email extends CI_Email {
 
 	}
 
-If you need to use a constructor in your class make sure you
-extend the parent constructor::
+クラスのコンストラクタを使用する必要がある場合、
+親クラスのコンストラクタを呼び出していることを確認してください::
 
 	class MY_Email extends CI_Email {
 
@@ -228,32 +228,32 @@ extend the parent constructor::
 
 	}
 
-.. note:: Not all of the libraries have the same (or any) parameters
-	in their constructor. Take a look at the library that you're
-	extending first to see how it should be implemented.
+.. note:: すべてのライブラリでコンストラクタが同じ (または任意の) パラメータが
+	あるわけではありません。それを実装する方法を確認するため、
+	まずは継承するライブラリを見てみてください。
 
-Loading Your Sub-class
+サブクラスをロードする
 ----------------------
 
-To load your sub-class you'll use the standard syntax normally used. DO
-NOT include your prefix. For example, to load the example above, which
-extends the Email class, you will use::
+サブクラスをロードするには、通常使用されている標準的な構文を使用します。
+プレフィックスを　つ　け　な　い　で　ください。たとえば、上記の例、
+Email クラスを拡張継承したものをロードするには次のようにします::
 
 	$this->load->library('email');
 
-Once loaded you will use the class variable as you normally would for
-the class you are extending. In the case of the email class all calls
-will use::
+一度ロードすれば、継承元クラスを普通に使う場合と同じように、
+クラス変数を使用します。Emailクラスの場合、
+すべての呼び出しが次のようになります::
 
 	$this->email->some_method();
 
-Setting Your Own Prefix
------------------------
+独自のプレフィックスを設定する
+------------------------------
 
-To set your own sub-class prefix, open your
-*application/config/config.php* file and look for this item::
+サブクラスに独自のプレフィックスを設定するには
+*application/config/config.php* ファイルを開いて、次の項目を探してください::
 
 	$config['subclass_prefix'] = 'MY_';
 
-Please note that all native CodeIgniter libraries are prefixed with CI\_
-so DO NOT use that as your prefix.
+すべての標準の CodeIgniter のライブラリはプレフィックスに CI\_
+がついていますので、これは　使　わ　な　い　よ　う　ご注意ください。

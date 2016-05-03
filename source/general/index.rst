@@ -1,6 +1,6 @@
-##############
-General Topics
-##############
+################
+一般的なトピック
+################
 
 .. toctree::
 	:titlesonly:
@@ -10,7 +10,7 @@ General Topics
 	reserved_names
 	views
 	models
-	Helpers <helpers>
+	ヘルパー <helpers>
 	libraries
 	creating_libraries
 	drivers
@@ -23,11 +23,11 @@ General Topics
 	compatibility_functions
 	routing
 	errors
-	Caching <caching>
+	キャッシュ <caching>
 	profiling
 	cli
 	managing_apps
 	environments
 	alternative_php
 	security
-	PHP Style Guide <styleguide>
+	PHP スタイルガイド <styleguide>

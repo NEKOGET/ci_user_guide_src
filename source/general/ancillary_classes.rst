@@ -1,65 +1,65 @@
-##########################
+##################
 補助的なクラス作成
-##########################
+##################
 
-In some cases you may want to develop classes that exist apart from your
-controllers but have the ability to utilize all of CodeIgniter's
-resources. This is easily possible as you'll see.
+いくつかのケースでは、クラスをコントローラから切り離して作りつつも
+CodeIgniter のあらゆるリソースを利用したい場合があります。
+それはつぎに示すように、簡単です。
 
 get_instance()
 ==============
 
 .. php:function:: get_instance()
 
-	:returns:	Reference to your controller's instance
+	:returns:	コントローラのインスタンスへの参照
 	:rtype:	CI_Controller
 
-**Any class that you instantiate within your controller methods can
-access CodeIgniter's native resources** simply by using the
-``get_instance()`` function. This function returns the main
-CodeIgniter object.
+**コントローラのメソッド内でインスタンス化するクラスはすべて
+CodeIgniter のネイティブリソースにアクセスすることができます** 、シンプルに
+``get_instance()`` 関数を利用しましょう。この関数はメインの
+CodeIgniter オブジェクトを返します。
 
-Normally, to call any of the available CodeIgniter methods requires
-you to use the ``$this`` construct::
+通常、 CodeIgniter の利用可能なメソッドを呼び出すには
+``$this`` 構文を使用する必要があります::
 
 	$this->load->helper('url');
 	$this->load->library('session');
 	$this->config->item('base_url');
-	// etc.
+	// など。
 
-``$this``, however, only works within your controllers, your models,
-or your views. If you would like to use CodeIgniter's classes from
-within your own custom classes you can do so as follows:
+しかしながら ``$this`` はこれはコントローラ内、モデル内、
+ビュー内で使用する場合にだけ動作します。独自のカスタムクラス内から CodeIgniter
+のクラスを使用したい場合は、以下のようにできます:
 
-First, assign the CodeIgniter object to a variable::
+まず、変数に CodeIgniter のオブジェクトを割り当てます::
 
 	$CI =& get_instance();
 
-Once you've assigned the object to a variable, you'll use that variable
-*instead* of ``$this``::
+オブジェクトを変数に割り当てたなら、
+``$this`` の *かわりに* その変数を使用します::
 
 	$CI =& get_instance();
 
 	$CI->load->helper('url');
 	$CI->load->library('session');
 	$CI->config->item('base_url');
-	// etc.
+	// など。
 
-If you'll be using ``get_instance()`` inside another class, then it would
-be better if you assign it to a property. This way, you won't need to call
-``get_instance()`` in every single method.
+もし別のクラス内で ``get_instance()`` を使うなら、
+プロパティに割り当てるのが良いでしょう。そうすればそれぞれのメソッドで
+``get_instance()`` を呼び出す必要がなくなります。
 
-Example::
+例::
 
 	class Example {
 
 		protected $CI;
 
-		// We'll use a constructor, as you can't directly call a function
-		// from a property definition.
+		// プロパティ定義では関数を直接呼び出せませんので
+		// コンストラクタを使います。
 		public function __construct()
 		{
-			// Assign the CodeIgniter super-object
+			// CodeIgniter のスーパーオブジェクトを割り当てます
 			$this->CI =& get_instance();
 		}
 
@@ -75,6 +75,6 @@ Example::
 		}
 	}
 
-In the above example, both methods ``foo()`` and ``bar()`` will work
-after you instantiate the Example class, without the need to call
-``get_instance()`` in each of them.
+上記の例では ``foo()`` と ``bar()``
+のそれぞれで
+``get_instance()`` を呼び出すことなく動作します。

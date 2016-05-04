@@ -1,40 +1,40 @@
-###################
-CLIを使用して実行する
-###################
+##############
+CLI で実行する
+##############
 
-As well as calling an applications :doc:`Controllers <./controllers>`
-via the URL in a browser they can also be loaded via the command-line
-interface (CLI).
+アプリケーション :doc:`コントローラ <./controllers>`
+の呼び出しはブラウザによる URL だけでなく、コマンドラインインターフェイス
+(CLI) を使用してロードすることもできます。
 
 .. contents:: Page Contents
 
 CLIとは何ですか？
-================
+=================
 
-The command-line interface is a text-based method of interacting with
-computers. For more information, check the `Wikipedia
-article <http://en.wikipedia.org/wiki/Command-line_interface>`_.
+コマンドラインインターフェースは、コンピュータとのテキストベースでの対話方法です。
+詳細については `Wikipedia
+の記事 <http://en.wikipedia.org/wiki/Command-line_interface>`_ をご確認ください。
 
 なぜ、コマンドラインで実行するのでしょうか？
-=============================
+============================================
 
-There are many reasons for running CodeIgniter from the command-line,
-but they are not always obvious.
+CodeIgniterをコマンドラインから実行する理由は数多く存在しますが、
+必ずしも明確ではありません。
 
--  Run your cron-jobs without needing to use *wget* or *curl*
--  Make your cron-jobs inaccessible from being loaded in the URL by
-   checking the return value of :php:func:`is_cli()`.
--  Make interactive "tasks" that can do things like set permissions,
-   prune cache folders, run backups, etc.
--  Integrate with other applications in other languages. For example, a
-   random C++ script could call one command and run code in your models!
+-  *wget* や *curl* を使用することなく cron ジョブを実行する
+-  :php:func:`is_cli()` の戻り値をチェックすることで、URL からロードされることがないように
+   cron ジョブをアクセスできなくする
+-  パーミッション設定、キャッシュフォルダの削除、
+   バックアップを実行するなど、インタラクティブな「タスク」を作る
+-  他の言語、他のアプリケーションとの統合。たとえば、てきとうな
+   C++ スクリプトは 1 つのコマンドを呼び出してモデルのコードを実行できるでしょう！
 
-Hello Worldを試してみましょう！
-==========================
+やってみましょう: Hello World!
+==============================
 
-Let's create a simple controller so you can see it in action. Using your
-text editor, create a file called Tools.php, and put the following code
-in it::
+簡単なコントローラを作成してみて、その動きを見てみましょう。
+テキストエディタを使って Tools.php というファイルを作成し、
+その中に次のコードを配置します::
 
 	<?php
 	class Tools extends CI_Controller {
@@ -45,34 +45,34 @@ in it::
 		}
 	}
 
-Then save the file to your *application/controllers/* folder.
+次に、そのファイルを *application/controllers/* フォルダに保存します。
 
-Now normally you would visit the your site using a URL similar to this::
+さて、通常次のような URL を使ってサイトを開きます::
 
 	example.com/index.php/tools/message/to
 
-Instead, we are going to open Terminal in Mac/Linux or go to Run > "cmd"
-in Windows and navigate to our CodeIgniter project.
+そのかわりに、 Mac/Linux でのターミナルを開くか、 Windowsで >「 cmd 」を実行し、
+CodeIgniter プロジェクトに移動しましょう。
 
 .. code-block:: bash
 
 	$ cd /path/to/project;
 	$ php index.php tools message
 
-If you did it right, you should see *Hello World!* printed.
+正しく作業できたなら、 *Hello World!* がプリントされるでしょう。
 
 .. code-block:: bash
 
 	$ php index.php tools message "John Smith"
 
-Here we are passing it a argument in the same way that URL parameters
-work. "John Smith" is passed as a argument and output is::
+ここでは URL パラメータが動くのと同様の方法で引数を渡しています。
+「 John Smith 」は、引数として渡され、出力されます::
 
 	Hello John Smith!
 
 さいごに！
 ==========
 
-That, in a nutshell, is all there is to know about controllers on the
-command line. Remember that this is just a normal controller, so routing
-and ``_remap()`` works fine.
+これが、つまり、コマンドライン上のコントローラについて知っておくべきすべてです。
+これはただの標準的なコントローラであるため、ルーティングと
+``_remap()`` も正常に動作することを忘れないでください。

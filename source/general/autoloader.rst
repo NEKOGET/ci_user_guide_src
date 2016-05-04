@@ -1,27 +1,27 @@
 ######################
-リソースの自動読み込み
+リソースのオートロード
 ######################
 
-CodeIgniter comes with an "Auto-load" feature that permits libraries,
-helpers, and models to be initialized automatically every time the
-system runs. If you need certain resources globally throughout your
-application you should consider auto-loading them for convenience.
+CodeIgniter には「オートロード」機能が付属しており、システムが実行されるたびにライブラリー、
+ヘルパー、およびモデルを自動的に初期化することを可能にします。
+特定のリソースがアプリケーション全体でグローバルに必要な場合、
+利便性のためにそれらを自動ロードするかどうか検討すると良いでしょう。
 
 以下の項目をオートロードすることができます:
 
--  *libraries/* ディレクトリにあるclass
--  *helpers/* ディレクトリにあるhelperファイル
--  *config/* ディレクトリにあるconfigファイル
+-  *libraries/* ディレクトリにある class
+-  *helpers/* ディレクトリにあるヘルパーファイル
+-  *config/* ディレクトリにある設定ファイル
 -  *system/language/* ディレクトリにある言語ファイル
--  *models/* フォルダにあるModel
+-  models/ フォルダにあるモデル
 
-To autoload resources, open the **application/config/autoload.php**
-file and add the item you want loaded to the autoload array. You'll
-find instructions in that file corresponding to each type of item.
+リソースをオートロードするためには **application/config/autoload.php**
+ファイルを開き、オートロード配列にロードされるアイテムを追加します。
+ファイル内を見れば、項目の各タイプに対応した指示が書いてあります。
 
-.. note:: Do not include the file extension (.php) when adding items to
-	the autoload array.
+.. note:: オートロード配列に項目を追加するとき、ファイル拡張子 (.php)
+	を含めないでください。
 
-Additionally, if you want CodeIgniter to use a `Composer <https://getcomposer.org/>`_
-auto-loader, just set ``$config['composer_autoload']`` to ``TRUE`` or
-a custom path in **application/config/config.php**.
+さらに、 CodeIgniter に `Composer <https://getcomposer.org/>`_
+のオートローダを使わせたいなら、 **application/config/config.php** 中の ``$config['composer_autoload']`` に
+``TRUE`` またはカスタムパスを設定するだけです。

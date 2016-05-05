@@ -1,10 +1,10 @@
-################
-共通機能
-################
+########
+共通関数
+########
 
-CodeIgniter uses a few functions for its operation that are globally
-defined, and are available to you at any point. These do not require
-loading any libraries or helpers.
+CodeIgniter はその動作のために少しの関数を使用しており、
+それはグローバルに定義され、どこでも使えます。
+ライブラリやヘルパーをロードする必要はありません。
 
 .. contents::
   :local:
@@ -15,12 +15,12 @@ loading any libraries or helpers.
 
 .. php:function:: is_php($version)
 
-	:param	string	$version: Version number
-	:returns:	TRUE if the running PHP version is at least the one specified or FALSE if not
+	:param	string	$version: バージョン番号
+	:returns:	実行している PHP のバージョンが指定のもの以上なら TRUE 、そうでないなら FALSE
 	:rtype:	bool
 
-	Determines if the PHP version being used is greater than the
-	supplied version number.
+	使用している PHP のバージョンが与えられたバージョン番号よりも
+	大きいかどうかを判定します。
 
 	Example::
 
@@ -29,160 +29,160 @@ loading any libraries or helpers.
 			$str = quoted_printable_encode($str);
 		}
 
-	Returns boolean TRUE if the installed version of PHP is equal to or
-	greater than the supplied version number. Returns FALSE if the installed
-	version of PHP is lower than the supplied version number.
+	インストールされている PHP のバージョンが与えられたバージョン番号と
+	等しいかそれ以上なら真偽値の TRUE を返します。インストールされている PHP
+	のバージョンが与えられたバージョン番号よりも低い場合には FALSE を返します。
 
 .. php:function:: is_really_writable($file)
 
-	:param	string	$file: File path
-	:returns:	TRUE if the path is writable, FALSE if not
+	:param	string	$file: ファイルパス
+	:returns:	パスが書き込み可能な場合は TRUE 、そうでない場合は FALSE
 	:rtype:	bool
 
-	``is_writable()`` returns TRUE on Windows servers when you really can't
-	write to the file as the OS reports to PHP as FALSE only if the
-	read-only attribute is marked.
+	``is_writable()`` は Windows サーバー上で TRUE を返し、
+	OS のレポートとして PHP に読み取り専用属性がマークされていて
+	本当に書き込めない場合にのみ FALSE を返します。
 
-	This function determines if a file is actually writable by attempting
-	to write to it first. Generally only recommended on platforms where
-	this information may be unreliable.
+	この関数は最初に実際にファイルに書き込もうとすることによって、
+	書き込み可能であるかどうかを判定します。一般的に、
+	情報を信頼できないプラットフォーム上でのみおすすめします。
 
-	Example::
+	例::
 
 		if (is_really_writable('file.txt'))
 		{
-			echo "I could write to this if I wanted to";
+			echo "書き込もうと思えば書き込めます";
 		}
 		else
 		{
-			echo "File is not writable";
+			echo "ファイルは書き込めません";
 		}
 
-	.. note:: See also `PHP bug #54709 <https://bugs.php.net/bug.php?id=54709>`_ for more info.
+	.. note:: より詳しくは `PHP のバグ #54709 <https://bugs.php.net/bug.php?id=54709>`_ も参照してください。
 
 .. php:function:: config_item($key)
 
-	:param	string	$key: Config item key
-	:returns:	Configuration key value or NULL if not found
+	:param	string	$key: コンフィグ項目キー
+	:returns:	設定キーの値。見つからない場合はNULL
 	:rtype:	mixed
 
-	The :doc:`Config Library <../libraries/config>` is the preferred way of
-	accessing configuration information, however ``config_item()`` can be used
-	to retrieve single keys. See :doc:`Config Library <../libraries/config>`
-	documentation for more information.
+	:doc:`コンフィグライブラリ <../libraries/config>` はコンフィグ情報にアクセスするために推奨される方法ですが、
+	単一のキーを取得するためには ``config_item()``
+	を使用することもできます。詳細については :doc:`コンフィグライブラリ <../libraries/config>`
+	マニュアルを参照してください。
 
 .. :noindex: function:: show_error($message, $status_code[, $heading = 'An Error Was Encountered'])
 
-	:param	mixed	$message: Error message
-	:param	int	$status_code: HTTP Response status code
-	:param	string	$heading: Error page heading
+	:param	mixed	$message: エラーメッセージ
+	:param	int	$status_code: HTTP Reponseステータスコード
+	:param	string	$heading: エラーページの見出し
 	:rtype:	void
 
-	This function calls ``CI_Exception::show_error()``. For more info,
-	please see the :doc:`Error Handling <errors>` documentation.
+	これは関数 ``CI_Exception::show_error()`` を呼び出します。より詳しくは、
+	どうぞ :doc:`エラー処理 <errors>` ドキュメントをご覧ください。
 
 .. :noindex: function:: show_404([$page = ''[, $log_error = TRUE]])
 
-	:param	string	$page: URI string
-	:param	bool	$log_error: Whether to log the error
+	:param	string	$page: URI 文字列
+	:param	bool	$log_error: ログに保存するかどうか
 	:rtype:	void
 
-	This function calls ``CI_Exception::show_404()``. For more info,
-	please see the :doc:`Error Handling <errors>` documentation.
+	これは関数 ``CI_Exception::show_404()`` を呼び出します。より詳しくは、
+	どうぞ :doc:`エラー処理 <errors>` ドキュメントをご覧ください。
 
 .. :noindex: function:: log_message($level, $message)
 
-	:param	string	$level: Log level: 'error', 'debug' or 'info'
-	:param	string	$message: Message to log
+	:param	string	$level: ログレベル: 「 error 」、「 debug 」または「 info 」
+	:param	string	$message: ログに記録するメッセージ
 	:rtype:	void
 
-	This function is an alias for ``CI_Log::write_log()``. For more info,
-	please see the :doc:`Error Handling <errors>` documentation.
+	この関数は ``CI_Log::write_log()`` のエイリアスです。より詳しくは、
+	どうぞ :doc:`エラー処理 <errors>` ドキュメントをご覧ください。
 
 .. php:function:: set_status_header($code[, $text = ''])
 
-	:param	int	$code: HTTP Reponse status code
-	:param	string	$text: A custom message to set with the status code
+	:param	int	$code: HTTP Reponse ステータスコード
+	:param	string	$text: ステータスコードを設定する際のカスタムメッセージ
 	:rtype:	void
 
-	Permits you to manually set a server status header. Example::
+	サーバステータスヘッダを手動で設定することを可能にします。例::
 
 		set_status_header(401);
-		// Sets the header as:  Unauthorized
+		// ヘッダを設定します:  Unauthorized
 
-	`See here <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_ for
-	a full list of headers.
+	ヘッダの完全なリストについては
+	`ここを参照してください <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_ 。
 
 .. php:function:: remove_invisible_characters($str[, $url_encoded = TRUE])
 
-	:param	string	$str: Input string
-	:param	bool	$url_encoded: Whether to remove URL-encoded characters as well
-	:returns:	Sanitized string
+	:param	string	$str: 入力文字列
+	:param	bool	$url_encoded: URL エンコードされた文字を削除するかどうか
+	:returns:	サニタイズされた文字列
 	:rtype:	string
 
-	This function prevents inserting NULL characters between ASCII
-	characters, like Java\\0script.
+	この機能は、Java\\0scriptのように、 ASCII 文字の間に NULL
+	文字を挿入しないようにします。
 
-	Example::
+	例::
 
 		remove_invisible_characters('Java\\0script');
-		// Returns: 'Javascript'
+		// 返り値: 'Javascript'
 
 .. php:function:: html_escape($var)
 
-	:param	mixed	$var: Variable to escape (string or array)
-	:returns:	HTML escaped string(s)
+	:param	mixed	$var: エスケープする変数 (文字列または配列)
+	:returns:	HTML エスケープされた文字列 (または文字列の配列)
 	:rtype:	mixed
 
-	This function acts as an alias for PHP's native ``htmlspecialchars()``
-	function, with the advantage of being able to accept an array of strings.
+	この関数は PHP ネイティブの ``htmlspecialchars()``
+	関数の別名として機能するほか、文字列の配列を処理できるという利点があります。
 
-	It is useful in preventing Cross Site Scripting (XSS).
+	これはクロスサイトスクリプティング (XSS) の予防に有用です。
 
 .. php:function:: get_mimes()
 
-	:returns:	An associative array of file types
+	:returns:	ファイルタイプの連想配列
 	:rtype:	array
 
-	This function returns a *reference* to the MIMEs array from
-	*application/config/mimes.php*.
+	この関数は *application/config/mimes.php* から MIME の配列への *参照*
+	を返します。
 
 .. php:function:: is_https()
 
-	:returns:	TRUE if currently using HTTP-over-SSL, FALSE if not
+	:returns:	現在 HTTP over SSL を使用している場合は TRUE 、そうでないなら FALSE
 	:rtype:	bool
 
-	Returns TRUE if a secure (HTTPS) connection is used and FALSE
-	in any other case (including non-HTTP requests).
+	セキュア接続 (HTTPS) を使用していれば TRUE を返し、他の場合には FALSE
+	を返します (非 HTTP 要求を含みます) 。
 
 .. php:function:: is_cli()
 
-	:returns:	TRUE if currently running under CLI, FALSE otherwise
+	:returns:	現在 CLI で実行されている場合は TRUE 、そうでない場合は FALSE
 	:rtype:	bool
 
-	Returns TRUE if the application is run through the command line
-	and FALSE if not.
+	アプリケーションがコマンドラインから実行している場合は TRUE を返し、そうでないなら
+	FALSE を返します。
 
-	.. note:: This function checks both if the ``PHP_SAPI`` value is 'cli'
-		or if the ``STDIN`` constant is defined.
+	.. note:: この関数は、 ``PHP_SAPI`` 値が「 cli 」であるかどうかと、
+		``STDIN`` 定数が定義されているかどうかの両方をチェックします。
 
 .. php:function:: function_usable($function_name)
 
-	:param	string	$function_name: Function name
-	:returns:	TRUE if the function can be used, FALSE if not
+	:param	string	$function_name: 関数名
+	:returns:	関数を使用することができる場合は TRUE 、そうでない場合は FALSE
 	:rtype:	bool
 
-	Returns TRUE if a function exists and is usable, FALSE otherwise.
+	関数が存在し使用可能であれば TRUE を、そうでなければ FALSE を返します。
 
-	This function runs a ``function_exists()`` check and if the
-	`Suhosin extension <http://www.hardened-php.net/suhosin/>` is loaded,
-	checks if it doesn't disable the function being checked.
+	この関数は ``function_exists()`` を確認し、また、
+	`Suhosin extension <http://www.hardened-php.net/suhosin/>` がロードされていれば
+	関数が無効化されていないかどうかをチェックします。
 
-	It is useful if you want to check for the availability of functions
-	such as ``eval()`` and ``exec()``, which are dangerous and might be
-	disabled on servers with highly restrictive security policies.
+	これは
+	``eval()`` や ``exec()`` など、危険であり、制限の厳しいセキュリティポリシーを持つサーバ上で
+	無効にされうる関数の可用性をチェックする場合に便利です。
 
-	.. note:: This function was introduced because Suhosin terminated
-		script execution, but this turned out to be a bug. A fix
-		has been available for some time (version 0.9.34), but is
-		unfortunately not released yet.
+	.. note:: Suhosinはスクリプトの実行を中断させますが、
+		これはバグであることが判明したため、この機能が導入されました。
+		修正プログラムはすでに用意されましたが (バージョン0.9.34) 、
+		残念ながらまだリリースされていません。

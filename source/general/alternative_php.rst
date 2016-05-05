@@ -1,44 +1,44 @@
-###################################
-ビューファイルに対するPHP代替の構文
-###################################
+###############################
+ビューファイルでのPHPの別の構文
+###############################
 
-If you do not utilize CodeIgniter's :doc:`template
-engine <../libraries/parser>`, you'll be using pure PHP in your
-View files. To minimize the PHP code in these files, and to make it
-easier to identify the code blocks it is recommended that you use PHPs
-alternative syntax for control structures and short tag echo statements.
-If you are not familiar with this syntax, it allows you to eliminate the
-braces from your code, and eliminate "echo" statements.
+CodeIgniterの :doc:`テンプレートエンジン
+<../libraries/parser>` を利用しない場合、ビューファイルでは純粋な PHP を使うことになります。
+これらのファイルの PHP コードを最小限にするために、
+そしてより簡単にコードブロックを識別できるように、 PHP の制御構造に関する別の構文と
+echoの短縮構文を使用することをおすすめします。
+この構文に精通していないなら、それはあなたのコードから中括弧を排除し、
+「 echo 」の文を排除することができます。
 
 自動ショートタグのサポート
-===========================
+==========================
 
-.. note:: If you find that the syntax described in this page does not
-	work on your server it might be that "short tags" are disabled in your
-	PHP ini file. CodeIgniter will optionally rewrite short tags on-the-fly,
-	allowing you to use that syntax even if your server doesn't support it.
-	This feature can be enabled in your *config/config.php* file.
+.. note:: このページで説明されている構文がサーバで動作しないことがわかった場合、
+	おそらく PHP の ini ファイルで「ショートタグ」が無効になっています。
+	CodeIgniter では必要に応じて、オンザフライでショートタグを書き換えます。
+	あなたのサーバがサポートしていない場合でも、その構文を使用することができるようにするためです。
+	この機能は *config/config.php* ファイルで有効にすることができます。
 
-Please note that if you do use this feature, if PHP errors are
-encountered in your **view files**, the error message and line number
-will not be accurately shown. Instead, all errors will be shown as
-``eval()`` errors.
+この機能を使用する場合、 PHP のエラーがビューファイルで発生した場合、
+エラーメッセージや行番号には正確なものは表示されませんのでご注意ください。
+かわりに、すべてのエラーは
+``eval()`` のエラーとして表示されます。
 
 echoのかわりとなるもの
-=================
+======================
 
-通常、変数をプリントアウトする場合はechoもしくはこの操作を行います::
+通常、変数をエコーもしくはプリントアウトする場合、この操作を行います::
 
 	<?php echo $variable; ?>
 
-代替構文を使用すると、このように行うことができます::
+別の構文を使用すると、このように行うことができます::
 
 	<?=$variable?>
 
-代替の制御構造
-==============================
+別の制御構造
+============
 
-if、 for、foreachと while といった制御構造について簡略化した形式で記述することができます。
+if 、 for 、 foreach と while といった制御構造について簡略化した形式で記述することができます。
 これは ``foreach`` を使用した場合の例です::
 
 	<ul>
@@ -51,25 +51,25 @@ if、 for、foreachと while といった制御構造について簡略化した
 
 	</ul>
 
-中括弧がないことに注意してください。 Instead, the end brace is replaced with
-``endforeach``. Each of the control structures listed above has a similar
-closing syntax: ``endif``, ``endfor``, ``endforeach``, and ``endwhile``
+中括弧がないことに注意してください。そのかわりに、中括弧は
+``endforeach`` に置き換えられています。上に列挙した制御構造にはそれぞれ、
+同様の閉じ構文があります: ``endif`` 、 ``endfor`` 、 ``endforeach`` 、および ``endwhile``
 
-また、代わりに（最後のものを除く）の各構造の後にセミコロンを使用するのではなく、
-コロンがあることに注意してください。これは重要です！
+また、各構造のうしろにはセミコロンを使用するのではなく、かわりにコロンがあることに注意してください
+(ただし最後のものを除く) 。これは重要です！
 
 ``if``/``elseif``/``else`` を使用した別の例です。コロンに注意してください::
 
 	<?php if ($username === 'sally'): ?>
 
-		<h3>Hi Sally</h3>
+		<h3>こんにちはサリー</h3>
 
 	<?php elseif ($username === 'joe'): ?>
 
-		<h3>Hi Joe</h3>
+		<h3>こんにちはジョー</h3>
 
 	<?php else: ?>
 
-		<h3>Hi unknown user</h3>
+		<h3>こんにちは知らない人</h3>
 
 	<?php endif; ?>

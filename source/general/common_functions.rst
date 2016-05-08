@@ -62,13 +62,13 @@ CodeIgniter はその動作のために少しの関数を使用しており、
 
 .. php:function:: config_item($key)
 
-	:param	string	$key: コンフィグ項目キー
+	:param	string	$key: 設定項目キー
 	:returns:	設定キーの値。見つからない場合はNULL
 	:rtype:	mixed
 
-	:doc:`コンフィグライブラリ <../libraries/config>` はコンフィグ情報にアクセスするために推奨される方法ですが、
+	:doc:`設定ライブラリ <../libraries/config>` は設定情報にアクセスするために推奨される方法ですが、
 	単一のキーを取得するためには ``config_item()``
-	を使用することもできます。詳細については :doc:`コンフィグライブラリ <../libraries/config>`
+	を使用することもできます。詳細については :doc:`設定ライブラリ <../libraries/config>`
 	マニュアルを参照してください。
 
 .. :noindex: function:: show_error($message, $status_code[, $heading = 'An Error Was Encountered'])

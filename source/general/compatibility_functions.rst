@@ -1,18 +1,18 @@
-#######################
-Compatibility Functions
-#######################
+########
+互換関数
+########
 
-CodeIgniter provides a set of compatibility functions that enable
-you to use functions what are otherwise natively available in PHP,
-but only in higher versions or depending on a certain extension.
+CodeIgniter では互換関数のセットを提供します。
+PHP でネイティブに提供しているものの、より新しいバージョンでのみで対応であったり、
+特定のエクステンションに依存するような関数を使えるようにするものです。
 
-Being custom implementations, these functions will also have some
-set of dependencies on their own, but are still useful if your
-PHP setup doesn't offer them natively.
+独自実装しているため、
+これらの関数自身もほかのものに依存する場合もありますが、
+それでもまだ PHP そのものをセットアップするよりは便利でしょう。
 
-.. note:: Much like the `common functions <common_functions>`, the
-	compatibility functions are always available, as long as
-	their dependencies are met.
+.. note:: まるで `共通機能 <common_functions>` のように、
+	それらの依存関係が満たされているかぎり
+	互換関数は常に利用可能です。
 
 .. contents::
   :local:
@@ -21,244 +21,244 @@ PHP setup doesn't offer them natively.
 
   <div class="custom-index container"></div>
 
-****************
-Password Hashing
-****************
+******************
+パスワードハッシュ
+******************
 
-This set of compatibility functions offers a "backport" of PHP's
-standard `Password Hashing extension <http://php.net/password>`_
-that is otherwise available only since PHP 5.5.
+この互換関数のセットは PHP 標準の
+`パスワードハッシュ拡張 <http://php.net/password>`_ の「バックポート」を提供しています。
+本来は PHP 5.5 以降で利用可能なものです。
 
-Dependencies
-============
+依存関係
+========
 
 - PHP 5.3.7
-- ``CRYPT_BLOWFISH`` support for ``crypt()``
+- ``crypt()`` の ``CRYPT_BLOWFISH`` サポート
 
-Constants
-=========
+定数
+====
 
 - ``PASSWORD_BCRYPT``
 - ``PASSWORD_DEFAULT``
 
-Function reference
-==================
+関数リファレンス
+================
 
 .. php:function:: password_get_info($hash)
 
-	:param	string	$hash: Password hash
-	:returns:	Information about the hashed password
+	:param	string	$hash: パスワードのハッシュ
+	:returns:	ハッシュされたパスワードの情報
 	:rtype:	array
 
-	For more information, please refer to the `PHP manual for
-	password_get_info() <http://php.net/password_get_info>`_.
+	詳しくは
+	`password_get_info() の PHP マニュアル <http://php.net/password_get_info>`_ を参照してください。
 
 .. php:function:: password_hash($password, $algo[, $options = array()])
 
-	:param	string	$password: Plain-text password
-	:param	int	$algo: Hashing algorithm
-	:param	array	$options: Hashing options
-	:returns:	Hashed password or FALSE on failure
+	:param	string	$password: 平文のパスワード
+	:param	int	$algo: ハッシュアルゴリズム
+	:param	array	$options: ハッシュオプション
+	:returns:	ハッシュされたパスワード、失敗した場合には FALSE
 	:rtype:	string
 
-	For more information, please refer to the `PHP manual for
-	password_hash() <http://php.net/password_hash>`_.
+	詳しくは
+	`password_hash() の PHP マニュアル <http://php.net/password_hash>`_ を参照してください。
 
-	.. note:: Unless you provide your own (and valid) salt, this function
-		has a further dependency on an available CSPRNG source. Each
-		of the following would satisfy that:
-		- ``mcrypt_create_iv()`` with ``MCRYPT_DEV_URANDOM``
+	.. note:: 指定の (有効な) saltを提供しない限り、
+		この機能はさらに CSPRNG ソースにも依存します。
+		下記のいずれかがそれを満たします:
+		- ``mcrypt_create_iv()`` と ``MCRYPT_DEV_URANDOM``
 		- ``openssl_random_pseudo_bytes()``
 		- /dev/arandom
 		- /dev/urandom
 
 .. php:function:: password_needs_rehash()
 
-	:param	string	$hash: Password hash
-	:param	int	$algo: Hashing algorithm
-	:param	array	$options: Hashing options
-	:returns:	TRUE if the hash should be rehashed to match the given algorithm and options, FALSE otherwise
+	:param	string	$hash: パスワードのハッシュ
+	:param	int	$algo: ハッシュアルゴリズム
+	:param	array	$options: ハッシュオプション
+	:returns:	ハッシュが与えられたアルゴリズムとオプションにマッチするよう再ハッシュする必要がある場合は TRUE 、それ以外の場合はFALSE
 	:rtype:	bool
 
-	For more information, please refer to the `PHP manual for
-	password_needs_rehash() <http://php.net/password_needs_rehash>`_.
+	詳しくは
+	`password_needs_rehash() の PHP マニュアル <http://php.net/password_needs_rehash>`_ を参照してください。
 
 .. php:function:: password_verify($password, $hash)
 
-	:param	string	$password: Plain-text password
-	:param	string	$hash: Password hash
-	:returns:	TRUE if the password matches the hash, FALSE if not
+	:param	string	$password: 平文のパスワード
+	:param	string	$hash: パスワードのハッシュ
+	:returns:	パスワードがハッシュと一致した場合は TRUE 、そうでない場合は FALSE
 	:rtype:	bool
 
-	For more information, please refer to the `PHP manual for
-	password_verify() <http://php.net/password_verify>`_.
+	詳しくは
+	`password_verify() の PHP マニュアル <http://php.net/password_verify>`_ を参照してください。
 
-*********************
-Hash (Message Digest)
-*********************
+*********************************
+ハッシュ (メッセージダイジェスト)
+*********************************
 
-This compatibility layer contains backports for the ``hash_equals()``
-and ``hash_pbkdf2()`` functions, which otherwise require PHP 5.6 and/or
-PHP 5.5 respectively.
+この互換レイヤには ``hash_equals()`` 関数と
+``hash_pbkdf2()`` 関数のバックポートが含まれています。本来おのおの PHP 5.6 およびまたは
+PHP 5.5 を必要とするものです。
 
-Dependencies
-============
+依存関係
+========
 
-- None
+- なし
 
-Function reference
-==================
+関数リファレンス
+================
 
 .. php:function:: hash_equals($known_string, $user_string)
 
-	:param	string	$known_string: Known string
-	:param	string	$user_string: User-supplied string
-	:returns:	TRUE if the strings match, FALSE otherwise
+	:param	string	$known_string: 既知の文字列
+	:param	string	$user_string: ユーザ指定の文字列
+	:returns:	文字列が一致する場合 TRUE 、それ以外の場合は FALSE
 	:rtype:	string
 
-	For more information, please refer to the `PHP manual for
-	hash_equals() <http://php.net/hash_equals>`_.
+	詳しくは
+	`hash_equals() の PHP マニュアル <http://php.net/hash_equals>`_ を参照してください。
 
 .. php:function:: hash_pbkdf2($algo, $password, $salt, $iterations[, $length = 0[, $raw_output = FALSE]])
 
-	:param	string	$algo: Hashing algorithm
-	:param	string	$password: Password
-	:param	string	$salt: Hash salt
-	:param	int	$iterations: Number of iterations to perform during derivation
-	:param	int	$length: Output string length
-	:param	bool	$raw_output: Whether to return raw binary data
-	:returns:	Password-derived key or FALSE on failure
+	:param	string	$algo: ハッシュアルゴリズム
+	:param	string	$password: パスワード
+	:param	string	$salt: ハッシュの salt
+	:param	int	$iterations: 導出の際に実行する反復回数
+	:param	int	$length: 出力文字列の長さ
+	:param	bool	$raw_output: -生のバイナリデータを返すかどうか
+	:returns:	パスワード派生キー、または失敗した場合に FALSE
 	:rtype:	string
 
-	For more information, please refer to the `PHP manual for
-	hash_pbkdf2() <http://php.net/hash_pbkdf2>`_.
+	詳しくは
+	`hash_pbkdf2() の PHP マニュアル <http://php.net/hash_pbkdf2>`_ を参照してください。
 
-****************
-Multibyte String
-****************
+******************
+マルチバイト文字列
+******************
 
-This set of compatibility functions offers limited support for PHP's
-`Multibyte String extension <http://php.net/mbstring>`_. Because of
-the limited alternative solutions, only a few functions are available.
+この互換関数のセットは PHP
+の `マルチバイト文字列拡張 <http://php.net/mbstring>`_ を限定的にサポートします。
+代替手段が限られているため、わずかな関数だけが用意されています。
 
-.. note:: When a character set parameter is ommited,
-	``$config['charset']`` will be used.
+.. note:: 文字セットパラメータが省略されている場合、
+	``$config['charset']`` が使用されます。
 
-Dependencies
-============
+依存関係
+========
 
-- `iconv <http://php.net/iconv>`_ extension
+- `iconv <http://php.net/iconv>`_ 拡張
 
-.. important:: This dependency is optional and these functions will
-	always be declared. If iconv is not available, they WILL
-	fall-back to their non-mbstring versions.
+.. important:: この依存関係は省略可能ですが、これらの関数は常に宣言されます。
+	iconv が利用できない場合、対応する非 mbstring
+	バージョンにフォールバック　し　ま　す　。
 
-.. important:: Where a character set is supplied, it must be
-	supported by iconv and in a format that it recognizes.
+.. important:: 文字セットが供給されている場合、
+	それは iconv によりサポートされ、 iconv の認識できる形式でなければなりません。
 
-.. note:: For you own dependency check on the actual mbstring
-	extension, use the ``MB_ENABLED`` constant.
+.. note:: 本来の mbstring 拡張モジュールへの依存がありそれをチェックしたい場合、
+	``MB_ENABLED`` 定数を使用します。
 
-Function reference
-==================
+関数リファレンス
+================
 
 .. php:function:: mb_strlen($str[, $encoding = NULL])
 
-	:param	string	$str: Input string
-	:param	string	$encoding: Character set
-	:returns:	Number of characters in the input string or FALSE on failure
+	:param	string	$str: 入力文字列
+	:param	string	$encoding: 文字セット
+	:returns:	入力文字列の文字数、失敗した場合には FALSE
 	:rtype:	string
 
-	For more information, please refer to the `PHP manual for
-	mb_strlen() <http://php.net/mb_strlen>`_.
+	詳しくは
+	`mb_strlen() の PHP マニュアル <http://php.net/mb_strlen>`_ を参照してください。
 
 .. php:function:: mb_strpos($haystack, $needle[, $offset = 0[, $encoding = NULL]])
 
-	:param	string	$haystack: String to search in
-	:param	string	$needle: Part of string to search for
-	:param	int	$offset: Search offset
-	:param	string	$encoding: Character set
-	:returns:	Numeric character position of where $needle was found or FALSE if not found
+	:param	string	$haystack: 調べたい文字列
+	:param	string	$needle: haystack の中から探す文字列
+	:param	int	$offset: 検索オフセット
+	:param	string	$encoding: 文字セット
+	:returns:	$needle の見つかった位置、見つからない場合は FALSE
 	:rtype:	mixed
 
-	For more information, please refer to the `PHP manual for
-	mb_strpos() <http://php.net/mb_strpos>`_.
+	詳しくは
+	mb_strpos() の PHP マニュアル <http://php.net/mb_strpos>`_ を参照してください。
 
 .. php:function:: mb_substr($str, $start[, $length = NULL[, $encoding = NULL]])
 
-	:param	string	$str: Input string
-	:param	int	$start: Position of first character
-	:param	int	$length: Maximum number of characters
-	:param	string	$encoding: Character set
-	:returns:	Portion of $str specified by $start and $length or FALSE on failure
+	:param	string	$str: 入力文字列
+	:param	int	$start: 最初の文字の位置
+	:param	int	$length: 最大文字数
+	:param	string	$encoding: 文字セット
+	:returns:	$start と $length で指定された $str の部分文字列、失敗した場合は FALSE
 	:rtype:	string
 
-	For more information, please refer to the `PHP manual for
-	mb_substr() <http://php.net/mb_substr>`_.
+	詳しくは
+	`mb_substr() の PHP マニュアル <http://php.net/mb_substr>`_ を参照してください。
 
-******************
-Standard Functions
-******************
+********
+標準関数
+********
 
-This set of compatibility functions offers support for a few
-standard functions in PHP that otherwise require a newer PHP version.
+この互換関数のセットは、本来新しい
+PHP バージョンを必要とする PHP 標準関数のいくらかをサポートします。
 
-Dependencies
-============
+依存関係
+========
 
-- None
+- なし
 
-Function reference
-==================
+関数リファレンス
+================
 
 .. php:function:: array_column(array $array, $column_key[, $index_key = NULL])
 
-	:param	array	$array: Array to fetch results from
-	:param	mixed	$column_key: Key of the column to return values from
-	:param	mixed	$index_key: Key to use for the returned values
-	:returns:	An array of values representing a single column from the input array
+	:param	array	$array: 値を取り出したい配列
+	:param	mixed	$column_key: 返したいカラムのキー
+	:param	mixed	$index_key: 返す配列のキーに使うカラム
+	:returns:	入力配列から抽出した単独のカラムの配列
 	:rtype:	array
 
-	For more information, please refer to the `PHP manual for
-	array_column() <http://php.net/array_column>`_.
+	詳しくは
+	`array_column() の PHP マニュアル <http://php.net/array_column>`_ を参照してください。
 
 .. php:function:: array_replace(array $array1[, ...])
 
-	:param	array	$array1: Array in which to replace elements
-	:param	array	...: Array (or multiple ones) from which to extract elements
-	:returns:	Modified array
+	:param	array	$array1: 要素を置き換えたい配列
+	:param	array	...: 置き換える配列 (または複数のそれ)
+	:returns:	編集された配列
 	:rtype:	array
 
-	For more information, please refer to the `PHP manual for
-	array_replace() <http://php.net/array_replace>`_.
+	詳しくは
+	`array_replace() の PHP マニュアル <http://php.net/array_replace>`_ を参照してください。
 
 .. php:function:: array_replace_recursive(array $array1[, ...])
 
-	:param	array	$array1: Array in which to replace elements
-	:param	array	...: Array (or multiple ones) from which to extract elements
-	:returns:	Modified array
+	:param	array	$array1: 要素を置き換えたい配列
+	:param	array	...: 引き抜きたい要素を持つ配列 (または複数のそれ)
+	:returns:	編集された配列
 	:rtype:	array
 
-	For more information, please refer to the `PHP manual for
-	array_replace_recursive() <http://php.net/array_replace_recursive>`_.
+	詳しくは
+	`array_replace_recursive() の PHP マニュアル <http://php.net/array_replace_recursive>`_ を参照してください。
 
-	.. important:: Only PHP's native function can detect endless recursion.
-		Unless you are running PHP 5.3+, be careful with references!
+	.. important:: PHP のネイティブ関数だけが無限再帰を検出することができます。
+		PHP 5.3 以上でないならば、参照に注意してください！
 
 .. php:function:: hex2bin($data)
 
-	:param	array	$data: Hexadecimal representation of data
-	:returns:	Binary representation of the given data
+	:param	array	$data: 十六進表現のデータ
+	:returns:	バイナリ表現にしたデータ
 	:rtype:	string
 
-	For more information, please refer to the `PHP manual for hex2bin()
-	<http://php.net/hex2bin>`_.
+	詳しくは `hex2bin() の PHP マニュアル
+	<http://php.net/hex2bin>`_ を参照してください。
 
 .. php:function:: quoted_printable_encode($str)
 
-	:param	string	$str: Input string
-	:returns:	8bit-encoded string
+	:param	string	$str: 入力文字列
+	:returns:	8 ビットエンコードされた文字列
 	:rtype:	string
 
-	For more information, please refer to the `PHP manual for
-	quoted_printable_encode() <http://php.net/quoted_printable_encode>`_.
+	詳しくは
+	`quoted_printable_encode() の PHP マニュアル <http://php.net/quoted_printable_encode>`_ を参照してください。

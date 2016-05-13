@@ -55,8 +55,8 @@ PHP 文書の PHP 閉じタグ **?>** は PHP パーサにとってオプショ�
 空白ページを引き起こす可能性があります。このため、すべての PHP ファイルは PHP 閉じタグを　省　略　し　な　け　れ　ば　な　ら　ず　、
 代わりに単一の空行で終了します。
 
-ファイル命名
-============
+ファイルの命名
+==============
 
 クラスファイルは Ucfirst のように命名しなければならず、その他のファイル名
 (設定、ビュー、一般的なスクリプトなど) はすべて小文字にするべきです。
@@ -84,8 +84,8 @@ PHP 文書の PHP 閉じタグ **?>** は PHP パーサにとってオプショ�
 たとえば、 `Myclass` という名前のクラスがあるなら、そのファイル名は
 **Myclass.php** でなければなりません。
 
-クラスとメソッドのネーミング
-============================
+クラスとメソッドの命名
+======================
 
 クラス名は常に大文字で開始するべきです。複数単語は
 アンダースコアで区切られるべきで、キャメル記法ではありません。
@@ -212,102 +212,102 @@ IDE によってピックアップできるようなります::
 
 	$parts = $this->foo($parts);
 
-Constants
-=========
+定数
+====
 
-Constants follow the same guidelines as do variables, except constants
-should always be fully uppercase. *Always use CodeIgniter constants when
-appropriate, i.e. SLASH, LD, RD, PATH_CACHE, etc.*
+定数は変数と同じガイドラインに従います、
+ただし定数は常にすべて大文字にすべきです。 *CodeIgniter の定数、すなわち
+SLASH 、 LD 、 RD 、 PATH_CACHE などが割り当てられている場合は常に使用してください。*
 
-**INCORRECT**::
+**誤**::
 
-	myConstant	// missing underscore separator and not fully uppercase
-	N		// no single-letter constants
-	S_C_VER		// not descriptive
-	$str = str_replace('{foo}', 'bar', $str);	// should use LD and RD constants
+	myConstant	// アンダースコア区切りがなく、すべてを大文字にはしていません
+	N		// 1 文字定数はだめです
+	S_C_VER		// 意味が伝わりません
+	$str = str_replace('{foo}', 'bar', $str);	// LD 定数と RD 定数を使うべきです
 
-**CORRECT**::
+**正**::
 
 	MY_CONSTANT
 	NEWLINE
 	SUPER_CLASS_VERSION
 	$str = str_replace(LD.'foo'.RD, 'bar', $str);
 
-TRUE, FALSE, and NULL
-=====================
+TRUE 、 FALSE および NULL
+=========================
 
-**TRUE**, **FALSE**, and **NULL** keywords should always be fully
-uppercase.
+**TRUE** 、 **FALSE** および **NULL** キーワードは常にすべて
+大文字にすべきです。
 
-**INCORRECT**::
+**誤**::
 
 	if ($foo == true)
 	$bar = false;
 	function foo($bar = null)
 
-**CORRECT**::
+**正**::
 
 	if ($foo == TRUE)
 	$bar = FALSE;
 	function foo($bar = NULL)
 
-Logical Operators
-=================
+論理演算子
+==========
 
-Use of the ``||`` "or" comparison operator is discouraged, as its clarity
-on some output devices is low (looking like the number 11, for instance).
-``&&`` is preferred over ``AND`` but either are acceptable, and a space should
-always precede and follow ``!``.
+``||`` 「論理和」比較演算子の使用はやめましょう。いくつかの出力デバイス上で不明確だからです
+(例として、数字の 11 のように見えます) 。
+``&&`` は ``AND`` よりも好ましいですが、どちらとも許容されます。
+``!`` の前後には空白文字をいれるべきです。
 
-**INCORRECT**::
+**誤**::
 
 	if ($foo || $bar)
-	if ($foo AND $bar)  // okay but not recommended for common syntax highlighting applications
+	if ($foo AND $bar)  // 問題ありませんが推奨されません、一般的なシンタックスハイライトアプリのためです
 	if (!$foo)
 	if (! is_array($foo))
 
-**CORRECT**::
+**正**::
 
 	if ($foo OR $bar)
-	if ($foo && $bar) // recommended
+	if ($foo && $bar) // 推奨です
 	if ( ! $foo)
 	if ( ! is_array($foo))
 	
 
-Comparing Return Values and Typecasting
-=======================================
+返り値の比較と型キャスト
+========================
 
-Some PHP functions return FALSE on failure, but may also have a valid
-return value of "" or 0, which would evaluate to FALSE in loose
-comparisons. Be explicit by comparing the variable type when using these
-return values in conditionals to ensure the return value is indeed what
-you expect, and not a value that has an equivalent loose-type
-evaluation.
+いくつかの PHP 関数は失敗した場合に FALSE を返しますが、正当な戻り値として
+"" または 0 を返します。これらは緩やかな比較で FALSE
+と評価されます。条件式においてはそれらの返り値を使用する際、変数型の比較によって明確にします。
+返り値が確かに期待するものであることを確認するためです。
+そして緩やかな型比較評価において等しくなる値によっては
+比較しません。
 
-Use the same stringency in returning and checking your own variables.
-Use **===** and **!==** as necessary.
+あなた独自の変数を返す際と確認する際には、同じ厳格さを用いてください。
+必要に応じて **===** と **!==** を使用してください。
 
-**INCORRECT**::
+**誤**::
 
-	// If 'foo' is at the beginning of the string, strpos will return a 0,
-	// resulting in this conditional evaluating as TRUE
+	// もし 'foo' が文字列の先頭にあれば、 strpos は 0 を返します。
+	// この条件式の評価結果は TRUE となります。
 	if (strpos($str, 'foo') == FALSE)
 
-**CORRECT**::
+**正**::
 
 	if (strpos($str, 'foo') === FALSE)
 
-**INCORRECT**::
+**誤**::
 
 	function build_string($str = "")
 	{
-		if ($str == "")	// uh-oh!  What if FALSE or the integer 0 is passed as an argument?
+		if ($str == "")	// おおっと！　引数に FALSE や 整数値 0 が渡されたらどうなりますか？
 		{
 
 		}
 	}
 
-**CORRECT**::
+**正**::
 
 	function build_string($str = "")
 	{
@@ -318,65 +318,65 @@ Use **===** and **!==** as necessary.
 	}
 
 
-See also information regarding `typecasting
-<http://php.net/manual/en/language.types.type-juggling.php#language.types.typecasting>`_,
-which can be quite useful. Typecasting has a slightly different effect
-which may be desirable. When casting a variable as a string, for
-instance, NULL and boolean FALSE variables become empty strings, 0 (and
-other numbers) become strings of digits, and boolean TRUE becomes "1"::
+`型キャスト
+<http://php.net/manual/en/language.types.type-juggling.php#language.types.typecasting>`_ に関する情報も参照してください。
+非常に便利です。型キャストには微妙に異なる効果があり、
+それは望ましいものでしょう。文字列として変数をキャストすると、例として、
+NULL と真偽値 FALSE は空文字列となり、 0 (および
+他の数値) は 10 進数の文字列となり、真偽値 TRUE は「 1 」になります::
 
-	$str = (string) $str; // cast $str as a string
+	$str = (string) $str; // $str を文字列としてキャストします
 
-Debugging Code
+デバッグコード
 ==============
 
-Do not leave debugging code in your submissions, even when commented out.
-Things such as ``var_dump()``, ``print_r()``, ``die()``/``exit()`` should not be included
-in your code unless it serves a specific purpose other than debugging.
+あなたの成果物にデバッグコードを放置しないでください、たとえコメントアウトしてあってもです。
+``var_dump()`` 、 ``print_r()`` 、 ``die()``/``exit()`` のようなものはコードに含めないべきです、
+デバッグ以外の特定の目的を果たすわけでない限りは。
 
-Whitespace in Files
-===================
+ファイル内の空白
+================
 
-No whitespace can precede the opening PHP tag or follow the closing PHP
-tag. Output is buffered, so whitespace in your files can cause output to
-begin before CodeIgniter outputs its content, leading to errors and an
-inability for CodeIgniter to send proper headers.
+PHP 開始タグの前、もしくは PHP 閉じタグのうしろの空白文字は禁止です。
+出力はバッファリングされているので、ファイル内の空白文字は
+CodeIgniter がその内容を出力する前に出力を開始する原因となりえるため、エラーにつながり、
+CodeIgniter が適切なヘッダを送信することができなくなることにもなりえます。
 
-Compatibility
-=============
+互換性
+======
 
-CodeIgniter recommends PHP 5.5 or newer to be used, but it should be
-compatible with PHP 5.2.4. Your code must either be compatible with this
-requirement, provide a suitable fallback, or be an optional feature that
-dies quietly without affecting a user's application.
+CodeIgniter では PHP 5.5 以降の使用を推奨していますが、
+PHP 5.2.4 と互換性を保つべきです。あなたのコードは次のいずれかでなければなりません。
+この要件と互換性を保つか、適切なフォールバックを提供するか、
+もしくはユーザーのアプリケーションに影響を与えることなく静かに消え去るオプション機能を持つかです。
 
-Additionally, do not use PHP functions that require non-default libraries
-to be installed unless your code contains an alternative method when the
-function is not available.
+加えて、デフォルト以外のライブラリをインストールする必要がある PHP
+関数を使用してはいけません。
+もしくはその関数が使えない場合の代替手段をそのコードに持たせてください。
 
-One File per Class
-==================
+クラスごとにひとつのファイル
+============================
 
-Use separate files for each class, unless the classes are *closely related*.
-An example of a CodeIgniter file that contains multiple classes is the 
-Xmlrpc library file.
+クラスが *密接に関連している* 場合を除き、各クラスには別々のファイルを使用してください。
+複数のクラスが含まれている CodeIgniter ファイルの例は、
+Xmlrpc ライブラリファイルです。
 
-Whitespace
-==========
+空白文字
+========
 
-Use tabs for whitespace in your code, not spaces. This may seem like a
-small thing, but using tabs instead of whitespace allows the developer
-looking at your code to have indentation at levels that they prefer and
-customize in whatever application they use. And as a side benefit, it
-results in (slightly) more compact files, storing one tab character
-versus, say, four space characters.
+コード内では、空白文字にはタブを使用してください。スペースではありません。
+これは小さなことのように思えますが、しかしスペースのかわりにタブを使用することで、
+あなたのコードを読む開発者は彼らの好みのレベルでインデントすることができ、
+彼らがアプリケーションに何を使っていようともカスタマイズできます。
+そして副次的な利点として、結果的に (少しだけですが) よりコンパクトなファイルになります。
+たとえばスペース文字 4 つの保存に対し、タブなら 1 文字です。
 
-Line Breaks
-===========
+改行
+====
 
-Files must be saved with Unix line breaks. This is more of an issue for
-developers who work in Windows, but in any case ensure that your text
-editor is setup to save files with Unix line breaks.
+ファイルは Unix の改行で保存しなければなりません。これは
+Windows で作業する開発者にとって余計な問題ですが、それでも何であれテキストエディタが
+Unix の改行でファイルを保存するように設定されていることを確認してください。
 
 Code Indenting
 ==============

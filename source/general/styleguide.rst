@@ -1,67 +1,67 @@
-###############
-PHP Style Guide
-###############
+##################
+PHP スタイルガイド
+##################
 
 
-The following page describes the coding styles adhered to when
-contributing to the development of CodeIgniter. There is no requirement
-to use these styles in your own CodeIgniter application, though they
-are recommended.
+このページでは CodeIgniter の開発に貢献する際に守っている
+コーディングスタイルを記述します。あなた自身の CodeIgniter
+アプリケーションではこのスタイルを使用する必要はありませんが、
+推奨はいたします。
 
 .. contents:: Table of Contents
 
-File Format
-===========
+ファイル形式
+============
 
-Files should be saved with Unicode (UTF-8) encoding. The BOM should
-*not* be used. Unlike UTF-16 and UTF-32, there's no byte order to
-indicate in a UTF-8 encoded file, and the BOM can have a negative side
-effect in PHP of sending output, preventing the application from being
-able to set its own headers. Unix line endings should be used (LF).
+ファイルは Unicode (UTF-8) エンコーディングで保存すべきです。BOM
+は使用しては *なりません* 。UTF-16 や UTF-32 とは違い、
+UTF-8 でエンコードされたファイルには示すべきバイトオーダーはなく、 BOM は
+PHP の出力に悪影響があり、アプリケーションから独自のヘッダーを設定できないようにしてしまいます。
+Unix の行末は (LF) を使用すべきです。
 
-Here is how to apply these settings in some of the more common text
-editors. Instructions for your text editor may vary; check your text
-editor's documentation.
+ここではよく使われるテキストエディタのいくつかで、
+これらの設定を適用する方法を示します。テキストエディタの手順は変更される場合があります。
+テキストエディタのマニュアルを確認してください。
 
 TextMate
 ''''''''
 
-#. Open the Application Preferences
-#. Click Advanced, and then the "Saving" tab
-#. In "File Encoding", select "UTF-8 (recommended)"
-#. In "Line Endings", select "LF (recommended)"
-#. *Optional:* Check "Use for existing files as well" if you wish to
-   modify the line endings of files you open to your new preference.
+#. アプリケーションの Preferences を開きます
+#. Advanced をクリックし、「 Saving 」タブを選んでください
+#. 「 File Encoding 」で「 UTF-8 (recommended) 」を選択してください
+#. 「 Line Endings 」で「 LF (recommended) 」を選択してください
+#. *オプション:* 新しい設定で開いたファイルを変更したい場合、「 Use for existing files as well 」に
+   チェックしてください。
 
 BBEdit
 ''''''
 
-#. Open the Application Preferences
-#. Select "Text Encodings" on the left.
-#. In "Default text encoding for new documents", select "Unicode (UTF-8,
-   no BOM)"
-#. *Optional:* In "If file's encoding can't be guessed, use", select
-   "Unicode (UTF-8, no BOM)"
-#. Select "Text Files" on the left.
-#. In "Default line breaks", select "Mac OS X and Unix (LF)"
+#. アプリケーションの Preferences を開きます
+#. 左側の「 Text Encodings 」を選択します。
+#. 「 Default text encoding for new documents 」で「 Unicode (UTF-8,
+   no BOM) 」を選択してください
+#. *オプション:* 「 If file’s encoding can’t be guessed, use 」の
+   「 Unicode (UTF-8, no BOM) 」を選んでください
+#. 左側の「 Text Files 」を選択します。
+#. 「 Default line breaks 」で「 Mac OS X and Unix (LF) 」を選択してください
 
-PHP Closing Tag
-===============
+PHP の閉じタグ
+==============
 
-The PHP closing tag on a PHP document **?>** is optional to the PHP
-parser. However, if used, any whitespace following the closing tag,
-whether introduced by the developer, user, or an FTP application, can
-cause unwanted output, PHP errors, or if the latter are suppressed,
-blank pages. For this reason, all PHP files MUST OMIT the PHP closing
-tag and end with a single empty line instead.
+PHP 文書の PHP 閉じタグ **?>** は PHP パーサにとってオプションです。
+しかしながら、使用すると、閉じタグのうしろにあるいくつかの空白文字が、
+開発者が入れたものであれ、ユーザによるものであれ、または FTP アプリケーションによるものであれ、
+不要な出力、 PHP エラー、または後者が抑制されている場合、
+空白ページを引き起こす可能性があります。このため、すべての PHP ファイルは PHP 閉じタグを　省　略　し　な　け　れ　ば　な　ら　ず　、
+代わりに単一の空行で終了します。
 
-File Naming
-===========
+ファイル命名
+============
 
-Class files must be named in a Ucfirst-like manner, while any other file name
-(configurations, views, generic scripts, etc.) should be in all lowercase.
+クラスファイルは Ucfirst のように命名しなければならず、その他のファイル名
+(設定、ビュー、一般的なスクリプトなど) はすべて小文字にするべきです。
 
-**INCORRECT**::
+**誤**::
 
 	somelibrary.php
 	someLibrary.php
@@ -72,7 +72,7 @@ Class files must be named in a Ucfirst-like manner, while any other file name
 	Application_Config.php
 	applicationConfig.php
 
-**CORRECT**::
+**正**::
 
 	Somelibrary.php
 	Some_library.php
@@ -80,22 +80,22 @@ Class files must be named in a Ucfirst-like manner, while any other file name
 	applicationconfig.php
 	application_config.php
 
-Furthermore, class file names should match the name of the class itself.
-For example, if you have a class named `Myclass`, then its filename must
-be **Myclass.php**.
+また、クラスファイル名はクラス自体の名前と一致させるべきです。
+たとえば、 `Myclass` という名前のクラスがあるなら、そのファイル名は
+**Myclass.php** でなければなりません。
 
-Class and Method Naming
-=======================
+クラスとメソッドのネーミング
+============================
 
-Class names should always start with an uppercase letter. Multiple words
-should be separated with an underscore, and not CamelCased.
+クラス名は常に大文字で開始するべきです。複数単語は
+アンダースコアで区切られるべきで、キャメル記法ではありません。
 
-**INCORRECT**::
+**誤**::
 
 	class superclass
 	class SuperClass
 
-**CORRECT**::
+**正**::
 
 	class Super_class
 
@@ -109,41 +109,41 @@ should be separated with an underscore, and not CamelCased.
 		}
 	}
 
-Class methods should be entirely lowercased and named to clearly
-indicate their function, preferably including a verb. Try to avoid
-overly long and verbose names. Multiple words should be separated
-with an underscore.
+クラスメソッドは完全に小文字であるべきで、
+その機能を明確に示すように名前を付けるべきで、なるべく動詞を含めます。
+過度に長く冗長な名前は避けるようにしてください。
+複数単語はアンダースコアで区切るべきです。
 
-**INCORRECT**::
+**誤**::
 
-	function fileproperties()		// not descriptive and needs underscore separator
-	function fileProperties()		// not descriptive and uses CamelCase
-	function getfileproperties()		// Better!  But still missing underscore separator
-	function getFileProperties()		// uses CamelCase
-	function get_the_file_properties_from_the_file()	// wordy
+	function fileproperties()		// 言い表せておらず、アンダースコアで区切ることが求められます
+	function fileProperties()		// 言い表せておらず、 キャメルケースを使用しています
+	function getfileproperties()		// 良くなりました！　でもまだアンダースコア区切りが抜けています
+	function getFileProperties()		// キャメルケースを使っています
+	function get_the_file_properties_from_the_file()	// くどいです
 
-**CORRECT**::
+**正**::
 
-	function get_file_properties()	// descriptive, underscore separator, and all lowercase letters
+	function get_file_properties()	// よく言い表せており、アンダースコア区切りで、すべて小文字です
 
-Variable Names
-==============
+変数名
+======
 
-The guidelines for variable naming are very similar to those used for
-class methods. Variables should contain only lowercase letters,
-use underscore separators, and be reasonably named to indicate their
-purpose and contents. Very short, non-word variables should only be used
-as iterators in for() loops.
+変数命名のガイドラインは、クラスメソッドに使用されるものと非常に類似しています。
+変数は小文字のみで、アンダースコア区切り文字を使用し、
+適切にその目的や内容を示すよう名前をつけるべきです。
+非常に短い、単語になっていない変数は
+for() ループの中でイテレータとしてのみを使用されるべきです。
 
-**INCORRECT**::
+**誤**::
 
-	$j = 'foo';		// single letter variables should only be used in for() loops
-	$Str			// contains uppercase letters
-	$bufferedText		// uses CamelCasing, and could be shortened without losing semantic meaning
-	$groupid		// multiple words, needs underscore separator
-	$name_of_last_city_used	// too long
+	$j = 'foo';		// 1 文字変数は for() ループの中でだけ使用されるべきです
+	$Str			// 大文字を含んでいます
+	$bufferedText		// キャメルケースを使っています。また、意味の欠落なく短くできます。
+	$groupid		// 複数単語です、アンダースコア区切りが求められます
+	$name_of_last_city_used	// 長いです
 
-**CORRECT**::
+**正**::
 
 	for ($j = 0; $j < 10; $j++)
 	$str
@@ -151,26 +151,26 @@ as iterators in for() loops.
 	$group_id
 	$last_city
 
-Commenting
-==========
+コメント
+========
 
-In general, code should be commented prolifically. It not only helps
-describe the flow and intent of the code for less experienced
-programmers, but can prove invaluable when returning to your own code
-months down the line. There is not a required format for comments, but
-the following are recommended.
+一般的に、コードには豊富にコメントするべきです。
+経験の浅いプログラマにコードの流れや意図を説明するのに役立つだけでなく、
+数か月先の将来においてあなた自身のコードに立ち戻ったときに
+非常に貴重な指針となりえます。コメントに要求されるフォーマットはありませんが、
+以下のものが推奨されます。
 
 `DocBlock <http://manual.phpdoc.org/HTMLSmartyConverter/HandS/phpDocumentor/tutorial_phpDocumentor.howto.pkg.html#basics.docblock>`_
-style comments preceding class, method, and property declarations so they can be
-picked up by IDEs::
+形式はクラス、メソッド、およびプロパティの宣言の前にコメントします。それにより
+IDE によってピックアップできるようなります::
 
 	/**
-	 * Super Class
+	 * スーパークラス
 	 *
-	 * @package	Package Name
-	 * @subpackage	Subpackage
-	 * @category	Category
-	 * @author	Author Name
+	 * @package	パッケージ名
+	 * @subpackage	サブパッケージ
+	 * @category	カテゴリ
+	 * @author	作者
 	 * @link	http://example.com
 	 */
 	class Super_class {
@@ -178,9 +178,9 @@ picked up by IDEs::
 ::
 
 	/**
-	 * Encodes string for use in XML
+	 * XML 向けに文字列をエンコードする
 	 *
-	 * @param	string	$str	Input string
+	 * @param	string	$str	入力文字列
 	 * @return	string
 	 */
 	function xml_encode($str)
@@ -188,25 +188,25 @@ picked up by IDEs::
 ::
 
 	/**
-	 * Data for class manipulation
+	 * クラス操作のデータ
 	 *
 	 * @var	array
 	 */
 	public $data = array();
 
-Use single line comments within code, leaving a blank line between large
-comment blocks and code.
+コード内では一行コメントを使用し、
+大きなコメントブロックとコードの間には空白行を残してください。
 
 ::
 
-	// break up the string by newlines
+	// 改行ごとに分割する
 	$parts = explode("\n", $str);
 
-	// A longer comment that needs to give greater detail on what is
-	// occurring and why can use multiple single-line comments.  Try to
-	// keep the width reasonable, around 70 characters is the easiest to
-	// read.  Don't hesitate to link to permanent external resources
-	// that may provide greater detail:
+	// 何が起きるか、なぜなのかについてとても詳細に説明する必要のある
+	// 長いコメントは複数の一行コメントを使用できます。
+	// 幅は意味のあるものとし、一番読みやすい 70 文字前後になるよう
+	// 努めてください。永続的な外部リソースへリンクするのを躊躇しないでください。
+	// それはより優れた説明をしてくれるでしょう。
 	//
 	// http://example.com/information_about_something/in_particular/
 

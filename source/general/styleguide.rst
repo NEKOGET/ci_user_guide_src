@@ -277,7 +277,7 @@ TRUE 、 FALSE および NULL
 返り値の比較と型キャスト
 ========================
 
-いくつかの PHP 関数は失敗した場合に FALSE を返しますが、正当な戻り値として
+いくつかの PHP 関数は失敗した場合に FALSE を返しますが、正当な返り値として
 "" または 0 を返します。これらは緩やかな比較で FALSE
 と評価されます。条件式においてはそれらの返り値を使用する際、変数型の比較によって明確にします。
 返り値が確かに期待するものであることを確認するためです。
@@ -319,7 +319,7 @@ TRUE 、 FALSE および NULL
 
 
 `型キャスト
-<http://php.net/manual/en/language.types.type-juggling.php#language.types.typecasting>`_ に関する情報も参照してください。
+<http://php.net/manual/ja/language.types.type-juggling.php#language.types.typecasting>`_ に関する情報も参照してください。
 非常に便利です。型キャストには微妙に異なる効果があり、
 それは望ましいものでしょう。文字列として変数をキャストすると、例として、
 NULL と真偽値 FALSE は空文字列となり、 0 (および
@@ -348,7 +348,7 @@ CodeIgniter が適切なヘッダを送信することができなくなるこ�
 CodeIgniter では PHP 5.5 以降の使用を推奨していますが、
 PHP 5.2.4 と互換性を保つべきです。あなたのコードは次のいずれかでなければなりません。
 この要件と互換性を保つか、適切なフォールバックを提供するか、
-もしくはユーザーのアプリケーションに影響を与えることなく静かに消え去るオプション機能を持つかです。
+もしくはユーザのアプリケーションに影響を与えることなく静かに消え去るオプション機能を持つかです。
 
 加えて、デフォルト以外のライブラリをインストールする必要がある PHP
 関数を使用してはいけません。
@@ -378,14 +378,14 @@ Xmlrpc ライブラリファイルです。
 Windows で作業する開発者にとって余計な問題ですが、それでも何であれテキストエディタが
 Unix の改行でファイルを保存するように設定されていることを確認してください。
 
-Code Indenting
-==============
+コードのインデント
+==================
 
-Use Allman style indenting. With the exception of Class declarations,
-braces are always placed on a line by themselves, and indented at the
-same level as the control statement that "owns" them.
+オールマンスタイルのインデントを使用してください。
+クラス宣言を除き中括弧は常にそれ用の行に配置され、
+それらを「所有」する制御文と同じレベルにインデントされます。
 
-**INCORRECT**::
+**誤**::
 
 	function foo($bar) {
 		// ...
@@ -416,7 +416,7 @@ same level as the control statement that "owns" them.
 		// ...
 	}
 
-**CORRECT**::
+**正**::
 
 	function foo($bar)
 	{
@@ -454,170 +454,170 @@ same level as the control statement that "owns" them.
 		// ...
 	}
 
-Bracket and Parenthetic Spacing
-===============================
+角括弧と括弧内の空白文字
+========================
 
-In general, parenthesis and brackets should not use any additional
-spaces. The exception is that a space should always follow PHP control
-structures that accept arguments with parenthesis (declare, do-while,
-elseif, for, foreach, if, switch, while), to help distinguish them from
-functions and increase readability.
+原則として、丸括弧と角括弧にはスペースを使用しないべきです。
+例外は、丸括弧による引数を受けつける PHP の制御構造
+(宣言、 do-while 、
+elseif 、 for 、 foreach 、 if 、 switch 、 while) のうしろにはスペースを入れるべきです。
+それらと関数を区別する補助とし、読みやすさを向上させるためです。
 
-**INCORRECT**::
+**誤**::
 
 	$arr[ $foo ] = 'foo';
 
-**CORRECT**::
+**正**::
 
-	$arr[$foo] = 'foo'; // no spaces around array keys
+	$arr[$foo] = 'foo'; // 配列のキーの周囲にはスペースを入れません
 
-**INCORRECT**::
+**誤**::
 
 	function foo ( $bar )
 	{
 
 	}
 
-**CORRECT**::
+**正**::
 
-	function foo($bar) // no spaces around parenthesis in function declarations
+	function foo($bar) // 関数宣言の丸括弧の周囲にはスペースを入れません
 	{
 
 	}
 
-**INCORRECT**::
+**誤**::
 
 	foreach( $query->result() as $row )
 
-**CORRECT**::
+**正**::
 
-	foreach ($query->result() as $row) // single space following PHP control structures, but not in interior parenthesis
+	foreach ($query->result() as $row) // PHP 制御構造のうしろにはスペース 1 つを入れます、しかし丸括弧の内側には入れません
 
-Localized Text
-==============
+ローカライズされたテキスト
+==========================
 
-CodeIgniter libraries should take advantage of corresponding language files
-whenever possible.
+CodeIgniter のライブラリは可能な限り、
+対応する言語ファイルを利用するべきです。
 
-**INCORRECT**::
+**誤**::
 
 	return "Invalid Selection";
 
-**CORRECT**::
+**正**::
 
 	return $this->lang->line('invalid_selection');
 
-Private Methods and Variables
-=============================
+プライベートメソッドと変数
+==========================
 
-Methods and variables that are only accessed internally,
-such as utility and helper functions that your public methods use for
-code abstraction, should be prefixed with an underscore.
+内部からのみアクセスできるメソッドと変数、
+コードの抽象化のためにパブリックメソッドが使用するユーティリティやヘルパー関数などは、
+アンダースコアをプレフィックスにつけるべきです。
 
 ::
 
 	public function convert_text()
 	private function _convert_text()
 
-PHP Errors
-==========
+PHPのエラー
+===========
 
-Code must run error free and not rely on warnings and notices to be
-hidden to meet this requirement. For instance, never access a variable
-that you did not set yourself (such as ``$_POST`` array keys) without first
-checking to see that it ``isset()``.
+コードはエラーなく実行されなければならず、この要件を満たすために warning や notice
+を非表示にしてはなりません。例として、自分でセットしていない変数にはまず ``isset()``
+で確認するまでは決してアクセスしません (``$_POST``
+配列のキーの類です) 。
 
-Make sure that your dev environment has error reporting enabled
-for ALL users, and that display_errors is enabled in the PHP
-environment. You can check this setting with::
+あなたの dev 環境で　す　べ　て　のユーザーに対してエラー報告が有効になっていることを確認してください。
+また PHP 環境で display_errors が有効になっていることを確認してください。
+この設定は次のもので確認することができます::
 
 	if (ini_get('display_errors') == 1)
 	{
 		exit "Enabled";
 	}
 
-On some servers where *display_errors* is disabled, and you do not have
-the ability to change this in the php.ini, you can often enable it with::
+いくつかのサーバでは *display_errors* は無効になっており、あなたが
+php.ini でこれを変更することができない場合は、だいたいの場合次の方法で有効にすることができます::
 
 	ini_set('display_errors', 1);
 
-.. note:: Setting the `display_errors
+.. note:: `display_errors
 	<http://php.net/manual/en/errorfunc.configuration.php#ini.display-errors>`_
-	setting with ``ini_set()`` at runtime is not identical to having
-	it enabled in the PHP environment. Namely, it will not have any
-	effect if the script has fatal errors.
+	の ``ini_set()`` による実行時設定は
+	PHP 環境で有効にした場合と同一ではありません。すなわち、スクリプトに
+	fatal error がある場合には何の意味もありません。
 
-Short Open Tags
-===============
+短い形式の開始タグ
+==================
 
-Always use full PHP opening tags, in case a server does not have
-*short_open_tag* enabled.
+PHP の開始タグには常に完全なものを使用します。
+*short_open_tag* が有効になっていない場合に備えるためです。
 
-**INCORRECT**::
+**誤**::
 
 	<? echo $foo; ?>
 
 	<?=$foo?>
 
-**CORRECT**::
+**正**::
 
 	<?php echo $foo; ?>
 
-.. note:: PHP 5.4 will always have the **<?=** tag available.
+.. note:: PHP 5.4 では常に **<?=** は有効です。
 
-One Statement Per Line
-======================
+1 行につき 1 つのステートメント
+===============================
 
-Never combine statements on one line.
+1 行の中に複数のステートメントは入れません。
 
-**INCORRECT**::
+**誤**::
 
 	$foo = 'this'; $bar = 'that'; $bat = str_replace($foo, $bar, $bag);
 
-**CORRECT**::
+**正**::
 
 	$foo = 'this';
 	$bar = 'that';
 	$bat = str_replace($foo, $bar, $bag);
 
-Strings
-=======
+文字列
+======
 
-Always use single quoted strings unless you need variables parsed, and
-in cases where you do need variables parsed, use braces to prevent
-greedy token parsing. You may also use double-quoted strings if the
-string contains single quotes, so you do not have to use escape
-characters.
+変数を展開する必要がない限り、常にシングルクォートを使用してください。
+もし変数を展開する必要があっても、トークンを過剰に解釈しすぎないように
+中括弧を使用してください。
+また、文字列にシングルクォートが含まれている場合はダブルクォート文字列を使ってもよく、
+エスケープ文字を使用する必要はありません。
 
-**INCORRECT**::
+**誤**::
 
-	"My String"					// no variable parsing, so no use for double quotes
-	"My string $foo"				// needs braces
-	'SELECT foo FROM bar WHERE baz = \'bag\''	// ugly
+	"My String"					// 変数展開はありませんので、ダブルクォートは使わないでください
+	"My string $foo"				// 中括弧が必要です
+	'SELECT foo FROM bar WHERE baz = \'bag\''	// 読みにくいです
 
-**CORRECT**::
+**正**::
 
 	'My String'
 	"My string {$foo}"
 	"SELECT foo FROM bar WHERE baz = 'bag'"
 
-SQL Queries
-===========
+SQL クエリ
+==========
 
-SQL keywords are always capitalized: SELECT, INSERT, UPDATE, WHERE,
-AS, JOIN, ON, IN, etc.
+SQL キーワード常に大文字です: SELECT 、 INSERT 、 UPDATE 、 WHERE 、
+AS 、 JOIN 、 ON 、 IN 、 など。
 
-Break up long queries into multiple lines for legibility, preferably
-breaking for each clause.
+長いクエリは複数行に分割してください、読みやすくするためです。
+文節ごとに分割するのが好ましいです。
 
-**INCORRECT**::
+**誤**::
 
-	// keywords are lowercase and query is too long for
-	// a single line (... indicates continuation of line)
+	// キーワードが小文字になっており、 1 行に納めるにはクエリが長すぎます
+	// (... は行が続くことを表しています)
 	$query = $this->db->query("select foo, bar, baz, foofoo, foobar as raboof, foobaz from exp_pre_email_addresses
 	...where foo != 'oof' and baz != 'zab' order by foobaz limit 5, 100");
 
-**CORRECT**::
+**正**::
 
 	$query = $this->db->query("SELECT foo, bar, baz, foofoo, foobar AS raboof, foobaz
 					FROM exp_pre_email_addresses
@@ -626,11 +626,11 @@ breaking for each clause.
 					ORDER BY foobaz
 					LIMIT 5, 100");
 
-Default Function Arguments
-==========================
+関数の引数のデフォルト値
+========================
 
-Whenever appropriate, provide function argument defaults, which helps
-prevent PHP errors with mistaken calls and provides common fallback
-values which can save a few lines of code. Example::
+適切な場合はいつでも、関数の引数にはデフォルト値を提供してください。
+呼び出し間違えでの PHP エラーを防ぐことができますし、
+数行のコードを省力化するための共通のフォールバック値を提供できます。例::
 
 	function foo($bar = '', $baz = FALSE)

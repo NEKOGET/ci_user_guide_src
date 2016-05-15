@@ -1,6 +1,6 @@
-################
+######################
 タイポグラフィークラス
-################
+######################
 
 The Typography Class provides methods that help you format text.
 
@@ -11,12 +11,12 @@ The Typography Class provides methods that help you format text.
 
   <div class="custom-index container"></div>
 
-**************************
+******************************
 タイポグラフィークラスの使い方
-**************************
+******************************
 
 クラスの初期化
-======================
+==============
 
 Like most other classes in CodeIgniter, the Typography class is
 initialized in your controller using the ``$this->load->library()`` method::
@@ -27,9 +27,9 @@ Once loaded, the Typography library object will be available using::
 
 	$this->typography
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Typography
 

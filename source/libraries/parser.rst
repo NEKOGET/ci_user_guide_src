@@ -1,13 +1,13 @@
-#####################
+########################
 テンプレートパーサクラス
-#####################
+########################
 
 テンプレートパーサクラスを使うと、ビューファイルに含まれる
 擬似変数を解析できます。
 単一の擬似変数と擬似変数のペアを解析できます。
 
 テンプレートエンジンを一度も使ったことがないでしょうか？
-擬似変数とは次のようなものです:
+擬似変数とは次のようなものです::
 
 	<html>
 		<head>
@@ -29,10 +29,10 @@
 普通のテキストです。
 
 .. note:: ビューページで純粋なPHPを使う方が少し早いので、CodeIgniterでは、
-	　このクラスを必ずしも 必要としません。
-          しかし、PHPのコードで混乱してしまうデザイナーと一緒に仕事をして
-          いる場合、開発者の中には、テンプレートエンジンを使用したい人も
-          いると思います。
+	このクラスを必ずしも 必要としません。
+        しかし、PHPのコードで混乱してしまうデザイナーと一緒に仕事をして
+        いる場合、開発者の中には、テンプレートエンジンを使用したい人も
+        いると思います。
 
 .. important:: テンプレートパーサクラスは、本格的なテンプレート解析ソリューション
 	ではありません。 私達は、パフォーマンス最大化のために、これを非常にスマート
@@ -45,12 +45,12 @@
 
   <div class="custom-index container"></div>
 
-*******************************
+********************************
 テンプレートパーサクラスの使い方
-*******************************
+********************************
 
 クラスの初期化
-======================
+==============
 
 Like most other classes in CodeIgniter, the Parser class is initialized
 in your controller using the ``$this->load->library()`` method::
@@ -61,7 +61,7 @@ Once loaded, the Parser library object will be available using:
 $this->parser
 
 テンプレートを解析すること
-=================
+==========================
 
 You can use the ``parse()`` method to parse (or render) simple templates,
 like this::
@@ -152,7 +152,7 @@ method::
 	$this->parser->parse('blog_template', $data);
 
 使用メモ
-===========
+========
 
 If you include substitution parameters that are not referenced in your
 template, they are ignored::
@@ -216,7 +216,7 @@ used inside a variable pair, the results may not be as expected::
 	// Result: Hello, John Doe (Mr Mr )
 
 ビューフラグメント
-==============
+==================
 
 You do not have to use variable pairs to get the effect of iteration in
 your views. It is possible to use a view fragment for what would be inside
@@ -272,9 +272,9 @@ Result::
 		<li><a href="/second">Second Link</a></li>
 	</ul>
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Parser
 

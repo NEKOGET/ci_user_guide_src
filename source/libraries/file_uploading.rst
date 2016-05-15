@@ -1,6 +1,6 @@
-####################
+##########################
 ファイルアップロードクラス
-####################
+##########################
 
 CodeIgniter's File Uploading Class permits files to be uploaded. You can
 set various preferences, restricting the type and size of the files.
@@ -12,9 +12,9 @@ set various preferences, restricting the type and size of the files.
 
   <div class="custom-index container"></div>
 
-***********
+****
 手順
-***********
+****
 
 Uploading a file involves the following general process:
 
@@ -30,7 +30,7 @@ To demonstrate this process here is brief tutorial. Afterward you'll
 find reference information.
 
 アップロードフォームの作成
-========================
+==========================
 
 Using a text editor, create a form called upload_form.php. In it, place
 this code and save it to your **application/views/** directory::
@@ -63,7 +63,7 @@ so we can show error messages in the event the user does something
 wrong.
 
 成功ページ
-================
+==========
 
 Using a text editor, create a form called upload_success.php. In it,
 place this code and save it to your **application/views/** directory::
@@ -88,7 +88,7 @@ place this code and save it to your **application/views/** directory::
 	</html>
 
 コントローラ
-==============
+============
 
 Using a text editor, create a controller called Upload.php. In it, place
 this code and save it to your **application/controllers/** directory::
@@ -135,14 +135,14 @@ this code and save it to your **application/controllers/** directory::
 	?>
 
 アップロードディレクトリ
-====================
+========================
 
 You'll need a destination directory for your uploaded images. Create a
 directory at the root of your CodeIgniter installation called uploads
 and set its file permissions to 777.
 
 動かして試してみよう！
-=======
+======================
 
 To try your form, visit your site using a URL similar to this one::
 
@@ -152,12 +152,12 @@ You should see an upload form. Try uploading an image file (either a
 jpg, gif, or png). If the path in your controller is correct it should
 work.
 
-***************
+******************
 リファレンスガイド
-***************
+******************
 
 アップロードクラスの初期化
-=============================
+==========================
 
 Like most other classes in CodeIgniter, the Upload class is initialized
 in your controller using the ``$this->load->library()`` method::
@@ -168,7 +168,7 @@ Once the Upload class is loaded, the object will be available using:
 $this->upload
 
 オプションの設定
-===================
+================
 
 Similar to other libraries, you'll control what is allowed to be upload
 based on your preferences. In the controller you built above you set the
@@ -189,7 +189,7 @@ The above preferences should be fairly self-explanatory. Below is a
 table describing all available preferences.
 
 設定項目
-===========
+========
 
 The following preferences are available. The default value indicates
 what will be used if you do not specify that preference.
@@ -239,7 +239,7 @@ what will be used if you do not specify that preference.
 ============================ ================= ======================= ======================================================================
 
 設定ファイルに設定を記述する
-====================================
+============================
 
 If you prefer not to set preferences using the above method, you can
 instead put them into a config file. Simply create a new file called the
@@ -248,9 +248,9 @@ upload.php, add the $config array in that file. Then save the file in:
 need to use the ``$this->upload->initialize()`` method if you save your
 preferences in a config file.
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Upload
 

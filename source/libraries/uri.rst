@@ -1,6 +1,6 @@
-#########
+##########
 URI クラス
-#########
+##########
 
 The URI Class provides methods that help you retrieve information from
 your URI strings. If you use URI routing, you can also retrieve
@@ -16,9 +16,9 @@ information about the re-routed segments.
 
   <div class="custom-index container"></div>
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_URI
 

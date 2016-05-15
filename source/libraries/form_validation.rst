@@ -1,15 +1,15 @@
-###############
+############################
 フォームバリデーション(検証)
-###############
+############################
 
 CodeIgniter provides a comprehensive form validation and data prepping
 class that helps minimize the amount of code you'll write.
 
 .. contents:: Page Contents
 
-********
+****
 概要
-********
+****
 
 Before explaining CodeIgniter's approach to data validation, let's
 describe the ideal scenario:
@@ -41,9 +41,9 @@ messages, various control structures are usually placed within the form
 HTML. Form validation, while simple to create, is generally very messy
 and tedious to implement.
 
-************************
+**************
 チュートリアル
-************************
+**************
 
 What follows is a "hands on" tutorial for implementing CodeIgniters Form
 Validation.
@@ -60,7 +60,7 @@ Let's create those three things, using a member sign-up form as the
 example.
 
 入力フォーム
-========
+============
 
 Using a text editor, create a form called myform.php. In it, place this
 code and save it to your application/views/ folder::
@@ -95,7 +95,7 @@ code and save it to your application/views/ folder::
 	</html>
 
 成功ページ
-================
+==========
 
 Using a text editor, create a form called formsuccess.php. In it, place
 this code and save it to your application/views/ folder::
@@ -114,7 +114,7 @@ this code and save it to your application/views/ folder::
 	</html>
 
 コントローラ
-==============
+============
 
 Using a text editor, create a controller called Form.php. In it, place
 this code and save it to your application/controllers/ folder::
@@ -141,7 +141,7 @@ this code and save it to your application/controllers/ folder::
 	}
 
 動かしてみよう!
-=======
+===============
 
 To try your form, visit your site using a URL similar to this one::
 
@@ -156,7 +156,7 @@ only returns TRUE if it has successfully applied your rules without any
 of them failing.**
 
 解説
-===========
+====
 
 You'll notice several things about the above pages:
 
@@ -184,7 +184,7 @@ form or the success page.
 .. _setting-validation-rules:
 
 検証ルールを設定する
-========================
+====================
 
 CodeIgniter lets you set as many validation rules as you need for a
 given field, cascading them in order, and it even lets you prep and
@@ -286,7 +286,7 @@ you use this approach, you must name your array keys as indicated::
 	$this->form_validation->set_rules($config);
 
 ルールの連結(カスケード)
-===============
+========================
 
 CodeIgniter lets you pipe multiple rules together. Let's try it. Change
 your rules in the third parameter of rule setting method, like this::
@@ -320,7 +320,7 @@ rules available which you can read about in the validation reference.
 	$this->form_validation->set_rules('username', 'Username', array('required', 'min_length[5]'));
 
 データの整形
-=============
+============
 
 In addition to the validation method like the ones we used above, you
 can also prep your data in various ways. For example, you can set up
@@ -342,7 +342,7 @@ rule, like ``htmlspecialchars()``, ``trim()``, etc.**
 	original data will be shown in the form.
 
 フォームの再表示（データの引き継ぎ）
-======================
+====================================
 
 Thus far we have only been dealing with errors. It's time to repopulate
 the form field with the submitted data. CodeIgniter offers several
@@ -585,7 +585,7 @@ the name of the method (without the "callback\_" prefix)::
 .. _translating-field-names:
 
 フィールド名の変換
-=======================
+==================
 
 If you would like to store the "human" name you passed to the
 ``set_rules()`` method in a language file, and therefore make the name
@@ -612,7 +612,7 @@ language files.
 .. _changing-delimiters:
 
 エラーメッセージを囲む文字の変更
-=============================
+================================
 
 By default, the Form Validation class adds a paragraph tag (<p>) around
 each error message shown. You can either change these delimiters
@@ -643,7 +643,7 @@ globally, individually, or change the defaults in a config file.
       $config['error_suffix'] = '</div>';
 
 個別にエラーを表示する
-===========================
+======================
 
 If you prefer to show an error message next to each form field, rather
 than as a list, you can use the :php:func:`form_error()` function.
@@ -678,7 +678,7 @@ message will appear.
 For more info please see the :ref:`using-arrays-as-field-names` section below.
 
 配列（$_POST以外の）のバリデーション
-=======================================
+====================================
 
 Sometimes you may want to validate an array that does not originate from ``$_POST`` data.
 
@@ -707,9 +707,9 @@ For more info please see the :ref:`class-reference` section below.
 
 .. _saving-groups:
 
-************************************************
+******************************
 検証ルールを設定ファイルに保存
-************************************************
+******************************
 
 A nice feature of the Form Validation class is that it permits you to
 store all your validation rules for your entire application in a config
@@ -718,7 +718,7 @@ either be loaded automatically when a matching controller/method is
 called, or you can manually call each set as needed.
 
 ルールの保存方法
-======================
+================
 
 To store your validation rules, simply create a file named
 form_validation.php in your application/config/ folder. In that file
@@ -754,7 +754,7 @@ call the ``run()`` method.
 Please note that you MUST name your ``$config`` array.
 
 検証ルールのセットを作る
-======================
+========================
 
 In order to organize your rules into "sets" requires that you place them
 into "sub arrays". Consider the following example, showing two sets of
@@ -809,7 +809,7 @@ You can name your rules anything you want::
 	);
 
 特定のルールグループを呼び出す
-=============================
+==============================
 
 In order to call a specific group, you will pass its name to the ``run()``
 method. For example, to call the signup rule you will do this::
@@ -824,7 +824,7 @@ method. For example, to call the signup rule you will do this::
 	}
 
 コントローラー内のメソッドにルールグループを関連づける
-=================================================
+======================================================
 
 An alternate (and more automatic) method of calling a rule group is to
 name it according to the controller class/method you intend to use it
@@ -884,9 +884,9 @@ class/method.
 
 .. _using-arrays-as-field-names:
 
-***************************
+******************************
 フィールド名の指定に配列を使う
-***************************
+******************************
 
 The Form Validation class supports the use of arrays as field names.
 Consider this example::
@@ -941,9 +941,9 @@ When you use a helper function you'll include the bracket as well::
 	<?php echo form_error('options[color][]'); ?>
 
 
-**************
+******************
 ルールリファレンス
-**************
+******************
 
 The following is a list of all the native rules that are available to
 use:
@@ -999,15 +999,15 @@ use:
 	to two parameters, where at least one is required (to pass
 	the field data).
 
-******************
+**********************
 整形処理のリファレンス
-******************
+**********************
 
 The following is a list of all the prepping methods that are available
 to use:
 
 ==================== ========= =======================================================================================================
-名前                  Parameter 説明
+名前                 Parameter 説明
 ==================== ========= =======================================================================================================
 **prep_for_form**    No        Converts special characters so that HTML data can be shown in a form field without breaking it.
 **prep_url**         No        Adds "\http://" to URLs if missing.
@@ -1021,9 +1021,9 @@ to use:
 
 .. _class-reference:
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Form_validation
 
@@ -1124,9 +1124,9 @@ to use:
 
 .. _helper-functions:
 
-****************
+********************
 ヘルパーリファレンス
-****************
+********************
 
 Please refer to the :doc:`Form Helper <../helpers/form_helper>` manual for
 the following functions:

@@ -1,6 +1,6 @@
-#########
+##########
 FTP クラス
-#########
+##########
 
 CodeIgniter's FTP Class permits files to be transfered to a remote
 server. Remote files can also be moved, renamed, and deleted. The FTP
@@ -17,12 +17,12 @@ directory to be recreated remotely via FTP.
 
   <div class="custom-index container"></div>
 
-**************************
+***************
 FTPクラスの機能
-**************************
+***************
 
 クラスの初期化
-======================
+==============
 
 Like most other classes in CodeIgniter, the FTP class is initialized in
 your controller using the $this->load->library function::
@@ -32,7 +32,7 @@ your controller using the $this->load->library function::
 Once loaded, the FTP object will be available using: $this->ftp
 
 使用例
-==============
+======
 
 In this example a connection is opened to the FTP server, and a local
 file is read and uploaded in ASCII mode. The file permissions are set to
@@ -86,9 +86,9 @@ In this example a local directory is mirrored on the server.
 
 	$this->ftp->close();
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_FTP
 

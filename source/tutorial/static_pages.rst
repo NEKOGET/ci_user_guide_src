@@ -3,7 +3,7 @@
 ############
 
 **注意:** このチュートリアルでは、CodeIgniterのをダウンロードし,開発環境にフレームワークが
-:doc:`インストール <../installation/index>`_ されている
+:doc:`インストール <../installation/index>` されている
 と仮定します。
 
 まず最初に静的なページを処理する  **controller** をセットアップします。
@@ -79,7 +79,7 @@ includes the following code:
 	</html>
 
 コントローラにロジックの追加する
-------------------------------
+--------------------------------
 
 Earlier you set up a controller with a ``view()`` method. The method
 accepts one parameter, which is the name of the page to be loaded. The
@@ -132,7 +132,7 @@ assigned to a variable with the name of its key. So the value of
 view.
 
 ルーティング
------------
+------------
 
 The controller is now functioning! Point your browser to
 ``[your-site-url]index.php/pages/view`` to see your page. When you visit

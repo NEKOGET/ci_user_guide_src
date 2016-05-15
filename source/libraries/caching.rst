@@ -1,6 +1,6 @@
-##############
+####################
 キャッシングドライバ
-##############
+####################
 
 CodeIgniter は、いくつかのもっとも人気のある形式の高速な動的キャッシング
 へのラッパーを提供します。ファイルベースのキャッシング以外は特定のサーバ
@@ -14,9 +14,9 @@ CodeIgniter は、いくつかのもっとも人気のある形式の高速な�
 
   <div class="custom-index container"></div>
 
-*************
+******
 使用例
-*************
+******
 
 The following example will load the cache driver, specify `APC <#alternative-php-cache-apc-caching>`_
 as the driver to use, and fall back to file-based caching if APC is not
@@ -37,7 +37,7 @@ available in the hosting environment.
 
 	echo $foo;
 
-**key_prefix**セッティングを通してキャッシュ・アイテム名に接頭辞を付けることもできます。
+**key_prefix** セッティングを通してキャッシュ・アイテム名に接頭辞を付けることもできます。
 複数のアプリケーションを同じ環境で実行しているとき、名前の衝突を避けることに役立ちます。
 
 ::
@@ -48,9 +48,9 @@ available in the hosting environment.
 
 	$this->cache->get('foo'); // Will get the cache entry named 'my_foo'
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Cache
 
@@ -185,14 +185,14 @@ available in the hosting environment.
 			var_dump($this->cache->get_metadata('my_cached_item'));
 
 		.. note:: 情報はデータの構造がどのアダプターが使われているか
-		依存した上で返ります。
+			依存した上で返ります。
 
-*******
+********
 ドライバ
-*******
+********
 
 Alternative PHP Cache (APC) キャッシング
-===================================
+========================================
 
 上記で記載されたすべてのメソッドは、以下のように特定のアダプタを
 ドライバのローダーに渡すことなくアクセスできます::
@@ -204,7 +204,7 @@ APC に関するさらなる情報は、`http://php.net/apc <http://php.net/apc>
 を参照してください。
 
 ファイルベースキャッシュ
-==================
+========================
 
 出力クラスのキャッシングとは異なり、ファイルベースのキャッシングドライバ
 は、ビューファイルの一部分をキャッシュできます。アプリケーションをベンチ
@@ -218,7 +218,7 @@ APC に関するさらなる情報は、`http://php.net/apc <http://php.net/apc>
 	$this->cache->file->save('foo', 'bar', 10);
 
 Memcached キャッシュ
-=================
+====================
 
 複数の Memcached サーバは、application/config/ ディレクトリに
 置いた memcached.php 設定ファイルで指定することができます。 
@@ -233,7 +233,7 @@ Memcached に関するさらなる情報は、`http://php.net/memcached <http://
 を参照してください。
 
 WinCache キャッシュ
-================
+===================
 
 Windowsの下で、WinCacheドライバを利用することもできます。
 
@@ -247,7 +247,7 @@ WinCache, に関するさらなる情報は、`http://php.net/wincache <http://p
 を参照してください。
 
 Redis キャッシュ
-=============
+================
 
 Redis is an in-memory key-value store which can operate in LRU cache mode. 
 To use it, you need `Redis server and phpredis PHP extension <https://github.com/phpredis/phpredis>`_.
@@ -272,7 +272,7 @@ redisサーバーに接続する構成オプションは、application/config/re
 を参照してください。
 
 ダミー キャッシュ
-===========
+=================
 
 これは絶えず 'miss' するキャッシングバックエンドです。データをストアし
 ませんが、指定したキャッシュをサポートしない環境で、キャッシュを使用す

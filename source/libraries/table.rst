@@ -1,6 +1,6 @@
-################
+###################
 HTML テーブルクラス
-################
+###################
 
 The Table Class provides functions that enable you to auto-generate HTML
 tables from arrays or database result sets.
@@ -12,12 +12,12 @@ tables from arrays or database result sets.
 
   <div class="custom-index container"></div>
 
-*********************
+**********************
 テーブルクラスの使い方
-*********************
+**********************
 
 クラスの初期化
-======================
+==============
 
 Like most other classes in CodeIgniter, the Table class is initialized
 in your controller using the ``$this->load->library()`` method::
@@ -29,7 +29,7 @@ Once loaded, the Table library object will be available using::
 	$this->table
 
 例
-========
+==
 
 Here is an example showing how you can create a table from a
 multi-dimensional array. Note that the first array index will become the
@@ -89,7 +89,7 @@ arrays are used::
 	echo $this->table->generate();
 
 テーブルの見かけを変更する
-===============================
+==========================
 
 The Table Class permits you to set a table template with which you can
 specify the design of your layout. Here is the template prototype::
@@ -139,9 +139,9 @@ example, only the table opening tag is being changed::
 	
 You can also set defaults for these in a config file.
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Table
 

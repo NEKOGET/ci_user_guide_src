@@ -1,6 +1,6 @@
-##############
+###################
 キャプチャ ヘルパー
-##############
+###################
 
 The CAPTCHA Helper file contains functions that assist in creating
 CAPTCHA images.
@@ -13,14 +13,14 @@ CAPTCHA images.
   <div class="custom-index container"></div>
 
 このヘルパーをロードする
-===================
+========================
 
 This helper is loaded using the following code::
 
 	$this->load->helper('captcha');
 
 キャプチャ ヘルパーを使う
-========================
+=========================
 
 Once loaded you can generate a CAPTCHA like this::
 
@@ -128,7 +128,7 @@ this::
 	}
 
 利用できる機能
-===================
+==============
 
 The following functions are available:
 

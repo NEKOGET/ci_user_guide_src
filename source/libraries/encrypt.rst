@@ -1,6 +1,6 @@
-#############
+############
 暗号化クラス
-#############
+############
 
 The Encrypt Class provides two-way data encryption. It encrypted using
 the Mcrypt PHP extension, which is required for the Encrypt Class to run.
@@ -16,12 +16,12 @@ the Mcrypt PHP extension, which is required for the Encrypt Class to run.
 
   <div class="custom-index container"></div>
 
-*************************
+******************
 暗号化クラスを使う
-*************************
+******************
 
 キーの設定
-================
+==========
 
 A *key* is a piece of information that controls the cryptographic
 process and permits an encrypted string to be decoded. In fact, the key
@@ -51,7 +51,7 @@ and set::
 	$config['encryption_key'] = "YOUR KEY";
 
 メッセージの長さ
-==============
+================
 
 It's important for you to know that the encoded messages the encryption
 function generates will be approximately 2.6 times longer than the
@@ -64,7 +64,7 @@ storage mechanism. Cookies, for example, can only hold 4K of
 information.
 
 クラスの初期化
-======================
+==============
 
 Like most other classes in CodeIgniter, the Encrypt class is
 initialized in your controller using the ``$this->load->library()``
@@ -76,9 +76,9 @@ Once loaded, the Encrypt library object will be available using::
 
 	$this->encrypt
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Encrypt
 
@@ -187,7 +187,7 @@ Once loaded, the Encrypt library object will be available using::
 			$new_data = $this->encrypt->encode_from_legacy($old_encrypted_string);
 
 		======================	===============	 =======================================================================
-		パラメータ		初期値           説明
+		パラメータ            	初期値           説明
 		======================	===============  =======================================================================
 		**$orig_data**		n/a 		 The original encrypted data from CodeIgniter 1.x's Encryption library
 		**$legacy_mode**	MCRYPT_MODE_ECB	 The Mcrypt mode that was used to generate the original encrypted data.

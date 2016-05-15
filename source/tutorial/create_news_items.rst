@@ -1,6 +1,6 @@
-#################
+##################
 ニュース項目を作成
-#################
+##################
 
 You now know how you can read data from a database using CodeIgniter, but
 you haven't written any information to the database yet. In this section
@@ -8,7 +8,7 @@ you'll expand your news controller and model created earlier to include
 this functionality.
 
 フォームを作成する
--------------
+------------------
 
 To input data into the database you need to create a form where you can
 input the information to be stored. This means you'll be needing a form
@@ -132,7 +132,7 @@ library is loaded by default. At last, you insert our $data array into
 our database.
 
 ルーティング
--------
+------------
 
 Before you can start adding news items into your CodeIgniter application
 you have to add an extra rule to config/routes.php file. Make sure your

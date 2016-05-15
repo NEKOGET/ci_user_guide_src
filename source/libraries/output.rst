@@ -1,6 +1,6 @@
-############
+##########
 出力クラス
-############
+##########
 
 The Output class is a core class with one main function: To send the
 finalized web page to the requesting browser. It is also responsible for
@@ -25,9 +25,9 @@ need to.
 
   <div class="custom-index container"></div>
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Output
 

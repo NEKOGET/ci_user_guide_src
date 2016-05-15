@@ -1,6 +1,6 @@
-##################
+####################
 ユニットテストクラス
-##################
+####################
 
 Unit testing is an approach to software development in which tests are
 written for each function in your application. If you are not familiar
@@ -18,12 +18,12 @@ code to determine if it is producing the correct data type and result.
 
   <div class="custom-index container"></div>
 
-******************************
+********************************
 ユニットテストライブラリの使い方
-******************************
+********************************
 
 クラスの初期化
-======================
+==============
 
 Like most other classes in CodeIgniter, the Unit Test class is
 initialized in your controller using the $this->load->library function::
@@ -33,7 +33,7 @@ initialized in your controller using the $this->load->library function::
 Once loaded, the Unit Test object will be available using ``$this->unit``
 
 テストの実行
-=============
+============
 
 Running a test involves supplying a test and an expected result in the
 following way:
@@ -79,7 +79,7 @@ result. Here is a list of allowed comparison types:
 -  is_resource
 
 レポートの生成
-==================
+==============
 
 You can either display results after each test, or your can run several
 tests and generate a report at the end. To show a report directly simply
@@ -97,7 +97,7 @@ the raw data you can retrieve an array using::
 	echo $this->unit->result();
 
 Strict モード
-===========
+=============
 
 By default the unit test class evaluates literal matches loosely.
 Consider this example::
@@ -120,7 +120,7 @@ To enable strict mode use this::
 	$this->unit->use_strict(TRUE);
 
 ユニットテストの有効化/無効化
-===============================
+=============================
 
 If you would like to leave some testing in place in your scripts, but
 not have it run unless you need it, you can disable unit testing using::
@@ -128,7 +128,7 @@ not have it run unless you need it, you can disable unit testing using::
 	$this->unit->active(FALSE);
 
 ユニットテストの結果表示
-=================
+========================
 
 When your unit test results display, the following items show by
 default:
@@ -146,14 +146,14 @@ $this->unit->set_test_items(). For example, if you only wanted the test name
 and the result displayed:
 
 テスト結果表示のカスタマイズ
----------------------------
+----------------------------
 
 ::
 
 	$this->unit->set_test_items(array('test_name', 'result'));
 
 テンプレートの作成
--------------------
+------------------
 
 If you would like your test results formatted differently then the
 default you can set your own template. Here is an example of a simple
@@ -174,9 +174,9 @@ template. Note the required pseudo-variables::
 .. note:: Your template must be declared **before** running the unit
 	test process.
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Unit_test
 

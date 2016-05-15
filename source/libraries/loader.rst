@@ -1,6 +1,6 @@
-############
+##########################
 ローダ(読み込み処理)クラス
-############
+##########################
 
 Loader, as the name suggests, is used to load elements. These elements
 can be libraries (classes) :doc:`View files <../general/views>`,
@@ -18,9 +18,9 @@ can be libraries (classes) :doc:`View files <../general/views>`,
 
   <div class="custom-index container"></div>
 
-**********************
+**************************
 アプリケーションパッケージ
-**********************
+**************************
 
 An application package allows for the easy distribution of complete sets
 of resources in a single directory, complete with its own libraries,
@@ -48,7 +48,7 @@ that you are going to be loading resources from a package, by adding the
 package path via the ``add_package_path()`` method.
 
 パッケージのビューファイル
-------------------
+--------------------------
 
 By Default, package view files paths are set when ``add_package_path()``
 is called. View paths are looped through, and once a match is
@@ -73,9 +73,9 @@ calling ``add_package_path()``.
 	$this->load->view('my_app_index'); // Loads
 	$this->load->view('welcome_message'); // Loads
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Loader
 

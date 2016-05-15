@@ -1,6 +1,6 @@
-#############
+###############
 Cookie ヘルパー
-#############
+###############
 
 The Cookie Helper file contains functions that assist in working with
 cookies.
@@ -13,14 +13,14 @@ cookies.
   <div class="custom-index container"></div>
 
 ヘルパーをロードする
-===================
+====================
 
 This helper is loaded using the following code::
 
 	$this->load->helper('cookie');
 
 利用できる機能
-===================
+==============
 
 The following functions are available:
 

@@ -1,6 +1,6 @@
-##################################
+###################################
 XML-RPC および XML-RPC サーバクラス
-##################################
+###################################
 
 CodeIgniter の XML-RPC クラスを使うと、他のサーバにリクエストを送信したり、
 リクエストを受信するために XML-RPCサーバをセットアップしたりできます。
@@ -12,9 +12,9 @@ CodeIgniter の XML-RPC クラスを使うと、他のサーバにリクエス�
 
   <div class="custom-index container"></div>
 
-****************
+************
 XML-RPCとは?
-****************
+************
 
 インターネット上の2つのコンピュータが対話する方法で非常にシンプル
 なのは、XML を使うものです。 クライアントと呼ばれる一方のコンピュ
@@ -33,12 +33,12 @@ XML-RPCとは?
 
 仕様の詳細については、`XML-RPC <http://www.xmlrpc.com/>`_ のサイトをみてください。
 
-***********************
+*********************
 XML-RPCクラスの使い方
-***********************
+*********************
 
 クラスの初期化
-======================
+==============
 
 CodeIgniter のほとんどのクラスと同様、XML-RPC および XML-RPCS
 クラスは、コントローラの中で $this->load->library メソッドを使
@@ -91,7 +91,7 @@ XML-RPC サーバにリクエストを送信するには、次の情報を指定
 	}
 
 解説
------------
+----
 
 上のコードでは、XML-RPC クラスを初期化し、サーバの URL と呼び出すメソッド
 (weblogUpdates.ping)をセットしています。 リクエスト (この場合は、タイトル
@@ -101,7 +101,7 @@ XML-RPC サーバにリクエストを送信するには、次の情報を指定
 セージを表示します。
 
 リクエストの詳細
-====================
+================
 
 リクエストとは単純に XML-RPC サーバに送信するデータのことです。 
 リクエストの中の各データはリクエストパラメータとして参照されます。
@@ -121,7 +121,7 @@ XML-RPC サーバにリクエストを送信するには、次の情報を指定
 
 文字列でないデータ型のデータや何種類かの異なるデータ型のデータを
 指定するときは、 各パラメータを配列にし、その配列の2番目でデータ
-型を指定します:
+型を指定します::
 
 	$request = array(
 		array('John', 'string'),
@@ -135,7 +135,7 @@ XML-RPC サーバにリクエストを送信するには、次の情報を指定
 全リストがあります。 
 
 XML-RPC サーバの作成
-==========================
+====================
 
 XML-RPC サーバは交通整理役として動作し、送信されてくるリ
 クエストを待ち受け、 その処理を行う適切なメソッドへリダ
@@ -184,7 +184,7 @@ enable debugging, and xss_clean may be set to FALSE to prevent sending
 data through the Security library's ``xss_clean()`` method.
 
 サーバリクエストの処理
-==========================
+======================
 
 When the XML-RPC Server receives a request and loads the class/method
 for processing, it will pass an object to that method containing the
@@ -258,7 +258,7 @@ If the operation was successful, the client will be sent back a response
 array containing the user's info.
 
 レスポンスのフォーマット
-=====================
+========================
 
 Similar to *Requests*, *Responses* must be formatted as an array.
 However, unlike requests, a response is an array **that contains a
@@ -290,7 +290,7 @@ As with Requests, a response can be one of the seven data types listed
 in the `Data Types <#datatypes>`_ section.
 
 エラー応答の送信
-=========================
+================
 
 If you need to send the client an error response you will use the
 following::
@@ -301,14 +301,14 @@ The first parameter is the error number while the second parameter is
 the error message.
 
 独自のクライアントとサーバの作成
-===================================
+================================
 
 To help you understand everything we've covered thus far, let's create a
 couple controllers that act as XML-RPC Client and Server. You'll use the
 Client to send a request to the Server and receive a response.
 
 クライアント
-----------
+------------
 
 Using a text editor, create a controller called Xmlrpc_client.php. In
 it, place this code and save it to your application/controllers/
@@ -349,7 +349,7 @@ folder::
 	information in the :doc:`Helpers Functions <../general/helpers>` page.
 
 サーバ
-----------
+------
 
 Using a text editor, create a controller called Xmlrpc_server.php. In
 it, place this code and save it to your application/controllers/
@@ -389,7 +389,7 @@ folder::
 
 
 やってみよう!
--------
+-------------
 
 Now visit the your site using a URL similar to this::
 
@@ -404,7 +404,7 @@ receives the request and maps it to the ``process()`` method, where a
 response is sent back.
 
 リクエストパラメータに連想配列を使用する
-===============================================
+========================================
 
 If you wish to use an associative array in your method parameters you
 will need to use a struct datatype::
@@ -438,7 +438,7 @@ the Server.
 	$shape = $parameters[1]['shape'];
 
 データ型
-==========
+========
 
 According to the `XML-RPC spec <http://www.xmlrpc.com/spec>`_ there are
 seven types of values that you can send via XML-RPC:
@@ -452,9 +452,9 @@ seven types of values that you can send via XML-RPC:
 -  *struct* (contains array of values)
 -  *array* (contains array of values)
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Xmlrpc
 

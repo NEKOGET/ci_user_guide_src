@@ -1,6 +1,6 @@
-################
+######################
 マイグレーションクラス
-################
+######################
 
 Migrations are a convenient way for you to alter your database in a 
 structured and organized manner. You could edit fragments of SQL by hand 
@@ -20,9 +20,9 @@ The current version is found in **application/config/migration.php**.
 
   <div class="custom-index container"></div>
 
-********************
+**************************
 マイグレーションファイル名
-********************
+**************************
 
 Each Migration is run in numeric order forward or backwards depending on the
 method taken. Two numbering styles are available:
@@ -45,9 +45,9 @@ name for the migration. For example:
 * 001_add_blog.php (sequential numbering)
 * 20121031100537_add_blog.php (timestamp numbering)
 
-******************
+**********************
 マイグレーションの作成
-******************
+**********************
 	
 This will be the first migration for a new site which has a blog. All 
 migrations go in the **application/migrations/** directory and have names such 
@@ -90,9 +90,9 @@ as *20121031100537_add_blog.php*.
 
 Then in **application/config/migration.php** set ``$config['migration_version'] = 20121031100537;``.
 
-*************
+******
 使用例
-*************
+******
 
 In this example some simple code is placed in **application/controllers/Migrate.php** 
 to update the schema.::
@@ -114,9 +114,9 @@ to update the schema.::
 
 	}
 
-*********************
+********************
 マイグレーション設定
-*********************
+********************
 
 The following is a table of all the config options for migrations.
 
@@ -134,9 +134,9 @@ The following is a table of all the config options for migrations.
                                                                              migration files.
 ========================== ====================== ========================== =============================================
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Migration
 

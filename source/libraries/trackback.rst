@@ -1,6 +1,6 @@
-###############
+####################
 トラックバッククラス
-###############
+####################
 
 The Trackback Class provides functions that enable you to send and
 receive Trackback data.
@@ -15,12 +15,12 @@ If you are not familiar with Trackbacks you'll find more information
 
   <div class="custom-index container"></div>
 
-*************************
+****************************
 トラックバッククラスの使い方
-*************************
+****************************
 
 クラスの初期化
-======================
+==============
 
 Like most other classes in CodeIgniter, the Trackback class is
 initialized in your controller using the ``$this->load->library()`` method::
@@ -32,7 +32,7 @@ Once loaded, the Trackback library object will be available using::
 	$this->trackback
 
 トラックバックの送信
-==================
+====================
 
 A Trackback can be sent from any of your controller functions using code
 similar to this example::
@@ -91,7 +91,7 @@ curtail spam. The process of receiving a Trackback is quite simple; the
 validation is what takes most of the effort.
 
 トラックバックPing URL
-=============
+======================
 
 In order to accept Trackbacks you must display a Trackback URL next to
 each one of your weblog entries. This will be the URL that people will
@@ -112,7 +112,7 @@ Where entry_id represents the individual ID number for each of your
 entries.
 
 トラックバック用のテーブルの作成
-==========================
+================================
 
 Before you can receive Trackbacks you must create a table in which to
 store them. Here is a basic prototype for such a table::
@@ -136,7 +136,7 @@ the data more useful we've added a few more fields in the above table
 schema (date, IP address, etc.).
 
 トラックバックの処理
-======================
+====================
 
 Here is an example showing how you will receive and process a Trackback.
 The following code is intended for use within the controller function
@@ -209,9 +209,9 @@ message using::
 .. note:: The above code contains no data validation, which you are
 	encouraged to add.
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Trackback
 

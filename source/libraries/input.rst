@@ -1,6 +1,6 @@
-###########
+##########
 入力クラス
-###########
+##########
 
 The Input Class serves two purposes:
 
@@ -17,12 +17,12 @@ The Input Class serves two purposes:
 
   <div class="custom-index container"></div>
 
-***************
+******************
 入力フィルタリング
-***************
+******************
 
 セキュリティフィルタリング
-==================
+==========================
 
 The security filtering method is called automatically when a new
 :doc:`controller <../general/controllers>` is invoked. It does the
@@ -40,7 +40,7 @@ following:
    \\r\\n under Windows). This is configurable.
 
 XSS フィルタリング
-=============
+==================
 
 The Input class has the ability to filter input automatically to prevent
 cross-site scripting attacks. If you want the filter to run
@@ -86,7 +86,7 @@ The main methods are:
 -  ``$this->input->server()``
 
 php://input streamを使う
-============================
+========================
 
 If you want to utilize the PUT, DELETE, PATCH or other exotic request
 methods, they can only be accessed via a special input stream, that
@@ -118,9 +118,9 @@ a boolean value as the second parameter::
 .. note:: You can utilize ``method()`` in order to know if you're reading
 	PUT, DELETE or PATCH data.
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Input
 

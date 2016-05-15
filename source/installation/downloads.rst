@@ -1,6 +1,6 @@
-#######################
+##########################
 Codeigniter のダウンロード
-#######################
+##########################
 
 -  `CodeIgniter v3.1.0-dev (Current version) <https://codeload.github.com/bcit-ci/CodeIgniter/zip/develop>`_
 -  `CodeIgniter v3.0.5-dev <https://codeload.github.com/bcit-ci/CodeIgniter/zip/3.0-stable>`_

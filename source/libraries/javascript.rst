@@ -1,6 +1,6 @@
-################
+#################
 JavaScript クラス
-################
+#################
 
 CodeIgniter provides a library to help you with certain common functions
 that you may want to use with Javascript. Please note that CodeIgniter
@@ -19,12 +19,12 @@ as a convenience if you choose to use it.
 
   <div class="custom-index container"></div>
 
-**************************
+*************************
 JavaScript クラスの使い方
-**************************
+*************************
 
 クラスの初期化
-======================
+==============
 
 To initialize the Javascript class manually in your controller
 constructor, use the ``$this->load->library()`` method. Currently,
@@ -59,10 +59,10 @@ Once loaded, the jQuery library object will be available using:
 	$this->javascript
 
 準備と設定
-=======================
+==========
 
 ビューに変数をセットする
---------------------------------
+------------------------
 
 As a Javascript library, your files must be available to your
 application.
@@ -83,7 +83,7 @@ well as any subsequent plugin script calls; $script_head is where
 specific events, functions and other commands will be rendered.
 
 設定ファイルでライブラリのパスを指定する
-----------------------------------------------
+----------------------------------------
 
 There are some configuration items in Javascript library. These can
 either be set in *application/config.php*, within its own
@@ -103,7 +103,7 @@ If you keep your files in the same directories they were downloaded
 from, then you need not set this configuration items.
 
 jQuery クラス
-================
+=============
 
 To initialize the jQuery class manually in your controller constructor,
 use the ``$this->load->library()`` method::
@@ -122,7 +122,7 @@ Once loaded, the jQuery library object will be available using:
 	$this->jquery
 
 jQuery イベント
-=============
+===============
 
 Events are set using the following syntax.
 ::
@@ -144,7 +144,7 @@ In the above example:
    an effect from the jQuery library below.
 
 エフェクト（効果）
-=======
+==================
 
 The query library supports a powerful
 `Effects <http://api.jquery.com/category/effects/>`_ repertoire. Before an effect
@@ -280,7 +280,7 @@ These effects cause an element(s) to slide.
    other additional information.
 
 プラグイン
-=======
+==========
 
 Some select jQuery plugins are made available using this library.
 

@@ -1,6 +1,6 @@
-################
+########################
 ユーザエージェントクラス
-################
+########################
 
 The User Agent Class provides functions that help identify information
 about the browser, mobile device, or robot visiting your site. In
@@ -14,12 +14,12 @@ supported character-set information.
 
   <div class="custom-index container"></div>
 
-**************************
+**********************************
 ユーザーエージェントクラスの使い方
-**************************
+**********************************
 
 クラスの初期化
-======================
+==============
 
 Like most other classes in CodeIgniter, the User Agent class is
 initialized in your controller using the $this->load->library function::
@@ -29,14 +29,14 @@ initialized in your controller using the $this->load->library function::
 Once loaded, the object will be available using: ``$this->agent``
 
 User Agent の定義
-======================
+=================
 
 The user agent name definitions are located in a config file located at:
 application/config/user_agents.php. You may add items to the various
 user agent arrays if needed.
 
 例
-=======
+==
 
 When the User Agent class is initialized it will attempt to determine
 whether the user agent browsing your site is a web browser, a mobile
@@ -68,9 +68,9 @@ is available.
 
 	echo $this->agent->platform(); // Platform info (Windows, Linux, Mac, etc.)
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_User_agent
 

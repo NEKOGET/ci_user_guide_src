@@ -1,6 +1,6 @@
-################
+######################
 ページネーションクラス
-################
+######################
 
 CodeIgniter のページネーションクラスは、簡単に利用でき、動的にあるいは保存
 した設定情報にもとづいて、100%カスタマイズ可能です。
@@ -17,9 +17,9 @@ CodeIgniter のページネーションクラスは、簡単に利用でき、�
 
 	« First  < 1 2 3 4 5 >  Last »
 
-*******
+**
 例
-*******
+**
 
 Here is a simple example showing how to create pagination in one of your
 :doc:`controller <../general/controllers>` methods::
@@ -57,7 +57,7 @@ The ``create_links()`` method returns an empty string when there is no
 pagination to show.
 
 設定ファイルで設定する
-====================================
+======================
 
 If you prefer not to set preferences using the above method, you can
 instead put them into a config file. Simply create a new file called
@@ -66,9 +66,9 @@ in *application/config/pagination.php* and it will be used automatically.
 You will NOT need to use ``$this->pagination->initialize()`` if you save
 your preferences in a config file.
 
-**************************
+******************************
 ページネーションのカスタマイズ
-**************************
+******************************
 
 The following is a list of all the preferences you can pass to the
 initialization function to tailor the display.
@@ -137,9 +137,9 @@ When set to TRUE, it will **override** the ``$config['suffix']`` value and
 instead set it to the one that you have in ``$config['url_suffix']`` in
 your **application/config/config.php** file.
 
-***********************
+************************
 囲みのマークアップの追加
-***********************
+************************
 
 If you would like to surround the entire pagination with some markup you
 can do it with these two preferences:
@@ -152,9 +152,9 @@ The opening tag placed on the left side of the entire result.
 
 The closing tag placed on the right side of the entire result.
 
-**************************
+************************************
 最初のページへのリンクのカスタマイズ
-**************************
+************************************
 
 **$config['first_link'] = 'First';**
 
@@ -175,9 +175,9 @@ The closing tag for the "first" link.
 
 An alternative URL to use for the "first page" link.
 
-*************************
+************************************
 最後のページへのリンクのカスタマイズ
-*************************
+************************************
 
 **$config['last_link'] = 'Last';**
 
@@ -194,9 +194,9 @@ The opening tag for the "last" link.
 
 The closing tag for the "last" link.
 
-***************************
+*************************************
 "次" のページへのリンクのカスタマイズ
-***************************
+*************************************
 
 **$config['next_link'] = '&gt;';**
 
@@ -213,9 +213,9 @@ The opening tag for the "next" link.
 
 The closing tag for the "next" link.
 
-*******************************
+*************************************
 "前" のページへのリンクのカスタマイズ
-*******************************
+*************************************
 
 **$config['prev_link'] = '&lt;';**
 
@@ -232,9 +232,9 @@ The opening tag for the "previous" link.
 
 The closing tag for the "previous" link.
 
-***********************************
+*****************************************
 "現在のページ" のページ番号のカスタマイズ
-***********************************
+*****************************************
 
 **$config['cur_tag_open'] = '<b>';**
 
@@ -244,9 +244,9 @@ The opening tag for the "current" link.
 
 The closing tag for the "current" link.
 
-****************************
+***********************************
 "数字" のページリンクのカスタマイズ
-****************************
+***********************************
 
 **$config['num_tag_open'] = '<div>';**
 
@@ -256,9 +256,9 @@ The opening tag for the "digit" link.
 
 The closing tag for the "digit" link.
 
-****************
+**********************
 ページ移動リンクを隠す
-****************
+**********************
 
 If you wanted to not list the specific pages (for example, you only want
 "next" and "previous" links), you can suppress their rendering by
@@ -266,9 +266,9 @@ adding::
 
 	 $config['display_pages'] = FALSE;
 
-****************************
+********************
 アンカーに属性を追加
-****************************
+********************
 
 If you want to add an extra attribute to be added to every link rendered
 by the pagination class, you can set them as key/value pairs in the
@@ -280,9 +280,9 @@ by the pagination class, you can set them as key/value pairs in the
 .. note:: Usage of the old method of setting classes via "anchor_class"
 	is deprecated.
 
-*****************************
+*****************
 "rel"属性の無効化
-*****************************
+*****************
 
 By default the rel attribute is dynamically generated and appended to
 the appropriate anchors. If for some reason you want to turn it off,
@@ -292,9 +292,9 @@ you can pass boolean FALSE as a regular attribute
 
 	$config['attributes']['rel'] = FALSE;
 
-***************
+******************
 クラスリファレンス
-***************
+******************
 
 .. php:class:: CI_Pagination
 

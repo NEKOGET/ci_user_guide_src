@@ -2,21 +2,21 @@
 出力クラス
 ##########
 
-The Output class is a core class with one main function: To send the
-finalized web page to the requesting browser. It is also responsible for
-:doc:`caching <../general/caching>` your web pages, if you use that
-feature.
+出力クラスはコアクラスであり、主な機能はひとつだけです: 要求元のブラウザに完成した
+Web ページを送信します。また、あなたが Web ページの
+:doc:`キャッシュ機能 <../general/caching>` を使用する場合は、
+それを処理する責任も持ちます。
 
-.. note:: This class is initialized automatically by the system so there
-	is no need to do it manually.
+.. note:: このクラスはシステムによって自動的に初期化されますので、
+	手動で行う必要はありません。
 
-Under normal circumstances you won't even notice the Output class since
-it works transparently without your intervention. For example, when you
-use the :doc:`Loader <../libraries/loader>` class to load a view file,
-it's automatically passed to the Output class, which will be called
-automatically by CodeIgniter at the end of system execution. It is
-possible, however, for you to manually intervene with the output if you
-need to.
+通常の状況ではあなたの操作なしに透過的に動作しますので、
+出力クラスを意識することはありません。たとえば、
+ビューファイルをロードするために :doc:`Loader <../libraries/loader>` クラスを使うとき、
+自動的に出力クラスに渡されますが、 CodeIgniter
+によりシステム実行の終了時に自動的に呼び出されます。
+しかしながら、必要がある場合、
+手動で出力を操作することは可能です。
 
 .. contents::
   :local:
@@ -33,36 +33,36 @@ need to.
 
 	.. attribute:: $parse_exec_vars = TRUE;
 
-		Enables/disables parsing of the {elapsed_time} and {memory_usage} pseudo-variables.
+		{elapsed_time} と {memory_usage} 擬似変数の構文解析を有効/無効にします。
 
-		CodeIgniter will parse those tokens in your output by default. To disable this, set
-		this property to FALSE in your controller.
+		CodeIgniterはデフォルトで出力中のこれらのトークンを解析します。
+		これを無効にするには、コントローラでこのプロパティを FALSE に設定します。
 		::
 
 			$this->output->parse_exec_vars = FALSE;
 
 	.. php:method:: set_output($output)
 
-		:param	string	$output: String to set the output to
-		:returns:	CI_Output instance (method chaining)
+		:param	string	$output: 出力へ設定する文字列
+		:returns:	CI_Output インスタンス (メソッドチェイン)
 		:rtype:	CI_Output
 
-		Permits you to manually set the final output string. Usage example::
+		手動で最終的な出力文字列を設定することを可能にします。使用例::
 
 			$this->output->set_output($data);
 
-		.. important:: If you do set your output manually, it must be the last thing done
-			in the function you call it from. For example, if you build a page in one
-			of your controller methods, don't set the output until the end.
+		.. important:: 手動で出力を設定する場合、それは関数呼び出し元で行う最後のものでなければなりません。
+			たとえば、あなたのコントローラメソッドのいずれかでページを作成した場合、
+			最後まで出力を設定しないでください。
 
 	.. php:method:: set_content_type($mime_type[, $charset = NULL])
 
-		:param	string	$mime_type: MIME Type idenitifer string
-		:param	string	$charset: Character set
-		:returns:	CI_Output instance (method chaining)
+		:param	string	$mime_type: MIME タイプ文字列
+		:param	string	$charset: 文字セット
+		:returns:	CI_Output インスタンス (メソッドチェイン)
 		:rtype:	CI_Output
 
-		Permits you to set the mime-type of your page so you can serve JSON data, JPEG's, XML, etc easily.
+		ページの MIME タイプを設定することを可能にします。これにより JSON データ、 JPEG 、 XML などの提供が簡単になります。
 		::
 
 			$this->output
@@ -70,79 +70,79 @@ need to.
 				->set_output(json_encode(array('foo' => 'bar')));
 
 			$this->output
-				->set_content_type('jpeg') // You could also use ".jpeg" which will have the full stop removed before looking in config/mimes.php
+				->set_content_type('jpeg') // ".jpeg" も使えます。ピリオドは config/mimes.php を探す前に削除されます
 				->set_output(file_get_contents('files/something.jpg'));
 
-		.. important:: Make sure any non-mime string you pass to this method
-			exists in *application/config/mimes.php* or it will have no effect.
+		.. important:: 非MIME文字列をこのメソッドに渡す場合は
+			*application/config/mimes.php* に存在することを確認してください。ない場合は効果はありません。
 
-		You can also set the character set of the document, by passing a second argument::
+		また、第 2 引数を渡すことでドキュメントの文字セットを設定することができます::
 
 			$this->output->set_content_type('css', 'utf-8');
 
 	.. php:method:: get_content_type()
 
-		:returns:	Content-Type string
+		:returns:	Content-Type の文字列
 		:rtype:	string
 
-		Returns the Content-Type HTTP header that's currently in use, excluding the character set value.
+		現在使用中の Content-Type HTTP ヘッダを返します。ただし文字セット値は除きます。
 		::
 
 			$mime = $this->output->get_content_type();
 
-		.. note:: If not set, the default return value is 'text/html'.
+		.. note:: 設定されていない場合、デフォルトの戻り値は 'text/html' です。
 
 	.. php:method:: get_header($header)
 
-		:param	string	$header: HTTP header name
-		:returns:	HTTP response header or NULL if not found
+		:param	string	$header: HTTP ヘッダ名
+		:returns:	HTTP レスポンスヘッダ、見つからない場合は NULL
 		:rtype:	mixed
 
-		Returns the requested HTTP header value, or NULL if the requested header is not set.
-		Example::
+		指定の HTTP ヘッダ値を返します。指定のヘッダが設定されていない場合は NULL を返します。
+		例::
 
 			$this->output->set_content_type('text/plain', 'UTF-8');
 			echo $this->output->get_header('content-type');
-			// Outputs: text/plain; charset=utf-8
+			// 出力: text/plain; charset=utf-8
 
-		.. note:: The header name is compared in a case-insensitive manner.
+		.. note:: ヘッダ名は大文字小文字を区別せずに比較されます。
 
-		.. note:: Raw headers sent via PHP's native ``header()`` function are also detected.
+		.. note:: PHP 標準の ``header()`` 関数を使用して送信される生のヘッダも検出対象です。
 
 	.. php:method:: get_output()
 
-		:returns:	Output string
+		:returns:	出力文字列
 		:rtype:	string
 
-		Permits you to manually retrieve any output that has been sent for
-		storage in the output class. Usage example::
+		出力クラスに格納された出力を手動で取得することができます。
+		使用例::
 
 			$string = $this->output->get_output();
 
-		Note that data will only be retrievable from this function if it has
-		been previously sent to the output class by one of the CodeIgniter
-		functions like ``$this->load->view()``.
+		``$this->load->view()`` などの
+		CodeIgniter の機能により出力クラスに送られたデータのみが
+		この関数から取得できることに注意してください。
 
 	.. php:method:: append_output($output)
 
-		:param	string	$output: Additional output data to append
-		:returns:	CI_Output instance (method chaining)
+		:param	string	$output: 追加の出力データ
+		:returns:	CI_Output インスタンス (メソッドチェイン)
 		:rtype:	CI_Output
 
-		Appends data onto the output string.
+		出力文字列にデータを追加します。
 		::
 
 			$this->output->append_output($data);
 
 	.. php:method:: set_header($header[, $replace = TRUE])
 
-		:param	string	$header: HTTP response header
-		:param	bool	$replace: Whether to replace the old header value, if it is already set
-		:returns:	CI_Output instance (method chaining)
+		:param	string	$header: HTTP レスポンスヘッダ
+		:param	bool	$replace: すでに設定済みの場合、古いヘッダの値を置換するかどうか
+		:returns:	CI_Output インスタンス (メソッドチェイン)
 		:rtype:	CI_Output
 
-		Permits you to manually set server headers, which the output class will
-		send for you when outputting the final rendered display. Example::
+		手動でサーバのヘッダを設定することができます。
+		ヘッダは最終的にレンダリング表示を出力する際、出力クラスが送信します。例::
 
 			$this->output->set_header('HTTP/1.0 200 OK');
 			$this->output->set_header('HTTP/1.1 200 OK');
@@ -153,73 +153,73 @@ need to.
 
 	.. php:method:: set_status_header([$code = 200[, $text = '']])
 
-		:param	int	$code: HTTP status code
-		:param	string	$text: Optional message
-		:returns:	CI_Output instance (method chaining)
+		:param	int	$code: HTTP ステータスコード
+		:param	string	$text: オプションのメッセージ
+		:returns:	CI_Output インスタンス (メソッドチェイン)
 		:rtype:	CI_Output
 
-		Permits you to manually set a server status header. Example::
+		サーバステータスヘッダを手動で設定することができます。例::
 
 			$this->output->set_status_header(401);
-			// Sets the header as:  Unauthorized
+			// ヘッダはこれに設定されます:  Unauthorized
 
-		`See here <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_ for a full list of headers.
+		ヘッダの完全なリストについては `ここを参照してください <http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html>`_ 。
 
-		.. note:: This method is an alias for :doc:`Common function <../general/common_functions>`
-			:func:`set_status_header()`.
+		.. note:: このメソッドは :doc:`共通関数 <../general/common_functions>` の
+			:func:`set_status_header()` のエイリアスです。
 
 	.. php:method:: enable_profiler([$val = TRUE])
 
-		:param	bool	$val: Whether to enable or disable the Profiler
-		:returns:	CI_Output instance (method chaining)
+		:param	bool	$val: プロファイラを有効または無効にするかどうか
+		:returns:	CI_Output インスタンス (メソッドチェイン)
 		:rtype:	CI_Output
 
-		Permits you to enable/disable the :doc:`Profiler <../general/profiling>`, which will display benchmark
-		and other data at the bottom of your pages for debugging and optimization purposes.
+		:doc:`プロファイラ <../general/profiling>` を有効/無効にすることができます。
+		プロファイラはデバッグと最適化を目的として、ベンチマークとその他の値をページの下部に表示します。
 
-		To enable the profiler place the following line anywhere within your
-		:doc:`Controller <../general/controllers>` methods::
+		プロファイラを有効にするには
+		:doc:`コントローラ <../general/controllers>` メソッド内の任意の場所につぎの行を追加します::
 
 			$this->output->enable_profiler(TRUE);
 
-		When enabled a report will be generated and inserted at the bottom of your pages.
+		有効にするとレポートが生成され、ページの下部に挿入されます。
 
-		To disable the profiler you would use::
+		プロファイラを無効にするには次のようにします::
 
 			$this->output->enable_profiler(FALSE);
 
 	.. php:method:: set_profiler_sections($sections)
 
-		:param	array	$sections: Profiler sections
-		:returns:	CI_Output instance (method chaining)
+		:param	array	$sections: プロファイラセクション
+		:returns:	CI_Output インスタンス (メソッドチェイン)
 		:rtype:	CI_Output
 
-		Permits you to enable/disable specific sections of the Profiler when it is enabled.
-		Please refer to the :doc:`Profiler <../general/profiling>` documentation for further information.
+		プロファイラが有効になっているとき、特定のセクションを有効/無効にすることができます。
+		詳細は :doc:`プロファイラ<../general/profiling>` ドキュメントを参照してください。
 
 	.. php:method:: cache($time)
 
-		:param	int	$time: Cache expiration time in seconds
-		:returns:	CI_Output instance (method chaining)
+		:param	int	$time: 秒単位でキャッシュの有効期限
+		:returns:	CI_Output インスタンス (メソッドチェイン)
 		:rtype:	CI_Output
 
-		Caches the current page for the specified amount of seconds.
+		指定された秒数で現在のページをキャッシュします。
 
-		For more information, please see the :doc:`caching documentation <../general/caching>`.
+		詳細は :doc:`キャッシングのドキュメント <../general/caching>` を参照してください。
 
 	.. php:method:: _display([$output = ''])
 
-		:param	string	$output: Output data override
+		:param	string	$output: 上書きする出力データ
 		:returns:	void
 		:rtype:	void
 
-		Sends finalized output data to the browser along with any server headers. It also stops benchmark
-		timers.
+		いくつかのサーバヘッダとともにブラウザに最終出力データを送信します。
+		また、ベンチマークタイマを停止します。
 
-		.. note:: This method is called automatically at the end of script execution, you won't need to 
-			call it manually unless you are aborting script execution using ``exit()`` or ``die()`` in your code.
+		.. note:: このメソッドはスクリプト実行の終了時に自動的に呼び出されるので、
+			``exit()`` または ``die()`` を使用してスクリプト実行を中止しない限り、手動で呼び出す必要はありません。
 		
-		Example::
+		例::
 
 			$response = array('status' => 'OK');
 
@@ -230,4 +230,4 @@ need to.
 				->_display();
 			exit;
 
-		.. note:: Calling this method manually without aborting script execution will result in duplicated output.
+		.. note:: スクリプト実行を中断することなく手動でこのメソッドを呼び出すと、出力が重複します。

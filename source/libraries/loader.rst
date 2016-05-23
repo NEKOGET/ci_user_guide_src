@@ -1,15 +1,15 @@
-##########################
-ローダ(読み込み処理)クラス
-##########################
+############################
+ローダ (読み込み処理) クラス
+############################
 
-Loader, as the name suggests, is used to load elements. These elements
-can be libraries (classes) :doc:`View files <../general/views>`,
-:doc:`Drivers <../general/drivers>`,
-:doc:`Helpers <../general/helpers>`,
-:doc:`Models <../general/models>`, or your own files.
+ローダは、名前が示すように、要素をロードするために使用されます。
+それら要素は :doc:`ビューファイル <../general/views>` 、
+:doc:`ドライバー <../general/drivers>` 、
+:doc:`ヘルパー <../general/helpers>` 、
+:doc:`モデル <../general/models>` 、または独自のファイルをライブラリ (クラス) とすることができます。
 
-.. note:: This class is initialized automatically by the system so there
-	is no need to do it manually.
+.. note:: このクラスはシステムによって自動的に初期化されますので、
+	手動で初期化する必要はありません。
 
 .. contents::
   :local:
@@ -18,18 +18,18 @@ can be libraries (classes) :doc:`View files <../general/views>`,
 
   <div class="custom-index container"></div>
 
-**************************
-アプリケーションパッケージ
-**************************
+********************************
+アプリケーションの「パッケージ」
+********************************
 
-An application package allows for the easy distribution of complete sets
-of resources in a single directory, complete with its own libraries,
-models, helpers, config, and language files. It is recommended that
-these packages be placed in the application/third_party directory. Below
-is a sample map of an package directory.
+アプリケーションパッケージはリソースの完全なセットを単一のディレクトリにいれて
+簡単に配布することができます。それには独自のライブラリ、
+モデル、ヘルパー、設定、および言語ファイルを揃えられます。これらのパッケージは
+application/third_party ディレクトリに配置することをおすすめします。
+後述はパッケージディレクトリのサンプルマップです。
 
-The following is an example of a directory for an application package
-named "Foo Bar".
+以下は「 Foo Bar 」という名前のアプリケーションパッケージの
+ディレクトリ例です。
 
 ::
 
@@ -41,41 +41,41 @@ named "Foo Bar".
 	libraries/
 	models/
 
-Whatever the purpose of the "Foo Bar" application package, it has its
-own config files, helpers, language files, libraries, and models. To use
-these resources in your controllers, you first need to tell the Loader
-that you are going to be loading resources from a package, by adding the
-package path via the ``add_package_path()`` method.
+「 FooBar 」アプリケーションパッケージの目的は何であれ、
+それは独自の設定ファイル、ヘルパー、言語ファイル、ライブラリ、およびモデルを持っています。
+コントローラ内でこれらのリソースを使用するには、
+まずパッケージからリソースをロードするようローダに指示する必要があります。
+それは ``add_package_path()`` メソッドによってパッケージパスを追加することで可能です。
 
 パッケージのビューファイル
 --------------------------
 
-By Default, package view files paths are set when ``add_package_path()``
-is called. View paths are looped through, and once a match is
-encountered that view is loaded.
+デフォルトでは ``add_package_path()`` が呼び出されたときに、パッケージのビューファイルのパスが設定されます。
+ビューのパスは順番に見てまわり、一致するものが見つかればその時点で、
+そのビューがロードされます。
 
-In this instance, it is possible for view naming collisions within
-packages to occur, and possibly the incorrect package being loaded. To
-ensure against this, set an optional second parameter of FALSE when
-calling ``add_package_path()``.
+この場合、パッケージ内で名前が衝突することがあり、
+そしておそらく間違ったパッケージがロードされます。
+これに対処するには ``add_package_path()`` を呼び出すとき、オプションの第 2 引数に FALSE
+を設定します。
 
 ::
 
 	$this->load->add_package_path(APPPATH.'my_app', FALSE);
-	$this->load->view('my_app_index'); // Loads
-	$this->load->view('welcome_message'); // Will not load the default welcome_message b/c the second param to add_package_path is FALSE
+	$this->load->view('my_app_index'); // 読み込まれます
+	$this->load->view('welcome_message'); // デフォルトの welcome_message は読み込まれません。なぜなら add_package_path の第 2 引数が FALSE だからです
 
-	// Reset things
+	// リセットします
 	$this->load->remove_package_path(APPPATH.'my_app');
 
-	// Again without the second parameter:
+	// 第 2 引数なしでやり直します:
 	$this->load->add_package_path(APPPATH.'my_app');
-	$this->load->view('my_app_index'); // Loads
-	$this->load->view('welcome_message'); // Loads
+	$this->load->view('my_app_index'); // 読み込まれます
+	$this->load->view('welcome_message'); // 読み込まれます
 
-******************
-クラスリファレンス
-******************
+***************
+Class Reference
+***************
 
 .. php:class:: CI_Loader
 

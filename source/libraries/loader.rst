@@ -73,55 +73,55 @@ application/third_party ディレクトリに配置することをおすすめ�
 	$this->load->view('my_app_index'); // 読み込まれます
 	$this->load->view('welcome_message'); // 読み込まれます
 
-***************
-Class Reference
-***************
+******************
+クラスリファレンス
+******************
 
 .. php:class:: CI_Loader
 
 	.. php:method:: library($library[, $params = NULL[, $object_name = NULL]])
 
-		:param	mixed	$library: Library name as a string or an array with multiple libraries
-		:param	array	$params: Optional array of parameters to pass to the loaded library's constructor
-		:param	string	$object_name: Optional object name to assign the library to
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$library: ライブラリ名の文字列または複数ライブラリ名の配列
+		:param	array	$params: ロードされたライブラリのコンストラクタに渡す配列 (オプション)
+		:param	string	$object_name: ライブラリを割り当てるオブジェクト名 (オプション)
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		This method is used to load core classes.
+		このメソッドはコアクラスをロードするために使用されます。
 
-		.. note:: We use the terms "class" and "library" interchangeably.
+		.. note:: 私たちは「クラス」と「ライブラリ」という用語を互換性があるものとして使用します。
 
-		For example, if you would like to send email with CodeIgniter, the first
-		step is to load the email class within your controller::
+		たとえば CodeIgniter でメールを送信したい場合、
+		最初のステップはコントローラ内で Email クラスをロードすることです::
 
 			$this->load->library('email');
 
-		Once loaded, the library will be ready for use, using ``$this->email``.
+		いちどロードされれば、ライブラリを使用できる準備が整います。つまり ``$this->email`` を使用できます。
 
-		Library files can be stored in subdirectories within the main
-		"libraries" directory, or within your personal *application/libraries*
-		directory. To load a file located in a subdirectory, simply include the
-		path, relative to the "libraries" directory. For example, if you have
-		file located at::
+		ライブラリファイルは、メインの
+		「 libraries 」ディレクトリ内のサブディレクトリか、またはあなたの個人的な *application/libraries*
+		内に格納することができます。サブディレクトリにあるファイルをロードするには、
+		単純に「 libraries 」ディレクトリからの相対パスを含めます。
+		たとえば、次のファイルの場合::
 
 			libraries/flavors/Chocolate.php
 
-		You will load it using::
+		こうやってロードできます::
 
 			$this->load->library('flavors/chocolate');
 
-		You may nest the file in as many subdirectories as you want.
+		サブディレクトリは好きなだけネストすることができます。
 
-		Additionally, multiple libraries can be loaded at the same time by
-		passing an array of libraries to the load method.
+		さらに、ライブラリの配列をロードメソッドに渡すことによって、
+		いちどに複数のロードをすることができます。
 		::
 
 			$this->load->library(array('email', 'table'));
 
-		**Setting options**
+		**設定オプション**
 
-		The second (optional) parameter allows you to optionally pass
-		configuration setting. You will typically pass these as an array::
+		第 2 引数 (オプション) を使用すると、コンフィグ設定を任意で渡すことができます。
+		通常、これらは配列として渡します::
 
 			$config = array (
 				'mailtype' => 'html',
@@ -131,30 +131,30 @@ Class Reference
 
 			$this->load->library('email', $config);
 
-		Config options can usually also be set via a config file. Each library
-		is explained in detail in its own page, so please read the information
-		regarding each one you would like to use.
+		設定オプションは通常、configファイルにより設定することもできます。
+		各ライブラリはそれぞれのページで詳しく説明されています。
+		使いたいものについてそれぞれの情報をお読みください。
 
-		Please take note, when multiple libraries are supplied in an array for
-		the first parameter, each will receive the same parameter information.
+		注意すべきこととして、第 1 引数に配列で複数のライブラリを渡されると、
+		それぞれ同じパラメータ情報を受け取ることになります。
 
-		**Assigning a Library to a different object name**
+		**ライブラリに別のオブジェクト名を割り当てる**
 
-		If the third (optional) parameter is blank, the library will usually be
-		assigned to an object with the same name as the library. For example, if
-		the library is named Calendar, it will be assigned to a variable named
-		``$this->calendar``.
+		第 3 引数 (オプション) が渡されない場合、通常、
+		ライブラリはそれと同じ名前のオブジェクトに割り当てられます。たとえば
+		Calendar というライブラリの場合、それは
+		``$this->calendar`` という名前の変数に代入されます 。
 
-		If you prefer to set your own class names you can pass its value to the
-		third parameter::
+		独自のクラス名を設定したい場合、
+		第 3 引数にその値を渡すことができます::
 
 			$this->load->library('calendar', NULL, 'my_calendar');
 
-			// Calendar class is now accessed using:
+			// Calendar クラスはいま、このようにアクセスできます:
 			$this->my_calendar
 
-		Please take note, when multiple libraries are supplied in an array for
-		the first parameter, this parameter is discarded.
+		注意すべきこととして、第 1 引数に配列で複数のライブラリを渡されると、
+		この引数は無視されます。
 
 	.. php:method:: driver($library[, $params = NULL[, $object_name]])
 

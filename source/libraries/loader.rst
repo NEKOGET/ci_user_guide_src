@@ -131,7 +131,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 			$this->load->library('email', $config);
 
-		設定オプションは通常、configファイルにより設定することもできます。
+		設定オプションは通常、 Config ファイルにより設定することもできます。
 		各ライブラリはそれぞれのページで詳しく説明されています。
 		使いたいものについてそれぞれの情報をお読みください。
 
@@ -143,7 +143,7 @@ application/third_party ディレクトリに配置することをおすすめ�
 		第 3 引数 (オプション) が渡されない場合、通常、
 		ライブラリはそれと同じ名前のオブジェクトに割り当てられます。たとえば
 		Calendar というライブラリの場合、それは
-		``$this->calendar`` という名前の変数に代入されます 。
+		``$this->calendar`` という名前の変数に代入されます。
 
 		独自のクラス名を設定したい場合、
 		第 3 引数にその値を渡すことができます::
@@ -158,37 +158,37 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 	.. php:method:: driver($library[, $params = NULL[, $object_name]])
 
-		:param	mixed	$library: Library name as a string or an array with multiple libraries
-		:param	array	$params: Optional array of parameters to pass to the loaded library's constructor
-		:param	string	$object_name: Optional object name to assign the library to
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$library: ライブラリ名の文字列または複数ライブラリ名の配列
+		:param	array	$params: ロードされたライブラリのコンストラクタに渡す配列 (オプション)
+		:param	string	$object_name: ライブラリを割り当てるオブジェクト名 (オプション)
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		This method is used to load driver libraries, acts very much like the
-		``library()`` method.
+		このメソッドはドライバライブラリをロードするために使用され、
+		``library()`` メソッドにとてもよく似た役割を果たします。
 
-		As an example, if you would like to use sessions with CodeIgniter, the first
-		step is to load the session driver within your controller::
+		例として、 CodeIgniter のセッションを使用したい場合、
+		その最初の一歩はコントローラ内でセッションドライバをロードすることです::
 
 			$this->load->driver('session');
 
-		Once loaded, the library will be ready for use, using ``$this->session``.
+		いちどロードされれば、ライブラリを使用できる準備が整います、つまり ``$this->session`` を使用できます。
 
-		Driver files must be stored in a subdirectory within the main
-		"libraries" directory, or within your personal *application/libraries*
-		directory. The subdirectory must match the parent class name. Read the
-		:doc:`Drivers <../general/drivers>` description for details.
+		ドライバファイルは、メインの「 libraries 」ディレクトリ内のサブディレクトリか、
+		またはあなたの個人的な *application/libraries* 内に格納することができます。
+		サブディレクトリは親クラス名と一致させなければなりません。
+		詳しくは :doc:`ドライバ<../general/drivers>` の説明をお読みください。
 
-		Additionally, multiple driver libraries can be loaded at the same time by
-		passing an array of drivers to the load method.
+		さらに、ドライバライブラリの配列をロードメソッドに渡すことによって、
+		いちどに複数のロードをすることができます。
 		::
 
 			$this->load->driver(array('session', 'cache'));
 
-		**Setting options**
+		**設定オプション**
 
-		The second (optional) parameter allows you to optionally pass
-		configuration settings. You will typically pass these as an array::
+		第 2 引数 (オプション) を使用すると、コンフィグ設定を任意で渡すことができます。
+		通常、これらは配列として渡します::
 
 			$config = array(
 				'sess_driver' => 'cookie',
@@ -198,23 +198,23 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 			$this->load->driver('session', $config);
 
-		Config options can usually also be set via a config file. Each library
-		is explained in detail in its own page, so please read the information
-		regarding each one you would like to use.
+		設定オプションは通常、 Config ファイルにより設定することもできます。
+		各ライブラリはそれぞれのページで詳しく説明されています。
+		使いたいものについてそれぞれの情報をお読みください。
 
-		**Assigning a Driver to a different object name**
+		**ライブラリに別のオブジェクト名を割り当てる**
 
-		If the third (optional) parameter is blank, the library will be assigned
-		to an object with the same name as the parent class. For example, if
-		the library is named Session, it will be assigned to a variable named
-		``$this->session``.
+		第 3 引数 (オプション) が渡されない場合、
+		ライブラリは親クラスと同じ名前のオブジェクトに割り当てられます。
+		たとえば Session というライブラリの場合、
+		それは ``$this->session`` という名前の変数に代入されます。
 
-		If you prefer to set your own class names you can pass its value to the
-		third parameter::
+		独自のクラス名を設定したい場合、
+		第 3 引数にその値を渡すことができます::
 
 			$this->load->library('session', '', 'my_session');
 
-			// Session class is now accessed using:
+			// Session クラスはいまこのようにアクセスできます:
 			$this->my_session
 
 	.. php:method:: view($view[, $vars = array()[, return = FALSE]])

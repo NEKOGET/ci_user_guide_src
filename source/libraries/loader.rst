@@ -219,35 +219,35 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 	.. php:method:: view($view[, $vars = array()[, return = FALSE]])
 
-		:param	string	$view: View name
-		:param	array	$vars: An associative array of variables
-		:param	bool	$return: Whether to return the loaded view
-		:returns:	View content string if $return is set to TRUE, otherwise CI_Loader instance (method chaining)
+		:param	string	$view: ビュー名
+		:param	array	$vars: 変数の連想配列
+		:param	bool	$return: ロードされたビューを返すかどうか
+		:returns:	$return を TRUE に設定した場合は表示内容の文字列、そうでなければ CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	mixed
 
-		This method is used to load your View files. If you haven't read the
-		:doc:`Views <../general/views>` section of the user guide it is
-		recommended that you do since it shows you how this method is
-		typically used.
+		このメソッドはビューファイルをロードするために使用します。
+		もしユーザガイドの :doc:`ビュー <../general/views>` セクションを読んでいない場合、
+		まずそちらをおすすめします。
+		この方法の一般的な使用方法が記されています。
 
-		The first parameter is required. It is the name of the view file you
-		would like to load.
+		第 1 引数は必須です。
+		それはロードしたいビューファイルの名前です。
 
-		.. note:: The .php file extension does not need to be specified unless
-			you use something other than .php.
+		.. note:: .php の以外のものを使用しない限り、
+			.php ファイル拡張子を指定する必要はありません。
 
-		The second **optional** parameter can take an associative array or an
-		object as input, which it runs through the PHP
-		`extract() <http://php.net/extract>`_ function to convert to variables
-		that can be used in your view files. Again, read the
-		:doc:`Views <../general/views>` page to learn how this might be useful.
+		**省略可能な** 第 2 引数は連想配列またはオブジェクトを渡すことができます。
+		それは実行中に PHP の
+		`extract() <http://php.net/extract>`_ 関数を使ってビューファイルで使用できる変数に変換されます。
+		繰り返します、 :doc:`ビューページ <../general/views>` をお読みください。
+		これがどれだけ使えるかを学べます。
 
-		The third **optional** parameter lets you change the behavior of the
-		method so that it returns data as a string rather than sending it to
-		your browser. This can be useful if you want to process the data in some
-		way. If you set the parameter to TRUE (boolean) it will return data. The
-		default behavior is FALSE, which sends it to your browser. Remember to
-		assign it to a variable if you want the data returned::
+		**省略可能な** 第 3 引数はメソッドの動作を変更することができます、
+		ブラウザに送信するのではなく、文字列としてデータを返すようにです。
+		これは、なにかしらデータを処理したい場合に便利です。
+		このパラメータを TRUE (真偽値) に設定すると、データが返されます。
+		デフォルトの動作は FALSE で、これはブラウザにデータを送信します。
+		データを返すようにしたときは変数に代入するのを忘れないでください::
 
 			$string = $this->load->view('myfile', '', TRUE);
 

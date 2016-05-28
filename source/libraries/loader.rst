@@ -253,20 +253,20 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 	.. php:method:: vars($vars[, $val = ''])
 
-		:param	mixed	$vars: An array of variables or a single variable name
-		:param	mixed	$val: Optional variable value
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$vars: 変数の配列または単一の変数名
+		:param	mixed	$val: 変数値 (オプション)
+		:returns:	CI_Loader インスタンス（メソッドチェイン）
 		:rtype:	CI_Loader
 
-		This method takes an associative array as input and generates
-		variables using the PHP `extract() <http://php.net/extract>`_
-		function. This method produces the same result as using the second
-		parameter of the ``$this->load->view()`` method above. The reason you
-		might want to use this method independently is if you would like to
-		set some global variables in the constructor of your controller and have
-		them become available in any view file loaded from any method. You can
-		have multiple calls to this method. The data get cached and merged
-		into one array for conversion to variables.
+		このメソッドは入力として連想配列を取り、
+		PHP の `extract() <http://php.net/extract>`_
+		関数を使用して変数を生成します。このメソッドは上記
+		``$this->load->view()`` メソッドの第 2 引数を使用した場合と同じ結果が得られます。
+		独立してこのメソッドを使用するべき理由としては、
+		コントローラのコンストラクタでグローバル変数を設定し、
+		それらを不特定のメソッドからロードされる任意のビューファイルで利用したい場合です。
+		このメソッドは複数回呼び出すことができます。
+		データは蓄えられ、変数展開のために1つの配列にマージされます。
 
 	.. php:method:: get_var($key)
 

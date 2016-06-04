@@ -270,34 +270,34 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 	.. php:method:: get_var($key)
 
-		:param	string	$key: Variable name key
-		:returns:	Value if key is found, NULL if not
+		:param	string	$key: 変数名のキー
+		:returns:	キーがある場合はその値、ない場合は NULL
 		:rtype:	mixed
 
-		This method checks the associative array of variables available to
-		your views. This is useful if for any reason a var is set in a library
-		or another controller method using ``$this->load->vars()``.
+		このメソッドはビューで利用可能な変数からなる連想配列を確認します。
+		ライブラリまたは別のコントローラメソッドで
+		``$this->load->vars()`` を用いて変数を設定していることを何らかの理由で確認したい場合に便利です。
 
 	.. php:method:: get_vars()
 
-		:returns:	An array of all assigned view variables
+		:returns:	割り当てられたすべてのビュー変数の配列
 		:rtype:	array
 
-		This method retrieves all variables available to your views.
+		このメソッドはビューで使用可能なすべての変数を取得します。
 
 	.. php:method:: clear_vars()
 
-		:returns:	CI_Loader instance (method chaining)
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		Clears cached view variables.
+		貯め込まれているビュー変数を消去します。
 
 	.. php:method:: model($model[, $name = ''[, $db_conn = FALSE]])
 
-		:param	mixed	$model: Model name or an array containing multiple models
-		:param	string	$name: Optional object name to assign the model to
-		:param	string	$db_conn: Optional database configuration group to load
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$model: モデル名または複数のモデル名を含む配列
+		:param	string	$name: モデルを割り当てるオブジェクト名 (オプション)
+		:param	string	$db_conn: ロードするデータベース設定グループ (オプション)
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
 		::
@@ -305,92 +305,92 @@ application/third_party ディレクトリに配置することをおすすめ�
 			$this->load->model('model_name');
 
 
-		If your model is located in a subdirectory, include the relative path
-		from your models directory. For example, if you have a model located at
-		*application/models/blog/Queries.php* you'll load it using::
+		モデルがサブディレクトリに配置されている場合、
+		models ディレクトリからの相対パスを含めます。たとえば
+		*application/models/blog/Queries.php* にモデルがある場合、次のようにロードします::
 
 			$this->load->model('blog/queries');
 
-		If you would like your model assigned to a different object name you can
-		specify it via the second parameter of the loading method::
+		モデルに別のオブジェクト名を割り当てたい場合は
+		ロードメソッドの第 2 引数により指定することができます::
 
 			$this->load->model('model_name', 'fubar');
 			$this->fubar->method();
 
 	.. php:method:: database([$params = ''[, $return = FALSE[, $query_builder = NULL]]])
 
-		:param	mixed	$params: Database group name or configuration options
-		:param	bool	$return: Whether to return the loaded database object
-		:param	bool	$query_builder: Whether to load the Query Builder
-		:returns:	Loaded CI_DB instance or FALSE on failure if $return is set to TRUE, otherwise CI_Loader instance (method chaining)
+		:param	mixed	$params: データベースグループ名または設定オプション
+		:param	bool	$return: ロードされたデータベースオブジェクトを返すかどうか
+		:param	bool	$query_builder: クエリビルダをロードするかどうか
+		:returns:		$return が TRUE に設定されている場合は CI_DB インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	mixed
 
-		This method lets you load the database class. The two parameters are
-		**optional**. Please see the :doc:`database <../database/index>`
-		section for more info.
+		このメソッドではデータベースクラスをロードできます。
+		2 つの引数は **省略可能** です。詳しくは :doc:`データベース <../database/index>`
+		セクションをご覧ください。
 
 	.. php:method:: dbforge([$db = NULL[, $return = FALSE]])
 
-		:param	object	$db: Database object
-		:param	bool	$return: Whether to return the Database Forge instance
-		:returns:	Loaded CI_DB_forge instance if $return is set to TRUE, otherwise CI_Loader instance (method chaining)
+		:param	object	$db: データベースオブジェクト
+		:param	bool	$return: データベースフォージのインスタンスを返すかどうか
+		:returns:	$return が TRUE に設定されている場合は CI_DB_forge インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	mixed
 
-		Loads the :doc:`Database Forge <../database/forge>` class, please refer
-		to that manual for more info.
+		:doc:`データベースフォージ <../database/forge>` クラスをロードします、
+		より詳しくはそのマニュアルを参照してください。
 
 	.. php:method:: dbutil([$db = NULL[, $return = FALSE]])
 
-		:param	object	$db: Database object
-		:param	bool	$return: Whether to return the Database Utilities instance
-		:returns:	Loaded CI_DB_utility instance if $return is set to TRUE, otherwise CI_Loader instance (method chaining)
+		:param	object	$db: データベースオブジェクト
+		:param	bool	$return: データベースユーティリティのインスタンスを返すかどうか
+		:returns:	$return が TRUE に設定されている場合は CI_DB_utility インスタンスか失敗時に FALSE 、そうでなければ CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	mixed
 
-		Loads the :doc:`Database Utilities <../database/utilities>` class, please
-		refer to that manual for more info.
+		:doc:`データベースユーティリティ <../database/utilities>` クラスをロードします。
+		詳細はそのマニュアルを参照してください。
 
 	.. php:method:: helper($helpers)
 
-		:param	mixed	$helpers: Helper name as a string or an array containing multiple helpers
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$helpers: ヘルパー名文字列、または複数のヘルパー名を含む配列
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		This method loads helper files, where file_name is the name of the
-		file, without the _helper.php extension.
+		このメソッドはヘルパーファイルをロードします。 file_name は ファイルの名前で、
+		_helper.php 拡張子は不要です。
 
 	.. php:method:: file($path[, $return = FALSE])
 
-		:param	string	$path: File path
-		:param	bool	$return: Whether to return the loaded file
-		:returns:	File contents if $return is set to TRUE, otherwise CI_Loader instance (method chaining)
+		:param	string	$path: ファイルパス
+		:param	bool	$return: ロードされたファイルを返すかどうかを
+		:returns:	$return が TRUE に設定されている場合は ファイルの内容、そうでなければ CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	mixed
 
-		This is a generic file loading method. Supply the filepath and name in
-		the first parameter and it will open and read the file. By default the
-		data is sent to your browser, just like a View file, but if you set the
-		second parameter to boolean TRUE it will instead return the data as a
-		string.
+		これは汎用的なファイルをロードするメソッドです。
+		第 1 引数にファイルパスと名前を指定すれば、そのファイルが開かれ、読み込まれます。
+		デフォルトではデータはちょうどビューファイルのようにお使いのブラウザに送信されますが、
+		第 2 引数に TRUE を設定している場合はかわりにデータを文字列として
+		返します。
 
 	.. php:method:: language($files[, $lang = ''])
 
-		:param	mixed	$files: Language file name or an array of multiple language files
-		:param	string	$lang: Language name
-		:returns:	CI_Loader instance (method chaining)
+		:param	mixed	$files: 言語ファイル名または複数の言語ファイル名の配列
+		:param	string	$lang: 言語名
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		This method is an alias of the :doc:`language loading
-		method <language>`: ``$this->lang->load()``.
+		このメソッドは :doc:`言語読み込み
+		メソッド <language>`: ``$this->lang->load()`` のエイリアスです。
 
 	.. php:method:: config($file[, $use_sections = FALSE[, $fail_gracefully = FALSE]])
 
-		:param	string	$file: Configuration file name
-		:param	bool	$use_sections: Whether configuration values should be loaded into their own section
-		:param	bool	$fail_gracefully: Whether to just return FALSE in case of failure
-		:returns:	TRUE on success, FALSE on failure
+		:param	string	$file: 設定ファイル名
+		:param	bool	$use_sections: 設定値を独自のセクションにロードするかどうか
+		:param	bool	$fail_gracefully: 失敗した場合に FALSE を返すだけにするかどうか
+		:returns:	成功した場合に TRUE 、失敗した場合に FALSE
 		:rtype:	bool
 
-		This method is an alias of the :doc:`config file loading
-		method <config>`: ``$this->config->load()``
+		このメソッドは :doc:`設定読み込み
+		メソッド <config>`: ``$this->config->load()`` のエイリアスです。
 
 	.. php:method:: is_loaded($class)
 

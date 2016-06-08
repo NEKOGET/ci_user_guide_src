@@ -394,68 +394,68 @@ application/third_party ディレクトリに配置することをおすすめ�
 
 	.. php:method:: is_loaded($class)
 
-		:param	string	$class: Class name
-		:returns:	Singleton property name if found, FALSE if not
+		:param	string	$class: クラス名
+		:returns:	見つかった場合は単一のプロパティ名、そうでない場合は FALSE
 		:rtype:	mixed
 
-		Allows you to check if a class has already been loaded or not.
+		クラスがすでにロードされているかどうかを確認できます。
 
-		.. note:: The word "class" here refers to libraries and drivers.
+		.. note:: ここでの単語「クラス」は、ライブラリやドライバを指します。
 
-		If the requested class has been loaded, the method returns its assigned
-		name in the CI Super-object and FALSE if it's not::
+		要求されたクラスがロードされている場合、このメソッドはそのクラスが割り当てられた
+		CI スーパーオブジェクト内の名前を返します。そうでない場合は FALSE を返します::
 
 			$this->load->library('form_validation');
-			$this->load->is_loaded('Form_validation');	// returns 'form_validation'
+			$this->load->is_loaded('Form_validation');	// 'form_validation' を返します
 
-			$this->load->is_loaded('Nonexistent_library');	// returns FALSE
+			$this->load->is_loaded('Nonexistent_library');	// FALSE を返します
 
-		.. important:: If you have more than one instance of a class (assigned to
-			different properties), then the first one will be returned.
+		.. important:: (別のプロパティに割り当てられた) クラスのインスタンスを複数持っている場合、
+			最初のものが返されます。
 
 		::
 
 			$this->load->library('form_validation', $config, 'fv');
 			$this->load->library('form_validation');
 
-			$this->load->is_loaded('Form_validation');	// returns 'fv'
+			$this->load->is_loaded('Form_validation');	// 'fv' を返します
 
 	.. php:method:: add_package_path($path[, $view_cascade = TRUE])
 
-		:param	string	$path: Path to add
-		:param	bool	$view_cascade: Whether to use cascading views
-		:returns:	CI_Loader instance (method chaining)
+		:param	string	$path: 追加するパス
+		:param	bool	$view_cascade: カスケードビューを使用するかどうか
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		Adding a package path instructs the Loader class to prepend a given path
-		for subsequent requests for resources. As an example, the "Foo Bar"
-		application package above has a library named Foo_bar.php. In our
-		controller, we'd do the following::
+		パッケージパスの追加により、後続のリソースへのリクエストで
+		ローダクラスが与えられたパスを見るようになります。例として、
+		上記の「Foo Bar」アプリケーションパッケージは
+		Foo_bar.php という名前のライブラリを持っているとします。コントローラで、次のようにしてください::
 
 			$this->load->add_package_path(APPPATH.'third_party/foo_bar/')
 				->library('foo_bar');
 
 	.. php:method:: remove_package_path([$path = ''])
 
-		:param	string	$path: Path to remove
-		:returns:	CI_Loader instance (method chaining)
+		:param	string	$path: 削除するパス
+		:returns:	CI_Loader インスタンス (メソッドチェイン)
 		:rtype:	CI_Loader
 
-		When your controller is finished using resources from an application
-		package, and particularly if you have other application packages you
-		want to work with, you may wish to remove the package path so the Loader
-		no longer looks in that directory for resources. To remove the last path
-		added, simply call the method with no parameters.
+		コントローラでアプリケーションパッケージのリソースの利用が完了し、
+		さらに他のアプリケーションパッケージを使いたい場合、
+		もう前のリソースのディレクトリ内を検索したくないので
+		パッケージのパスを削除したくなる場合があることでしょう。
+		最後に追加されたパスを削除するには、単にパラメータなしでメソッドを呼び出します。
 
-		Or to remove a specific package path, specify the same path previously
-		given to ``add_package_path()`` for a package.::
+		または特定のパッケージパスを削除するには、前にパッケージを
+		``add_package_path()`` に指定したのとまったく同じパスで指定します::
 
 			$this->load->remove_package_path(APPPATH.'third_party/foo_bar/');
 
 	.. php:method:: get_package_paths([$include_base = TRUE])
 
-		:param	bool	$include_base: Whether to include BASEPATH
-		:returns:	An array of package paths
+		:param	bool	$include_base: BASEPATH を含めるかどうか
+		:returns:	パッケージパスの配列
 		:rtype:	array
 
-		Returns all currently available package paths.
+		現在使用可能なすべてのパッケージのパスを返します。

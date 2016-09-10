@@ -2,8 +2,8 @@
 フォームバリデーション(検証)
 ############################
 
-CodeIgniter provides a comprehensive form validation and data prepping
-class that helps minimize the amount of code you'll write.
+CodeIgniter では包括的なフォーム検証とデータ準備のクラスを提供します。
+あなたが書くつもりのコード量を最小限に抑えることができるでしょう。
 
 .. contents:: Page Contents
 
@@ -11,63 +11,63 @@ class that helps minimize the amount of code you'll write.
 概要
 ****
 
-Before explaining CodeIgniter's approach to data validation, let's
-describe the ideal scenario:
+CodeIgniter のデータ検証に対するアプローチを説明する前に、
+理想的なシナリオを説明してみましょう:
 
-#. A form is displayed.
-#. You fill it in and submit it.
-#. If you submitted something invalid, or perhaps missed a required
-   item, the form is redisplayed containing your data along with an
-   error message describing the problem.
-#. This process continues until you have submitted a valid form.
+#. フォームが表示されます。
+#. それを記入し、送信します。
+#. 無効なものを送信したなら、つまりもしかしたら必須項目を逃した場合は、
+   問題を説明するエラーメッセージとともに
+   フォームはあなたのデータを再表示します。
+#. 有効なフォームを送信するまで、このプロセスが継続します。
 
-On the receiving end, the script must:
+受信側では、スクリプトは次のことを満たす必要があります:
 
-#. Check for required data.
-#. Verify that the data is of the correct type, and meets the correct
-   criteria. For example, if a username is submitted it must be
-   validated to contain only permitted characters. It must be of a
-   minimum length, and not exceed a maximum length. The username can't
-   be someone else's existing username, or perhaps even a reserved word.
-   Etc.
-#. Sanitize the data for security.
-#. Pre-format the data if needed (Does the data need to be trimmed? HTML
-   encoded? Etc.)
-#. Prep the data for insertion in the database.
+#. 必須データを確認します。
+#. データが正しい型であり、正しく基準を満たしていることを確認します。
+   例えばユーザ名が送信された場合、
+   許可された文字だけを含むように検証する必要があります。
+   これは最小長より大きく、最大長を超えてはなりません。
+   ユーザ名は他の誰かの既存ユーザ名は使えず、またはおそらく予約語も使えません。
+   など。
+#. セキュリティのためにデータをサニタイズします。
+#. 必要に応じてデータをプリフォーマットします
+   (データはトリミングを必要とする? HTML のエンコードは? など) 。
+#. データベースに挿入するためのデータを準備します。
 
-Although there is nothing terribly complex about the above process, it
-usually requires a significant amount of code, and to display error
-messages, various control structures are usually placed within the form
-HTML. Form validation, while simple to create, is generally very messy
-and tedious to implement.
+上記のプロセスはひどく複雑なものではありませんが、
+通常はかなりの量コードを必要とします。エラーメッセージを表示するためには
+通常、様々な制御構造がフォームの HTML 内に配置されます。
+フォームバリデーションは作成は簡単ながら、
+一般的には非常に面倒で退屈な実装作業になります。
 
-**************
-チュートリアル
-**************
+************************************
+フォームバリデーションチュートリアル
+************************************
 
-What follows is a "hands on" tutorial for implementing CodeIgniters Form
-Validation.
+以下は CodeIgniter のフォームバリデーションを実装するための
+「ハンズオン」チュートリアルです。
 
-In order to implement form validation you'll need three things:
+フォームバリデーションを実装するためには次の 3 つが必要になります:
 
-#. A :doc:`View <../general/views>` file containing a form.
-#. A View file containing a "success" message to be displayed upon
-   successful submission.
-#. A :doc:`controller <../general/controllers>` method to receive and
-   process the submitted data.
+#. フォームを持つ:doc:`ビュー <../general/views>`ファイル。
+#. 送信成功の時に表示される「成功」メッセージを含む
+   ビューファイル。
+#. 送信されたデータを受信および処理する :doc:`コントローラ <../general/controllers>`
+   メソッド。
 
-Let's create those three things, using a member sign-up form as the
-example.
+それではサンプルとしてメンバー登録フォームを使い、
+これらの 3 つを作成してみましょう。
 
 入力フォーム
 ============
 
-Using a text editor, create a form called myform.php. In it, place this
-code and save it to your application/views/ folder::
+テキストエディタを使用して、 myform.php というフォームを作成します。
+それには application/views/ フォルダにこのコードを配置して保存します::
 
 	<html>
 	<head>
-	<title>My Form</title>
+	<title>私のフォーム</title>
 	</head>
 	<body>
 
@@ -75,16 +75,16 @@ code and save it to your application/views/ folder::
 
 	<?php echo form_open('form'); ?>
 
-	<h5>Username</h5>
+	<h5>ユーザ名</h5>
 	<input type="text" name="username" value="" size="50" />
 
-	<h5>Password</h5>
+	<h5>パスワード</h5>
 	<input type="text" name="password" value="" size="50" />
 
-	<h5>Password Confirm</h5>
+	<h5>パスワード確認</h5>
 	<input type="text" name="passconf" value="" size="50" />
 
-	<h5>Email Address</h5>
+	<h5>メールアドレス</h5>
 	<input type="text" name="email" value="" size="50" />
 
 	<div><input type="submit" value="Submit" /></div>
@@ -97,18 +97,18 @@ code and save it to your application/views/ folder::
 成功ページ
 ==========
 
-Using a text editor, create a form called formsuccess.php. In it, place
-this code and save it to your application/views/ folder::
+テキストエディタを使用して、 formsuccess.php というフォームを作成します。
+それには application/views/ フォルダにこのコードを配置して保存します::
 
 	<html>
 	<head>
-	<title>My Form</title>
+	<title>私のフォーム</title>
 	</head>
 	<body>
 
-	<h3>Your form was successfully submitted!</h3>
+	<h3>あなたのフォームは送信成功しました!</h3>
 
-	<p><?php echo anchor('form', 'Try it again!'); ?></p>
+	<p><?php echo anchor('form', 'もういっかい!'); ?></p>
 
 	</body>
 	</html>
@@ -116,8 +116,8 @@ this code and save it to your application/views/ folder::
 コントローラ
 ============
 
-Using a text editor, create a controller called Form.php. In it, place
-this code and save it to your application/controllers/ folder::
+テキストエディタを使用して、 Form.php というコントローラを作成します。
+それには application/controllers フォルダにこのコードを配置して保存します::
 
 	<?php
 
@@ -143,77 +143,77 @@ this code and save it to your application/controllers/ folder::
 動かしてみよう!
 ===============
 
-To try your form, visit your site using a URL similar to this one::
+フォームを試すには次のようなURLを使ってサイトを開いてください::
 
 	example.com/index.php/form/
 
-If you submit the form you should simply see the form reload. That's
-because you haven't set up any validation rules yet.
+フォームを送信すると、単にフォームがリロードされるはずです。
+それはまだ検証ルールを設定していないためです。
 
-**Since you haven't told the Form Validation class to validate anything
-yet, it returns FALSE (boolean false) by default. ``The run()`` method
-only returns TRUE if it has successfully applied your rules without any
-of them failing.**
+**フォームバリデーションクラスに何の検証も指示していないので、
+デフォルトの FALSE (ブール偽) を返します。 ``run()`` メソッドはあなたのルールを適用でき、
+1 つも失敗しなかった場合にのみ TRUE
+を返します。**
 
 解説
 ====
 
-You'll notice several things about the above pages:
+上記のページについて、いくつかのことに気付いたことでしょう。:
 
-The form (myform.php) is a standard web form with a couple exceptions:
+このフォーム (myform.php) は標準的な Web フォームですが、 2 つの例外があります:
 
-#. It uses a form helper to create the form opening. Technically, this
-   isn't necessary. You could create the form using standard HTML.
-   However, the benefit of using the helper is that it generates the
-   action URL for you, based on the URL in your config file. This makes
-   your application more portable in the event your URLs change.
-#. At the top of the form you'll notice the following function call:
+#. フォームの開きタグを作成するために、フォームヘルパーを使用しています。
+   技術的には、これは必須ではありません。標準の HTML を使用してフォームを作成することもできます。
+   しかしながらヘルパーを使用する利点として、
+   config ファイル内の URL に基づいてアクション URL を生成することができます。
+   これはあなたのURLを変更する際に、アプリケーションをよりポータブルにしてくれます。
+#. フォームの一番上のところで、次の関数呼び出しに気付くでしょう:
    ::
 
 	<?php echo validation_errors(); ?>
 
-   This function will return any error messages sent back by the
-   validator. If there are no messages it returns an empty string.
+   この関数は、バリデータによって戻されたすべてのエラーメッセージを返します。
+   メッセージがない場合、空の文字列を返します。
 
-The controller (Form.php) has one method: ``index()``. This method
-initializes the validation class and loads the form helper and URL
-helper used by your view files. It also runs the validation routine.
-Based on whether the validation was successful it either presents the
-form or the success page.
+コントローラ (Form.php) には 1 つのメソッドがあります: ``index()``です。
+このメソッドはバリデーションクラスを初期化し、ビューファイルで使用されるフォームヘルパーと URL ヘルパーをロードします。
+また、バリデーションルーチンを実行します。
+検証が成功したかどうかに基づいて、
+フォームと成功ページのどちらかを表示します。
 
 .. _setting-validation-rules:
 
 検証ルールを設定する
 ====================
 
-CodeIgniter lets you set as many validation rules as you need for a
-given field, cascading them in order, and it even lets you prep and
-pre-process the field data at the same time. To set validation rules you
-will use the ``set_rules()`` method::
+CodeIgniter は、与えられたフィールドに必要なだけの多くの検証ルールを設定することができ、
+その順序でカスケード処理し、
+さらには同時にフィールドデータの準備と前処理をすることができます。
+検証ルールを設定するには ``set_rules()`` メソッドを使用します::
 
 	$this->form_validation->set_rules();
 
-The above method takes **three** parameters as input:
+上のメソッドは、入力として **3 つ** のパラメータを取ります:
 
-#. The field name - the exact name you've given the form field.
-#. A "human" name for this field, which will be inserted into the error
-   message. For example, if your field is named "user" you might give it
-   a human name of "Username".
-#. The validation rules for this form field.
-#. (optional) Set custom error messages on any rules given for current field. If not provided will use the default one.
+#. フィールド名 - フォームフィールドを与えた正確な名前。
+#. このフィールドの「人間向け」の名前。エラーメッセージに挿入されます。
+   たとえば、フィールドに「user」と名付けた場合、
+   人間向けの名前として「ユーザ名」と名付けるかもしれません。
+#. このフォームフィールドの検証ルール。
+#. (オプション) このフィールドに指定された任意のルールにカスタムエラーメッセージを設定します。指定されない場合、デフォルトのエラーメッセージを使用します。
 
-.. note:: If you would like the field name to be stored in a language
-	file, please see :ref:`translating-field-names`.
+.. note:: 言語ファイルに格納されているフィールド名をご希望の場合、
+	:ref:`translating-field-names` を参照してください。
 
-Here is an example. In your controller (Form.php), add this code just
-below the validation initialization method::
+ここで一例を示しましょう。コントローラ (Form.php) で、
+バリデーション初期化メソッドの直下にこのコードを追加します::
 
-	$this->form_validation->set_rules('username', 'Username', 'required');
-	$this->form_validation->set_rules('password', 'Password', 'required');
-	$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-	$this->form_validation->set_rules('email', 'Email', 'required');
+	$this->form_validation->set_rules('username', 'ユーザ名', 'required');
+	$this->form_validation->set_rules('password', 'パスワード', 'required');
+	$this->form_validation->set_rules('passconf', 'パスワード確認', 'required');
+	$this->form_validation->set_rules('email', 'メールアドレス', 'required');
 
-Your controller should now look like this::
+コントローラは次のようになります::
 
 	<?php
 
@@ -225,12 +225,12 @@ Your controller should now look like this::
 
 			$this->load->library('form_validation');
 
-			$this->form_validation->set_rules('username', 'Username', 'required');
-			$this->form_validation->set_rules('password', 'Password', 'required',
-				array('required' => 'You must provide a %s.')
+			$this->form_validation->set_rules('username', 'ユーザ名', 'required');
+			$this->form_validation->set_rules('password', 'パスワード', 'required',
+				array('required' => '%s は必須です。')
 			);
-			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-			$this->form_validation->set_rules('email', 'Email', 'required');
+			$this->form_validation->set_rules('passconf', 'パスワード確認', 'required');
+			$this->form_validation->set_rules('email', 'メールアドレス', 'required');
 
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -243,42 +243,42 @@ Your controller should now look like this::
 		}
 	}
 
-Now submit the form with the fields blank and you should see the error
-messages. If you submit the form with all the fields populated you'll
-see your success page.
+いま、フィールドが空欄のままフォームを送信すると、エラーメッセージが表示されるはずです。
+すべてのフィールドを埋めてフォームを送信すると、
+成功ページが表示されるでしょう。
 
-.. note:: The form fields are not yet being re-populated with the data
-	when there is an error. We'll get to that shortly.
+.. note:: エラーが存在するとき、フォームフィールドはまだ入力データで埋めなおされず空欄のままです。
+	すぐあとで説明します。
 
 配列を使った検証ルールの指定
 ============================
 
-Before moving on it should be noted that the rule setting method can
-be passed an array if you prefer to set all your rules in one action. If
-you use this approach, you must name your array keys as indicated::
+先に進む前に、次のことに注意すべきです。
+単一の操作ですべてのルールを設定したい場合は、配列を渡すことができます。
+この方法を使う場合、つぎに示されているように、配列のキーに名前を付ける必要があります::
 
 	$config = array(
 		array(
 			'field' => 'username',
-			'label' => 'Username',
+			'label' => 'ユーザ名',
 			'rules' => 'required'
 		),
 		array(
 			'field' => 'password',
-			'label' => 'Password',
+			'label' => 'パスワード',
 			'rules' => 'required',
 			'errors' => array(
-				'required' => 'You must provide a %s.',
+				'required' => '%s は必須です。',
 			),
 		),
 		array(
 			'field' => 'passconf',
-			'label' => 'Password Confirmation',
+			'label' => 'パスワード確認',
 			'rules' => 'required'
 		),
 		array(
 			'field' => 'email',
-			'label' => 'Email',
+			'label' => 'メールアドレス',
 			'rules' => 'required'
 		)
 	);
@@ -288,36 +288,36 @@ you use this approach, you must name your array keys as indicated::
 ルールの連結(カスケード)
 ========================
 
-CodeIgniter lets you pipe multiple rules together. Let's try it. Change
-your rules in the third parameter of rule setting method, like this::
+CodeIgniter では複数のルールをパイプで一緒につなげることができます。試してみましょう。
+ルール設定メソッドの第 3 パラメータに指定するルールを変更します。このように::
 
 	$this->form_validation->set_rules(
-		'username', 'Username',
+		'username', 'ユーザ名',
 		'required|min_length[5]|max_length[12]|is_unique[users.username]',
 		array(
-			'required'	=> 'You have not provided %s.',
-			'is_unique'	=> 'This %s already exists.'
+			'required'	=> '%s を入力していません。',
+			'is_unique'	=> '%s はすでに存在します。'
 		)
 	);
-	$this->form_validation->set_rules('password', 'Password', 'required');
-	$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
-	$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
+	$this->form_validation->set_rules('password', 'パスワード', 'required');
+	$this->form_validation->set_rules('passconf', 'パスワード確認', 'required|matches[password]');
+	$this->form_validation->set_rules('email', 'メールアドレス', 'required|valid_email|is_unique[users.email]');
 
-The above code sets the following rules:
+上のコードは次のルールを設定します:
 
-#. The username field be no shorter than 5 characters and no longer than
-   12.
-#. The password field must match the password confirmation field.
-#. The email field must contain a valid email address.
+#. ユーザ名フィールドは 5 文字未満または
+   12 文字を超えることはありません。
+#. パスワードフィールドは、パスワード確認フィールドと一致する必要があります。
+#. メールアドレスフィールドは有効なメールアドレスを含める必要があります。
 
-Give it a try! Submit your form without the proper data and you'll see
-new error messages that correspond to your new rules. There are numerous
-rules available which you can read about in the validation reference.
+試してみましょう! まちがったデータでフォームを送信すると、
+新しいルールに対応する新しいエラーメッセージが表示されます。
+利用可能なルールは多数あり、バリデーションリファレンスでそれらについて読むことができます。
 
-.. note:: You can also pass an array of rules to ``set_rules()``,
-	instead of a string. Example::
+.. note:: 文字列のかわりに配列で ``set_rules()`` にルールを渡すことができます。
+	例::
 
-	$this->form_validation->set_rules('username', 'Username', array('required', 'min_length[5]'));
+	$this->form_validation->set_rules('username', 'ユーザ名', array('required', 'min_length[5]'));
 
 データの整形
 ============
@@ -341,8 +341,8 @@ rule, like ``htmlspecialchars()``, ``trim()``, etc.**
 	**after** the validation rules so if there is an error, the
 	original data will be shown in the form.
 
-フォームの再表示（データの引き継ぎ）
-====================================
+フォームの再表示(データの引き継ぎ)
+==================================
 
 Thus far we have only been dealing with errors. It's time to repopulate
 the form field with the submitted data. CodeIgniter offers several

@@ -285,8 +285,8 @@ CodeIgniter は、与えられたフィールドに必要なだけの多くの�
 
 	$this->form_validation->set_rules($config);
 
-ルールの連結(カスケード)
-========================
+ルールの連結 (カスケード)
+=========================
 
 CodeIgniter では複数のルールをパイプで一緒につなげることができます。試してみましょう。
 ルール設定メソッドの第 3 パラメータに指定するルールを変更します。このように::
@@ -322,46 +322,46 @@ CodeIgniter では複数のルールをパイプで一緒につなげること�
 データの整形
 ============
 
-In addition to the validation method like the ones we used above, you
-can also prep your data in various ways. For example, you can set up
-rules like this::
+上記で使用しているようなバリデーションメソッドに加え、
+様々な方法でデータを整形することもできます。
+たとえば、次のようなルールを設定することができます::
 
-	$this->form_validation->set_rules('username', 'Username', 'trim|required|min_length[5]|max_length[12]');
-	$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-	$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
-	$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+	$this->form_validation->set_rules('username', 'ユーザ名', 'trim|required|min_length[5]|max_length[12]');
+	$this->form_validation->set_rules('password', 'パスワード', 'trim|required|min_length[8]');
+	$this->form_validation->set_rules('passconf', 'パスワード確認', 'trim|required|matches[password]');
+	$this->form_validation->set_rules('email', 'メールアドレス', 'trim|required|valid_email');
 
-In the above example, we are "trimming" the fields, checking for length
-where necessary and making sure that both password fields match.
+上の例では、フィールドを「トリミング」し、必要なところでは文字列長をチェックし、
+パスワードフィールドの両方が一致することを確認しています。
 
-**Any native PHP function that accepts one parameter can be used as a
-rule, like ``htmlspecialchars()``, ``trim()``, etc.**
+**あらゆる PHP ネイティブ関数のうちパラメータを 1 つ受けとるものは、ルールとして使用することができます。
+``htmlspecialchars()`` 、 ``trim()`` などです。**
 
-.. note:: You will generally want to use the prepping functions
-	**after** the validation rules so if there is an error, the
-	original data will be shown in the form.
+.. note:: 一般的には、バリデーションルールの
+	**後で** データ整形機能を使用したいことでしょう。
+	エラーがある場合にオリジナルのデータをフォームに表示させるためです。
 
-フォームの再表示(データの引き継ぎ)
-==================================
+フォームの再表示 (データの引き継ぎ)
+===================================
 
-Thus far we have only been dealing with errors. It's time to repopulate
-the form field with the submitted data. CodeIgniter offers several
-helper functions that permit you to do this. The one you will use most
-commonly is::
+ここまではエラーのみを取り扱ってきました。
+ここからは送信されたデータでフォームフィールドを埋めなおしていきましょう。CodeIgniter
+ではそうするためのヘルパー関数をいくつか提供しています。
+最も一般的に使用されるのは、次のものです::
 
 	set_value('field name')
 
-Open your myform.php view file and update the **value** in each field
-using the :php:func:`set_value()` function:
+myform.php ビューファイルを開き、
+:php:func:`set_value()` 関数を使用して各フィールドの **value** を変えていきましょう:
 
-**Don't forget to include each field name in the :php:func:`set_value()`
-function calls!**
+**:PHP:FUNC:`set_value()` 関数呼び出しに各フィールド名を含めることを
+忘れないでください！**
 
 ::
 
 	<html>
 	<head>
-	<title>My Form</title>
+	<title>私のフォーム</title>
 	</head>
 	<body>
 
@@ -369,38 +369,38 @@ function calls!**
 
 	<?php echo form_open('form'); ?>
 
-	<h5>Username</h5>
+	<h5>ユーザ名</h5>
 	<input type="text" name="username" value="<?php echo set_value('username'); ?>" size="50" />
 
-	<h5>Password</h5>
+	<h5>パスワード</h5>
 	<input type="text" name="password" value="<?php echo set_value('password'); ?>" size="50" />
 
-	<h5>Password Confirm</h5>
+	<h5>パスワード確認</h5>
 	<input type="text" name="passconf" value="<?php echo set_value('passconf'); ?>" size="50" />
 
-	<h5>Email Address</h5>
+	<h5>メールアドレス</h5>
 	<input type="text" name="email" value="<?php echo set_value('email'); ?>" size="50" />
 
-	<div><input type="submit" value="Submit" /></div>
+	<div><input type="submit" value="送信" /></div>
 
 	</form>
 
 	</body>
 	</html>
 
-Now reload your page and submit the form so that it triggers an error.
-Your form fields should now be re-populated
+さて、ページをリロードしてエラーを起こすようにフォームを送信します。
+フォームフィールドはいま、埋めなおされたことでしょう。
 
-.. note:: The :ref:`class-reference` section below
-	contains methods that permit you to re-populate <select> menus,
-	radio buttons, and checkboxes.
+.. note:: 下記の :ref:`class-reference` セクションには
+	<select>メニュー、ラジオボタン、およびチェックボックスを埋めなおす
+	メソッドがあります。
 
-.. important:: If you use an array as the name of a form field, you
-	must supply it as an array to the function. Example::
+.. important:: フォームフィールドの name に配列を使用する場合は、
+	関数に配列としてそれを指定する必要があります。例::
 
 	<input type="text" name="colors[]" value="<?php echo set_value('colors[]'); ?>" size="50" />
 
-For more info please see the :ref:`using-arrays-as-field-names` section below.
+詳細については下記の :ref:`using-arrays-as-field-names` セクションを参照してください。
 
 コールバック: ユーザ定義の検証メソッド
 ======================================
@@ -543,42 +543,42 @@ Anonymous function (PHP 5.3+) version::
 エラーメッセージの設定
 ======================
 
-All of the native error messages are located in the following language
-file: **system/language/english/form_validation_lang.php**
+標準のエラーメッセージはすべて、次の言語ファイルの中にあります:
+**system/language/english/form_validation_lang.php**
 
-To set your own global custom message for a rule, you can either 
-extend/override the language file by creating your own in
-**application/language/english/form_validation_lang.php** (read more
-about this in the :doc:`Language Class <language>` documentation),
-or use the following method::
+あなた独自のグローバルなカスタムメッセージを
+ルールに設定するには、
+**application/language/english/form_validation_lang.php** で言語ファイル上書き/拡張するか (これについては
+:doc:`言語クラス <language>` のドキュメントを読んでください) 、
+または次のメソッドを使用します::
 
-	$this->form_validation->set_message('rule', 'Error Message');
+	$this->form_validation->set_message('rule', 'エラーメッセージ');
 
-If you need to set a custom error message for a particular field on 
-some particular rule, use the set_rules() method::
+もし特定のルールかつ特定のフィールド用のカスタムエラーメッセージを設定する必要がある場合は、
+set_rules() メソッドを使用します::
 
-	$this->form_validation->set_rules('field_name', 'Field Label', 'rule1|rule2|rule3',
-		array('rule2' => 'Error Message on rule2 for this field_name')
+	$this->form_validation->set_rules('field_name', 'フィールド名', 'rule1|rule2|rule3',
+		array('rule2' => 'この field_name の rule2 に使用するエラーメッセージ')
 	);
 
-Where rule corresponds to the name of a particular rule, and Error
-Message is the text you would like displayed.
+ルールのところはエラーを表示したい特定のルール名に対応し、
+エラーメッセージのところは表示したいテキストです。
 
-If you'd like to include a field's "human" name, or the optional
-parameter some rules allow for (such as max_length), you can add the
-**{field}** and **{param}** tags to your message, respectively::
+フィールドの「人間向け」の名前、
+またはいくつかのルールが許可しているオプションパラメータ (max_length など) を含めたい場合は、
+**{field}** タグと **{param}** タグをメッセージに追加することができます::
 
-	$this->form_validation->set_message('min_length', '{field} must have at least {param} characters.');
+	$this->form_validation->set_message('min_length', '{field} は少なくとも {param} 文字必要です。');
 
-On a field with the human name Username and a rule of min_length[5], an
-error would display: "Username must have at least 5 characters."
+人間向けの名前「ユーザ名」と min_length[5] のルールのフィールドでは、
+次のエラーが表示されます: "ユーザ名 は少なくとも 5 文字必要です。"
 
-.. note:: The old `sprintf()` method of using **%s** in your error messages
-	will still work, however it will override the tags above. You should
-	use one or the other.
+.. note:: **%s** をエラーメッセージ内に使用する古い `sprintf()` の方法はまだ動作しますが、
+	しかしそれは上記のタグを上書きします。
+	どちらか一方だけを使用すべきです。
 
-In the callback rule example above, the error message was set by passing
-the name of the method (without the "callback\_" prefix)::
+上記のコールバックルール例では、エラーメッセージはメソッドの名前を渡すことによって設定されます
+(「callback\_」プレフィックスは不要です）) ::
 
 	$this->form_validation->set_message('username_check')
 
@@ -587,27 +587,27 @@ the name of the method (without the "callback\_" prefix)::
 フィールド名の変換
 ==================
 
-If you would like to store the "human" name you passed to the
-``set_rules()`` method in a language file, and therefore make the name
-able to be translated, here's how:
+``set_rules()`` メソッドに渡される「人間向け」の名前を言語ファイルに保持したい場合、
+つまり名前を翻訳できるようにしたい場合、
+方法は次のとおりです:
 
-First, prefix your "human" name with **lang:**, as in this example::
+まず、「人間向け」の名前をにプレフィックス **lang:** をつけます。この例のように:
 
 	 $this->form_validation->set_rules('first_name', 'lang:first_name', 'required');
 
-Then, store the name in one of your language file arrays (without the
-prefix)::
+次に、言語ファイルの配列に名前を格納します
+(プレフィックスなし) ::
 
-	$lang['first_name'] = 'First Name';
+	$lang['first_name'] = '名前';
 
-.. note:: If you store your array item in a language file that is not
-	loaded automatically by CI, you'll need to remember to load it in your
-	controller using::
+.. note:: CI によって自動的にロードされない言語ファイルで
+	配列の項目を追加する場合は、
+	コントローラでロードすることを忘れないでください::
 
 	$this->lang->load('file_name');
 
-See the :doc:`Language Class <language>` page for more info regarding
-language files.
+言語ファイルに関する詳細情報については :doc:`言語クラス <language>`
+のページを見てください。
 
 .. _changing-delimiters:
 

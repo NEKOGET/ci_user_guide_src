@@ -614,30 +614,30 @@ set_rules() メソッドを使用します::
 エラーメッセージを囲む文字の変更
 ================================
 
-By default, the Form Validation class adds a paragraph tag (<p>) around
-each error message shown. You can either change these delimiters
-globally, individually, or change the defaults in a config file.
+デフォルトでは、フォームバリデーションクラスは表示する各エラーメッセージの周囲に段落タグ（<p>）を追加します。
+これらの区切り文字はグローバルに、あるいは個別に、
+はたまた設定ファイルでデフォルトを変更することができます。
 
-#. **Changing delimiters Globally**
-   To globally change the error delimiters, in your controller method,
-   just after loading the Form Validation class, add this::
+#. **グローバルに区切り文字を変更**
+   エラーの区切り文字をグローバルに変更するには、
+   コントローラメソッドでフォームバリデーションクラスをロードしたすぐあと、これを追加します::
 
       $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
-   In this example, we've switched to using div tags.
+   この例では div タグを使用するように切り替えました。
 
-#. **Changing delimiters Individually**
-   Each of the two error generating functions shown in this tutorial can
-   be supplied their own delimiters as follows::
+#. **個別に区切り文字を変更**
+   このチュートリアルで示している 2 つのエラー文生成機能のそれぞれで、
+   次のように独自の区切り文字を指定することができます::
 
       <?php echo form_error('field name', '<div class="error">', '</div>'); ?>
 
-   Or::
+   または::
 
       <?php echo validation_errors('<div class="error">', '</div>'); ?>
 
-#. **Set delimiters in a config file**
-   You can add your error delimiters in application/config/form_validation.php as follows::
+#. **configファイルで区切り文字を設定**
+   application/config/form_validation.php で次のようにエラー区切り文字を設定することができます::
 
       $config['error_prefix'] = '<div class="error_prefix">';
       $config['error_suffix'] = '</div>';
@@ -645,65 +645,65 @@ globally, individually, or change the defaults in a config file.
 個別にエラーを表示する
 ======================
 
-If you prefer to show an error message next to each form field, rather
-than as a list, you can use the :php:func:`form_error()` function.
+エラーメッセージをリストとしてではなく、
+各フォームフィールドの横に表示したい場合は、:php:func:`form_error()` 関数を使用することができます。
 
-Try it! Change your form so that it looks like this::
+やってみましょう！　次のようにフォームを変更します::
 
-	<h5>Username</h5>
+	<h5>ユーザ名</h5>
 	<?php echo form_error('username'); ?>
 	<input type="text" name="username" value="<?php echo set_value('username'); ?>" size="50" />
 
-	<h5>Password</h5>
+	<h5>パスワード</h5>
 	<?php echo form_error('password'); ?>
 	<input type="text" name="password" value="<?php echo set_value('password'); ?>" size="50" />
 
-	<h5>Password Confirm</h5>
+	<h5>パスワード確認</h5>
 	<?php echo form_error('passconf'); ?>
 	<input type="text" name="passconf" value="<?php echo set_value('passconf'); ?>" size="50" />
 
-	<h5>Email Address</h5>
+	<h5>メールアドレス</h5>
 	<?php echo form_error('email'); ?>
 	<input type="text" name="email" value="<?php echo set_value('email'); ?>" size="50" />
 
-If there are no errors, nothing will be shown. If there is an error, the
-message will appear.
+エラーがない場合は何も表示されません。エラーがある場合、
+メッセージが表示されます。
 
-.. important:: If you use an array as the name of a form field, you
-	must supply it as an array to the function. Example::
+.. important:: フォームフィールドの名前として配列を使用する場合は、
+	関数に配列としてそれを指定する必要があります。例::
 
 	<?php echo form_error('options[size]'); ?>
 	<input type="text" name="options[size]" value="<?php echo set_value("options[size]"); ?>" size="50" />
 
-For more info please see the :ref:`using-arrays-as-field-names` section below.
+詳細については下記の :ref:`using-arrays-as-field-names` セクションを参照してください。
 
-配列（$_POST以外の）のバリデーション
-====================================
+配列（$_POST以外）のバリデーション
+==================================
 
-Sometimes you may want to validate an array that does not originate from ``$_POST`` data.
+時には ``$_POST`` データではない配列をバリデーションしたいことでしょう。
 
-In this case, you can specify the array to be validated::
+その場合、バリデーションする配列を指定することができます::
 
 	$data = array(
-		'username' => 'johndoe',
+		'username' => '山田太郎',
 		'password' => 'mypassword',
 		'passconf' => 'mypassword'
 	);
 
 	$this->form_validation->set_data($data);
 
-Creating validation rules, running the validation, and retrieving error
-messages works the same whether you are validating ``$_POST`` data or
-another array of your choice.
+バリデーションルールを作成し、バリデーションを実行し、エラーメッセージを取得する一連の動作は
+``$_POST`` データまたは設定した別の配列をバリデーションしているかどうかにかかわらず、
+同じように動作します。
 
-.. important:: You have to call the ``set_data()`` method *before* defining
-	any validation rules.
+.. important:: あらゆるバリデーションルールを定義する *前に* ``set_data()`` メソッドを
+	呼び出す必要があります。
 
-.. important:: If you want to validate more than one array during a single
-	execution, then you should call the ``reset_validation()`` method
-	before setting up rules and validating the new array.
+.. important:: 1 回のプログラム実行内で複数の配列を検証したい場合は、
+	ルールを設定して新しい配列をバリデーションする前に ``reset_validation()`` メソッドを
+	呼び出す必要があります。
 
-For more info please see the :ref:`class-reference` section below.
+詳細については下記の :ref:`class-reference` セクションを参照してください。
 
 .. _saving-groups:
 

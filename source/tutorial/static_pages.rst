@@ -10,19 +10,19 @@
 コントローラはシンプルな指名するお仕事を支援するclassです。
 これがWebアプリケーションのつなぎになります。
 
-For example, when a call is made to:
+たとえば、以下のようなURLにアクセスする場合を考えます。
 
 	http://example.com/news/latest/10
 
-We might imagine that there is a controller named "news". The method
-being called on news would be "latest". The news method's job could be to
-grab 10 news items, and render them on the page. Very often in MVC,
-you'll see URL patterns that match:
+この場合、 "news"という部分が controller を指します。
+"news"で呼び出されるメソッドは"latest"で、"latest"メソッドは
+10件の項目を取得し、ページ上に表示するメソッドだと仮定します。MVCモデルに則り、
+URL構成は以下のようになっています。
 
 	http://example.com/[controller-class]/[controller-method]/[arguments]
 
-As URL schemes become more complex, this may change. But for now, this
-is all we will need to know.
+URL構成が複雑になるにつれて、これは変更することがありますが、
+最初のうちは、これさえ知っていれば大丈夫です。
 
 次のコードで、application/controllers/Pages.php ファイルを
 作成します。

@@ -37,24 +37,24 @@ URL構成が複雑になるにつれて、これは変更することがあり�
 	        }
 	}
 
-You have created a class named ``Pages``, with a view method that accepts
-one argument named ``$page``. The ``Pages`` class is extending the
-``CI_Controller`` class. This means that the new pages class can access the
-methods and variables defined in the ``CI_Controller`` class
+ここでは ``$page`` という引数1つを受け付ける ``Pages`` というメソッドを作成しています。
+``Pages`` クラスは ``CI_Controller`` クラスを継承しています。
+これは、作成したPagesクラスが ``CI_Controller`` クラスで定義されている
+メソッドと変数を使える事を意味しています。
 (*system/core/Controller.php*).
 
-The **controller is what will become the center of every request** to
-your web application. In very technical CodeIgniter discussions, it may
-be referred to as the *super object*. Like any php class, you refer to
-it within your controllers as ``$this``. Referring to ``$this`` is how
-you will load libraries, views, and generally command the framework.
+あなたのWebアプリケーションにおいて、 **controllerは全てのリクエストの中心** になります。
+CodeIgniterの高度な技術ディスカッションでは、これは *super object* と呼ばれます。
+多くのPHPのクラスと同じく、controllerは ``$this`` という変数で参照できます。
+`` $ this`` を参照する事で、
+ライブラリやビュー、その他の CodeIgniter の機能をロードします。
 
-Now you've created your first method, it's time to make some basic page
-templates. We will be creating two "views" (page templates) that act as
-our page footer and header.
+今、基本的なページを作成する最初の段階としてメソッドを作成しました。
+これから、ページのフッターとヘッダーとして動作する2つの
+"views" （ページテンプレート）を作成します
 
-Create the header at *application/views/templates/header.php* and add
-the following code:
+*application/views/templates/header.php* にヘッダーを作成し、
+以下のコードを書き込みます。
 
 ::
 

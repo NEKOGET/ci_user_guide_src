@@ -711,98 +711,98 @@ set_rules() メソッドを使用します::
 検証ルールを設定ファイルに保存
 ******************************
 
-A nice feature of the Form Validation class is that it permits you to
-store all your validation rules for your entire application in a config
-file. You can organize these rules into "groups". These groups can
-either be loaded automatically when a matching controller/method is
-called, or you can manually call each set as needed.
+フォームバリデーションクラスの素晴らしい機能として、
+アプリケーション全体のために、すべての検証ルールを設定ファイル内に保存することができます。
+「グループ」にこれらのルールを整理することができます。
+コントローラ/メソッドが一致するものを自動的にロードするか、
+または必要に応じて手動で呼び出すことでそれらのグループを読み込むことができます。
 
 ルールの保存方法
 ================
 
-To store your validation rules, simply create a file named
-form_validation.php in your application/config/ folder. In that file
-you will place an array named $config with your rules. As shown earlier,
-the validation array will have this prototype::
+検証ルールを保存するには、
+単に application/config/ フォルダに form_validation.php という名前のファイルを作成します。
+このファイルでは、 $config という名前の配列を配置し、バリデーションルールを書きます。
+先に示したように、バリデーションの配列は次のプロトタイプを持っています::
 
 	$config = array(
 		array(
 			'field' => 'username',
-			'label' => 'Username',
+			'label' => 'ユーザ名',
 			'rules' => 'required'
 		),
 		array(
 			'field' => 'password',
-			'label' => 'Password',
+			'label' => 'パスワード',
 			'rules' => 'required'
 		),
 		array(
 			'field' => 'passconf',
-			'label' => 'Password Confirmation',
+			'label' => 'パスワード確認',
 			'rules' => 'required'
 		),
 		array(
 			'field' => 'email',
-			'label' => 'Email',
+			'label' => 'メールアドレス',
 			'rules' => 'required'
 		)
 	);
 
-Your validation rule file will be loaded automatically and used when you
-call the ``run()`` method.
+バリデーションルールファイルは自動的に読み込まれ、
+``run()`` メソッドを呼び出すときに使用されます。
 
-Please note that you MUST name your ``$config`` array.
+``$config`` 配列という名前を　つ　け　な　け　れ　ば　な　ら　な　い　のでご注意ください。
 
 検証ルールのセットを作る
 ========================
 
-In order to organize your rules into "sets" requires that you place them
-into "sub arrays". Consider the following example, showing two sets of
-rules. We've arbitrarily called these two rules "signup" and "email".
-You can name your rules anything you want::
+バリデーションルールを「セット」に整理するためには、
+「サブ配列」にそれらを置くことが必要です。次の例を考えてみましょう、ルールを 2 セット作ります。
+「signup」と「email」の 2 つのルールとします。
+この名称は任意につけられます::
 
 	$config = array(
 		'signup' => array(
 			array(
 				'field' => 'username',
-				'label' => 'Username',
+				'label' => 'ユーザ名',
 				'rules' => 'required'
 			),
 			array(
 				'field' => 'password',
-				'label' => 'Password',
+				'label' => 'パスワード',
 				'rules' => 'required'
 			),
 			array(
 				'field' => 'passconf',
-				'label' => 'Password Confirmation',
+				'label' => 'パスワード確認',
 				'rules' => 'required'
 			),
 			array(
 				'field' => 'email',
-				'label' => 'Email',
+				'label' => 'メールアドレス',
 				'rules' => 'required'
 			)
 		),
 		'email' => array(
 			array(
 				'field' => 'emailaddress',
-				'label' => 'EmailAddress',
+				'label' => 'eメールアドレス',
 				'rules' => 'required|valid_email'
 			),
 			array(
 				'field' => 'name',
-				'label' => 'Name',
+				'label' => '名前',
 				'rules' => 'required|alpha'
 			),
 			array(
 				'field' => 'title',
-				'label' => 'Title',
+				'label' => 'タイトル',
 				'rules' => 'required'
 			),
 			array(
 				'field' => 'message',
-				'label' => 'MessageBody',
+				'label' => 'メッセージ本文',
 				'rules' => 'required'
 			)
 		)
@@ -811,8 +811,8 @@ You can name your rules anything you want::
 特定のルールグループを呼び出す
 ==============================
 
-In order to call a specific group, you will pass its name to the ``run()``
-method. For example, to call the signup rule you will do this::
+特定のグループを呼び出すには、 ``run()`` メソッドにその名前を渡します。
+たとえば、 signup ルールを呼び出すにはこうします::
 
 	if ($this->form_validation->run('signup') == FALSE)
 	{
@@ -823,13 +823,13 @@ method. For example, to call the signup rule you will do this::
 		$this->load->view('formsuccess');
 	}
 
-コントローラー内のメソッドにルールグループを関連づける
-======================================================
+コントローラーのメソッドにルールグループを関連づける
+====================================================
 
-An alternate (and more automatic) method of calling a rule group is to
-name it according to the controller class/method you intend to use it
-with. For example, let's say you have a controller named Member and a
-method named signup. Here's what your class might look like::
+ルールグループを呼び出す (より自動的な) 別の方法として、
+バリデーションルールを使いたいコントローラのクラス/メソッドに応じた名前を付けることです。
+例えば、 Member コントローラと
+signup メソッドがあるとしましょう​。次のようなクラスです::
 
 	<?php
 
@@ -850,37 +850,37 @@ method named signup. Here's what your class might look like::
 		}
 	}
 
-In your validation config file, you will name your rule group
-member/signup::
+バリデーション設定ファイルでは、ルールグループに
+member/signup という名前をつけます::
 
 	$config = array(
 		'member/signup' => array(
 			array(
 				'field' => 'username',
-				'label' => 'Username',
+				'label' => 'ユーザ名',
 				'rules' => 'required'
 			),
 			array(
 				'field' => 'password',
-				'label' => 'Password',
+				'label' => 'パスワード',
 				'rules' => 'required'
 			),
 			array(
 				'field' => 'passconf',
-				'label' => 'PasswordConfirmation',
+				'label' => 'パスワード確認',
 				'rules' => 'required'
 			),
 			array(
 				'field' => 'email',
-				'label' => 'Email',
+				'label' => 'メールアドレス',
 				'rules' => 'required'
 			)
 		)
 	);
 
-When a rule group is named identically to a controller class/method it
-will be used automatically when the ``run()`` method is invoked from that
-class/method.
+ルールグループにコントローラのクラス/メソッドと同じ名前がつけられている場合、
+``run()`` メソッドはそのクラス/メソッドから呼び出されたときに
+自動的にそれを使用します。
 
 .. _using-arrays-as-field-names:
 

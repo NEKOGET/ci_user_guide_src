@@ -2,30 +2,30 @@
 静的なページ
 ############
 
-**注意:** このチュートリアルでは、CodeIgniterのをダウンロードし,開発環境にフレームワークが
+**注意:** このチュートリアルでは、CodeIgniterをダウンロードし、開発環境に
 :doc:`インストール <../installation/index>` されている
-と仮定します。
+ものとします。
 
 まず最初に静的なページを処理する  **controller** をセットアップします。
-コントローラはシンプルな指名するお仕事を支援するclassです。
-これがWebアプリケーションのつなぎになります。
+controllerは処理を指示するだけのシンプルなクラスです。
+ここからWebアプリケーションを始められます。
 
-For example, when a call is made to:
+たとえば、以下のようなURLにアクセスする場合を考えます。
 
 	http://example.com/news/latest/10
 
-We might imagine that there is a controller named "news". The method
-being called on news would be "latest". The news method's job could be to
-grab 10 news items, and render them on the page. Very often in MVC,
-you'll see URL patterns that match:
+この場合、 "news"という部分が controller を指します。
+"news"で呼び出されるメソッドは"latest"で、"latest"メソッドは
+10件の項目を取得し、ページ上に表示するメソッドだと仮定します。MVCモデルに則り、
+URL構成は以下のようになっています。
 
 	http://example.com/[controller-class]/[controller-method]/[arguments]
 
-As URL schemes become more complex, this may change. But for now, this
-is all we will need to know.
+URL構成が複雑になるにつれて、これは変更することがありますが、
+最初のうちは、これさえ知っていれば大丈夫です。
 
-次のコードで、application/controllers/Pages.php ファイルを
-作成します。
+*application/controllers/Pages.php* ファイルを作成し、
+以下のコードを書き込みます。
 
 ::
 
@@ -37,24 +37,24 @@ is all we will need to know.
 	        }
 	}
 
-You have created a class named ``Pages``, with a view method that accepts
-one argument named ``$page``. The ``Pages`` class is extending the
-``CI_Controller`` class. This means that the new pages class can access the
-methods and variables defined in the ``CI_Controller`` class
+ここでは ``$page`` という引数1つを受け付ける ``Pages`` というメソッドを作成しています。
+``Pages`` クラスは ``CI_Controller`` クラスを継承しています。
+これは、作成したPagesクラスが ``CI_Controller`` クラスで定義されている
+メソッドと変数を使える事を意味しています。
 (*system/core/Controller.php*).
 
-The **controller is what will become the center of every request** to
-your web application. In very technical CodeIgniter discussions, it may
-be referred to as the *super object*. Like any php class, you refer to
-it within your controllers as ``$this``. Referring to ``$this`` is how
-you will load libraries, views, and generally command the framework.
+あなたのWebアプリケーションにおいて、 **controllerは全てのリクエストの中心** になります。
+CodeIgniterの高度な技術ディスカッションでは、これは *super object* と呼ばれます。
+多くのPHPのクラスと同じく、controllerは ``$this`` という変数で参照できます。
+``$this`` を参照する事で、
+ライブラリやビュー、その他の CodeIgniter の機能をロードします。
 
-Now you've created your first method, it's time to make some basic page
-templates. We will be creating two "views" (page templates) that act as
-our page footer and header.
+今、基本的なページを作成する最初の段階としてメソッドを作成しました。
+これから、ページのフッターとヘッダーとして動作する2つの
+"views" （ページテンプレート）を作成します
 
-Create the header at *application/views/templates/header.php* and add
-the following code:
+*application/views/templates/header.php* にヘッダーを作成し、
+以下のコードを書き込みます。
 
 ::
 

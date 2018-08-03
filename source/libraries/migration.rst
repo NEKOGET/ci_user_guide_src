@@ -2,16 +2,20 @@
 マイグレーションクラス
 ######################
 
-Migrations are a convenient way for you to alter your database in a 
-structured and organized manner. You could edit fragments of SQL by hand 
-but you would then be responsible for telling other developers that they 
-need to go and run them. You would also have to keep track of which changes 
-need to be run against the production machines next time you deploy.
+マイグレーション（訳注：プログラムを使ったデータベーススキーマ変更）は、
+お使いのデータベースを構造的かつ組織的に変更するために役に立つしくみです。
+SQL をちょこちょこと手でいじることもできなくはないでしょうが、
+他の開発者にも同じ変更作業をしてもらわなければなりません。
+また、次回本番マシンに対して変更作業を行う際、
+どの変更処理を適用しないといけないかを常に把握しておく必要があります。
 
-The database table **migration** tracks which migrations have already been 
-run so all you have to do is update your application files and 
-call ``$this->migration->current()`` to work out which migrations should be run. 
-The current version is found in **application/config/migration.php**.
+データベーステーブルの **マイグレーション** は、過去にどのマイグレーションが
+行われたのかを追跡しており、アプリケーションのファイルを更新した後に
+``$this->migration->current()`` を呼ぶだけでどのマイグレーションを実行
+すればよいのかをうまく解決してくれます。
+
+マイグレーション処理の現在のバージョンは **application/config/migration.php** 
+にあります。
 
 .. contents::
   :local:
@@ -24,34 +28,37 @@ The current version is found in **application/config/migration.php**.
 マイグレーションファイル名
 **************************
 
-Each Migration is run in numeric order forward or backwards depending on the
-method taken. Two numbering styles are available:
+それぞれのマイグレーションは、渡されたメソッドによって、数字の順番で順方向
+（ロールフォワード）もしくは逆方向（ロールバック）に実行されます。
+２種類の付番スタイルが利用できます：
 
-* **Sequential:** each migration is numbered in sequence, starting with **001**.
-  Each number must be three digits, and there must not be any gaps in the
-  sequence. (This was the numbering scheme prior to CodeIgniter 3.0.)
-* **Timestamp:** each migration is numbered using the timestamp when the migration
-  was created, in **YYYYMMDDHHIISS** format (e.g. **20121031100537**). This
-  helps prevent numbering conflicts when working in a team environment, and is
-  the preferred scheme in CodeIgniter 3.0 and later.
+* **連番** それぞれのマイグレーションは、作成した順に **001** から付番します。
+  番号は３桁の連番であり、欠番があってはなりません。
+  （これは CideIgniter 3.0 以前の付番スキームでした）
 
-The desired style may be selected using the ``$config['migration_type']``
-setting in your *application/config/migration.php* file.
+* **タイムスタンプ** それぞれのマイグレーションは、マイグレーションが作成された
+  時点のタイムスタンプを使って **YYYYMMDDHHIISS** というフォーマットで付番
+  します（例： **20121031100537** ）。これにより、チーム環境で作業している
+  際に番号が衝突するのを防いでいます。これは CodeIgniter 3.0 以降で推奨される
+  方法です。
 
-Regardless of which numbering style you choose to use, prefix your migration
-files with the migration number followed by an underscore and a descriptive
-name for the migration. For example:
+お手元の *application/config/migration.php* ファイルの中の
+``$config['migration_type']`` 設定により、どちらかの方法を選択します。
 
-* 001_add_blog.php (sequential numbering)
-* 20121031100537_add_blog.php (timestamp numbering)
+どちらを選択した場合でも、マイグレーションファイル名はマイグレーション番号に
+続いてアンダースコアとマイグレーションの内容の説明文としてください。
+たとえば以下のようになります:
+
+* 001_add_blog.php (連番による付番)
+* 20121031100537_add_blog.php (タイムスタンプによる付番)
 
 **********************
 マイグレーションの作成
 **********************
-	
-This will be the first migration for a new site which has a blog. All 
-migrations go in the **application/migrations/** directory and have names such 
-as *20121031100537_add_blog.php*.
+
+これはブログ機能を持つ新しいサイトのための、最初のマイグレーションです。
+すべてのマイグレーションには *20121031100537_add_blog.php* といった名前を付けて、
+**application/migrations/** に置いておきます。
 ::
 
 	<?php
@@ -88,14 +95,16 @@ as *20121031100537_add_blog.php*.
 		}
 	}
 
-Then in **application/config/migration.php** set ``$config['migration_version'] = 20121031100537;``.
+その後、 **application/config/migration.php** の中で
+``$config['migration_version'] = 20121031100537;`` のように指定します。
 
 ******
 使用例
 ******
 
-In this example some simple code is placed in **application/controllers/Migrate.php** 
-to update the schema.::
+この例ではいくつかのシンプルなコードを **application/controllers/Migrate.php**
+に置いて、スキーマをアップデートします。
+::
 
 	<?php
 	
@@ -118,20 +127,17 @@ to update the schema.::
 マイグレーション設定
 ********************
 
-The following is a table of all the config options for migrations.
+マイグレーションで指定できる設定オプションは以下の通りです。
 
 ========================== ====================== ========================== =============================================
 設定項目                   初期値                 オプション                 説明
 ========================== ====================== ========================== =============================================
-**migration_enabled**      FALSE                  TRUE / FALSE               Enable or disable migrations.
-**migration_path**         APPPATH.'migrations/'  None                       The path to your migrations folder.
-**migration_version**      0                      None                       The current version your database should use.
-**migration_table**        migrations             None                       The table name for storing the schema
-                                                                             version number.
-**migration_auto_latest**  FALSE                  TRUE / FALSE               Enable or disable automatically 
-                                                                             running migrations.
-**migration_type**         'timestamp'            'timestamp' / 'sequential' The type of numeric identifier used to name
-                                                                             migration files.
+**migration_enabled**      FALSE                  TRUE / FALSE               マイグレーションを実行するかどうか
+**migration_path**         APPPATH.'migrations/'  None                       マイグレーションフォルダのパス
+**migration_version**      0                      None                       使用するべきデータベースのバージョン番号
+**migration_table**        migrations             None                       スキーマのバージョン番号を保持するテーブル名
+**migration_auto_latest**  FALSE                  TRUE / FALSE               自動的にマイグレーションを実行するかどうか
+**migration_type**         'timestamp'            'timestamp' / 'sequential' マイグレーションファイル名の識別部分の数値タイプ
 ========================== ====================== ========================== =============================================
 
 ******************
@@ -142,43 +148,40 @@ The following is a table of all the config options for migrations.
 
 	.. php:method:: current()
 
-		:returns:	TRUE if no migrations are found, current version string on success, FALSE on failure
-		:rtype:	mixed
-
-		Migrates up to the current version (whatever is set for
-		``$config['migration_version']`` in *application/config/migration.php*).
+		:戻り値:	マイグレーションが見つからない場合は TRUE、
+			成功した場合現在のバージョン番号、FALSE.失敗
+		:戻り値の型:	mixed
+		:説明: （ *application/config/migration.php* 中の ``$config['migration_version']`` 
+			の値にかかわらず）現在のバージョンまでマイグレート（追随）する。
 
 	.. php:method:: error_string()
 
-		:returns:	Error messages
-		:rtype:	string
-
-		This returns a string of errors that were detected while performing a migration.
+		:戻り値:	エラーメッセージ文字列
+		:戻り値の型:	string
+		:説明: マイグレーション実行中に検出したエラーの文字列を返す
 
 	.. php:method:: find_migrations()
 
-		:returns:	An array of migration files
-		:rtype:	array
-
-		An array of migration filenames are returned that are found in the **migration_path** property.
+		:戻り値:	マイグレーションファイル名の配列
+		:戻り値の型:	array
+		:説明: **migration_path** プロパティで見つかったマイグレーションファイル名を
+			配列として返す
 
 	.. php:method:: latest()
 
-		:returns:	Current version string on success, FALSE on failure
-		:rtype:	mixed
-
-		This works much the same way as ``current()`` but instead of looking for 
-		the ``$config['migration_version']`` the Migration class will use the very 
-		newest migration found in the filesystem.
+		:戻り値:	成功した場合、現在のバージョン文字列。失敗したら FALSE
+		:戻り値の型:	mixed
+		:説明: これは ``current()`` と同じように動作するが、
+			``$config['migration_version']`` を参照する代わりに、
+			ファイルシステム内で最も新しいマイグレーションクラスを使用する。
 
 	.. php:method:: version($target_version)
 
-		:param	mixed	$target_version: Migration version to process
-		:returns:	TRUE if no migrations are found, current version string on success, FALSE on failure
-		:rtype:	mixed
-
-		Version can be used to roll back changes or step forwards programmatically to 
-		specific versions. It works just like ``current()`` but ignores ``$config['migration_version']``.
-		::
+		:パラメータ:	mixed	$target_version: 処理するマイグレーションのバージョン
+		:戻り値:	マイグレーションが見つからない場合は TRUE、成功した場合現在のバージョン番号、FALSE.失敗
+		:戻り値の型:	mixed
+		:説明: 変更をロールバックする場合、もしくはロールフォワードをプログラム的に
+			順番に行う場合のターゲットバージョン。 ``current()`` と同じように動作するが
+			``$config['migration_version']`` を参照しない。 ::
 
 			$this->migration->version(5);
